@@ -15,7 +15,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-
 /**
  *
  * @author SADOK
@@ -34,6 +33,7 @@ public class ServicePanier implements IService<Panier> {
             ps.setFloat(3, t.getTotalPrix());
             ps.executeUpdate();
             System.out.println("Panier created!");
+
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
@@ -50,6 +50,7 @@ public class ServicePanier implements IService<Panier> {
             ps.setFloat(3, t.getTotalPrix());
             ps.setInt(4, t.getId_panier());
             ps.executeUpdate();
+            
             System.out.println("panier Updated !");
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
@@ -63,6 +64,7 @@ public class ServicePanier implements IService<Panier> {
             PreparedStatement ps = cnx.prepareStatement(req);
             ps.setInt(1, id);
             ps.executeUpdate();
+            
             System.out.println("Panier deleted!");
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
@@ -72,29 +74,29 @@ public class ServicePanier implements IService<Panier> {
 
     @Override
     public List<Panier> getAll() {
-         List<Panier> result = new ArrayList<>();
+        List<Panier> result = new ArrayList<>();
         try {
             String req = "SELECT * FROM `panier`";
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(req);
             while (rs.next()) {
-                int id_panier=rs.getInt(1);
-                int id_livre=rs.getInt(2);
-                int quantite=rs.getInt(3);
-                float prix=rs.getFloat(4);
-                Panier p= new Panier(id_panier, id_livre, quantite, prix);
+                int id_panier = rs.getInt(1);
+                int id_livre = rs.getInt(2);
+                int quantite = rs.getInt(3);
+                float prix = rs.getFloat(4);
+                Panier p = new Panier(id_panier, id_livre, quantite, prix);
                 result.add(p);
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
-        return result ;
+        return result;
 
     }
 
     @Override
     public Panier getOneById(int id) {
-          Panier result = null;
+        Panier result = null;
         try {
             String req = "SELECT * FROM `panier` WHERE id_panier = " + id;
             Statement st = cnx.createStatement();
