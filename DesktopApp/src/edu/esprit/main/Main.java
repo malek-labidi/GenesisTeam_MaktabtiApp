@@ -3,19 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package desktopapp;
+package edu.esprit.main;
+
+import edu.esprit.util.DataSource;
+import java.sql.Connection;
 
 /**
  *
  * @author admin
  */
-public class DesktopApp {
-
-    /**
-     * @param args the command line arguments
-     */
+public class Main {
     public static void main(String[] args) {
-        // TODO code application logic here
+        Connection ds= DataSource.getInstance().getCnx();
     }
-    
 }
