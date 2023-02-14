@@ -7,8 +7,11 @@ package edu.esprit.main;
 
 import edu.esprit.entities.Competition;
 import edu.esprit.entities.Panier;
+import edu.esprit.entities.Role;
+import edu.esprit.entities.Utilisateur;
 import edu.esprit.services.ServiceCompetition;
 import edu.esprit.services.ServicePanier;
+import edu.esprit.services.ServiceUtilisateur;
 import java.sql.Date;
 
 /**
@@ -38,5 +41,15 @@ public class Main {
         
         System.out.println(sp.getAll());
         System.out.println(sp.getOneById(2));
+        
+        //User
+        ServiceUtilisateur su=new ServiceUtilisateur();
+        Utilisateur u2 = new Utilisateur("malek", "laabidi", "maleklaabidi@gmail.com", "laabidi", 63647551,Role.Client);
+        Utilisateur u1 = new Utilisateur("wassim", "hachani", "wassimhach16@gmail.com", "wassim", 54100060,Role.Administrateur);
+        //su.ajouter(u1);
+        //su.ajouter(u2);
+        
+        System.out.println(su.getAll()); 
+        System.out.println(su.getOneById(2));
     }
 }
