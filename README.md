@@ -1,3 +1,3 @@
-# GenesisTeam_MaktabtiApp
+# PIDEV_MaktabtiApp
 
-This project was chosen to create an online platform allowing authors and readers to connect and interact. It offers a unique experience for authors, and readers, who can access an extensive library of books and take part in quizzes and competitions.
+Une plateforme en ligne permettant aux auteurs et aux lecteurs de se connecter et d'interagir. Elle offre une expérience unique aux auteurs , et aux lecteurs, qui peuvent accéder à une vaste bibliothèque de livres et participer à des quiz et des concours.
