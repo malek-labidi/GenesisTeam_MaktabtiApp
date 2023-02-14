@@ -27,7 +27,7 @@ public class ServiceCompetition implements IService<Competition>{
     @Override
     public void ajouter(Competition t) {
           try {
-            String req = "INSERT INTO `comptetition`(`id_livre`, `recompense`, `liste_paticipants`, `lien_competition`, `nom`, `date_debut`, `date_fin`) VALUES (?,?,?,?,?,?,?)";
+            String req = "INSERT INTO `competition`(`id_livre`, `recompense`, `liste_paticipants`, `lien_competition`, `nom`, `date_debut`, `date_fin`) VALUES (?,?,?,?,?,?,?)";
             PreparedStatement ps = cnx.prepareStatement(req);
             ps.setInt(1, t.getId_livre());
             ps.setString(2,t.getRecompense());
@@ -46,7 +46,7 @@ public class ServiceCompetition implements IService<Competition>{
     @Override
     public void modifier(Competition t) {
          try {
-            String req = "UPDATE `comptetition` SET `id_livre`=?,`recompense`=?,`liste_paticipants`=?,`lien_competition`=?,`nom`=?,`date_debut`=?,`date_fin`=? WHERE id_competition= ?";
+            String req = "UPDATE `competition` SET `id_livre`=?,`recompense`=?,`liste_paticipants`=?,`lien_competition`=?,`nom`=?,`date_debut`=?,`date_fin`=? WHERE id_competition= ?";
             PreparedStatement ps = cnx.prepareStatement(req);
             ps.setInt(1, t.getId_livre());
             ps.setString(2,t.getRecompense());
@@ -66,7 +66,7 @@ public class ServiceCompetition implements IService<Competition>{
     @Override
     public void delete(int id) {
         try {
-            String req = "DELETE FROM `comptetition` WHERE id_competition=?";
+            String req = "DELETE FROM `competition` WHERE id_competition=?";
             PreparedStatement ps = cnx.prepareStatement(req);
             ps.setInt(1, id);
             ps.executeUpdate();
@@ -80,7 +80,7 @@ public class ServiceCompetition implements IService<Competition>{
     public List<Competition> getAll() {
          List<Competition> result = new ArrayList<>();
         try {
-            String req = "SELECT * FROM `comptetition`";
+            String req = "SELECT * FROM `competition`";
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(req);
             while (rs.next()) {
@@ -110,7 +110,7 @@ public class ServiceCompetition implements IService<Competition>{
     public Competition getOneById(int id) {
           Competition result = null;
         try {
-            String req = "SELECT * FROM `comptetition` WHERE id_competition = " + id;
+            String req = "SELECT * FROM `competition` WHERE id_competition = " + id;
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(req);
             while (rs.next()) {
