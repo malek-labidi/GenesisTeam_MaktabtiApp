@@ -15,6 +15,7 @@ import edu.esprit.entities.Status;
 import edu.esprit.entities.Utilisateur;
 import edu.esprit.services.ServiceCommande;
 import edu.esprit.services.ServiceCompetition;
+import edu.esprit.services.ServiceFidelite;
 import edu.esprit.services.ServicePanier;
 import edu.esprit.services.ServiceUtilisateur;
 import java.sql.Date;
@@ -63,13 +64,16 @@ public class Main {
         Commande c4= new Commande (2,1,Status.paye,Mode.carte_bancaire,Etat.encours);
         Commande c5= new Commande (2,1,Status.non_paye,Mode.carte_bancaire,Etat.encours);
         
-        cu.ajouter(c5);
-        cu.ajouter(c4);
+        //cu.ajouter(c5);
+        //cu.ajouter(c4);
         
         System.out.println(cu.getAll());
         System.out.println(cu.getOneById(2));
 
-        
+         ServiceFidelite sf = new ServiceFidelite();
+                System.out.println(sf.getAll());
+                 System.out.println(sf.getOneById(2));
+                /* sf.delete(1);*/
         
     }
 }
