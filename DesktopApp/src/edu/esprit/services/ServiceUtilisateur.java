@@ -4,6 +4,9 @@
  */
 package edu.esprit.services;
 
+import edu.esprit.entities.Administrateur;
+import edu.esprit.entities.Auteur;
+import edu.esprit.entities.Client;
 import edu.esprit.entities.Role;
 import edu.esprit.entities.Utilisateur;
 import edu.esprit.main.Main;
@@ -29,6 +32,14 @@ public class ServiceUtilisateur implements IService<Utilisateur> {
          @Override
     public void ajouter(Utilisateur u) {
         try {
+            String role="Client";
+            if (u instanceof Client){
+                role="client";
+            }else if (u instanceof Administrateur){
+            role="Administrateur";
+            }else{
+            role="Auteur";        
+            }
             String req = "INSERT INTO `utilisateur`( `nom`, `prenom`, `email`, `mot_de_passe`, `num_telephone` , `role`)  VALUES (?,?,?,?,?,?)";
             PreparedStatement ps = cnx.prepareStatement(req);
             ps.setString(1, u.getNom());
@@ -78,7 +89,15 @@ public class ServiceUtilisateur implements IService<Utilisateur> {
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(req);
             while (rs.next()) {
-                Utilisateur u = new Utilisateur(rs.getInt(1), rs.getString("nom"), rs.getString(3), rs.getString(4), rs.getString("Mot_de_passe"), rs.getInt("num_telephone") ,Role.valueOf(rs.getObject("role").toString()) );
+                if(rs.getString("Role").equals("Client")){
+                  Utilisateur u=new Client();  
+                }else if(rs.getString("Role").equals("Administrateur")){
+                  Utilisateur u=new Administrateur();  
+                }
+                else{
+                  Utilisateur u=new Auteur();  
+                }
+                Utilisateur u = new Utilisateur(rs.getInt(1), rs.getString("nom"), rs.getString(3), rs.getString(4), rs.getString("Mot_de_passe"), rs.getInt("num_telephone") ,rs.getString("role") ) {};
                 list.add(u);
             }
         } catch (SQLException ex) {
@@ -96,7 +115,7 @@ public class ServiceUtilisateur implements IService<Utilisateur> {
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(req);
             while (rs.next()) {
-                u = new Utilisateur(rs.getInt(1), rs.getString("nom"), rs.getString(3), rs.getString(4), rs.getString("Mot_de_passe"), rs.getInt("num_telephone"),Role.valueOf(rs.getObject("role").toString()));
+                u = new Utilisateur(rs.getInt(1), rs.getString("nom"), rs.getString(3), rs.getString(4), rs.getString("Mot_de_passe"), rs.getInt("num_telephone"),rs.getString("role")) {};
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
@@ -106,5 +125,6 @@ public class ServiceUtilisateur implements IService<Utilisateur> {
     }
 
 }
+
 
 
