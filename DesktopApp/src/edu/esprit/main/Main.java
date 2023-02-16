@@ -16,7 +16,10 @@ import edu.esprit.entities.Status;
 import edu.esprit.entities.Utilisateur;
 import edu.esprit.services.ServiceCommande;
 import edu.esprit.services.ServiceCompetition;
+
 import edu.esprit.services.ServiceLivre;
+import edu.esprit.services.ServiceFidelite;
+
 import edu.esprit.services.ServicePanier;
 import edu.esprit.services.ServiceUtilisateur;
 import java.sql.Date;
@@ -80,7 +83,10 @@ public class Main {
         System.out.println(sl.getAll());
         System.out.println(sl.getOneById(1));
 
-        
+         ServiceFidelite sf = new ServiceFidelite();
+                System.out.println(sf.getAll());
+                 System.out.println(sf.getOneById(2));
+                /* sf.delete(1);*/
         
     }
 }
