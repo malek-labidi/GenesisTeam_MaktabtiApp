@@ -8,6 +8,7 @@ package edu.esprit.main;
 import edu.esprit.entities.Commande;
 import edu.esprit.entities.Competition;
 import edu.esprit.entities.Etat;
+import edu.esprit.entities.Livre;
 import edu.esprit.entities.Mode;
 import edu.esprit.entities.Panier;
 import edu.esprit.entities.Role;
@@ -15,10 +16,15 @@ import edu.esprit.entities.Status;
 import edu.esprit.entities.Utilisateur;
 import edu.esprit.services.ServiceCommande;
 import edu.esprit.services.ServiceCompetition;
+
+import edu.esprit.services.ServiceLivre;
+
 import edu.esprit.services.ServiceFidelite;
+
 import edu.esprit.services.ServicePanier;
 import edu.esprit.services.ServiceUtilisateur;
 import java.sql.Date;
+import java.time.LocalDate;
 
 /**
  *
@@ -52,7 +58,7 @@ public class Main {
         
         //User
         ServiceUtilisateur su=new ServiceUtilisateur();
-        //Utilisateur u2 = new Utilisateur("malek", "laabidi", "maleklaabidi@gmail.com", "laabidi", 63647551,Role.Client);
+       // Utilisateur u2 = new Utilisateur("malek", "laabidi", "maleklaabidi@gmail.com", "laabidi", 63647551,Role.Client);
         //Utilisateur u1 = new Utilisateur("wassim", "hachani", "wassimhach16@gmail.com", "wassim", 54100060,Role.Administrateur);
         //su.ajouter(u1);
         //su.ajouter(u2);
@@ -61,14 +67,22 @@ public class Main {
         System.out.println(su.getOneById(2));
         
         ServiceCommande cu = new ServiceCommande();
-        Commande c4= new Commande (2,1,Status.paye,Mode.carte_bancaire,Etat.encours);
-        Commande c5= new Commande (2,1,Status.non_paye,Mode.carte_bancaire,Etat.encours);
+       // Commande c4= new Commande (2,1,Status.paye,Mode.carte_bancaire,Etat.encours);
+        //Commande c5= new Commande (2,1,Status.non_paye,Mode.carte_bancaire,Etat.encours);
         
         //cu.ajouter(c5);
         //cu.ajouter(c4);
         
         System.out.println(cu.getAll());
         System.out.println(cu.getOneById(2));
+        Livre l=new Livre(1, 1, "solo", Date.valueOf("1998-10-02"), "fr", 123, 222, "sssss", 20);
+                Livre l1=new Livre(1,1, 1, "virus", Date.valueOf("2005-10-02"), "fr", 123, 222, "sssss", 20);
+
+        ServiceLivre sl=new ServiceLivre();
+        //sl.ajouter(l);
+        sl.modifier(l);
+        System.out.println(sl.getAll());
+        System.out.println(sl.getOneById(1));
 
          ServiceFidelite sf = new ServiceFidelite();
                 System.out.println(sf.getAll());
