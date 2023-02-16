@@ -11,6 +11,7 @@ import edu.esprit.entities.Etat;
 import edu.esprit.entities.Livre;
 import edu.esprit.entities.Mode;
 import edu.esprit.entities.Panier;
+import edu.esprit.entities.Reclamation;
 import edu.esprit.entities.Role;
 import edu.esprit.entities.Status;
 import edu.esprit.entities.Utilisateur;
@@ -25,6 +26,7 @@ import edu.esprit.services.ServiceLivre;
 import edu.esprit.services.ServiceFidelite;
 
 import edu.esprit.services.ServicePanier;
+import edu.esprit.services.ServiceReclamation;
 import edu.esprit.services.ServiceUtilisateur;
 import java.sql.Date;
 import java.time.LocalDate;
@@ -91,6 +93,15 @@ public class Main {
                 System.out.println(sf.getAll());
                  System.out.println(sf.getOneById(2));
                 /* sf.delete(1);*/
+                
+                
+        Reclamation r5 = new Reclamation("FSGFSF", "SDFDSF");
+        Reclamation r6 = new Reclamation(2,"FSGFSF", "SDFDSF");
+        ServiceReclamation sr = new ServiceReclamation();
+        sr.modifier(r6);
+        System.out.println(sr.getAll());
+        System.out.println(sr.getOneById(2));
+         
         
     }
 }
