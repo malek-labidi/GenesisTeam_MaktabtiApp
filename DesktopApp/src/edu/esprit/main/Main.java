@@ -8,16 +8,28 @@ package edu.esprit.main;
 import edu.esprit.entities.Commande;
 import edu.esprit.entities.Competition;
 import edu.esprit.entities.Etat;
+import edu.esprit.entities.Livre;
 import edu.esprit.entities.Mode;
 import edu.esprit.entities.Panier;
+import edu.esprit.entities.Reclamation;
 import edu.esprit.entities.Role;
 import edu.esprit.entities.Status;
 import edu.esprit.entities.Utilisateur;
 import edu.esprit.services.ServiceCommande;
 import edu.esprit.services.ServiceCompetition;
+
+import edu.esprit.services.ServiceLivre;
+
+
+
+
+import edu.esprit.services.ServiceFidelite;
+
 import edu.esprit.services.ServicePanier;
+import edu.esprit.services.ServiceReclamation;
 import edu.esprit.services.ServiceUtilisateur;
 import java.sql.Date;
+import java.time.LocalDate;
 
 /**
  *
@@ -46,30 +58,38 @@ public class Main {
         //sp.modifier(p2);
         //sp.delete(2);
         
-        System.out.println(sp.getAll());
         System.out.println(sp.getOneById(2));
         
         //User
         ServiceUtilisateur su=new ServiceUtilisateur();
-        //Utilisateur u2 = new Utilisateur("malek", "laabidi", "maleklaabidi@gmail.com", "laabidi", 63647551,Role.Client);
-        //Utilisateur u1 = new Utilisateur("wassim", "hachani", "wassimhach16@gmail.com", "wassim", 54100060,Role.Administrateur);
-        //su.ajouter(u1);
-        //su.ajouter(u2);
-        
-        System.out.println(su.getAll()); 
+        Utilisateur u1 = new Utilisateur("wassim", "hachani", "wassimhach16@gmail.com", "wassim", 54100060,"Administrateur") {};
+        //su.ajouter(u4);
+        System.out.println(su.getAll());
+
         System.out.println(su.getOneById(2));
         
-        ServiceCommande cu = new ServiceCommande();
-        Commande c4= new Commande (2,1,Status.paye,Mode.carte_bancaire,Etat.encours);
-        Commande c5= new Commande (2,1,Status.non_paye,Mode.carte_bancaire,Etat.encours);
+        //ServiceCommande cu = new ServiceCommande();
+       // Commande c4= new Commande (2,1,Status.paye,Mode.carte_bancaire,Etat.encours);
+        //Commande c5= new Commande (2,1,Status.non_paye,Mode.carte_bancaire,Etat.encours);
         
-        cu.ajouter(c5);
-        cu.ajouter(c4);
+        //cu.ajouter(c5);
+        //cu.ajouter(c4);
         
-        System.out.println(cu.getAll());
-        System.out.println(cu.getOneById(2));
+        //System.out.println(cu.getAll());
+        //System.out.println(cu.getOneById(2));
+        //Livre l=new Livre(1, 1, "solo", Date.valueOf("1998-10-02"), "fr", 123, 222, "sssss", 20);
+                //Livre l1=new Livre(1,1, 1, "virus", Date.valueOf("2005-10-02"), "fr", 123, 222, "sssss", 20);
 
-        
+        //ServiceLivre sl=new ServiceLivre();
+        //sl.ajouter(l);
+        //sl.modifier(l);
+        //System.out.println(sl.getAll());
+        //System.out.println(sl.getOneById(1));
+
+         //ServiceFidelite sf = new ServiceFidelite();
+                //System.out.println(sf.getAll());
+                // System.out.println(sf.getOneById(2));
+                /* sf.delete(1);*/
         
     }
 }

@@ -3,6 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+
             <file>file:/Users/abdelazizlahmar/Desktop/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/entities/Commande.java</file>
             <file>file:/Users/abdelazizlahmar/Desktop/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/entities/Mode.java</file>
             <file>file:/Users/abdelazizlahmar/Desktop/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/services/ServicePanier.java</file>
@@ -13,6 +14,12 @@
             <file>file:/Users/abdelazizlahmar/Desktop/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/util/DataSource.java</file>
             <file>file:/Users/abdelazizlahmar/Desktop/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/entities/Etat.java</file>
             <file>file:/Users/abdelazizlahmar/Desktop/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/entities/Status.java</file>
+
+          
+            <file>file:/D:/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/services/IService.java</file>
+           
+            <file>file:/D:/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/main/Main.java</file>
+
         </group>
     </open-files>
 </project-private>

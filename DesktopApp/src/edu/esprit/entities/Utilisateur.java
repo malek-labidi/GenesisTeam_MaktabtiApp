@@ -8,16 +8,16 @@ package edu.esprit.entities;
  *
  * @author wassi
  */
-public class Utilisateur {
+public abstract class Utilisateur {
     private int id;
     private String nom,prenom,email,mot_de_passe;
     private int num_telephone;
-    private Role role;
+    private String role;
 
     public Utilisateur() {
     }
 
-    public Utilisateur(String nom, String prenom, String email, String mot_de_passe, int num_telephone, Role role) {
+    public Utilisateur(String nom, String prenom, String email, String mot_de_passe, int num_telephone, String role) {
         this.nom = nom;
         this.prenom = prenom;
         this.email = email;
@@ -26,7 +26,7 @@ public class Utilisateur {
         this.role = role;
     }
 
-    public Utilisateur(int id, String nom, String prenom, String email, String mot_de_passe, int num_telephone, Role role) {
+    public Utilisateur(int id, String nom, String prenom, String email, String mot_de_passe, int num_telephone, String role) {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
@@ -92,11 +92,11 @@ public class Utilisateur {
         return "Utilisateur{" + "nom=" + nom + ", prenom=" + prenom + ", email=" + email + ", mot_de_passe=" + mot_de_passe + ", num_telephone=" + num_telephone + ", role=" + role + '}';
     }
 
-    public Role getRole() {
+    public String getRole() {
         return role;
     }
 
-    public void setRole(Role role) {
+    public void setRole(String role) {
         this.role = role;
     }
 
