@@ -10,6 +10,7 @@ import edu.esprit.entities.Competition;
 import edu.esprit.entities.Etat;
 import edu.esprit.entities.Livre;
 import edu.esprit.entities.Mode;
+import edu.esprit.entities.Offre;
 import edu.esprit.entities.Panier;
 import edu.esprit.entities.Reclamation;
 import edu.esprit.entities.Role;
@@ -24,6 +25,7 @@ import edu.esprit.services.ServiceLivre;
 
 
 import edu.esprit.services.ServiceFidelite;
+import edu.esprit.services.ServiceOffre;
 
 import edu.esprit.services.ServicePanier;
 import edu.esprit.services.ServiceReclamation;
@@ -61,11 +63,11 @@ public class Main {
         //System.out.println(sp.getOneById(2));
         
         //User
-        ServiceUtilisateur su=new ServiceUtilisateur();
-        Utilisateur u1 = new Utilisateur("wassim", "hachani", "wassimhach16@gmail.com", "wassim", 54100060,"Administrateur") {};
+       // ServiceUtilisateur su=new ServiceUtilisateur();
+       // Utilisateur u1 = new Utilisateur("wassim", "hachani", "wassimhach16@gmail.com", "wassim", 54100060,"Administrateur") {};
         //System.out.println(su.getAll());
-        Utilisateur u3 = new Utilisateur("gg", "gg", "wassimhach16@gmaill.com", "wassim1", 54100060,"Administrateur") {};
-        su.ajouter(u3);
+       // Utilisateur u3 = new Utilisateur("gg", "gg", "wassimhach16@gmaill.com", "wassim1", 54100060,"Administrateur") {};
+       // su.ajouter(u3);
         
         //ServiceCommande cu = new ServiceCommande();
        // Commande c4= new Commande (2,1,Status.paye,Mode.carte_bancaire,Etat.encours);
@@ -89,6 +91,11 @@ public class Main {
                 //System.out.println(sf.getAll());
                 // System.out.println(sf.getOneById(2));
                 /* sf.delete(1);*/
-        
+                 ServiceOffre o=new ServiceOffre();
+
+        Offre oo = new Offre(2, "2%", 560);
+        Offre oo1 = new Offre(90,3,"80%", 440);
+         o.ajouter(oo1);
+
     }
 }
