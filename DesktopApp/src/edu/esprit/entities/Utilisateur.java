@@ -6,6 +6,7 @@ package edu.esprit.entities;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
@@ -110,7 +111,7 @@ public abstract class Utilisateur {
     }
 
 
-        public List<Utilisateur> getQuestions() {
+        public List<Utilisateur> getUtilisateurs() {
 
         return listeutilisateurs;
 
@@ -125,14 +126,23 @@ public abstract class Utilisateur {
         return listeutilisateurs.stream().sorted((t1, t2) -> t1.getId()- t2.getId());
     }
     
-
-
     public void afficherUtilisateurs() {
         listeutilisateurs.stream().forEach(e -> System.out.println(e));
 
     }
-
-
+    
+    public void afficherClients() {
+    List<Utilisateur> clients = listeutilisateurs.stream()
+            .filter(v -> !v.getRole().equals("Client")).collect(Collectors.toList());
+    }
+    public void afficherAdministrateurs() {
+    List<Utilisateur> Administrateurs = listeutilisateurs.stream()
+            .filter(v -> !v.getRole().equals("Administrateur")).collect(Collectors.toList());
+    }
+    public void afficherAuteurs() {
+    List<Utilisateur> Auteurs = listeutilisateurs.stream()
+            .filter(v -> !v.getRole().equals("Auteur")).collect(Collectors.toList());
+    }
     
     
 
