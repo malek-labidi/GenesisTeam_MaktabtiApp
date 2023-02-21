@@ -75,10 +75,10 @@ public class ServiceUtilisateur implements IService<Utilisateur> {
 
 
             if (ps.executeUpdate() > 0) {
-                System.out.println("You have registered successfully.");
+                System.out.println("You have registered successfully!");
                 return true;
             } else {
-                System.out.println("Something went wrong.");
+                System.out.println("Something went wrong!");
                 return false;
             }
 
@@ -87,7 +87,7 @@ public class ServiceUtilisateur implements IService<Utilisateur> {
             return false;
         }
     }else{ 
-            System.out.println("Les colonnes doivent etres remplis");
+            System.out.println("Columns should not be empty!");
      }      return false;
 }
 
@@ -116,7 +116,10 @@ public class ServiceUtilisateur implements IService<Utilisateur> {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
-    }}
+    }else{
+            System.out.println("Columns should not be empty!");
+        }
+    }
     
 
 
