@@ -7,6 +7,7 @@ package edu.esprit.services;
 
 import edu.esprit.entities.Panier;
 import edu.esprit.util.DataSource;
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -25,12 +26,15 @@ public class ServicePanier implements IService<Panier> {
 
     @Override
     public void ajouter(Panier t) {
+        
+        
         try {
-            String req = "INSERT INTO `panier`(`id_livre`, `quantite`, `totalPrix`) VALUES (?,?,?)";
+            String req = "INSERT INTO `panier`(`id_livre`,`id_client`,`quantite`,`totalPrix`) VALUES (?,?,?,?)";
             PreparedStatement ps = cnx.prepareStatement(req);
             ps.setInt(1, t.getId_livre());
-            ps.setInt(2, t.getQuantite());
-            ps.setFloat(3, t.getTotalPrix());
+            ps.setInt(2, t.getId_client());
+            ps.setInt(3, t.getQuantite());
+            ps.setFloat(4, t.getTotalPrix());
             ps.executeUpdate();
             System.out.println("Panier created!");
 
@@ -46,9 +50,10 @@ public class ServicePanier implements IService<Panier> {
             String req = "UPDATE `panier` SET`id_livre`=?,`quantite`=?,`totalPrix`=? WHERE  `id_panier`= ?";
             PreparedStatement ps = cnx.prepareStatement(req);
             ps.setInt(1, t.getId_livre());
-            ps.setInt(2, t.getQuantite());
-            ps.setFloat(3, t.getTotalPrix());
-            ps.setInt(4, t.getId_panier());
+            ps.setInt(2, t.getId_client());
+            ps.setInt(3, t.getQuantite());
+            ps.setFloat(4, t.getTotalPrix());
+            ps.setInt(5, t.getId_panier());
             ps.executeUpdate();
             
             System.out.println("panier Updated !");
@@ -112,5 +117,22 @@ public class ServicePanier implements IService<Panier> {
         }
         return result;
     }
+    
+    
+    //Fonction calcul Prix total des livres dans le panier 
+    
+    /*public int CalculTotalPrixLivres(int id){
+        
+        
+        String req ="SELECT SUM(prix) as total FROM livre INNER JOIN panier ON livre.id_livre = panier.id_livre WHERE panier.id_panier = ?";
+        PreparedStatement ps = cnx.prepareStatement(req);
+        ps.setInt(1,id_panier);
+        ResultSet rs = ps.executeQuery();
+        if (rs.next()) {
+            BigDecimal total = rs.getBigDecimal("total");
+            System.out.println("Le total des livres ajoutés au panier est : " + total);
+}
+    }*/
+    
 
 }

@@ -7,8 +7,10 @@ package edu.esprit.services;
 
 import edu.esprit.entities.Commande;
 import edu.esprit.entities.Etat;
-import edu.esprit.entities.Mode;
+import edu.esprit.entities.Livre;
+//import edu.esprit.entities.Mode;
 import edu.esprit.entities.Status;
+import edu.esprit.entities.Utilisateur;
 import edu.esprit.util.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -29,34 +31,48 @@ public class ServiceCommande implements IService<Commande> {
 
     @Override
     public void ajouter(Commande t) {
-
+        ServiceUtilisateur su = new ServiceUtilisateur();
+        Utilisateur u = su.getOneById(t.getId_client());
+        ServiceLivre sl = new ServiceLivre();
+        Livre l = sl.getOneById(t.getId_livre());
+        ServiceCommande sc = new ServiceCommande();
+        Commande c =sc.getOneById(t.getId_commande());
+        
+        
+        if(u != null && c !=null && l !=null){
         try {
-            String req = "INSERT INTO `commande`( `id_livre`, `id_client`, `status`, `mode`, `etat`) VALUES (?,?,?,?,?)";
+            String req = "INSERT INTO `commande`( `id_livre`, `id_client`, `status`, `etat`) VALUES (?,?,?,?)";
             PreparedStatement ps = cnx.prepareStatement(req);
             ps.setInt(1, t.getId_livre());
             ps.setInt(2, t.getId_client());
             ps.setString(3, t.getStatus().toString());
-            ps.setString(4, t.getMode().toString());
-            ps.setString(5, t.getEtat().toString());
+            ps.setString(4, t.getEtat().toString());
             ps.executeUpdate();
             System.out.println("Commande created ");
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
 
+    }else if (u == null) {
+        System.out.println("User dosen't exist");
+    }else if(l ==null) {
+        System.out.println("Livre dosen't exist ");
+    }else{
+        System.out.println("Command dosen't exist");
+    }
+        
     }
 
     @Override
     public void modifier(Commande t) {
         try {
-            String req = "UPDATE `commande` SET `id_livre`=?,`id_client`=?,`status`=?,`mode`=?,`etat`=? WHERE id_commande=?";
+            String req = "UPDATE `commande` SET `id_livre`=?,`id_client`=?,`status`=? ,`etat`=? WHERE id_commande=?";
             PreparedStatement ps = cnx.prepareStatement(req);
             ps.setInt(1, t.getId_livre());
             ps.setInt(2, t.getId_client());
             ps.setString(3, t.getStatus().toString());
-            ps.setString(4, t.getMode().toString());
-            ps.setString(5, t.getEtat().toString());
-            ps.setInt(6, t.getId_commande());
+            ps.setString(4, t.getEtat().toString());
+            ps.setInt(5, t.getId_commande());
             ps.executeUpdate();
             System.out.println("Commande updated  ");
         } catch (SQLException ex) {
@@ -93,11 +109,10 @@ public class ServiceCommande implements IService<Commande> {
                 int id_livre = rs.getInt(2);
                 int id_client = rs.getInt(3);
                 Status status = Status.valueOf(rs.getObject(4).toString());
+                //Mode mode = Mode.valueOf(rs.getObject(5).toString());
+                Etat etat = Etat.valueOf(rs.getObject(5).toString());
 
-                Mode mode = Mode.valueOf(rs.getObject(5).toString());
-                Etat etat = Etat.valueOf(rs.getObject(6).toString());
-
-                Commande c = new Commande(id_livre, id_client, id_commande, status, mode, etat);
+                Commande c = new Commande(id_livre, id_client, id_commande, status,etat);
 
                 result.add(c);
 
@@ -117,7 +132,7 @@ public class ServiceCommande implements IService<Commande> {
             ResultSet rs = st.executeQuery(req);
             while (rs.next()) {
 
-                result = new Commande(rs.getInt(1), rs.getInt(2), rs.getInt(3), Status.valueOf(rs.getObject(4).toString()), Mode.valueOf(rs.getObject(5).toString()), Etat.valueOf(rs.getObject(6).toString()));
+                result = new Commande(rs.getInt(1), rs.getInt(2), rs.getInt(3), Status.valueOf(rs.getObject(4).toString()), Etat.valueOf(rs.getObject(5).toString()));
 
             }
 
