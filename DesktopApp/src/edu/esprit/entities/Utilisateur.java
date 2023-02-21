@@ -106,10 +106,23 @@ public abstract class Utilisateur {
         this.role = role;
     }
     
+    
+    //Controle de saisie sur les cases vides
         public static boolean verifString(String s ){
         return s.isEmpty();
     }
-
+    //Controle de saisie sur l'email
+    public static boolean verifemail(String s ){
+        String regex="[^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$]+";
+        return s.matches(regex);
+    }
+    //Controle de saisie sur le mot de passe
+    public static boolean verifpassword(String s ){
+        String regex="[a-zA-Z_0-9]+";
+        return s.matches(regex);
+    }
+    
+    
 
         public List<Utilisateur> getUtilisateurs() {
 
