@@ -51,7 +51,7 @@ public class Main {
         
         
         ServicePanier sp=new ServicePanier();
-        Panier p1=new Panier(1, 3, 25);
+        Panier p1=new Panier(1, 3, 25,250);
         Panier p2=new Panier(1, 1, 2, 50);
 
         //sp.ajouter(p1);

@@ -17,26 +17,25 @@ public class Commande {
   
   //attributs de type énumérés 
   private Status status;
-  private Mode mode;
   private Etat etat;
 
     public Commande() {
     }
 
-    public Commande(int id_livre, int id_client, int id_commande, Status status, Mode mode, Etat etat) {
+    public Commande(int id_livre, int id_client, int id_commande, Status status, Etat etat) {
         this.id_livre = id_livre;
         this.id_client = id_client;
         this.id_commande = id_commande;
         this.status = status;
-        this.mode = mode;
+        
         this.etat = etat;
     }
 
-    public Commande(int id_livre, int id_client, Status status, Mode mode, Etat etat) {
+    public Commande(int id_livre, int id_client, Status status, Etat etat) {
         this.id_livre = id_livre;
         this.id_client = id_client;
         this.status = status;
-        this.mode = mode;
+        
         this.etat = etat;
     }
 
@@ -70,13 +69,6 @@ public class Commande {
         this.status = status;
     }
 
-    public Mode getMode() {
-        return mode;
-    }
-
-    public void setMode(Mode mode) {
-        this.mode = mode;
-    }
 
     public Etat getEtat() {
         return etat;
@@ -88,7 +80,7 @@ public class Commande {
 
     @Override
     public String toString() {
-        return "Commande{" + "status=" + status + ", mode=" + mode + ", etat=" + etat + '}';
+        return "Commande{" + "status=" + status + ", etat=" + etat + '}';
     }
 
     @Override
