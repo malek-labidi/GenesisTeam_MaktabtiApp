@@ -72,7 +72,7 @@ public class Main {
 
          ServiceFidelite sf = new ServiceFidelite();
                 System.out.println(sf.getAll());
-                 System.out.println(sf.getOneById(2));
+                System.out.println(sf.getOneById(2));
                 /* sf.delete(1);*/
         
     }
