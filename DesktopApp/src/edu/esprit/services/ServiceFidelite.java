@@ -21,7 +21,7 @@ import edu.esprit.entities.Fidelite;
  * @author Gaaloul
  */
 public class ServiceFidelite implements IService <Fidelite>{
-         Connection cnx = DataSource.getInstance().getCnx();
+        Connection cnx = DataSource.getInstance().getCnx();
 
     @Override
     public List<Fidelite> getAll() {
@@ -41,7 +41,7 @@ public class ServiceFidelite implements IService <Fidelite>{
         }
         return list;
     }
-    @Override
+        @Override
     public Fidelite getOneById(int id) {
         Fidelite result = null;
         try {
@@ -72,6 +72,7 @@ public class ServiceFidelite implements IService <Fidelite>{
         }
     }
 
+
     @Override
     public void ajouter(Fidelite t) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -81,6 +82,33 @@ public class ServiceFidelite implements IService <Fidelite>{
     public void modifier(Fidelite t) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
+    
+        
+   /* fonction pour calculer le montant d'achat total de chaque client
+    public int totalacha(int id) {
+    int total = 0;
+    try {
+        String req = "SELECT SUM(montant) FROM commande WHERE id_client=" + id;
+        Statement st = cnx.createStatement();
+        ResultSet rs = st.executeQuery(req);
+        
+        if (rs.next()) {
+            total = rs.getInt("montant"); // get the first column of the result set as an integer
+        }
+        
+        rs.close();
+        st.close();
+    } catch (SQLException ex) {
+        System.out.println(ex.getMessage());
+    }
+    return total;
+}
+    */
+    
+    
+    
+    
     
     
 }
