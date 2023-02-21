@@ -31,7 +31,7 @@ public class ServiceUtilisateur implements IService<Utilisateur> {
         
          @Override
     public void ajouter(Utilisateur u) {
-        if (!Utilisateur.verifString(u.getNom()) && !Utilisateur.verifString(u.getPrenom())&& !Utilisateur.verifString(u.getEmail() ) && !Utilisateur.verifString(u.getMot_de_passe()) && !Utilisateur.verifemail(u.getEmail()) && !Utilisateur.verifpassword(u.getMot_de_passe()) ) {
+        if (!Utilisateur.verifString(u.getNom()) && !Utilisateur.verifString(u.getPrenom())&& !Utilisateur.verifString(u.getEmail() ) && !Utilisateur.verifString(u.getMot_de_passe()) && !Utilisateur.verifemail(u.getEmail()) && !Utilisateur.verifpassword(u.getMot_de_passe())&& getOneByemailutilisateur(u.getEmail()) == null ) {
         try {
             String role="Client";
             if (u instanceof Client){
@@ -61,7 +61,7 @@ public class ServiceUtilisateur implements IService<Utilisateur> {
     //Registration code
      public boolean register(Utilisateur u) {
         Connection cnx = DataSource.getInstance().getCnx();
-        if (!Utilisateur.verifString(u.getNom()) && !Utilisateur.verifString(u.getPrenom())&& !Utilisateur.verifString(u.getEmail() ) && !Utilisateur.verifString(u.getMot_de_passe()) && !Utilisateur.verifemail(u.getEmail()) && !Utilisateur.verifpassword(u.getMot_de_passe()) ) {
+        if (!Utilisateur.verifString(u.getNom()) && !Utilisateur.verifString(u.getPrenom())&& !Utilisateur.verifString(u.getEmail() ) && !Utilisateur.verifString(u.getMot_de_passe()) && !Utilisateur.verifemail(u.getEmail()) && !Utilisateur.verifpassword(u.getMot_de_passe())&& getOneByemailutilisateur(u.getEmail()) == null ) {
         try {
             String req = "INSERT INTO `utilisateur`( `nom`, `prenom`, `email`, `mot_de_passe`, `num_telephone` , `role`)  VALUES (?,?,?,?,?,?)";
             PreparedStatement ps = cnx.prepareStatement(req);
@@ -107,7 +107,7 @@ public class ServiceUtilisateur implements IService<Utilisateur> {
     
     @Override
     public void modifier(Utilisateur u) {
-        if (!Utilisateur.verifString(u.getNom()) && !Utilisateur.verifString(u.getPrenom())&& !Utilisateur.verifString(u.getEmail() ) && !Utilisateur.verifString(u.getMot_de_passe()) && !Utilisateur.verifemail(u.getEmail()) && !Utilisateur.verifpassword(u.getMot_de_passe()) ) {
+        if (!Utilisateur.verifString(u.getNom()) && !Utilisateur.verifString(u.getPrenom())&& !Utilisateur.verifString(u.getEmail() ) && !Utilisateur.verifString(u.getMot_de_passe()) && !Utilisateur.verifemail(u.getEmail()) && !Utilisateur.verifpassword(u.getMot_de_passe())&& getOneByemailutilisateur(u.getEmail()) == null ) {
         try {
             String req = "UPDATE `utilisateur` SET `nom` = '" + u.getNom() + "', `prenom` = '" + u.getPrenom() + "', `email` = '" + u.getEmail()+ "', `mot_de_passe` = '" + u.getMot_de_passe()+ "', `num_telephone` = '" + u.getnum_telephone()+ "', `role` = '" + u.getRole()+  "' WHERE `personne`.`id` = " + u.getId();
             Statement st = cnx.createStatement();
@@ -149,6 +149,26 @@ public class ServiceUtilisateur implements IService<Utilisateur> {
         return list;
     }
 
+    //Let email be unique
+    public Utilisateur getOneByemailutilisateur(String email) {
+        Utilisateur result = null;
+        try {
+            String req = "SELECT * FROM utilisateur WHERE email = " + email;
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(req);
+            while (rs.next()) {
+
+                result = new Utilisateur(rs.getInt(1), rs.getString("nom"), rs.getString(3), rs.getString(4), rs.getString("Mot_de_passe"), rs.getInt("num_telephone"),rs.getString("role")) {};
+
+            }
+
+        } catch (SQLException ex) {
+            System.out.println("Les adresses emails ne doivent etre en doublons");
+        }
+        return result;
+    }
+
+    //Get one by id
     @Override
     public Utilisateur getOneById(int id) {
         Utilisateur u = null;
