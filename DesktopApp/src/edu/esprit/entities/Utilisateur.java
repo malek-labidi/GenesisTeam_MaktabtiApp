@@ -4,6 +4,10 @@
  */
 package edu.esprit.entities;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Stream;
+
 /**
  *
  * @author wassi
@@ -13,6 +17,7 @@ public abstract class Utilisateur {
     private String nom,prenom,email,mot_de_passe;
     private int num_telephone;
     private String role;
+    private List<Utilisateur> listeutilisateurs;
 
     public Utilisateur() {
     }
@@ -98,6 +103,33 @@ public abstract class Utilisateur {
 
     public void setRole(String role) {
         this.role = role;
+    }
+    
+        public static boolean verifString(String s ){
+        return s.isEmpty();
+    }
+
+
+        public List<Utilisateur> getQuestions() {
+
+        return listeutilisateurs;
+
+    }
+
+    public void supprimerQuestion(Question p) {
+        listeutilisateurs.remove(p);
+    }
+
+    public Stream<Utilisateur> trierUtilisateurParId() {
+
+        return listeutilisateurs.stream().sorted((t1, t2) -> t1.getId()- t2.getId());
+    }
+    
+
+
+    public void afficherUtilisateurs() {
+        listeutilisateurs.stream().forEach(e -> System.out.println(e));
+
     }
 
 
