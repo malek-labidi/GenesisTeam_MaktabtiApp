@@ -4,6 +4,11 @@
  */
 package edu.esprit.entities;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 /**
  *
  * @author wassi
@@ -13,6 +18,7 @@ public abstract class Utilisateur {
     private String nom,prenom,email,mot_de_passe;
     private int num_telephone;
     private String role;
+    private List<Utilisateur> listeutilisateurs;
 
     public Utilisateur() {
     }
@@ -99,8 +105,57 @@ public abstract class Utilisateur {
     public void setRole(String role) {
         this.role = role;
     }
+    
+    
+    //Controle de saisie sur les cases vides
+        public static boolean verifString(String s ){
+        return s.isEmpty();
+    }
+    //Controle de saisie sur l'email
+    public static boolean verifemail(String s ){
+        String regex="[^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$]+";
+        return s.matches(regex);
+    }
+    //Controle de saisie sur le mot de passe
+    public static boolean verifpassword(String s ){
+        String regex="[a-zA-Z_0-9]+";
+        return s.matches(regex);
+    }
+    
+    
 
+        public List<Utilisateur> getUtilisateurs() {
 
+        return listeutilisateurs;
+
+    }
+
+    public void supprimerQuestion(Question p) {
+        listeutilisateurs.remove(p);
+    }
+
+    public Stream<Utilisateur> trierUtilisateurParId() {
+
+        return listeutilisateurs.stream().sorted((t1, t2) -> t1.getId()- t2.getId());
+    }
+    
+    public void afficherUtilisateurs() {
+        listeutilisateurs.stream().forEach(e -> System.out.println(e));
+
+    }
+    
+    public void afficherClients() {
+    List<Utilisateur> clients = listeutilisateurs.stream()
+            .filter(v -> !v.getRole().equals("Client")).collect(Collectors.toList());
+    }
+    public void afficherAdministrateurs() {
+    List<Utilisateur> Administrateurs = listeutilisateurs.stream()
+            .filter(v -> !v.getRole().equals("Administrateur")).collect(Collectors.toList());
+    }
+    public void afficherAuteurs() {
+    List<Utilisateur> Auteurs = listeutilisateurs.stream()
+            .filter(v -> !v.getRole().equals("Auteur")).collect(Collectors.toList());
+    }
     
     
 

@@ -160,5 +160,9 @@ public class Livre {
         }
         return true;
     }
+      public static boolean verifString(String s ){
+        
+    return s.isEmpty();
+    }
 
 }
