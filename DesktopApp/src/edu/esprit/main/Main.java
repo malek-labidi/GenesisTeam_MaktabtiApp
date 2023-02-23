@@ -8,6 +8,7 @@ package edu.esprit.main;
 import edu.esprit.entities.Commande;
 import edu.esprit.entities.Competition;
 import edu.esprit.entities.Etat;
+import edu.esprit.entities.Evenement;
 import edu.esprit.entities.Livre;
 import edu.esprit.entities.Mode;
 import edu.esprit.entities.Offre;
@@ -18,6 +19,7 @@ import edu.esprit.entities.Status;
 import edu.esprit.entities.Utilisateur;
 import edu.esprit.services.ServiceCommande;
 import edu.esprit.services.ServiceCompetition;
+import edu.esprit.services.ServiceEvenement;
 
 import edu.esprit.services.ServiceLivre;
 
@@ -31,7 +33,7 @@ import edu.esprit.services.ServicePanier;
 import edu.esprit.services.ServiceReclamation;
 import edu.esprit.services.ServiceUtilisateur;
 import java.sql.Date;
-import java.time.LocalDate;
+import java.sql.Time;
 
 /**
  *
@@ -91,11 +93,20 @@ public class Main {
                 //System.out.println(sf.getAll());
                 // System.out.println(sf.getOneById(2));
                 /* sf.delete(1);*/
-                 ServiceOffre o=new ServiceOffre();
+               /*  ServiceOffre o=new ServiceOffre();
 
         Offre oo = new Offre(2, "2%", 560);
         Offre oo1 = new Offre(90,3,"80%", 440);
-         o.ajouter(oo1);
+         o.ajouter(oo1);*/
+               ServiceEvenement se =new ServiceEvenement();
+               Evenement e = new Evenement("e1", Date.valueOf("2023-04-14"), Time.valueOf("14:03:00"), 1, 3, "tunis", "fdvdvd", 40);
+               //Evenement e1 = new Evenement(1,"e1", Date.valueOf("2023-05-14"), Time.valueOf("20:03:00"), 1, 2, "tunis", "fdvdvd", 40);
+
+               //Livre l =new Livre(1, 1, "sss", Date.valueOf("2022-01-05"), "fr", 112, 113, "sfsdf", 13);
+               se.ajouter(e);
+               
+              
+               //se.modifier(e1);
 
     }
 }
