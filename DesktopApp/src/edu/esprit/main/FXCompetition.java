@@ -7,28 +7,32 @@ package edu.esprit.main;
 
 import java.io.IOException;
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 /**
  *
  * @author admin
  */
-public class NewFXMain extends Application {
+public class FXCompetition extends Application {
 
     @Override
     public void start(Stage primaryStage) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("../gui/FXMLMaktabti.fxml"));
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/FXMLCompetition.fxml"));
+            Parent root = loader.load();
             Scene scene = new Scene(root);
-            scene.getStylesheets().add("/edu/esprit/gui/styles/fxmlmaktabti.css");
+            // scene.getStylesheets().add("/edu/esprit/gui/styles/crud.css");
             primaryStage.getIcons().add(new Image("/edu/esprit/gui/images/icon-app-logo.png"));
-            primaryStage.setTitle("Maktabti");
-            //ProgressBar pb1 = new ProgressBar();
-            // ProgressBar pb2 = new ProgressBar();
+            primaryStage.setTitle("Competition");
             primaryStage.setScene(scene);
             primaryStage.show();
         } catch (IOException ex) {
