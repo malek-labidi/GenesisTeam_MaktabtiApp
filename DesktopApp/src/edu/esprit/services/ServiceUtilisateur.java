@@ -31,7 +31,6 @@ public class ServiceUtilisateur implements IService<Utilisateur> {
         
          @Override
     public void ajouter(Utilisateur u) {
-        if (!Utilisateur.verifString(u.getNom()) && !Utilisateur.verifString(u.getPrenom())&& !Utilisateur.verifString(u.getEmail() ) && !Utilisateur.verifString(u.getMot_de_passe()) && !Utilisateur.verifemail(u.getEmail()) && !Utilisateur.verifpassword(u.getMot_de_passe())&& getOneByemailutilisateur(u.getEmail()) == null ) {
         try {
             String role="Client";
             if (u instanceof Client){
@@ -54,9 +53,7 @@ public class ServiceUtilisateur implements IService<Utilisateur> {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
-    }else{
-            System.out.println("Les colonnes doivent etres remplis");
-        } }
+ }
     
     //Registration code
      public boolean register(Utilisateur u) {
@@ -120,6 +117,25 @@ public class ServiceUtilisateur implements IService<Utilisateur> {
             System.out.println("Columns should not be empty!");
         }
     }
+    /*public void modifier2(String name,Utilisateur u) {
+    String sql = "update utilisateur set nom=?,prenom=?,email=?,mot_de_passe=?,num_telephone=?,role=?   where id_utilisateur=? ";
+        try {
+            PreparedStatement ste = cnx.prepareStatement(sql);
+            ste.setString(1, u.getNom());
+            ste.setString(2, u.getPrenom());
+            ste.setString(3, u.getEmail());
+            ste.setString(4, u.getMot_de_passe());
+            ste.setInt(5, u.getnum_telephone());
+            ste.setString(6, u.getRole());
+
+
+
+            ste.executeUpdate();
+            System.out.println("********************** MODIFIED ****************************************");
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    } */
     
 
 
@@ -200,6 +216,16 @@ public class ServiceUtilisateur implements IService<Utilisateur> {
         }
 
         return u;
+    }
+    public void supprimerUtilisateur(Utilisateur u) {
+            String req = "DELETE FROM `utilisateur` WHERE id_utilisateur  = ?"  ;
+        try {
+            PreparedStatement ste = cnx.prepareStatement(req);
+            ste.setInt(1, u.getId());
+            ste.executeUpdate();
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
         
         
