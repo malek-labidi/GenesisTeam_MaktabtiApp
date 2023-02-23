@@ -5,6 +5,7 @@
  */
 package edu.esprit.services;
 
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -12,7 +13,7 @@ import java.util.List;
  * @author admin
  */
 public interface IService<T> {
-    public void ajouter(T t);
+    public void ajouter(T t) throws SQLException;
     public void modifier(T t);
     public void delete(int id);
     public List<T> getAll();
