@@ -8,6 +8,7 @@ package edu.esprit.gui;
 import edu.esprit.entities.Utilisateur;
 import edu.esprit.services.ServiceUtilisateur;
 import edu.esprit.util.DataSource;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -16,11 +17,16 @@ import java.sql.Statement;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -29,8 +35,10 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -63,8 +71,6 @@ public class UtilisateurController implements Initializable {
     @FXML
     private Pane pnlMenus;
     @FXML
-    private Pane pnlOverview;
-    @FXML
     private TextField cat_name;
     @FXML
     private TextField cat_prenom;
@@ -84,6 +90,8 @@ public class UtilisateurController implements Initializable {
     private Button cat_del;
     @FXML
     private ListView<Utilisateur> useview;
+    @FXML
+    private Pane pnlOverview;
 
     /**
      * Initializes the controller class.
@@ -91,10 +99,17 @@ public class UtilisateurController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         affiche();
+                useview.setOnMouseClicked(this::getuser);
     }    
 
-    @FXML
-    private void handleClicks(ActionEvent event) {
+  @FXML
+    private void handleClicks(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("FXMLMaktabti.fxml"));
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+        
     }
 
 
@@ -163,7 +178,7 @@ public class UtilisateurController implements Initializable {
 
     @FXML
     private void updateuser(ActionEvent event) {
-                 if (cat_name.getText().isEmpty() || cat_prenom.getText().isEmpty() || cat_email.getText().isEmpty() || cat_tel.getText().isEmpty() || cat_password.getText().isEmpty() || cat_role.getText().isEmpty()  ) {
+            if (cat_name.getText().isEmpty() || cat_prenom.getText().isEmpty() || cat_email.getText().isEmpty() || cat_tel.getText().isEmpty() || cat_password.getText().isEmpty() || cat_role.getText().isEmpty()  ) {
             Alert a = new Alert(Alert.AlertType.ERROR, "Aucun champ vide n'est accepté", ButtonType.OK);
             a.showAndWait();
         } else if (!Validateemail()) {
@@ -181,7 +196,8 @@ public class UtilisateurController implements Initializable {
             ServiceUtilisateur su = new ServiceUtilisateur();
             Utilisateur u = new Utilisateur(cat_name.getText(),cat_prenom.getText(),cat_email.getText(),cat_password.getText(),Integer.parseInt(cat_tel.getText()), cat_role.getText() ) {} ;
             String var1=cat_name.getText();
-            su.modifier(u);
+            u= useview.getSelectionModel().getSelectedItem();
+            su.modifierutilisateur(var1,u);
             affiche();
             cat_name.clear();
             cat_prenom.clear();
@@ -190,26 +206,65 @@ public class UtilisateurController implements Initializable {
             cat_tel.clear();
             cat_role.clear();
 
-            Alert a = new Alert(Alert.AlertType.INFORMATION, "User Updated Successfully !", ButtonType.OK);
+            Alert a = new Alert(Alert.AlertType.CONFIRMATION, "User Updated Successfully !", ButtonType.OK);
             a.showAndWait();
-        }
+            
+                  /*  ServiceUtilisateur su = new ServiceUtilisateur();
 
+        String var1=cat_name.getText();
+        String var2=cat_prenom.getText();
+        String var3=cat_email.getText();
+        String var4=cat_password.getText();
+        String var5=cat_tel.getText();
+        String var6=cat_role.getText();
+      
+
+       Utilisateur u =new Utilisateur() {} ;
         
-        
+      u.setNom(var1);
+      u.setPrenom(var2);
+      u.setEmail(var3);
+      u.setMot_de_passe(var4);
+      u.setnum_telephone(Integer.parseInt(var5));
+      u.setRole(var6);
+      
+            u= useview.getSelectionModel().getSelectedItem();
+            su.modifier2(u);
+            affiche();
+            cat_name.clear();
+            cat_prenom.clear();
+            cat_email.clear();
+            cat_password.clear();
+            cat_tel.clear();
+            cat_role.clear(); 
+        }*/
+
+        }
     }
 
     @FXML
     private void deleteuser(ActionEvent event) {
-        
             ServiceUtilisateur su = new ServiceUtilisateur();
             Utilisateur u= new Utilisateur() {} ;   
             u= useview.getSelectionModel().getSelectedItem();
             su.supprimerUtilisateur(u);
             affiche();
+            Alert a = new Alert(Alert.AlertType.CONFIRMATION, "User Deleted Successfully !", ButtonType.OK);
+            a.showAndWait();
     }
+    void getuser(MouseEvent event) {
+       /* String selecteditItem = useview.getSelectionModel().getSelectedItem().toString();
+        SelectedIndex=useview.getSelectionModel().getSelectedItem();*/
+    int index = useview.getSelectionModel().getSelectedIndex();
+    if (index <= -1) {
+        return;
+    }
+    ServiceUtilisateur it=new ServiceUtilisateur();
     
-    
-    
+
+    }
+
+/*********************************************CONTROLE DE SAISIE***************************************************************************/    
      private boolean Validateemail() {
         Pattern p = Pattern.compile("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$");
         Matcher m = p.matcher(cat_email.getText());
@@ -222,6 +277,8 @@ public class UtilisateurController implements Initializable {
             return false;
         }
     }
+     
+     
 
     private boolean Validatenumtel() {
         
@@ -256,7 +313,7 @@ public class UtilisateurController implements Initializable {
         public Utilisateur getOneByemailutilisateur(String email) {
         Utilisateur result = null;
         try {
-            String req = "SELECT * FROM utilisateur WHERE email = " + email;
+            String req = "SELECT * FROM utilisateur WHERE email = "+email ;
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(req);
             while (rs.next()) {
@@ -270,15 +327,9 @@ public class UtilisateurController implements Initializable {
         }
         return result;
     }
-        
-        @FXML
-    void getuser(MouseEvent event) {
-        int index = useview.getSelectionModel().getSelectedIndex();
-    if (index <= -1) {
-        return;
-    }    
-    
 
-    }
+
+
+
     
 }
