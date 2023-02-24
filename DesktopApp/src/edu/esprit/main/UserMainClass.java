@@ -7,22 +7,26 @@ package edu.esprit.main;
 
 import java.io.IOException;
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 /**
  *
- * @author admin
+ * @author wassi
  */
-public class NewFXMain extends Application {
-
+public class UserMainClass extends Application {
+    
     @Override
     public void start(Stage primaryStage) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("../gui/FXMLMaktabti.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("../gui/Utilisateur.fxml"));
             Scene scene = new Scene(root);
             scene.getStylesheets().add("/edu/esprit/gui/styles/fxmlmaktabti.css");
             primaryStage.getIcons().add(new Image("/edu/esprit/gui/images/icon-app-logo.png"));
@@ -35,12 +39,11 @@ public class NewFXMain extends Application {
             System.out.println(ex.getMessage());
         }
     }
-
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         launch(args);
     }
-
+    
 }
