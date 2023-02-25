@@ -57,6 +57,7 @@ public class Main {
         //sp.delete(2);
         //System.out.println(sp.getOneById(2));
         //User
+
         // ServiceUtilisateur su=new ServiceUtilisateur();
         // Utilisateur u1 = new Utilisateur("wassim", "hachani", "wassimhach16@gmail.com", "wassim", 54100060,"Administrateur") {};
         //System.out.println(su.getAll());
@@ -64,35 +65,32 @@ public class Main {
         // su.ajouter(u3);
         //ServiceCommande cu = new ServiceCommande();
         // Commande c4= new Commande (2,1,Status.paye,Mode.carte_bancaire,Etat.encours);
-        //Commande c5= new Commande (2,1,Status.non_paye,Mode.carte_bancaire,Etat.encours);
-        //cu.ajouter(c5);
-        //cu.ajouter(c4);
-        //System.out.println(cu.getAll());
-        //System.out.println(cu.getOneById(2));
-        //Livre l=new Livre(1, 1, "solo", Date.valueOf("1998-10-02"), "fr", 123, 222, "sssss", 20);
-        //Livre l1=new Livre(1,1, 1, "virus", Date.valueOf("2005-10-02"), "fr", 123, 222, "sssss", 20);
-        //ServiceLivre sl=new ServiceLivre();
-        //sl.ajouter(l);
-        //sl.modifier(l);
-        //System.out.println(sl.getAll());
-        //System.out.println(sl.getOneById(1));
-        //ServiceFidelite sf = new ServiceFidelite();
-        //System.out.println(sf.getAll());
-        // System.out.println(sf.getOneById(2));
-        /* sf.delete(1);*/
- /*  ServiceOffre o=new ServiceOffre();
 
-        Offre oo = new Offre(2, "2%", 560);
-        Offre oo1 = new Offre(90,3,"80%", 440);
-         o.ajouter(oo1);*/
-        ServiceEvenement se = new ServiceEvenement();
-        Evenement e = new Evenement("e1", Date.valueOf("2023-04-14"), Time.valueOf("14:03:00"), 1, 3, "tunis", "fdvdvd", 40);
-        Evenement e1 = new Evenement(3, "sadok", Date.valueOf("2023-04-05"), Time.valueOf("14:20:50"),1 , 2, "sfax", "netbeans", 50);
-        Evenement e2 = new Evenement(3, "Bibliothéque", Date.valueOf("2023-04-09"), Time.valueOf("14:20:50"),1 , 2, "djerba", "bib", 50);
-        Evenement e3 = new Evenement(3, "Scene", Date.valueOf("2023-04-08"), Time.valueOf("14:20:50"),1 , 2, "Ariana", "bib", 50);
+      ServiceUtilisateur su=new ServiceUtilisateur();
+       // Utilisateur u1 = new Utilisateur("wassim", "hachani", "wassimhach16@gmail.com", "wassim", 54100060,"Administrateur") {};
+        //System.out.println(su.getAll());
+       Utilisateur u4 = new Utilisateur(7,"gg", "gg", "maleklaabidi@hotmail.fr", "wassim1", 54100060,"Administrateur") {};
+       Utilisateur u9 = new Utilisateur("gg", "gg", "mwassimhachanikd@hotmail.fr", "wassim1", 54100060,"Auteur") {};
 
-        //Livre l =new Livre(1, 1, "sss", Date.valueOf("2022-01-05"), "fr", 112, 113, "sfsdf", 13);
-        se.modifier(e3);
+       su.modifier2(32,u9);
+            //ServiceCommande cu = new ServiceCommande();
+       // Commande c4= new Commande (2,1,Status.paye,Mode.carte_bancaire,Etat.encours);
+
+
+
+
+         //ServiceFidelite sf = new ServiceFidelite();
+                //System.out.println(sf.getAll());
+                // System.out.println(sf.getOneById(2));
+                /* sf.delete(1);*/
+
+                 //ServiceOffre o=new ServiceOffre();
+
+       // Offre oo = new Offre(2, "2%", 560);
+        //Offre oo1 = new Offre(90,3,"80%", 440);
+        // o.ajouter(oo1);
+
+
 
         //se.modifier(e1);
     }

@@ -139,6 +139,9 @@ public abstract class Utilisateur {
         return listeutilisateurs.stream().sorted((t1, t2) -> t1.getId()- t2.getId());
     }
     
+
+    
+    
     public void afficherUtilisateurs() {
         listeutilisateurs.stream().forEach(e -> System.out.println(e));
 
