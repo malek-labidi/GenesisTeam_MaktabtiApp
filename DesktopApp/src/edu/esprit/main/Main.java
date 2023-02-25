@@ -8,6 +8,7 @@ package edu.esprit.main;
 import edu.esprit.entities.Commande;
 import edu.esprit.entities.Competition;
 import edu.esprit.entities.Etat;
+import edu.esprit.entities.Evenement;
 import edu.esprit.entities.Livre;
 import edu.esprit.entities.Mode;
 import edu.esprit.entities.Offre;
@@ -18,6 +19,7 @@ import edu.esprit.entities.Status;
 import edu.esprit.entities.Utilisateur;
 import edu.esprit.services.ServiceCommande;
 import edu.esprit.services.ServiceCompetition;
+import edu.esprit.services.ServiceEvenement;
 
 import edu.esprit.services.ServiceLivre;
 
@@ -31,7 +33,7 @@ import edu.esprit.services.ServicePanier;
 import edu.esprit.services.ServiceReclamation;
 import edu.esprit.services.ServiceUtilisateur;
 import java.sql.Date;
-import java.time.LocalDate;
+import java.sql.Time;
 
 /**
  *
@@ -63,13 +65,14 @@ public class Main {
         //System.out.println(sp.getOneById(2));
         
         //User
-       // ServiceUtilisateur su=new ServiceUtilisateur();
+      ServiceUtilisateur su=new ServiceUtilisateur();
        // Utilisateur u1 = new Utilisateur("wassim", "hachani", "wassimhach16@gmail.com", "wassim", 54100060,"Administrateur") {};
         //System.out.println(su.getAll());
-       // Utilisateur u3 = new Utilisateur("gg", "gg", "wassimhach16@gmaill.com", "wassim1", 54100060,"Administrateur") {};
-       // su.ajouter(u3);
-        
-        //ServiceCommande cu = new ServiceCommande();
+       Utilisateur u4 = new Utilisateur(7,"gg", "gg", "maleklaabidi@hotmail.fr", "wassim1", 54100060,"Administrateur") {};
+       Utilisateur u9 = new Utilisateur("gg", "gg", "mwassimhachanikd@hotmail.fr", "wassim1", 54100060,"Auteur") {};
+
+       su.modifier2(32,u9);
+            //ServiceCommande cu = new ServiceCommande();
        // Commande c4= new Commande (2,1,Status.paye,Mode.carte_bancaire,Etat.encours);
         //Commande c5= new Commande (2,1,Status.non_paye,Mode.carte_bancaire,Etat.encours);
         
@@ -91,11 +94,13 @@ public class Main {
                 //System.out.println(sf.getAll());
                 // System.out.println(sf.getOneById(2));
                 /* sf.delete(1);*/
-                 ServiceOffre o=new ServiceOffre();
 
-        Offre oo = new Offre(2, "2%", 560);
-        Offre oo1 = new Offre(90,3,"80%", 440);
-         o.ajouter(oo1);
+                 //ServiceOffre o=new ServiceOffre();
+
+       // Offre oo = new Offre(2, "2%", 560);
+        //Offre oo1 = new Offre(90,3,"80%", 440);
+        // o.ajouter(oo1);
+
 
     }
 }

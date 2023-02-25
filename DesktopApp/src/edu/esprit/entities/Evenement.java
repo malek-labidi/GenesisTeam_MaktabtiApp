@@ -14,7 +14,7 @@ import java.sql.Time;
 import java.time.LocalDate;
 
 public class Evenement {
-
+    
     private int id_evenement;
     private String nom;
     private Date date;
@@ -27,7 +27,7 @@ public class Evenement {
 
     // Constructor
     public Evenement() {
-    }
+}
 
     public Evenement(String nom, Date date, Time heure, int id_auteur, int id_livre, String lieu, String description, int nb_ticket) {
         this.nom = nom;
