@@ -4,20 +4,26 @@
  */
 package edu.esprit.entities;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 /**
  *
  * @author wassi
  */
-public class Utilisateur {
+public abstract class Utilisateur {
     private int id;
     private String nom,prenom,email,mot_de_passe;
     private int num_telephone;
-    private Role role;
+    private String role;
+    private List<Utilisateur> listeutilisateurs;
 
     public Utilisateur() {
     }
 
-    public Utilisateur(String nom, String prenom, String email, String mot_de_passe, int num_telephone, Role role) {
+    public Utilisateur(String nom, String prenom, String email, String mot_de_passe, int num_telephone, String role) {
         this.nom = nom;
         this.prenom = prenom;
         this.email = email;
@@ -26,7 +32,7 @@ public class Utilisateur {
         this.role = role;
     }
 
-    public Utilisateur(int id, String nom, String prenom, String email, String mot_de_passe, int num_telephone, Role role) {
+    public Utilisateur(int id, String nom, String prenom, String email, String mot_de_passe, int num_telephone, String role) {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
@@ -92,17 +98,67 @@ public class Utilisateur {
         return "Utilisateur{" + "nom=" + nom + ", prenom=" + prenom + ", email=" + email + ", mot_de_passe=" + mot_de_passe + ", num_telephone=" + num_telephone + ", role=" + role + '}';
     }
 
-    public Role getRole() {
+    public String getRole() {
         return role;
     }
 
-    public void setRole(Role role) {
+    public void setRole(String role) {
         this.role = role;
     }
-
-
+    
+    
+    //Controle de saisie sur les cases vides
+        public static boolean verifString(String s ){
+        return s.isEmpty();
+    }
+    //Controle de saisie sur l'email
+    public static boolean verifemail(String s ){
+        String regex="[^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$]+";
+        return s.matches(regex);
+    }
+    //Controle de saisie sur le mot de passe
+    public static boolean verifpassword(String s ){
+        String regex="[a-zA-Z_0-9]+";
+        return s.matches(regex);
+    }
     
     
 
+        public List<Utilisateur> getUtilisateurs() {
+
+        return listeutilisateurs;
+
+    }
+
+    public void supprimerQuestion(Question p) {
+        listeutilisateurs.remove(p);
+    }
+
+    public Stream<Utilisateur> trierUtilisateurParId() {
+
+        return listeutilisateurs.stream().sorted((t1, t2) -> t1.getId()- t2.getId());
+    }
+    
+
+    
+    
+    public void afficherUtilisateurs() {
+        listeutilisateurs.stream().forEach(e -> System.out.println(e));
+
+    }
+    
+    public void afficherClients() {
+    List<Utilisateur> clients = listeutilisateurs.stream()
+            .filter(v -> !v.getRole().equals("Client")).collect(Collectors.toList());
+    }
+    public void afficherAdministrateurs() {
+    List<Utilisateur> Administrateurs = listeutilisateurs.stream()
+            .filter(v -> !v.getRole().equals("Administrateur")).collect(Collectors.toList());
+    }
+    public void afficherAuteurs() {
+    List<Utilisateur> Auteurs = listeutilisateurs.stream()
+            .filter(v -> !v.getRole().equals("Auteur")).collect(Collectors.toList());
+    }
+    
     
 }

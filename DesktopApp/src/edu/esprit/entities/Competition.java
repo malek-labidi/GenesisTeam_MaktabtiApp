@@ -111,7 +111,12 @@ public class Competition {
     public String toString() {
         return "Competition{" + "id_livre=" + id_livre + ", recompense=" + recompense + ", liste_participants=" + liste_participants + ", lien_competition=" + lien_competition + ", nom=" + nom + ", date_debut=" + date_debut + ", date_fin=" + date_fin + '}';
     }
+    public static boolean verifString(String s ){
+        
+    return s.isEmpty();
+    }
     
     
     
 }
+

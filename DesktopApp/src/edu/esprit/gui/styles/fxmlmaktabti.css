@@ -1,0 +1,25 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+.root{
+    -fx-position: absolute;
+    -fx-width: 1600px;
+    -fx-height: 1200px;
+    -fx-left: -81px;
+    -fx-top: -67px;
+    -fx-background-color:#E6EFFB;
+}
+
+.txt{
+    -fx-position: absolute;
+    -fx-width: 234px;
+    -fx-height: 84px;
+    -fx-left: 0px;
+    -fx-top: 0px;
+    -fx-background-color:#E6EFFB ;
+    -fx-font-family: "FontAwesome";
+}
+.icon {
+    -fx-font-family: "FontAwesome";
+}
