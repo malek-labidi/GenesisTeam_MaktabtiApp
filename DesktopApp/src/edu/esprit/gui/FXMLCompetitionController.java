@@ -53,14 +53,7 @@ public class FXMLCompetitionController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
 
-        ServiceCompetition se = new ServiceCompetition();
-        /* List<Competition> competitions = se.getAll();
-        List<String> names = new ArrayList<>();
-
-        competitions.stream().map((e) -> e.getNom()).forEachOrdered((name) -> {
-            names.add(name);
-        });*/
-        competition_list.setItems(FXCollections.observableArrayList(se.getAll()));
+      affiche();
     }
 
     @FXML
@@ -96,7 +89,7 @@ public class FXMLCompetitionController implements Initializable {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLModifierCompetition.fxml"));
                 Parent root = loader.load();
                 FXMLModifierCompetitionController controller = loader.getController();
-                controller.setId(id);
+                controller.getCompetition(id);
                 Scene scene = new Scene(root);
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 stage.setScene(scene);
@@ -130,10 +123,15 @@ public class FXMLCompetitionController implements Initializable {
             System.out.println(id);
             Alert alert = new Alert(Alert.AlertType.INFORMATION, "Competition deleted", ButtonType.OK);
             alert.show();
+            affiche();
         } else {
             dialog.close();
         }
 
+    }
+    public void affiche(){
+        ServiceCompetition se = new ServiceCompetition();
+        competition_list.setItems(FXCollections.observableArrayList(se.getAll()));
     }
 
 }
