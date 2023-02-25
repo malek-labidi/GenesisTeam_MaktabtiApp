@@ -6,9 +6,11 @@
             <file>file:/D:/PIDEV/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/gui/FXMLEvenementController.java</file>
             <file>file:/D:/PIDEV/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/gui/FXMLAjouterController.java</file>
             <file>file:/D:/PIDEV/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/services/ServiceEvenement.java</file>
-            <file>file:/D:/PIDEV/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/services/ServiceLivre.java</file>
+            <file>file:/D:/PIDEV/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/services/ServiceCompetition.java</file>
             <file>file:/D:/PIDEV/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/gui/styles/crud.css</file>
             <file>file:/D:/PIDEV/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/entities/Evenement.java</file>
+            <file>file:/D:/PIDEV/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/entities/Livre.java</file>
+            <file>file:/D:/PIDEV/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/util/DataSource.java</file>
             <file>file:/D:/PIDEV/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/main/EventMainFXML.java</file>
             <file>file:/D:/PIDEV/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/main/Main.java</file>
         </group>
