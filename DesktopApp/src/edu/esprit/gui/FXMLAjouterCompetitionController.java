@@ -63,13 +63,13 @@ public class FXMLAjouterCompetitionController implements Initializable {
     @FXML
     private void btn_ajouter(ActionEvent event) {
         int id = -1;
-        if (recompense.getText().isEmpty() || lien.getText().isEmpty() || nom.getText().isEmpty()) {
+        if (recompense.getText().isEmpty() || lien.getText().isEmpty() || nom.getText().isEmpty() || lien.getText().isEmpty()) {
             Alert a = new Alert(Alert.AlertType.ERROR, "Aucun champ vide n'est accepté!", ButtonType.OK);
             a.showAndWait();
-        } else if (isValidLink(lien.getText())) {
+        } /*else if (isValidLink(lien.getText())) {
             Alert a = new Alert(Alert.AlertType.ERROR, "lien invalide !", ButtonType.OK);
             a.showAndWait();
-        } else {
+        }*/ else {
             try {
                 ServiceCompetition sp = new ServiceCompetition();
                 ServiceLivre sl = new ServiceLivre();
