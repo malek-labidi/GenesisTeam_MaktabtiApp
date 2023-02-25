@@ -52,8 +52,8 @@ public class Main {
         //System.out.println(sc.getAll());
         
         
-        //ServicePanier sp=new ServicePanier();
-        //Panier p1=new Panier(1, 3, 25,250);
+       // ServicePanier sp=new ServicePanier();
+       // Panier p1=new Panier(1, 3, 25,250);
         //Panier p2=new Panier(1, 1, 2, 50);
 
         //sp.ajouter(p1);
@@ -69,17 +69,23 @@ public class Main {
        // Utilisateur u3 = new Utilisateur("gg", "gg", "wassimhach16@gmaill.com", "wassim1", 54100060,"Administrateur") {};
        // su.ajouter(u3);
         
-        //ServiceCommande cu = new ServiceCommande();
-       // Commande c4= new Commande (2,1,Status.paye,Mode.carte_bancaire,Etat.encours);
-        //Commande c5= new Commande (2,1,Status.non_paye,Mode.carte_bancaire,Etat.encours);
+       
+       
+        ServiceCommande cu = new ServiceCommande();
+        Commande c4= new Commande (2,1,Status.paye,Mode.carte_bancaire,Etat.encours,400);
+        //Commande c5= new Commande (2,2,1,Status.non_paye,Etat.encours,Mode.carte_bancaire);
+        
         
         //cu.ajouter(c5);
-        //cu.ajouter(c4);
+        cu.ajouter(c4);
+        //cu.getOneById(1);
+          //c4.toString();
+          //cu.delete(2);
         
-        //System.out.println(cu.getAll());
-        //System.out.println(cu.getOneById(2));
+        System.out.println(cu.getAll());
+        //System.out.println(cu.getOneById(1));
         //Livre l=new Livre(1, 1, "solo", Date.valueOf("1998-10-02"), "fr", 123, 222, "sssss", 20);
-                //Livre l1=new Livre(1,1, 1, "virus", Date.valueOf("2005-10-02"), "fr", 123, 222, "sssss", 20);
+        //Livre l1=new Livre(1,1, 1, "virus", Date.valueOf("2005-10-02"), "fr", 123, 222, "sssss", 20);
 
         //ServiceLivre sl=new ServiceLivre();
         //sl.ajouter(l);
@@ -91,11 +97,11 @@ public class Main {
                 //System.out.println(sf.getAll());
                 // System.out.println(sf.getOneById(2));
                 /* sf.delete(1);*/
-                 ServiceOffre o=new ServiceOffre();
+                // ServiceOffre o=new ServiceOffre();
 
-        Offre oo = new Offre(2, "2%", 560);
-        Offre oo1 = new Offre(90,3,"80%", 440);
-         o.ajouter(oo1);
+        //Offre oo = new Offre(2, "2%", 560);
+        //Offre oo1 = new Offre(90,3,"80%", 440);
+        // o.ajouter(oo1);
 
     }
 }

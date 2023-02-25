@@ -108,7 +108,7 @@ public class ServiceLivre implements IService<Livre> {
                 int nb_pages = rs.getInt(8);
                 String resume = rs.getString(9);
                 int prix = rs.getInt(10);
-                Livre l = new Livre(id_auteur, id_categorie, titre, date_pub, langue, isbn, nb_pages, resume, prix);
+                Livre l = new Livre(id,id_auteur, id_categorie, titre, date_pub, langue, isbn, nb_pages, resume, prix);
                 result.add(l);
 
             }

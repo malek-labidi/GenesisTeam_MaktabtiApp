@@ -1,0 +1,31 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+
+.root{
+    -fx-position: absolute;
+    -fx-width: 1600px;
+    -fx-height: 1200px;
+    -fx-left: -81px;
+    -fx-top: -67px;
+    -fx-background-color:#E6EFFB;
+}
+
+.button_modif{
+    -fx-background-color: #5dbea3;
+    -fx-text-fill: black;
+    -fx-font-size: 16px;
+    -fx-background-radius: 8px;
+    -fx-font-family: 'Poppins', sans-serif;
+
+}
+
+.label{
+    
+}
+
+.textArea{
+    -fx-background: url(images/benice.png) center center no-repeat; /* This ruins default border */
+    -fx-border: 1px solid #888; 
+}
