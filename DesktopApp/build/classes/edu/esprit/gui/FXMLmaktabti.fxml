@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="1105.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.gui.FXMLMaktabtiController">
+   <left>
+      <VBox prefHeight="584.0" prefWidth="172.0" styleClass="rect1" stylesheets="@styles/fxmlmaktabti.css" BorderPane.alignment="CENTER">
+         <children>
+            <Label prefHeight="21.0" prefWidth="74.0" styleClass="txt" stylesheets="@styles/fxmlmaktabti.css" text="MAKTABTI" />
+            <Hyperlink text="Library" />
+            <Hyperlink text="My Favorites" />
+            <Hyperlink text="Bookmarks" />
+            <Label prefHeight="21.0" prefWidth="74.0" styleClass="txt" stylesheets="@styles/fxmlmaktabti.css" text="GET MORE" />
+            <Hyperlink text="On Sale" />
+            <Hyperlink text="Competition" />
+            <Hyperlink text="Events" />
+            <Label prefHeight="21.0" prefWidth="74.0" text="ACCOUNT" />
+            <Hyperlink text="My Account" />
+            <Hyperlink text="Logout" />
+         </children>
+      </VBox>
+   </left>
+   <center>
+      <HBox prefHeight="502.0" prefWidth="649.0" styleClass="rect1" stylesheets="@styles/fxmlmaktabti.css" BorderPane.alignment="CENTER" />
+   </center>
+   <right>
+      <VBox prefHeight="660.0" prefWidth="217.0" stylesheets="@styles/fxmlmaktabti.css" BorderPane.alignment="CENTER">
+         <children>
+            <AnchorPane prefHeight="586.0" prefWidth="217.0">
+               <children>
+                  <Label layoutX="14.0" layoutY="14.0" prefHeight="21.0" prefWidth="111.0" text="NOTIFICATIONS" />
+                  <Label layoutX="14.0" layoutY="172.0" prefHeight="21.0" prefWidth="106.0" text="TOP AUTHORS" />
+                  <Label layoutX="14.0" layoutY="342.0" prefHeight="21.0" prefWidth="56.0" text="EVENTS" />
+                  <ImageView fitHeight="35.0" fitWidth="44.0" layoutX="26.0" layoutY="204.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label layoutX="85.0" layoutY="211.0" text="Name Author" />
+               </children>
+            </AnchorPane>
+         </children>
+      </VBox>
+   </right>
+   <top>
+      <AnchorPane prefHeight="76.0" prefWidth="1105.0" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="72.0" fitWidth="120.0" layoutX="20.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/2.png" />
+               </image>
+            </ImageView>
+            <Hyperlink fx:id="home" layoutX="216.0" layoutY="24.0" text="Home" textFill="#003a61" />
+            <Hyperlink fx:id="library" layoutX="286.0" layoutY="24.0" text="Library" textFill="#003a61" />
+         </children>
+      </AnchorPane>
+   </top>
+</BorderPane>

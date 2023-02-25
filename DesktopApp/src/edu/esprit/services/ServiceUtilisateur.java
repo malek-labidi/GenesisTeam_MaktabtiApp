@@ -104,7 +104,6 @@ public class ServiceUtilisateur implements IService<Utilisateur> {
     
     @Override
     public void modifier(Utilisateur u) {
-        if (!Utilisateur.verifString(u.getNom()) && !Utilisateur.verifString(u.getPrenom())&& !Utilisateur.verifString(u.getEmail() ) && !Utilisateur.verifString(u.getMot_de_passe()) && !Utilisateur.verifemail(u.getEmail()) && !Utilisateur.verifpassword(u.getMot_de_passe())&& getOneByemailutilisateur(u.getEmail()) == null ) {
         try {
             String req = "UPDATE `utilisateur` SET `nom` = '" + u.getNom() + "', `prenom` = '" + u.getPrenom() + "', `email` = '" + u.getEmail()+ "', `mot_de_passe` = '" + u.getMot_de_passe()+ "', `num_telephone` = '" + u.getnum_telephone()+ "', `role` = '" + u.getRole()+  "' WHERE `personne`.`id` = " + u.getId();
             Statement st = cnx.createStatement();
@@ -113,12 +112,10 @@ public class ServiceUtilisateur implements IService<Utilisateur> {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
-    }else{
-            System.out.println("Columns should not be empty!");
-        }
+
     }
-    /*public void modifier2(String name,Utilisateur u) {
-    String sql = "update utilisateur set nom=?,prenom=?,email=?,mot_de_passe=?,num_telephone=?,role=?   where id_utilisateur=? ";
+    public void modifier2(int id,Utilisateur u) {
+    String sql = "update utilisateur set nom=?,prenom=?,email=?,mot_de_passe=?,num_telephone=?,role=?   where id_utilisateur="+id;
         try {
             PreparedStatement ste = cnx.prepareStatement(sql);
             ste.setString(1, u.getNom());
@@ -135,7 +132,24 @@ public class ServiceUtilisateur implements IService<Utilisateur> {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
-    } */
+    }
+          public void modifierutilisateur(String name,Utilisateur u) {
+    String sql = "update users set phone=?,email=?  where username=? ";
+        try {
+            PreparedStatement ste = cnx.prepareStatement(sql);
+            ste.setString(1, u.getNom());
+            ste.setString(2, u.getPrenom());
+            ste.setString(3,u.getEmail());
+            ste.setString(4,u.getMot_de_passe());
+            ste.setInt(5,u.getnum_telephone());
+            ste.setString(6,u.getRole());
+
+            ste.executeUpdate();
+            System.out.println("********************** MODIFIED ****************************************");
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
     
 
 
@@ -271,6 +285,4 @@ public class ServiceUtilisateur implements IService<Utilisateur> {
 
 
 }
-
-
 
