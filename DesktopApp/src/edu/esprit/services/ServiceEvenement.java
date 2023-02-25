@@ -59,6 +59,8 @@ public class ServiceEvenement implements IService<Evenement> {
             try {
                 String req = "UPDATE `evenement` SET `nom`=?,`date`=?,`heure`=?,`id_auteur`=?,`id_livre`=?,`lieu`=?,`description`=?, `nb_ticket`=? WHERE id_evenement=?";
                 PreparedStatement ps = cnx.prepareStatement(req);
+                ps.setInt(9, t.getId_evenement());
+                
                 ps.setString(1, t.getNom());
                 ps.setDate(2, t.getDate());
                 ps.setTime(3, t.getHeure());
