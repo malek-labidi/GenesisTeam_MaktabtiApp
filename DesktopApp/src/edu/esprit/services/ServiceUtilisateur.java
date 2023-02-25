@@ -286,5 +286,3 @@ public class ServiceUtilisateur implements IService<Utilisateur> {
 
 }
 
-
-

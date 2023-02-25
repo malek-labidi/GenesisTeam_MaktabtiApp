@@ -93,5 +93,12 @@ public class Main {
 
 
         //se.modifier(e1);
+           Reclamation r5 = new Reclamation("FSGFSF", "SDFDSF");
+        Reclamation r6 = new Reclamation(2,"aaaaa", "aaaaa");
+        ServiceReclamation sr = new ServiceReclamation();
+        sr.ajouter(r6);
+        System.out.println(sr.getAll());
+        System.out.println(sr.getOneById(2));
     }
 }
+

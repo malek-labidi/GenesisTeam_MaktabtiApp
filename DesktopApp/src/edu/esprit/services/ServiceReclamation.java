@@ -37,18 +37,6 @@ public class ServiceReclamation implements IService<Reclamation> {
         }
     }
 
-    public void ajouter2(Reclamation r) {
-        try {
-            String req = "INSERT INTO `reclamation` (`message`, `feedback`) VALUES (?,?)";
-            PreparedStatement ps = cnx.prepareStatement(req);
-            ps.setString(2, r.getMessage());
-            ps.setString(1, r.getFeedback());
-            ps.executeUpdate();
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-        }
-    }
-
     @Override
     public void delete(int id_reclamation) {
         try {
@@ -113,7 +101,19 @@ public class ServiceReclamation implements IService<Reclamation> {
         return r;
     }
 
-   
+    public void update( List<Object> list,int id) {
+            String requete="update Reclamation set message=?,feedback=?,id_reclamation=? where id_reclamation=" + id;
+        try {
+            PreparedStatement pst=cnx.prepareStatement(requete);
+            pst.setString(1, (String) list.get(0));
+            pst.setString(2, (String) list.get(1));
+            pst.setInt(3,(int)list.get(2));
+            
+            pst.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(ServiceReclamation.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
    
 
