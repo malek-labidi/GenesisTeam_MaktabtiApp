@@ -10,6 +10,8 @@ import edu.esprit.entities.Livre;
 import edu.esprit.services.ServiceCompetition;
 import edu.esprit.services.ServiceLivre;
 import java.net.URL;
+import java.sql.Date;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -17,7 +19,9 @@ import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
@@ -46,18 +50,62 @@ public class FXMLModifierCompetitionController implements Initializable {
     @FXML
     private Button btn_annuler;
 
-    private int id;
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        
+    }
+
+    @FXML
+    private void ModifierCompetition(ActionEvent event) {
+        
+            int id = -1;
+        if (recompense.getText().isEmpty() || lien.getText().isEmpty() || nom.getText().isEmpty() || lien.getText().isEmpty()) {
+            Alert a = new Alert(Alert.AlertType.ERROR, "Aucun champ vide n'est accepté!", ButtonType.OK);
+            a.showAndWait();
+        } /*else if (isValidLink(lien.getText())) {
+            Alert a = new Alert(Alert.AlertType.ERROR, "lien invalide !", ButtonType.OK);
+            a.showAndWait();
+        }*/ else {
+           // try {
+                ServiceCompetition sp = new ServiceCompetition();
+                ServiceLivre sl = new ServiceLivre();
+                List<Livre> livres = sl.getAll();
+                
+                for (Livre l : livres) {
+                    if (l.getTitre().equals(list_livre.getSelectionModel().getSelectedItem())) {
+                        id = l.getId_livre();
+                        break;
+                    }
+                }
+                if (id == -1) {
+                    Alert alert = new Alert(Alert.AlertType.ERROR, "Aucun livre correspondant n'a été trouvé", ButtonType.CLOSE);
+                    alert.show();
+                }
+
+                System.out.println(id);
+
+                Competition p = new Competition(id, recompense.getText(), "", lien.getText(), nom.getText(), Date.valueOf(date_debut.getValue()), Date.valueOf(date_fin.getValue()));
+                sp.modifier(p);
+                System.out.println(p);
+                Alert alert = new Alert(Alert.AlertType.INFORMATION, "competition updated", ButtonType.OK);
+                alert.show();
+           /* } catch (SQLException ex) {
+                Alert alert = new Alert(Alert.AlertType.ERROR, ex.getMessage(), ButtonType.CLOSE);
+                alert.show();
+            }*/
+        }
+    }
+
+    @FXML
+    private void Annuler(ActionEvent event) {
+        
+    }
+    
+    public void getCompetition(int id){
         
         ServiceLivre sl = new ServiceLivre();
         List<Livre> livres = sl.getAll();
@@ -72,22 +120,12 @@ public class FXMLModifierCompetitionController implements Initializable {
         System.out.println(id);
         Competition c = sc.getOneById(id);
         System.out.println(c);
-        /* nom.setText(c.getNom());
+         nom.setText(c.getNom());
         date_debut.setValue(c.getDate_debut().toLocalDate());
         date_fin.setValue(c.getDate_fin().toLocalDate());
         lien.setText(c.getLien_competition());
         recompense.setText(c.getRecompense());
-        list_livre.getSelectionModel().select(sl.getOneById(c.getId_livre()).getTitre());*/
-
-    }
-
-    @FXML
-    private void ModifierCompetition(ActionEvent event) {
-    }
-
-    @FXML
-    private void Annuler(ActionEvent event) {
-
+        list_livre.getSelectionModel().select(sl.getOneById(c.getId_livre()).getTitre());
     }
 
 }
