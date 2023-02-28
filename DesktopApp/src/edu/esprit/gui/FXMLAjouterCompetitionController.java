@@ -12,6 +12,7 @@ import edu.esprit.services.ServiceLivre;
 import java.net.URL;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
@@ -66,10 +67,16 @@ public class FXMLAjouterCompetitionController implements Initializable {
         if (recompense.getText().isEmpty() || lien.getText().isEmpty() || nom.getText().isEmpty() || lien.getText().isEmpty()) {
             Alert a = new Alert(Alert.AlertType.ERROR, "Aucun champ vide n'est accepté!", ButtonType.OK);
             a.showAndWait();
-        } /*else if (isValidLink(lien.getText())) {
+        } else if (!isValidLink(lien.getText())) {
             Alert a = new Alert(Alert.AlertType.ERROR, "lien invalide !", ButtonType.OK);
             a.showAndWait();
-        }*/ else {
+        } else if (date_debut.getValue().isBefore(LocalDate.now()) || date_debut.getValue().isAfter(date_fin.getValue())) {
+            Alert a = new Alert(Alert.AlertType.ERROR, "date debut invalide !", ButtonType.OK);
+            a.showAndWait();
+        } else if (date_fin.getValue().isBefore(LocalDate.now()) || date_fin.getValue().isBefore(date_debut.getValue())) {
+            Alert a = new Alert(Alert.AlertType.ERROR, "date fin invalide !", ButtonType.OK);
+            a.showAndWait();
+        } else {
             try {
                 ServiceCompetition sp = new ServiceCompetition();
                 ServiceLivre sl = new ServiceLivre();
@@ -101,6 +108,7 @@ public class FXMLAjouterCompetitionController implements Initializable {
         }
     }
 
+    //verifer si un lien valide
     public boolean isValidLink(String link) {
         String regex = "^(http|https)://[a-zA-Z0-9-.]+\\.[a-zA-Z]{2,}(\\S*)?$";
         return link.matches(regex);

@@ -12,6 +12,7 @@ import edu.esprit.services.ServiceLivre;
 import java.net.URL;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -49,51 +50,58 @@ public class FXMLModifierCompetitionController implements Initializable {
     private Button btn_modifier;
     @FXML
     private Button btn_annuler;
- private int id ;
+    private int id;
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        
+
     }
 
     @FXML
     private void ModifierCompetition(ActionEvent event) {
-        
-            int id1 = -1;
+
+        int id1 = -1;
         if (recompense.getText().isEmpty() || lien.getText().isEmpty() || nom.getText().isEmpty() || lien.getText().isEmpty()) {
             Alert a = new Alert(Alert.AlertType.ERROR, "Aucun champ vide n'est accepté!", ButtonType.OK);
             a.showAndWait();
-        } /*else if (isValidLink(lien.getText())) {
+        } else if (isValidLink(lien.getText())) {
             Alert a = new Alert(Alert.AlertType.ERROR, "lien invalide !", ButtonType.OK);
             a.showAndWait();
-        }*/ else {
-           // try {
-                ServiceCompetition sp = new ServiceCompetition();
-                ServiceLivre sl = new ServiceLivre();
-                List<Livre> livres = sl.getAll();
-                
-                for (Livre l : livres) {
-                    if (l.getTitre().equals(list_livre.getSelectionModel().getSelectedItem())) {
-                        id1 = l.getId_livre();
-                        break;
-                    }
-                }
-                if (id1 == -1) {
-                    Alert alert = new Alert(Alert.AlertType.ERROR, "Aucun livre correspondant n'a été trouvé", ButtonType.CLOSE);
-                    alert.show();
-                }
+        } else if (date_debut.getValue().isBefore(LocalDate.now()) || date_debut.getValue().isAfter(date_fin.getValue())) {
+            Alert a = new Alert(Alert.AlertType.ERROR, "date debut invalide !", ButtonType.OK);
+            a.showAndWait();
+        } else if (date_fin.getValue().isBefore(LocalDate.now()) || date_fin.getValue().isBefore(date_debut.getValue())) {
+            Alert a = new Alert(Alert.AlertType.ERROR, "date fin invalide !", ButtonType.OK);
+            a.showAndWait();
+        } else {
+            // try {
+            ServiceCompetition sp = new ServiceCompetition();
+            ServiceLivre sl = new ServiceLivre();
+            List<Livre> livres = sl.getAll();
 
-                System.out.println(id1+" "+id);
-
-                Competition p = new Competition(id,id1, recompense.getText(), " ", lien.getText(), nom.getText(), Date.valueOf(date_debut.getValue()), Date.valueOf(date_fin.getValue()));
-                sp.modifier(p);
-                System.out.println(p);
-                Alert alert = new Alert(Alert.AlertType.INFORMATION, "competition updated", ButtonType.OK);
+            for (Livre l : livres) {
+                if (l.getTitre().equals(list_livre.getSelectionModel().getSelectedItem())) {
+                    id1 = l.getId_livre();
+                    break;
+                }
+            }
+            if (id1 == -1) {
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Aucun livre correspondant n'a été trouvé", ButtonType.CLOSE);
                 alert.show();
-           /* } catch (SQLException ex) {
+            }
+
+            System.out.println(id1 + " " + id);
+
+            Competition p = new Competition(id, id1, recompense.getText(), " ", lien.getText(), nom.getText(), Date.valueOf(date_debut.getValue()), Date.valueOf(date_fin.getValue()));
+            sp.modifier(p);
+            System.out.println(p);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "competition updated", ButtonType.OK);
+            alert.show();
+            /* } catch (SQLException ex) {
                 Alert alert = new Alert(Alert.AlertType.ERROR, ex.getMessage(), ButtonType.CLOSE);
                 alert.show();
             }*/
@@ -102,12 +110,17 @@ public class FXMLModifierCompetitionController implements Initializable {
 
     @FXML
     private void Annuler(ActionEvent event) {
-        
+
     }
-    
-    public void getCompetition(int id){
-        this.id=id;
-        
+
+    public boolean isValidLink(String link) {
+        String regex = "^(http|https)://[a-zA-Z0-9-.]+\\.[a-zA-Z]{2,}(\\S*)?$";
+        return link.matches(regex);
+    }
+
+    public void getCompetition(int id) {
+        this.id = id;
+
         ServiceLivre sl = new ServiceLivre();
         List<Livre> livres = sl.getAll();
         List<String> names = new ArrayList<>();
@@ -121,7 +134,7 @@ public class FXMLModifierCompetitionController implements Initializable {
         System.out.println(id);
         Competition c = sc.getOneById(id);
         System.out.println(c);
-         nom.setText(c.getNom());
+        nom.setText(c.getNom());
         date_debut.setValue(c.getDate_debut().toLocalDate());
         date_fin.setValue(c.getDate_fin().toLocalDate());
         lien.setText(c.getLien_competition());

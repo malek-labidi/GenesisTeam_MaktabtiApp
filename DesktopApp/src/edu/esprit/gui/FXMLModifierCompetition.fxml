@@ -6,10 +6,14 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="660.0" prefWidth="1105.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.gui.FXMLModifierCompetitionController">
+<AnchorPane id="AnchorPane" prefHeight="660.0" prefWidth="1105.0" stylesheets="@styles/fxmlmaktabti.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.gui.FXMLModifierCompetitionController">
    <children>
-      <Label layoutX="455.0" layoutY="81.0" text="Modifier Competition" />
+      <Label layoutX="419.0" layoutY="82.0" text="Modifier Competition">
+         <font>
+            <Font size="28.0" />
+         </font></Label>
       <TextField fx:id="nom" layoutX="207.0" layoutY="188.0" prefHeight="31.0" prefWidth="215.0" promptText="Entrer le nom de competition" />
       <Label layoutX="107.0" layoutY="193.0" text="Nom" />
       <Label layoutX="107.0" layoutY="262.0" text="Date Debut" />
@@ -22,7 +26,7 @@
       <Label layoutX="669.0" layoutY="178.0" text="Récompense" />
       <ListView fx:id="list_livre" layoutX="776.0" layoutY="247.0" prefHeight="200.0" prefWidth="215.0" />
       <Label layoutX="672.0" layoutY="288.0" text="Livre" />
-      <Button fx:id="btn_modifier" layoutX="637.0" layoutY="503.0" mnemonicParsing="false" onAction="#ModifierCompetition" text="Modifier" />
-      <Button fx:id="btn_annuler" layoutX="462.0" layoutY="503.0" mnemonicParsing="false" onAction="#Annuler" text="Annuler" />
+      <Button fx:id="btn_modifier" layoutX="637.0" layoutY="503.0" mnemonicParsing="false" onAction="#ModifierCompetition" styleClass="addbtn" stylesheets="@styles/fxmlmaktabti.css" text="Valider" />
+      <Button fx:id="btn_annuler" layoutX="441.0" layoutY="503.0" mnemonicParsing="false" onAction="#Annuler" styleClass="deletebtn" stylesheets="@styles/fxmlmaktabti.css" text="Annuler" />
    </children>
 </AnchorPane>
