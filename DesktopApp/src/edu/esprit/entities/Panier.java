@@ -7,7 +7,7 @@ package edu.esprit.entities;
 
 /**
  *
- * @author SADOK
+ * @author abdelazizlahmar
  */
 public class Panier {
      private int id_panier;
@@ -17,7 +17,7 @@ public class Panier {
      private float totalPrix;
      
      //attributs de type énumérés 
-     private Mode mode ;   
+    private Mode mode ;   
 
     public Panier() {
     }
@@ -80,7 +80,7 @@ public class Panier {
 
     @Override
     public String toString() {
-        return "Panier{" + "id_livre=" + id_livre + ", id_client=" + id_client + ", quantite=" + quantite + ", totalPrix=" + totalPrix + '}';
+        return "Panier{" + " quantite=" + quantite + ", totalPrix=" + totalPrix + '}';
     }
 
     
@@ -113,4 +113,8 @@ public class Panier {
      
     
 }
+     
+    
+
+
 
