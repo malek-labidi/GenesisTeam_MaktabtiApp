@@ -49,7 +49,7 @@ public class FXMLModifierCompetitionController implements Initializable {
     private Button btn_modifier;
     @FXML
     private Button btn_annuler;
-
+ private int id ;
     /**
      * Initializes the controller class.
      */
@@ -62,7 +62,7 @@ public class FXMLModifierCompetitionController implements Initializable {
     @FXML
     private void ModifierCompetition(ActionEvent event) {
         
-            int id = -1;
+            int id1 = -1;
         if (recompense.getText().isEmpty() || lien.getText().isEmpty() || nom.getText().isEmpty() || lien.getText().isEmpty()) {
             Alert a = new Alert(Alert.AlertType.ERROR, "Aucun champ vide n'est accepté!", ButtonType.OK);
             a.showAndWait();
@@ -77,18 +77,18 @@ public class FXMLModifierCompetitionController implements Initializable {
                 
                 for (Livre l : livres) {
                     if (l.getTitre().equals(list_livre.getSelectionModel().getSelectedItem())) {
-                        id = l.getId_livre();
+                        id1 = l.getId_livre();
                         break;
                     }
                 }
-                if (id == -1) {
+                if (id1 == -1) {
                     Alert alert = new Alert(Alert.AlertType.ERROR, "Aucun livre correspondant n'a été trouvé", ButtonType.CLOSE);
                     alert.show();
                 }
 
-                System.out.println(id);
+                System.out.println(id1+" "+id);
 
-                Competition p = new Competition(id, recompense.getText(), "", lien.getText(), nom.getText(), Date.valueOf(date_debut.getValue()), Date.valueOf(date_fin.getValue()));
+                Competition p = new Competition(id,id1, recompense.getText(), " ", lien.getText(), nom.getText(), Date.valueOf(date_debut.getValue()), Date.valueOf(date_fin.getValue()));
                 sp.modifier(p);
                 System.out.println(p);
                 Alert alert = new Alert(Alert.AlertType.INFORMATION, "competition updated", ButtonType.OK);
@@ -106,6 +106,7 @@ public class FXMLModifierCompetitionController implements Initializable {
     }
     
     public void getCompetition(int id){
+        this.id=id;
         
         ServiceLivre sl = new ServiceLivre();
         List<Livre> livres = sl.getAll();
