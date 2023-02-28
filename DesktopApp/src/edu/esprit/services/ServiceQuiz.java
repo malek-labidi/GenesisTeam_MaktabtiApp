@@ -16,7 +16,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Stream;
@@ -103,20 +105,16 @@ public class ServiceQuiz implements IService<Quiz> {
     public List<Quiz> getAll() {
         List<Quiz> result = new ArrayList<>();
         try {
-            String req = "SELECT quiz.id_quiz,question.id_question,question.choix1 ,question.choix2,question.choix3,question.reponse_correct  FROM `quiz`"
-                    + "INNER JOIN question ON quiz.id_quiz = question.quiz_id";
+            String req = "SELECT * FROM `quiz`";
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(req);
 
             while (rs.next()) {
                 int quizId = rs.getInt(1);
-                int id_question = rs.getInt(2);
-                String choix1 = rs.getString(3);
-                String choix2 = rs.getString(4);
-                String choix3 = rs.getString(5);
-                String reponse_correct = rs.getString(6);
-                Quiz quiz = result.stream().filter(q -> q.getId_quiz() == quizId).findFirst().get();
-                quiz.ajouterQuestion(new Question(id_question, choix1, choix2, choix3, reponse_correct));
+                int id_livre = rs.getInt(2);
+                int id_competition = rs.getInt(3);
+                Quiz quiz = new Quiz(id_livre, id_livre, id_competition);
+                result.add(quiz);
                 if (!result.contains(quiz)) {
                     result.add(quiz);
                 }
@@ -132,20 +130,17 @@ public class ServiceQuiz implements IService<Quiz> {
     public Quiz getOneById(int id) {
         Quiz result = null;
         try {
-            String req = "SELECT quiz.id_quiz,question.id_question,question.choix1 ,question.choix2,question.choix3,question.reponse_correct  FROM `quiz`"
-                    + "INNER JOIN question ON quiz.id_quiz = " + id;
+            String req = "SELECT  * FROM `quiz` where id_quiz = " + id;
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(req);
 
             while (rs.next()) {
                 int quizId = rs.getInt(1);
-                int id_question = rs.getInt(2);
-                String choix1 = rs.getString(3);
-                String choix2 = rs.getString(4);
-                String choix3 = rs.getString(5);
-                String reponse_correct = rs.getString(6);
-                result = new Quiz(quizId, id_question, null);
-                result.ajouterQuestion(new Question(id_question, choix1, choix2, choix3, reponse_correct));
+                int id_livre = rs.getInt(2);
+                int id_competition = rs.getInt(3);
+                
+                result = new Quiz(id_livre, id_livre, id_competition);
+
             }
 
         } catch (SQLException ex) {
@@ -154,7 +149,7 @@ public class ServiceQuiz implements IService<Quiz> {
         return result;
     }
 
-    public Stream<Question> trierQuestion(int id) {
+    /*  public Stream<Question> trierQuestion(int id) {
 
         return this.getOneById(id).trierQuestionParId();
     }
@@ -176,6 +171,40 @@ public class ServiceQuiz implements IService<Quiz> {
         ServiceQuestion sq= new ServiceQuestion();
         sq.ajouter(q);
         this.getOneById(id).ajouterQuestion(q);
+    }*/
+    public Map<Integer, List<Question>> getQuizQuestion() {
+        Map<Integer, List<Question>> quizQuestionsMap = new HashMap<>();
+        try {
+
+            String req = "SELECT quiz.id_quiz,question.id_question,question.choix1 ,question.choix2,question.choix3,question.reponse_correct  FROM `quiz`"
+                    + "INNER JOIN question ON quiz.id_quiz = question.id_quiz";
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(req);
+            while (rs.next()) {
+                int quizId = rs.getInt(1);
+                int questionId = rs.getInt(2);
+                String choix1 = rs.getString(3);
+                String choix2 = rs.getString(4);
+                String choix3 = rs.getString(5);
+                String reponse_correct = rs.getString(6);
+
+                // Créer une instance de la question
+                Question question = new Question(questionId, quizId, choix1, choix2, choix3, reponse_correct);
+
+                // Ajouter la question à la liste des questions pour le quiz correspondant
+                if (quizQuestionsMap.containsKey(quizId)) {
+                    quizQuestionsMap.get(quizId).add(question);
+                } else {
+                    List<Question> questionsList = new ArrayList<>();
+                    questionsList.add(question);
+                    quizQuestionsMap.put(quizId, questionsList);
+                }
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ServiceQuiz.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return quizQuestionsMap;
     }
 
 }

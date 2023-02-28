@@ -5,9 +5,6 @@
  */
 package edu.esprit.entities;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Stream;
 
 /**
  *
@@ -18,22 +15,20 @@ public class Quiz {
     private int id_quiz;
     private int id_livre;
     private int id_competition;
-    private List<Question> listequestions;
+    
 
     public Quiz() {
     }
 
-    public Quiz(int id_livre, int id_competition, List<Question> listequestions) {
+    public Quiz(int id_livre, int id_competition) {
         this.id_livre = id_livre;
         this.id_competition = id_competition;
-        this.listequestions = listequestions;
     }
 
-    public Quiz(int id_quiz, int id_livre, int id_competition, List<Question> listequestions) {
+    public Quiz(int id_quiz, int id_livre, int id_competition) {
         this.id_quiz = id_quiz;
         this.id_livre = id_livre;
         this.id_competition = id_competition;
-        this.listequestions = listequestions;
     }
 
     public int getId_quiz() {
@@ -56,13 +51,10 @@ public class Quiz {
         this.id_competition = id_competition;
     }
 
-    public void setQuestions() {
-        this.listequestions = new ArrayList<>();
-    }
 
     @Override
     public String toString() {
-        return "Quiz{" + "id_quiz=" + id_quiz + ", id_livre=" + id_livre + ", id_competition=" + id_competition + ", questions=" + this.getQuestions().toString() + '}';
+        return "Quiz{" + "id_quiz=" + id_quiz + ", id_livre=" + id_livre + ", id_competition=" + id_competition + '}';
     }
 
     @Override
@@ -95,31 +87,5 @@ public class Quiz {
         }
         return true;
     }
-
-    public void ajouterQuestion(Question p) {
-        listequestions.add(p);
-    }
-
-    public List<Question> getQuestions() {
-
-        return listequestions;
-
-    }
-
-    public void supprimerQuestion(Question p) {
-        listequestions.remove(p);
-    }
-
-    public Stream<Question> trierQuestionParId() {
-
-        return listequestions.stream().sorted((t1, t2) -> t1.getId_question() - t2.getId_question());
-    }
-
-    public void afficherQuestions() {
-        listequestions.stream().forEach(e -> System.out.println(e));
-
-    }
-    
-   
 
 }

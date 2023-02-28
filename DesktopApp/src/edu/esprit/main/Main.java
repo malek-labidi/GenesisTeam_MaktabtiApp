@@ -13,6 +13,8 @@ import edu.esprit.entities.Livre;
 import edu.esprit.entities.Mode;
 import edu.esprit.entities.Offre;
 import edu.esprit.entities.Panier;
+import edu.esprit.entities.Question;
+import edu.esprit.entities.Quiz;
 import edu.esprit.entities.Reclamation;
 import edu.esprit.entities.Role;
 import edu.esprit.entities.Status;
@@ -27,10 +29,15 @@ import edu.esprit.services.ServiceFidelite;
 import edu.esprit.services.ServiceOffre;
 
 import edu.esprit.services.ServicePanier;
+import edu.esprit.services.ServiceQuestion;
+import edu.esprit.services.ServiceQuiz;
 import edu.esprit.services.ServiceReclamation;
 import edu.esprit.services.ServiceUtilisateur;
 import java.sql.Date;
 import java.sql.Time;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import javafx.scene.chart.PieChart;
 
 /**
@@ -57,7 +64,6 @@ public class Main {
         //sp.delete(2);
         //System.out.println(sp.getOneById(2));
         //User
-
         // ServiceUtilisateur su=new ServiceUtilisateur();
         // Utilisateur u1 = new Utilisateur("wassim", "hachani", "wassimhach16@gmail.com", "wassim", 54100060,"Administrateur") {};
         //System.out.println(su.getAll());
@@ -65,40 +71,54 @@ public class Main {
         // su.ajouter(u3);
         //ServiceCommande cu = new ServiceCommande();
         // Commande c4= new Commande (2,1,Status.paye,Mode.carte_bancaire,Etat.encours);
-
-      ServiceUtilisateur su=new ServiceUtilisateur();
-       // Utilisateur u1 = new Utilisateur("wassim", "hachani", "wassimhach16@gmail.com", "wassim", 54100060,"Administrateur") {};
+        ServiceUtilisateur su = new ServiceUtilisateur();
+        // Utilisateur u1 = new Utilisateur("wassim", "hachani", "wassimhach16@gmail.com", "wassim", 54100060,"Administrateur") {};
         //System.out.println(su.getAll());
-       Utilisateur u4 = new Utilisateur(7,"gg", "gg", "maleklaabidi@hotmail.fr", "wassim1", 54100060,"Administrateur") {};
-       Utilisateur u9 = new Utilisateur("gg", "gg", "mwassimhachanikd@hotmail.fr", "wassim1", 54100060,"Auteur") {};
+        Utilisateur u4 = new Utilisateur(7, "gg", "gg", "maleklaabidi@hotmail.fr", "wassim1", 54100060, "Administrateur") {
+        };
+        Utilisateur u9 = new Utilisateur("gg", "gg", "mwassimhachanikd@hotmail.fr", "wassim1", 54100060, "Auteur") {
+        };
 
-       su.modifier2(32,u9);
-            //ServiceCommande cu = new ServiceCommande();
-       // Commande c4= new Commande (2,1,Status.paye,Mode.carte_bancaire,Etat.encours);
-
-
-
-
-         //ServiceFidelite sf = new ServiceFidelite();
-                //System.out.println(sf.getAll());
-                // System.out.println(sf.getOneById(2));
-                /* sf.delete(1);*/
-
-                 //ServiceOffre o=new ServiceOffre();
-
-       // Offre oo = new Offre(2, "2%", 560);
+        //su.modifier2(32,u9);
+        //ServiceCommande cu = new ServiceCommande();
+        // Commande c4= new Commande (2,1,Status.paye,Mode.carte_bancaire,Etat.encours);
+        //ServiceFidelite sf = new ServiceFidelite();
+        //System.out.println(sf.getAll());
+        // System.out.println(sf.getOneById(2));
+        /* sf.delete(1);*/
+        //ServiceOffre o=new ServiceOffre();
+        // Offre oo = new Offre(2, "2%", 560);
         //Offre oo1 = new Offre(90,3,"80%", 440);
         // o.ajouter(oo1);
-
-
-
         //se.modifier(e1);
-           Reclamation r5 = new Reclamation("FSGFSF", "SDFDSF");
-        Reclamation r6 = new Reclamation(2,"aaaaa", "aaaaa");
+        Reclamation r5 = new Reclamation("FSGFSF", "SDFDSF");
+        Reclamation r6 = new Reclamation(2, "aaaaa", "aaaaa");
         ServiceReclamation sr = new ServiceReclamation();
-        sr.ajouter(r6);
+        //sr.ajouter(r6);
         System.out.println(sr.getAll());
         System.out.println(sr.getOneById(2));
+
+        ServiceQuiz sq = new ServiceQuiz();
+        Quiz q = new Quiz(3, 1);
+        Quiz q2 = new Quiz(1, 2, 1);
+        //sq.ajouter(q);
+        //sq.modifier(q2);
+        //sq.delete(1);
+
+        System.out.println(sq.getAll());
+        System.out.println(sq.getOneById(2));
+        Question qu = new Question(2, "bgrhr", "hello", "bdb", "vvfev");
+        ServiceQuestion squ = new ServiceQuestion();
+        // squ.ajouter(qu);
+
+        System.out.println(squ.getAll());
+        //System.out.println(sq.getOneById(2));
+        Map<Integer, List<Question>> quizQuestionsMap = new HashMap<>();
+        quizQuestionsMap = sq.getQuizQuestion();
+        for (Map.Entry<Integer, List<Question>> entry : quizQuestionsMap.entrySet()) {
+            System.out.println(entry.getKey() + " " + entry.getValue());
+
+        }
+
     }
 }
-
