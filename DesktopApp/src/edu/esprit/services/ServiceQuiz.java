@@ -115,9 +115,7 @@ public class ServiceQuiz implements IService<Quiz> {
                 int id_competition = rs.getInt(3);
                 Quiz quiz = new Quiz(id_livre, id_livre, id_competition);
                 result.add(quiz);
-                if (!result.contains(quiz)) {
-                    result.add(quiz);
-                }
+                
             }
 
         } catch (SQLException ex) {
@@ -176,27 +174,28 @@ public class ServiceQuiz implements IService<Quiz> {
         Map<Integer, List<Question>> quizQuestionsMap = new HashMap<>();
         try {
 
-            String req = "SELECT quiz.id_quiz,question.id_question,question.choix1 ,question.choix2,question.choix3,question.reponse_correct  FROM `quiz`"
+            String req = "SELECT quiz.id_quiz,question.id_question,question.question ,question.choix1 ,question.choix2,question.choix3,question.reponse_correct  FROM `quiz`"
                     + "INNER JOIN question ON quiz.id_quiz = question.id_quiz";
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(req);
             while (rs.next()) {
                 int quizId = rs.getInt(1);
                 int questionId = rs.getInt(2);
-                String choix1 = rs.getString(3);
-                String choix2 = rs.getString(4);
-                String choix3 = rs.getString(5);
-                String reponse_correct = rs.getString(6);
+                String question = rs.getString(3);
+                String choix1 = rs.getString(4);
+                String choix2 = rs.getString(5);
+                String choix3 = rs.getString(6);
+                String reponse_correct = rs.getString(7);
 
                 // Créer une instance de la question
-                Question question = new Question(questionId, quizId, choix1, choix2, choix3, reponse_correct);
+                Question que = new Question(questionId, quizId,question, choix1, choix2, choix3, reponse_correct);
 
                 // Ajouter la question à la liste des questions pour le quiz correspondant
                 if (quizQuestionsMap.containsKey(quizId)) {
-                    quizQuestionsMap.get(quizId).add(question);
+                    quizQuestionsMap.get(quizId).add(que);
                 } else {
                     List<Question> questionsList = new ArrayList<>();
-                    questionsList.add(question);
+                    questionsList.add(que);
                     quizQuestionsMap.put(quizId, questionsList);
                 }
             }
