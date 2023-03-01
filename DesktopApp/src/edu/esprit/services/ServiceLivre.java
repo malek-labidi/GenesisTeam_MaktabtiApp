@@ -8,6 +8,7 @@ package edu.esprit.services;
 import edu.esprit.entities.Categorie;
 import edu.esprit.entities.Competition;
 import edu.esprit.entities.Livre;
+import edu.esprit.entities.Utilisateur;
 import edu.esprit.util.DataSource;
 import java.sql.Connection;
 import java.sql.Date;
@@ -108,7 +109,9 @@ public class ServiceLivre implements IService<Livre> {
                 int nb_pages = rs.getInt(8);
                 String resume = rs.getString(9);
                 int prix = rs.getInt(10);
-                Livre l = new Livre(id, id_auteur, id_categorie, titre, date_pub, langue, isbn, nb_pages, resume, prix);
+
+                Livre l = new Livre(id,id_auteur, id_categorie, titre, date_pub, langue, isbn, nb_pages, resume, prix);
+
                 result.add(l);
 
             }
@@ -134,5 +137,18 @@ public class ServiceLivre implements IService<Livre> {
 
         return result;
     }
-
+ public void supprimerLivre(Livre l) {
+            String req = "DELETE FROM `livre` WHERE Id_livre  = ?"  ;
+        try {
+            PreparedStatement ste = cnx.prepareStatement(req);
+            ste.setInt(1, l.getId_livre());
+            ste.executeUpdate();
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+        
+        
 }
+
+

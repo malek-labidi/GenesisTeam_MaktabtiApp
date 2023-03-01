@@ -3,13 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/PIDEV/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/gui/FXMLEvenementController.java</file>
-            <file>file:/D:/PIDEV/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/gui/FXMLAjouterController.java</file>
-            <file>file:/D:/PIDEV/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/gui/FXMLCompetitionController.java</file>
-            <file>file:/D:/PIDEV/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/gui/styles/crud.css</file>
-            <file>file:/D:/PIDEV/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/entities/Evenement.java</file>
-            <file>file:/D:/PIDEV/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/gui/FXMLModifierEvenementController.java</file>
-            <file>file:/D:/PIDEV/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/main/Main.java</file>
+
+
+            <file>file:/D:/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/gui/FXMLAjouterCompetitionController.java</file>
+            <file>file:/D:/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/gui/FXMLCompetitionController.java</file>
+            <file>file:/D:/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/services/ServiceQuestion.java</file>
+            <file>file:/D:/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/main/FXCompetition.java</file>
+
+
         </group>
     </open-files>
 </project-private>

@@ -23,3 +23,29 @@
 .icon {
     -fx-font-family: "FontAwesome";
 }
+.addbtn{
+    -fx-background-color: #034396;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+
+    -fx-background-radius: 8px;
+    -fx-font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+}
+.modifybtn{
+    -fx-background-color: #002657;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+
+    -fx-background-radius: 8px;
+    -fx-font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+.deletebtn{
+    -fx-background-color: #f8a375;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+
+    -fx-background-radius: 8px;
+    -fx-font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+}

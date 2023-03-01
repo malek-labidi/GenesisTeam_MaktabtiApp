@@ -141,8 +141,8 @@ public class ServiceResultatQuiz implements IService<ResultatQuiz> {
 
         // récupérer les questions pour le quiz donné
         List<Question> questions;
-        ServiceQuiz sq = new ServiceQuiz();
-        questions = sq.getOneById(idQuiz).getQuestions();
+        ServiceQuestion sq = new ServiceQuestion();
+        questions = sq.getQuestionByIdQuiz(idQuiz);
 
         // calculer le score du client en utilisant l'API Stream
         int score = (int) IntStream.range(0, reponsesClient.size())

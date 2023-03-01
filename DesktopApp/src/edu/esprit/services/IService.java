@@ -19,3 +19,4 @@ public interface IService<T> {
     public List<T> getAll();
     public T getOneById(int id);
 }
+

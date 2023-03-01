@@ -14,6 +14,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -25,21 +27,20 @@ public class ServiceQuestion implements IService<Question> {
 
     @Override
     public void ajouter(Question t) {
-        if (!Question.verifString(t.getChoix1()) && !Question.verifString(t.getChoix2()) && !Question.verifString(t.getChoix3()) && !Question.verifString(t.getReponse_correct())) {
             try {
-                String req = "INSERT INTO `question`(`choix1`, `choix2`, `choix3`, `reponse_correct`) VALUES (?,?,?,?)";
+                String req = "INSERT INTO `question`(`id_quiz`,`question`,`choix1`, `choix2`, `choix3`, `reponse_correct`) VALUES (?,?,?,?,?,?)";
                 PreparedStatement ps = cnx.prepareStatement(req);
-                ps.setString(1, t.getChoix1());
-                ps.setString(2, t.getChoix2());
-                ps.setString(3, t.getChoix3());
-                ps.setString(4, t.getReponse_correct());
-
+                ps.setInt(1, t.getId_quiz());
+                ps.setString(2, t.getChoix1());
+                ps.setString(3, t.getChoix2());
+                ps.setString(4, t.getChoix3());
+                ps.setString(5, t.getReponse_correct());
                 ps.executeUpdate();
                 System.out.println("question Added !");
             } catch (SQLException ex) {
                 System.out.println(ex.getMessage());
             }
-        }
+        
 
     }
 
@@ -47,13 +48,14 @@ public class ServiceQuestion implements IService<Question> {
     public void modifier(Question t) {
         if (!Question.verifString(t.getChoix1()) && !Question.verifString(t.getChoix2()) && !Question.verifString(t.getChoix3()) && !Question.verifString(t.getReponse_correct())){
         try {
-            String req = "UPDATE `question` SET `choix1`=?,`choix2`=?,`choix3`=?,`reponse_correct`=? WHERE id_question =?";
+            String req = "UPDATE `question` SET `question`=?, `choix1`=?,`choix2`=?,`choix3`=?,`reponse_correct`=? WHERE id_question =?";
             PreparedStatement ps = cnx.prepareStatement(req);
-            ps.setString(1, t.getChoix1());
-            ps.setString(2, t.getChoix2());
-            ps.setString(3, t.getChoix3());
-            ps.setString(4, t.getReponse_correct());
-            ps.setInt(5, t.getId_question());
+            ps.setString(1, t.getQuestion());
+            ps.setString(2, t.getChoix1());
+            ps.setString(3, t.getChoix2());
+            ps.setString(4, t.getChoix3());
+            ps.setString(5, t.getReponse_correct());
+            ps.setInt(6, t.getId_question());
 
             ps.executeUpdate();
             System.out.println("question Updated !");
@@ -84,12 +86,13 @@ public class ServiceQuestion implements IService<Question> {
             ResultSet rs = st.executeQuery(req);
             while (rs.next()) {
                 int id = rs.getInt(1);
-                String choix1 = rs.getString(2);
-                String choix2 = rs.getString(3);
-                String choix3 = rs.getString(4);
-                String reponse_correct = rs.getString(5);
+                 String question = rs.getString(2);
+                String choix1 = rs.getString(3);
+                String choix2 = rs.getString(4);
+                String choix3 = rs.getString(5);
+                String reponse_correct = rs.getString(6);
 
-                Question q = new Question(id, choix1, choix2, choix3, reponse_correct);
+                Question q = new Question(id, question, choix1, choix2, choix3, reponse_correct);
 
                 result.add(q);
             }
@@ -109,7 +112,7 @@ public class ServiceQuestion implements IService<Question> {
             ResultSet rs = st.executeQuery(req);
             while (rs.next()) {
 
-                result = new Question(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5));
+                result = new Question(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6));
 
             }
 
@@ -118,5 +121,22 @@ public class ServiceQuestion implements IService<Question> {
         }
         return result;
     }
+    public List<Question> getQuestionByIdQuiz(int id){
+        List<Question> listq= new ArrayList<>();
+    
+        try {
+            
+            String req = "SELECT * FROM `question` WHERE id_quiz = " + id;
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(req);
+            while (rs.next()) {
 
+                Question q = new Question(rs.getInt(1),rs.getInt(2),rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7));
+                
+                listq.add(q);
+            }   } catch (SQLException ex) {
+            Logger.getLogger(ServiceQuestion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return listq;
+    }
 }

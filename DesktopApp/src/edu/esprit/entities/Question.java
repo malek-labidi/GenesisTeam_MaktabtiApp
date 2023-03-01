@@ -12,7 +12,9 @@ import java.util.Objects;
  * @author admin
  */
 public class Question {
-    private int id_question; 
+    private int id_question;
+    private int id_quiz;
+    private String question;
     private String choix1;
     private String choix2;
     private String choix3;
@@ -21,23 +23,43 @@ public class Question {
     public Question() {
     }
 
-    public Question(String choix1, String choix2, String choix3, String reponse_correct) {
+    public Question(int id_quiz, String question, String choix1, String choix2, String choix3, String reponse_correct) {
+        this.id_quiz = id_quiz;
+        this.question = question;
         this.choix1 = choix1;
         this.choix2 = choix2;
         this.choix3 = choix3;
         this.reponse_correct = reponse_correct;
     }
 
-    public Question(int id_question, String choix1, String choix2, String choix3, String reponse_correct) {
+    public Question(int id_question, int id_quiz, String question, String choix1, String choix2, String choix3, String reponse_correct) {
         this.id_question = id_question;
+        this.id_quiz = id_quiz;
+        this.question = question;
         this.choix1 = choix1;
         this.choix2 = choix2;
         this.choix3 = choix3;
         this.reponse_correct = reponse_correct;
+    }
+
+    public String getQuestion() {
+        return question;
+    }
+
+    public void setQuestion(String question) {
+        this.question = question;
     }
 
     public int getId_question() {
         return id_question;
+    }
+
+    public int getId_quiz() {
+        return id_quiz;
+    }
+
+    public void setId_quiz(int id_quiz) {
+        this.id_quiz = id_quiz;
     }
 
     public String getChoix1() {
@@ -74,8 +96,10 @@ public class Question {
 
     @Override
     public String toString() {
-        return "Question{" + "choix1=" + choix1 + ", choix2=" + choix2 + ", choix3=" + choix3 + ", reponse_correct=" + reponse_correct + '}';
+        return "Question{" + "question=" + question + ", choix1=" + choix1 + ", choix2=" + choix2 + ", choix3=" + choix3 + ", reponse_correct=" + reponse_correct + '}';
     }
+
+  
 
     @Override
     public int hashCode() {
