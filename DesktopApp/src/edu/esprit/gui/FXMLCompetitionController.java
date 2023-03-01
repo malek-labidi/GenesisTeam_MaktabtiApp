@@ -7,6 +7,7 @@ package edu.esprit.gui;
 
 import edu.esprit.entities.Competition;
 import edu.esprit.services.ServiceCompetition;
+import edu.esprit.services.ServiceLivre;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
@@ -16,6 +17,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -26,6 +28,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 /**
@@ -132,6 +135,45 @@ public class FXMLCompetitionController implements Initializable {
     public void affiche(){
         ServiceCompetition se = new ServiceCompetition();
         competition_list.setItems(FXCollections.observableArrayList(se.getAll()));
+        
+        // Définir des cellules personnalisée pour afficher les informations sur la compétition
+        competition_list.setCellFactory(list -> new CompetitionListCell());
+        
+    }
+    
+    
+    // Définir un ListCell personnalisé pour afficher les informations sur la compétition
+     private class CompetitionListCell extends javafx.scene.control.ListCell<Competition> {
+        @Override
+        public void updateItem(Competition competition, boolean empty) {
+            super.updateItem(competition, empty);
+
+            if (empty || competition == null) {
+                setText(null);
+                setGraphic(null);
+            } else {
+                Label nameLabel = new Label(competition.getNom());
+                nameLabel.setStyle("-fx-font-weight: bold;");
+                ServiceLivre sl= new ServiceLivre();
+                
+
+                Label idLabel = new Label("Livre: " + sl.getOneById(competition.getId_livre()).getTitre());
+                Label rewardLabel = new Label("Récompense: " + competition.getRecompense());
+                Label participantsLabel = new Label("Participants: " + competition.getListe_participants());
+                Label linkLabel = new Label("Lien: " + competition.getLien_competition());
+                Label startDateLabel = new Label("Date de début: " + competition.getDate_debut());
+                Label endDateLabel = new Label("Date de fin: " + competition.getDate_fin());
+
+                VBox vbox = new VBox(nameLabel, idLabel, rewardLabel, participantsLabel, linkLabel, startDateLabel, endDateLabel);
+                vbox.setSpacing(5);
+
+                setGraphic(vbox);
+            }
+        }
     }
 
 }
+
+
+   
+
