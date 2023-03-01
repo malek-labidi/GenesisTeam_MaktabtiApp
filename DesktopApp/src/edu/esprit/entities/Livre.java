@@ -52,6 +52,8 @@ public class Livre {
         this.prix = prix;
     }
 
+  
+
     public int getId_livre() {
         return id_livre;
     }
@@ -166,4 +168,3 @@ public class Livre {
     }
 
 }
-
