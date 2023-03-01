@@ -7,6 +7,7 @@ package edu.esprit.services;
 import edu.esprit.entities.Administrateur;
 import edu.esprit.entities.Auteur;
 import edu.esprit.entities.Client;
+import edu.esprit.entities.Evenement;
 import edu.esprit.entities.Role;
 import edu.esprit.entities.Utilisateur;
 import edu.esprit.gui.AuthentificationController;
@@ -21,6 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.effect.InnerShadow;
@@ -204,6 +206,19 @@ public class ServiceUtilisateur implements IService<Utilisateur> {
         return result;
     }
 
+    //Filter BY name of user
+        public static List<Utilisateur> filterByName(List<Utilisateur> evenements, String nom) {
+    List<Utilisateur> filteredList = new ArrayList<>();
+    try {
+        filteredList = evenements.stream()
+                .filter(e -> e.getNom().toLowerCase().startsWith(nom.toLowerCase()))
+                .collect(Collectors.toList());
+    } catch (Exception e) {
+        // handle the exception
+        System.out.println("An error occurred while filtering events by location: " + e.getMessage());
+    }
+    return filteredList;
+}
     //Get one by id
     @Override
     public Utilisateur getOneById(int id) {
