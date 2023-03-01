@@ -1,237 +1,174 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
+<?import javafx.scene.AmbientLight?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.PointLight?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Bloom?>
 <?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="1050.0" style="-fx-background-color: #02030A;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.gui.LivreController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="1050.0" stylesheets="@styles/fxmlmaktabti.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.gui.LivreController">
    <children>
-      <VBox alignment="TOP_CENTER" prefHeight="660.0" prefWidth="1105.0" style="-fx-background-color: #05071F;" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <ListView fx:id="livreview" layoutY="174.0" onMouseClicked="#afficheForm" prefHeight="320.0" prefWidth="256.0">
+         <effect>
+            <Glow level="0.43" />
+         </effect>
+      </ListView>
+      <StackPane layoutX="258.0" prefHeight="576.0" prefWidth="793.0" styleClass="root" stylesheets="@styles/fxmlmaktabti.css">
          <children>
-            <ListView fx:id="livreview" prefHeight="205.0" prefWidth="355.0" />
-            <ImageView fitHeight="73.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-               </image>
-               <VBox.margin>
-                  <Insets bottom="10.0" top="50.0" />
-               </VBox.margin></ImageView>
-            <Label textFill="#e7e5e5">
-               <VBox.margin>
-                  <Insets bottom="20.0" />
-               </VBox.margin>
-            </Label>
-            <Button fx:id="btnOverview" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="42.0" prefWidth="259.0" stylesheets="@style.css" text="Dashboard" textFill="#e7e5e5">
-               <graphic>
-                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/icons8_Home_32px.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-               <padding>
-                  <Insets left="50.0" />
-               </padding>
-            </Button>
-            <Button fx:id="btnCustomers" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="42.0" prefWidth="259.0" stylesheets="@style.css">
-               <graphic>
-                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/icons8_Person_32px.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <padding>
-                  <Insets left="50.0" />
-               </padding>
-            </Button>
-            <Button fx:id="btnMenus" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="42.0" prefWidth="259.0" stylesheets="@style.css">
-               <graphic>
-                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/icons8_Xbox_Menu_32px.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <padding>
-                  <Insets left="50.0" />
-               </padding>
-            </Button>
-            <Button fx:id="btnPackages" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="259.0" stylesheets="@style.css">
-               <graphic>
-                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/icons8_Box_32px.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <padding>
-                  <Insets left="50.0" />
-               </padding>
-            </Button>
-            <Button fx:id="btnPackages1" alignment="BASELINE_LEFT" graphicTextGap="22.0" layoutX="10.0" layoutY="343.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="259.0" stylesheets="@style.css">
-               <graphic>
-                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/icons8_Box_32px.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <padding>
-                  <Insets left="50.0" />
-               </padding>
-            </Button>
-            <Button fx:id="btnOrders" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="42.0" prefWidth="259.0" stylesheets="@style.css">
-               <graphic>
-                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/icons8_Open_Envelope_32px.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <padding>
-                  <Insets left="50.0" />
-               </padding>
-            </Button>
-            <Button fx:id="btnSettings" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="259.0" stylesheets="@style.css">
-               <graphic>
-                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/icons8_Slider__32px.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <padding>
-                  <Insets left="50.0" />
-               </padding>
-            </Button>
-            <Button fx:id="btnSignout" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="259.0" stylesheets="@style.css">
-               <graphic>
-                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/icons8_Sign_Out_32px.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <padding>
-                  <Insets left="50.0" />
-               </padding>
-            </Button>
-         </children>
-      </VBox>
-      <StackPane layoutX="258.0" prefHeight="576.0" prefWidth="793.0" style="-fx-background-color: #02030A;">
-         <children>
+            <Pane fx:id="pnlMenus" prefHeight="200.0" prefWidth="200.0" stylesheets="@styles/fxmlmaktabti.css" />
             <Pane fx:id="pnlCustomer" prefHeight="200.0" prefWidth="200.0" />
             <Pane fx:id="pnlOrders" prefHeight="200.0" prefWidth="200.0" />
-            <Pane fx:id="pnlMenus" prefHeight="200.0" prefWidth="200.0">
+            <Pane fx:id="pnlOverview" blendMode="SRC_ATOP" prefHeight="596.0" prefWidth="820.0" stylesheets="@styles/fxmlmaktabti.css">
                <children>
-                  <Pane fx:id="pnlOverview" layoutX="36.0" layoutY="-30.0" prefHeight="554.0" prefWidth="793.0">
+                  <TextField layoutX="658.0" layoutY="69.0" opacity="0.7" prefHeight="26.0" prefWidth="121.0" promptText="search" style="-fx-background-color: #02030A; -fx-border-color: #B7C3D7; -fx-border-radius: 2em;" stylesheets="@styles/fxmlmaktabti.css">
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                     <effect>
+                        <Bloom />
+                     </effect>
+                  </TextField>
+                  <ImageView fitHeight="17.0" fitWidth="16.0" layoutX="772.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/icons8_Search_52px.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="10.0" layoutY="82.0" prefHeight="35.0" prefWidth="121.0" text="Livre:" underline="true">
+                     <font>
+                        <Font name="System Bold Italic" size="32.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <effect>
+                        <Bloom />
+                     </effect>
+                  </Label>
+                  <VBox layoutX="19.0" layoutY="164.0" prefHeight="144.0" prefWidth="91.0" spacing="25.0">
                      <children>
-                        <TextField layoutX="590.0" layoutY="47.0" prefHeight="27.0" prefWidth="183.0" promptText="search" style="-fx-background-color: #02030A; -fx-border-color: #B7C3D7; -fx-border-radius: 2em;" />
-                        <HBox alignment="CENTER_LEFT" layoutX="45.0" layoutY="24.0" prefHeight="92.0" prefWidth="284.0" spacing="50.0">
-                           <children>
-                              <Label prefHeight="35.0" prefWidth="121.0" text="Livre" textFill="#e7e5e5">
-                                 <font>
-                                    <Font size="24.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </HBox>
-                        <HBox alignment="CENTER_LEFT" layoutX="45.0" layoutY="178.0" prefHeight="42.0" prefWidth="712.0" spacing="80.0" style="-fx-background-color: #02030A;" />
-                        <ImageView fitHeight="17.0" fitWidth="16.0" layoutX="749.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/icons8_Search_52px.png" />
-                           </image>
-                        </ImageView>
-                        <VBox layoutX="19.0" layoutY="164.0" prefHeight="144.0" prefWidth="91.0" spacing="25.0">
-                           <children>
-                              <Label text="Titre" textFill="WHITE">
-                                 <font>
-                                    <Font name="System Bold" size="14.0" />
-                                 </font>
-                              </Label>
-                              <Label layoutX="10.0" layoutY="10.0" text="Date pub" textFill="WHITE">
-                                 <font>
-                                    <Font name="System Bold" size="14.0" />
-                                 </font>
-                              </Label>
-                              <Label layoutX="10.0" layoutY="27.0" text="Langue" textFill="WHITE">
-                                 <font>
-                                    <Font name="System Bold" size="14.0" />
-                                 </font>
-                              </Label>
-                              <Label layoutX="10.0" layoutY="100.0" text="Isbn" textFill="WHITE">
-                                 <font>
-                                    <Font name="System Bold" size="14.0" />
-                                 </font>
-                              </Label>
-                              <Label layoutX="10.0" layoutY="145.0" text="Nb_pages" textFill="WHITE">
-                                 <font>
-                                    <Font name="System Bold" size="14.0" />
-                                 </font>
-                              </Label>
-                              <Label layoutX="10.0" layoutY="190.0" text="Resume" textFill="WHITE">
-                                 <font>
-                                    <Font name="System Bold" size="14.0" />
-                                 </font>
-                              </Label>
-                              <Label layoutX="10.0" layoutY="235.0" text="Prix" textFill="WHITE">
-                                 <font>
-                                    <Font name="System Bold" size="14.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </VBox>
-                        <VBox layoutX="135.0" layoutY="164.0" prefHeight="166.0" prefWidth="153.0" spacing="21.0">
-                           <children>
-                              <TextField fx:id="titre" layoutX="10.0" layoutY="10.0" />
-                              <DatePicker fx:id="date_pub" />
-                              <TextField fx:id="langue" layoutX="10.0" layoutY="10.0" />
-                              <TextField fx:id="isbn" layoutX="10.0" layoutY="10.0" />
-                              <TextField fx:id="nb_pages" layoutX="10.0" layoutY="10.0" />
-                              <TextField fx:id="resume" layoutX="10.0" layoutY="10.0" />
-                              <TextField fx:id="prix" layoutX="10.0" layoutY="240.0" />
-                           </children>
-                        </VBox>
-                        <Button fx:id="cat_add" layoutX="31.0" layoutY="470.0" mnemonicParsing="false" onAction="#addlivre" prefHeight="25.0" prefWidth="67.0" text="Ajouter" />
-                        <Button fx:id="cat_update" layoutX="117.0" layoutY="470.0" mnemonicParsing="false" onAction="#updatelivre" prefHeight="25.0" prefWidth="91.0" text="Mettre à jours" />
-                        <Button fx:id="cat_del" layoutX="232.0" layoutY="470.0" mnemonicParsing="false" onAction="#deletelivre" text="Supprimer" />
-                        <ListView fx:id="listauteur" layoutX="376.0" layoutY="123.0" prefHeight="169.0" prefWidth="355.0" />
-                        <ListView fx:id="listcategorie" layoutX="376.0" layoutY="357.0" prefHeight="151.0" prefWidth="355.0" />
-                        <Label layoutX="372.0" layoutY="73.0" prefHeight="27.0" prefWidth="153.0" text="Auteur :" textFill="WHITE">
+                        <Label text="Titre:">
                            <font>
-                              <Font size="27.0" />
+                              <Font name="System Bold" size="14.0" />
                            </font>
                         </Label>
-                        <Label layoutX="376.0" layoutY="309.0" text="Categorie:" textFill="#f5f5f5">
+                        <Label layoutX="10.0" layoutY="10.0" text="Date pub:">
                            <font>
-                              <Font size="27.0" />
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="10.0" layoutY="27.0" text="Langue:" textFill="#070707">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="10.0" layoutY="100.0" text="Isbn:" textFill="#141414">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="10.0" layoutY="145.0" text="Nb_pages:" textFill="#0d0d0d">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="10.0" layoutY="190.0" text="Resume:">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="10.0" layoutY="235.0" text="Prix:">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
                            </font>
                         </Label>
                      </children>
-                  </Pane>
-               </children></Pane>
+                  </VBox>
+                  <VBox layoutX="135.0" layoutY="164.0" prefHeight="166.0" prefWidth="153.0" spacing="21.0">
+                     <children>
+                        <TextField fx:id="titre" layoutX="10.0" layoutY="10.0" />
+                        <DatePicker fx:id="date_pub" />
+                        <TextField fx:id="langue" layoutX="10.0" layoutY="10.0" />
+                        <TextField fx:id="isbn" layoutX="10.0" layoutY="10.0" />
+                        <TextField fx:id="nb_pages" layoutX="10.0" layoutY="10.0" />
+                        <TextField fx:id="resume" layoutX="10.0" layoutY="10.0" />
+                        <TextField fx:id="prix" layoutX="10.0" layoutY="240.0" />
+                     </children>
+                  </VBox>
+                  <Button fx:id="cat_add" layoutX="10.0" layoutY="507.0" mnemonicParsing="false" onAction="#addlivre" prefHeight="37.0" prefWidth="109.0" styleClass="addbtn" stylesheets="@styles/fxmlmaktabti.css" text="Ajouter" />
+                  <Button fx:id="cat_update" layoutX="128.0" layoutY="507.0" mnemonicParsing="false" onAction="#updatelivre" prefHeight="37.0" prefWidth="109.0" styleClass="modifybtn" stylesheets="@styles/fxmlmaktabti.css" text="Mettre à jours" />
+                  <Button fx:id="cat_del" layoutX="251.0" layoutY="507.0" mnemonicParsing="false" onAction="#deletelivre" prefHeight="37.0" prefWidth="121.0" styleClass="deletebtn" stylesheets="@styles/fxmlmaktabti.css" text="Supprimer" />
+                  <ListView fx:id="listauteur" layoutX="376.0" layoutY="123.0" prefHeight="169.0" prefWidth="355.0" />
+                  <ListView fx:id="listcategorie" layoutX="376.0" layoutY="357.0" prefHeight="151.0" prefWidth="355.0" />
+                  <Label layoutX="372.0" layoutY="73.0" prefHeight="27.0" prefWidth="153.0" text="Auteur :" textFill="#3c3a3a" underline="true">
+                     <font>
+                        <Font name="System Bold Italic" size="31.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="376.0" layoutY="309.0" text="Categorie:" underline="true">
+                     <font>
+                        <Font name="System Bold Italic" size="28.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="34.0" layoutY="14.0" prefHeight="28.0" prefWidth="177.0" text="&quot;Be the change " textFill="#002657">
+                     <font>
+                        <Font name="Eras Bold ITC" size="22.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="208.0" layoutY="29.0" prefHeight="27.0" prefWidth="333.0" text="you wish to see in the world&quot;" textFill="#f8a375">
+                     <font>
+                        <Font name="Eras Bold ITC" size="22.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="511.0" layoutY="57.0" prefHeight="17.0" prefWidth="109.0" text="Mahatma Gandhi">
+                     <font>
+                        <Font name="Century" size="11.0" />
+                     </font>
+                  </Label>
+               </children>
+               <effect>
+                  <Lighting>
+                     <bumpInput>
+                        <Shadow />
+                     </bumpInput>
+                     <light>
+                        <Light.Distant azimuth="0.0" elevation="65.93" />
+                     </light>
+                  </Lighting>
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="E_RESIZE" />
+               </cursor>
+            </Pane>
          </children>
       </StackPane>
+      <ImageView fitHeight="87.0" fitWidth="209.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/2.png" />
+         </image>
+      </ImageView>
+      <AmbientLight color="CHARTREUSE" lightOn="true" />
+      <PointLight color="CHARTREUSE" lightOn="true" />
    </children>
    <effect>
       <DropShadow color="#1b1eeb" />
    </effect>
+   <cursor>
+      <Cursor fx:constant="MOVE" />
+   </cursor>
 </AnchorPane>
