@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
@@ -26,5 +27,6 @@
       <Button layoutX="977.0" layoutY="197.0" mnemonicParsing="false" onAction="#ajout_btn" stylesheets="@styles/crud.css" text="Ajouter" />
       <Button layoutX="973.0" layoutY="312.0" mnemonicParsing="false" onAction="#modif_btn" stylesheets="@styles/crud.css" text="Modifier" />
       <Button layoutX="966.0" layoutY="435.0" mnemonicParsing="false" onAction="#supp_btn" stylesheets="@styles/crud.css" text="Supprimer" />
+      <TextField fx:id="search" layoutX="559.0" layoutY="58.0" onKeyTyped="#search" prefHeight="58.0" prefWidth="230.0" promptText="Rechercher" stylesheets="@styles/crud.css" />
    </children>
 </AnchorPane>
