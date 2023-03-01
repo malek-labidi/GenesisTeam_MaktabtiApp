@@ -79,7 +79,6 @@ public class FXMLAjouterController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        reset.setOnAction(this::reset);
         ServiceLivre sl = new ServiceLivre();
         List<Livre> livres = sl.getAll();
         List<String> names = new ArrayList<>();
