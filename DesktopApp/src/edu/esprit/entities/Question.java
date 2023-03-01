@@ -12,7 +12,8 @@ import java.util.Objects;
  * @author admin
  */
 public class Question {
-    private int id_question; 
+    private int id_question;
+    private int id_quiz;
     private String choix1;
     private String choix2;
     private String choix3;
@@ -21,23 +22,35 @@ public class Question {
     public Question() {
     }
 
-    public Question(String choix1, String choix2, String choix3, String reponse_correct) {
+    public Question(int id_quiz, String choix1, String choix2, String choix3, String reponse_correct) {
+        this.id_quiz = id_quiz;
         this.choix1 = choix1;
         this.choix2 = choix2;
         this.choix3 = choix3;
         this.reponse_correct = reponse_correct;
     }
 
-    public Question(int id_question, String choix1, String choix2, String choix3, String reponse_correct) {
+    public Question(int id_question, int id_quiz, String choix1, String choix2, String choix3, String reponse_correct) {
         this.id_question = id_question;
+        this.id_quiz = id_quiz;
         this.choix1 = choix1;
         this.choix2 = choix2;
         this.choix3 = choix3;
         this.reponse_correct = reponse_correct;
     }
+
+ 
 
     public int getId_question() {
         return id_question;
+    }
+
+    public int getId_quiz() {
+        return id_quiz;
+    }
+
+    public void setId_quiz(int id_quiz) {
+        this.id_quiz = id_quiz;
     }
 
     public String getChoix1() {
