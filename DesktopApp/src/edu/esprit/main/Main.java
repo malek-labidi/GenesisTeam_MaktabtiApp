@@ -107,7 +107,7 @@ public class Main {
 
         System.out.println(sq.getAll());
         System.out.println(sq.getOneById(2));
-        Question qu = new Question(2, "bgrhr", "hello", "bdb", "vvfev");
+       // Question qu = new Question(2, "bgrhr", "hello", "bdb", "vvfev");
         ServiceQuestion squ = new ServiceQuestion();
         // squ.ajouter(qu);
 

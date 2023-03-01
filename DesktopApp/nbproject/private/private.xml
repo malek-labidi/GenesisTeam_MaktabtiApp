@@ -4,20 +4,9 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/D:/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/gui/FXMLAjouterCompetitionController.java</file>
-            <file>file:/D:/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/services/ServiceCompetition.java</file>
-            <file>file:/D:/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/entities/Livre.java</file>
-            <file>file:/D:/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/gui/FXMLModifierCompetitionController.java</file>
-            <file>file:/D:/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/gui/FXMLCompetition.fxml</file>
-            <file>file:/D:/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/main/Main.java</file>
-            <file>file:/D:/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/services/ServiceResultatQuiz.java</file>
-            <file>file:/D:/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/services/ServiceQuiz.java</file>
             <file>file:/D:/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/gui/FXMLCompetitionController.java</file>
-            <file>file:/D:/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/entities/Competition.java</file>
-            <file>file:/D:/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/entities/Quiz.java</file>
-            <file>file:/D:/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/entities/Question.java</file>
-            <file>file:/D:/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/entities/ResultatQuiz.java</file>
             <file>file:/D:/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/services/ServiceQuestion.java</file>
+            <file>file:/D:/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/main/FXCompetition.java</file>
         </group>
     </open-files>
 </project-private>
-
