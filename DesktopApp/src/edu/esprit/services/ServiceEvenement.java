@@ -135,17 +135,18 @@ public class ServiceEvenement implements IService<Evenement> {
     }
 
     public static List<Evenement> filterByLocation(List<Evenement> evenements, String lieu) {
-        List<Evenement> filteredList = new ArrayList<>();
-        try {
-            filteredList = evenements.stream()
-                    .filter(e -> e.getLieu().equalsIgnoreCase(lieu))
-                    .collect(Collectors.toList());
-        } catch (Exception e) {
-            // handle the exception
-            System.out.println("An error occurred while filtering events by location: " + e.getMessage());
-        }
-        return filteredList;
+    List<Evenement> filteredList = new ArrayList<>();
+    try {
+        filteredList = evenements.stream()
+                .filter(e -> e.getLieu().toLowerCase().startsWith(lieu.toLowerCase()))
+                .collect(Collectors.toList());
+    } catch (Exception e) {
+        // handle the exception
+        System.out.println("An error occurred while filtering events by location: " + e.getMessage());
     }
+    return filteredList;
+}
+
 
     public static List<Evenement> filterByDate(List<Evenement> evenements, Date date) {
         List<Evenement> filteredList = new ArrayList<>();
@@ -159,5 +160,23 @@ public class ServiceEvenement implements IService<Evenement> {
         }
         return filteredList;
     }
+    public void decrementNbTickets(int eventId, int nbTickets) {
+    
+
+    try {
+        
+
+        String query = "UPDATE evenement SET nb_tickets = nb_tickets - ? WHERE id_evenement = ?";
+        
+        PreparedStatement ps = cnx.prepareStatement(query);
+        ps.setInt(1, nbTickets);
+        ps.setInt(2, eventId);
+        ps.executeUpdate();
+    } catch (SQLException ex) {
+        System.out.println(ex.getMessage());
+    } 
+       
+}
+
 
 }
