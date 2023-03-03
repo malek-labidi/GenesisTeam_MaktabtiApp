@@ -148,7 +148,30 @@ public class ServiceLivre implements IService<Livre> {
         }
     }
         
-        
+        public Livre getOneByTitre(String titre) {
+    Livre result = null;
+    try {
+        String req = "SELECT * FROM livre WHERE titre = ?";
+        PreparedStatement ps = cnx.prepareStatement(req);
+        ps.setString(1, titre);
+        ResultSet rs = ps.executeQuery();
+        if (rs.next()) {
+            int id = rs.getInt("id_livre");
+            int id_auteur = rs.getInt("id_auteur");
+            int id_categorie = rs.getInt("id_categorie");
+            Date date_pub = rs.getDate("date_pub");
+            String langue = rs.getString("langue");
+            int isbn = rs.getInt("isbn");
+            int nb_pages = rs.getInt("nb_pages");
+            String resume = rs.getString("resume");
+            int prix = rs.getInt("prix");
+            result = new Livre(id, id_auteur, id_categorie, titre, date_pub, langue, isbn, nb_pages, resume, prix);
+        }
+    } catch (SQLException ex) {
+        System.out.println(ex.getMessage());
+    }
+    return result;
+}
 }
 
 
