@@ -60,7 +60,7 @@ public class Main {
         //Panier p1=new Panier(1, 3, 25,250);
         //Panier p2=new Panier(1, 1, 2, 50);
         //sp.ajouter(p1);
-        //sp.modifier(p2);
+        
         //sp.delete(2);
         //System.out.println(sp.getOneById(2));
         //User
@@ -74,11 +74,13 @@ public class Main {
         ServiceUtilisateur su = new ServiceUtilisateur();
         // Utilisateur u1 = new Utilisateur("wassim", "hachani", "wassimhach16@gmail.com", "wassim", 54100060,"Administrateur") {};
         //System.out.println(su.getAll());
-        Utilisateur u4 = new Utilisateur(7, "gg", "gg", "maleklaabidi@hotmail.fr", "wassim1", 54100060, "Administrateur") {
+        Utilisateur u4 = new Utilisateur(12, "aa", "gg", "maleklaabidi@hotmail.fr", "wassim1", 54100060, "Administrateur") {
         };
         Utilisateur u9 = new Utilisateur("gg", "gg", "mwassimhachanikd@hotmail.fr", "wassim1", 54100060, "Auteur") {
         };
-
+        //su.ajouter(u4);
+        su.modifier3(u4);
+        
         //su.modifier2(32,u9);
         //ServiceCommande cu = new ServiceCommande();
         // Commande c4= new Commande (2,1,Status.paye,Mode.carte_bancaire,Etat.encours);
