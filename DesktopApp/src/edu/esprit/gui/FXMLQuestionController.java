@@ -93,7 +93,7 @@ public class FXMLQuestionController implements Initializable {
     for (Node node : container.getChildren()) {
         if (node instanceof VBox) {
             VBox vBox = (VBox) node;
-            boolean questionAnswered = false;
+            
 
             for (Node childNode : vBox.getChildren()) {
                 if (childNode instanceof RadioButton) {

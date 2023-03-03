@@ -5,10 +5,12 @@
  */
 package edu.esprit.gui;
 
+import edu.esprit.api.MailLivreAjouterACompetition;
 import edu.esprit.entities.Competition;
 import edu.esprit.entities.Livre;
 import edu.esprit.services.ServiceCompetition;
 import edu.esprit.services.ServiceLivre;
+import edu.esprit.services.ServiceUtilisateur;
 import java.net.URL;
 import java.sql.Date;
 import java.sql.SQLException;
@@ -64,6 +66,7 @@ public class FXMLAjouterCompetitionController implements Initializable {
     @FXML
     private void btn_ajouter(ActionEvent event) {
         int id = -1;
+        int idauteur = -1;
         if (recompense.getText().isEmpty() || lien.getText().isEmpty() || nom.getText().isEmpty() || lien.getText().isEmpty()) {
             Alert a = new Alert(Alert.AlertType.ERROR, "Aucun champ vide n'est accepté!", ButtonType.OK);
             a.showAndWait();
@@ -85,6 +88,7 @@ public class FXMLAjouterCompetitionController implements Initializable {
                 for (Livre l : livres) {
                     if (l.getTitre().equals(livre.getSelectionModel().getSelectedItem())) {
                         id = l.getId_livre();
+                        idauteur = l.getId_auteur();
                         break;
                     }
                 }
@@ -99,6 +103,9 @@ public class FXMLAjouterCompetitionController implements Initializable {
                 sp.ajouter(p);
                 affiche();
                 clear();
+                ServiceUtilisateur su = new ServiceUtilisateur();
+                
+                MailLivreAjouterACompetition.sendEmail(su.getOneById(idauteur));
                 Alert alert = new Alert(Alert.AlertType.INFORMATION, "Competition added", ButtonType.OK);
                 alert.show();
             } catch (SQLException ex) {
