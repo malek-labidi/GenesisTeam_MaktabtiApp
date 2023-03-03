@@ -118,8 +118,13 @@ public class UtilisateurController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        affiche();
+                    affiche();
         useview.setOnMouseClicked(this::getUtilisateur);
+        ServiceUtilisateur se=new ServiceUtilisateur();
+        this.e1=se.getAll();
+        affiche();
+
+        
     }    
 
   @FXML
@@ -133,6 +138,7 @@ public class UtilisateurController implements Initializable {
     }
 
 
+    //ajouter un utilisateur
     @FXML
      private void adduser(ActionEvent event) {
          if (cat_name.getText().isEmpty() || cat_prenom.getText().isEmpty() || cat_email.getText().isEmpty() || cat_tel.getText().isEmpty() || cat_password.getText().isEmpty() || cat_role.getText().isEmpty()  ) {
@@ -171,6 +177,8 @@ public class UtilisateurController implements Initializable {
         useview.setItems(FXCollections.observableArrayList(su.getAll()));
         // Définir des cellules personnalisée pour afficher les informations sur l'utilisateur
         useview.setCellFactory(list -> new UtilisateurListCell());
+                useview.setItems(FXCollections.observableArrayList(this.e1));
+
      }
     
     /* @FXML
@@ -198,6 +206,7 @@ public class UtilisateurController implements Initializable {
 
     } */
 
+     //Modifier un utilisateur
     @FXML
     private void updateuser(ActionEvent event) {
         
@@ -233,8 +242,8 @@ public class UtilisateurController implements Initializable {
         Optional<ButtonType> result = dialog.showAndWait();
         if (result.isPresent() && result.get() == buttonTypeYes) {
             ServiceUtilisateur su = new ServiceUtilisateur();
-            Utilisateur u = new Utilisateur(cat_name.getText(),cat_prenom.getText(),cat_email.getText(),cat_password.getText(),Integer.parseInt(cat_tel.getText()), cat_role.getText() ) {} ;
-            su.modifier(u);
+            Utilisateur u = new Utilisateur(id,cat_name.getText(),cat_prenom.getText(),cat_email.getText(),cat_password.getText(),Integer.parseInt(cat_tel.getText()), cat_role.getText() ) {} ;
+            su.modifier3(u);
             System.out.println(u);
             affiche();
             cat_name.clear();
@@ -282,9 +291,10 @@ public class UtilisateurController implements Initializable {
         }
     }
     
+    //Fonction d'affichage d'un utilisateur
         public void getUtilisateur(MouseEvent event) {
         int index = useview.getSelectionModel().getSelectedIndex();
-        Utilisateur u= new Utilisateur() {} ;
+        Utilisateur u= new Utilisateur() {};
 
 
         ServiceUtilisateur su = new ServiceUtilisateur();
@@ -298,8 +308,16 @@ public class UtilisateurController implements Initializable {
         cat_role.setText(u.getRole());
     }
 
+        //Supprimer un utilisateur
     @FXML
     private void deleteuser(ActionEvent event) {
+        Dialog<ButtonType> dialog = new Dialog<>();
+        dialog.setHeaderText("Voulez-vous vraiment supprimer l'utilisateur N°" + id + "?");
+        ButtonType buttonTypeYes = new ButtonType("Oui", ButtonBar.ButtonData.YES);
+        ButtonType buttonTypeNo = new ButtonType("Non", ButtonBar.ButtonData.NO);
+        dialog.getDialogPane().getButtonTypes().addAll(buttonTypeYes, buttonTypeNo);
+        Optional<ButtonType> result = dialog.showAndWait();
+         if (result.isPresent() && result.get() == buttonTypeYes) {
             ServiceUtilisateur su = new ServiceUtilisateur();
             Utilisateur u= new Utilisateur() {} ;   
             u= useview.getSelectionModel().getSelectedItem();
@@ -307,7 +325,7 @@ public class UtilisateurController implements Initializable {
             affiche();
             Alert a = new Alert(Alert.AlertType.CONFIRMATION, "User Deleted Successfully !", ButtonType.OK);
             a.showAndWait();
-    }
+    } }
 
 
     //Filtres
@@ -319,11 +337,12 @@ public class UtilisateurController implements Initializable {
         
         
         if (!s.isEmpty()) {
-            //this.useview = ServiceUtilisateur.filterByName(this.useview, s);
+        this.e1 = ServiceUtilisateur.filterByName(this.e1, s);
 
         }
     }
 
+        //Fonction de recherche
     @FXML
     private void search(KeyEvent event) {
         
@@ -417,7 +436,7 @@ public class UtilisateurController implements Initializable {
         }
         
     }
-        public Utilisateur getOneByemailutilisateur(String email) {
+       /* public Utilisateur getOneByemailutilisateur(String email) {
         Utilisateur result = null;
         try {
             String req = "SELECT * FROM utilisateur WHERE email = "+email ;
@@ -433,7 +452,7 @@ public class UtilisateurController implements Initializable {
             System.out.println("Les adresses emails ne doivent etre en doublons");
         }
         return result;
-    }
+    } */
 
 
 
