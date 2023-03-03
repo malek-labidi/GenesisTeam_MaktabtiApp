@@ -58,6 +58,7 @@ public class FXMLEvenementController implements Initializable {
     private ListView<Evenement> event_view;
     @FXML
     private TextField search;
+    
     private List<Evenement> e1 = new ArrayList<>();
 
     /**

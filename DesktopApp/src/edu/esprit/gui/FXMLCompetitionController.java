@@ -16,7 +16,9 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Date;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -25,6 +27,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -39,7 +42,9 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
@@ -64,6 +69,9 @@ public class FXMLCompetitionController implements Initializable {
     private Button btn_supprimer;
     @FXML
     private ImageView pdf;
+    @FXML
+    private TextField search;
+    private List<Competition> e1 = new ArrayList<>();
 
     /**
      * Initializes the controller class.
@@ -71,7 +79,8 @@ public class FXMLCompetitionController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-
+        ServiceCompetition sc = new ServiceCompetition();
+        this.e1 = sc.getAll();
         affiche();
     }
 
@@ -151,7 +160,7 @@ public class FXMLCompetitionController implements Initializable {
 
     public void affiche() {
         ServiceCompetition se = new ServiceCompetition();
-        competition_list.setItems(FXCollections.observableArrayList(se.getAll()));
+        competition_list.setItems(FXCollections.observableArrayList(this.e1));
 
         // Définir des cellules personnalisée pour afficher les informations sur la compétition
         competition_list.setCellFactory(list -> new CompetitionListCell());
@@ -229,6 +238,13 @@ public class FXMLCompetitionController implements Initializable {
 
     }
 
+    @FXML
+    private void chercherCompetition(KeyEvent event) {
+
+        filter();
+        affiche();
+    }
+
     // Définir un ListCell personnalisé pour afficher les informations sur la compétition
     private class CompetitionListCell extends javafx.scene.control.ListCell<Competition> {
 
@@ -250,12 +266,71 @@ public class FXMLCompetitionController implements Initializable {
                 Label linkLabel = new Label("Lien: " + competition.getLien_competition());
                 Label startDateLabel = new Label("Date de début: " + competition.getDate_debut());
                 Label endDateLabel = new Label("Date de fin: " + competition.getDate_fin());
+                Button participer = new Button("participer");
 
-                VBox vbox = new VBox(nameLabel, idLabel, rewardLabel, participantsLabel, linkLabel, startDateLabel, endDateLabel);
+                participer.setStyle(" -fx-background-color: #f8a375;-fx-text-fill: white;-fx-font-size: 16px; -fx-background-radius: 8px; -fx-font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;");
+
+                if (competition.getDate_fin().before(Date.valueOf(LocalDate.now()))) {
+                    participer.setDisable(true);
+                    participer.setStyle("-fx-background-color: #C0C0C0;-fx-text-fill: white;-fx-font-size: 16px; -fx-background-radius: 8px; -fx-font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;");
+
+                } else {
+                    participer.setDisable(false);
+                }
+
+                participer.setOnAction(new EventHandler<ActionEvent>() {
+    @Override
+    public void handle(ActionEvent event) {
+         System.out.println("hello");
+                    int id = competition.getId_competition();
+                    Dialog<ButtonType> dialog = new Dialog<>();
+                    dialog.setTitle("confirmer participation");
+                    dialog.setHeaderText("Voulez-vous vraiment participer à la competition " + competition.getNom()+ " ?");
+                    dialog.setContentText("dans cette competition vous allez repondre a quelques questions concernant le livre "+sl.getOneById(competition.getId_livre()).getTitre());
+
+                    ButtonType buttonTypeYes = new ButtonType("Oui", ButtonBar.ButtonData.YES);
+                    ButtonType buttonTypeNo = new ButtonType("Non", ButtonBar.ButtonData.NO);
+
+                    dialog.getDialogPane().getButtonTypes().addAll(buttonTypeYes, buttonTypeNo);
+
+                    Optional<ButtonType> result = dialog.showAndWait();
+
+                    if (result.isPresent() && result.get() == buttonTypeYes) {
+                       try {
+                            FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLQuestion.fxml"));
+                            Parent root = loader.load();
+                            FXMLQuestionController controller = loader.getController();
+                            controller.getQuestion(id);
+                            Scene scene = new Scene(root);
+                            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                            stage.setScene(scene);
+                            stage.show();
+                        } catch (IOException ex) {
+                            System.out.println(ex.getMessage());
+                        }
+                    } else {
+                        dialog.close();
+                    }
+    }
+});
+
+                VBox vbox = new VBox(nameLabel, idLabel, rewardLabel, participantsLabel, linkLabel, startDateLabel, endDateLabel, participer);
                 vbox.setSpacing(5);
 
                 setGraphic(vbox);
             }
+        }
+    }
+
+    public void filter() {
+
+        String s = search.getCharacters().toString();
+        ServiceCompetition e = new ServiceCompetition();
+        this.e1 = e.getAll();
+
+        if (!s.isEmpty()) {
+            this.e1 = ServiceCompetition.filterByName(this.e1, s);
+
         }
     }
 
