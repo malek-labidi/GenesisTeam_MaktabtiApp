@@ -27,6 +27,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.effect.InnerShadow;
 import javafx.scene.paint.Color;
+import org.mindrot.jbcrypt.BCrypt;
 
 /**
  *
@@ -37,6 +38,7 @@ public class ServiceUtilisateur implements IService<Utilisateur> {
         Connection cnx = DataSource.getInstance().getCnx();
 
         
+        //Fonction d'ajout d'un utilisateur
          @Override
     public void ajouter(Utilisateur u) {
         try {
@@ -53,7 +55,7 @@ public class ServiceUtilisateur implements IService<Utilisateur> {
             ps.setString(1, u.getNom());
             ps.setString(2, u.getPrenom());
             ps.setString(3, u.getEmail());
-            ps.setString(4, u.getMot_de_passe());
+            ps.setString(4, BCrypt.hashpw(u.getMot_de_passe(), BCrypt.gensalt() ));
             ps.setInt(5, u.getnum_telephone());
             ps.setString(6, u.getRole().toString());
             ps.executeUpdate();
@@ -73,7 +75,7 @@ public class ServiceUtilisateur implements IService<Utilisateur> {
             ps.setString(1, u.getNom());
             ps.setString(2, u.getPrenom());
             ps.setString(3, u.getEmail());
-            ps.setString(4, u.getMot_de_passe());
+            ps.setString(4, BCrypt.hashpw(u.getMot_de_passe(), BCrypt.gensalt() ));
             ps.setInt(5, u.getnum_telephone());
             ps.setString(6, u.getRole().toString());
 
@@ -97,6 +99,7 @@ public class ServiceUtilisateur implements IService<Utilisateur> {
 }
 
   
+        //Fonction de supression d'un utilisateur
 
     @Override
     public void delete(int id) {
@@ -110,10 +113,12 @@ public class ServiceUtilisateur implements IService<Utilisateur> {
         }
     }
     
+    //Fonction de modification d'un utilisateur
+
     @Override
     public void modifier(Utilisateur u) {
         try {
-            String req = "UPDATE `utilisateur` SET `nom` = '" + u.getNom() + "', `prenom` = '" + u.getPrenom() + "', `email` = '" + u.getEmail()+ "', `mot_de_passe` = '" + u.getMot_de_passe()+ "', `num_telephone` = '" + u.getnum_telephone()+ "', `role` = '" + u.getRole()+  "' WHERE `personne`.`id` = " + u.getId();
+            String req = "UPDATE `utilisateur` SET nom = '" + u.getNom() + "', prenom=" + u.getPrenom() + "', email = '" + u.getEmail()+ "', `mot_de_passe` = '" + u.getMot_de_passe()+ "', `num_telephone` = '" + u.getnum_telephone()+ "', `role` = '" + u.getRole()+  "' WHERE id_utilisateur=" + u.getId();
             Statement st = cnx.createStatement();
             st.executeUpdate(req);
             System.out.println("Utilisateur updated !");
@@ -141,6 +146,31 @@ public class ServiceUtilisateur implements IService<Utilisateur> {
             System.out.println(ex.getMessage());
         }
     }
+    
+    
+        public void modifier3(Utilisateur u) {
+    String sql = "update utilisateur set nom=?,prenom=?,email=?,mot_de_passe=?,num_telephone=?,role=?   where id_utilisateur="+u.getId();
+        try {
+            PreparedStatement ste = cnx.prepareStatement(sql);
+            ste.setString(1, u.getNom());
+            ste.setString(2, u.getPrenom());
+            ste.setString(3, u.getEmail());
+            ste.setString(4, u.getMot_de_passe());
+            ste.setInt(5, u.getnum_telephone());
+            ste.setString(6, u.getRole());
+
+
+
+            ste.executeUpdate();
+            System.out.println("********************** MODIFIED ****************************************");
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+    
+    
+    
+    
           public void modifierutilisateur(String name,Utilisateur u) {
     String sql = "update users set phone=?,email=?  where username=? ";
         try {
@@ -160,7 +190,7 @@ public class ServiceUtilisateur implements IService<Utilisateur> {
     }
     
 
-
+        //Fonction d'affichage de tous les utilisateurs
     @Override
     public List<Utilisateur> getAll() {
         List<Utilisateur> list = new ArrayList<>();
@@ -237,8 +267,11 @@ public class ServiceUtilisateur implements IService<Utilisateur> {
         return u;
     }
     
+    
+    // Avoir un utilisateur selon son id
       public Utilisateur GetUserByid(int id) {
         Utilisateur user = null;
+        String pass = "";
         try {
             String requete = "Select id,role from utilisateur where id = ?";
             PreparedStatement pst = DataSource.getInstance().getCnx().prepareStatement(requete);
@@ -275,6 +308,7 @@ public class ServiceUtilisateur implements IService<Utilisateur> {
         return user;
     }
     
+      // Avoir un utilisateur selon son role
         public Utilisateur getOneByrole(String role) {
         Utilisateur u = null;
         try {
@@ -303,15 +337,16 @@ public class ServiceUtilisateur implements IService<Utilisateur> {
     }
         
         
-public Utilisateur getuserbyemailandpass(String email, String password) {
+/*public Utilisateur getuserbyemailandpass(String email, String password) {
     Utilisateur user = null;
+    String pass = "";
+    
     try {
         String req = "SELECT * FROM utilisateur WHERE email = ? AND mot_de_passe = ?";
         PreparedStatement psmt = cnx.prepareStatement(req);
         psmt.setString(1, email);
         psmt.setString(2, password);
         ResultSet rs = psmt.executeQuery();
-        
         if (rs.next()) {
             user = new Utilisateur() {} ;
             user.setNom(rs.getString("nom"));
@@ -320,13 +355,37 @@ public Utilisateur getuserbyemailandpass(String email, String password) {
             user.setMot_de_passe(rs.getString("mot_de_passe"));
             user.setnum_telephone(rs.getInt("num_telephone"));
             user.setRole(rs.getString("role"));
+        }  
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    return user;
+}*/
+
+    public Utilisateur getuserbyemailandpass(String email, String password) {
+    Utilisateur user = null;
+    try {
+        String req = "SELECT * FROM utilisateur WHERE email = ?";
+        PreparedStatement psmt = cnx.prepareStatement(req);
+        psmt.setString(1, email);
+        ResultSet rs = psmt.executeQuery();
+        if (rs.next()) {
+            String hashedPassword = rs.getString("mot_de_passe");
+            if (BCrypt.checkpw(password, hashedPassword)) {
+                user = new Utilisateur() {} ;
+                user.setNom(rs.getString("nom"));
+                user.setPrenom(rs.getString("prenom"));
+                user.setEmail(rs.getString("email"));
+                user.setMot_de_passe(hashedPassword);
+                user.setnum_telephone(rs.getInt("num_telephone"));
+                user.setRole(rs.getString("role"));
+            }
         }
     } catch (SQLException e) {
         e.printStackTrace();
     }
     return user;
 }
-
          
  
        
