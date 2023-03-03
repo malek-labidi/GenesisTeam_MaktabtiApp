@@ -21,18 +21,18 @@ import javafx.stage.Stage;
  *
  * @author SADOK
  */
-public class EventMainFXML extends Application {
-
+public class ReservationFXMain1 extends Application {
+    
     @Override
     public void start(Stage primaryStage) {
-        try {
+         try {
 
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/FXMLEvenement.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/FXMLReservation.fxml"));
             Parent root = loader.load();
             Scene scene = new Scene(root);
-          
+           
             primaryStage.getIcons().add(new Image("/edu/esprit/gui/images/icon-app-logo.png"));
-            primaryStage.setTitle("Evenement");
+            primaryStage.setTitle("Reservation");
             primaryStage.setScene(scene);
             primaryStage.show();
         } catch (IOException ex) {
@@ -40,12 +40,9 @@ public class EventMainFXML extends Application {
         }
 
     }
-
-    /**
-     * @param args the command line arguments
-     */
+    
     public static void main(String[] args) {
         launch(args);
     }
-
+    
 }
