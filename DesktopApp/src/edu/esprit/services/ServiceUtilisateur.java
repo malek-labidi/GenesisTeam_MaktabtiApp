@@ -387,7 +387,22 @@ public class ServiceUtilisateur implements IService<Utilisateur> {
     return user;
 }
          
- 
+ public List<Utilisateur> getclients() {
+        List<Utilisateur> list = new ArrayList<>();
+        try {
+            String req = "Select * from utilisateur WHERE role='Client' ";
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(req);
+            while (rs.next()) {
+                Utilisateur u = new Utilisateur(rs.getInt(1), rs.getString("nom"), rs.getString(3), rs.getString(4), rs.getString("Mot_de_passe"), rs.getInt("num_telephone") ,rs.getString("role") ) {};
+                list.add(u);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+        return list;
+    }
        
 
 

@@ -70,6 +70,8 @@ public class FXMLAjouterController implements Initializable {
     private Button reset;
     @FXML
     private Button ajoutevent;
+    @FXML
+    private Button back;
     
    
 
@@ -167,6 +169,10 @@ public class FXMLAjouterController implements Initializable {
         descriptionField.setText("");
         ticketField.setText("");
         
+    }
+
+    @FXML
+    private void back(ActionEvent event) {
     }
 
     
