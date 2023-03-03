@@ -6,6 +6,7 @@
 package edu.esprit.services;
 
 import edu.esprit.entities.Competition;
+import edu.esprit.entities.Question;
 import edu.esprit.util.DataSource;
 import java.sql.Connection;
 import java.sql.Date;
@@ -15,6 +16,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 /**
  *
@@ -126,6 +130,38 @@ public class ServiceCompetition implements IService<Competition> {
             System.out.println(ex.getMessage());
         }
         return result;
+    }
+    
+    public static List<Competition> filterByName(List<Competition> competitions, String nom) {
+    List<Competition> filteredList = new ArrayList<>();
+    try {
+        filteredList = competitions.stream()
+                .filter(e -> e.getNom().toLowerCase().startsWith(nom.toLowerCase()))
+                .collect(Collectors.toList());
+    } catch (Exception e) {
+        // handle the exception
+        System.out.println("Une erreur s'est produite lors du filtrage des competitions par nom : " + e.getMessage());
+    }
+    return filteredList;
+}
+    public List<Question> getListQuestion(int id){
+        List<Question> lq = new ArrayList<>();
+        try {
+            
+            String req = "SELECT q.id_question, q.question, q.choix1, q.choix2, q.choix3, q.reponse_correct FROM question q INNER JOIN quiz z ON q.id_quiz = z.id_quiz INNER JOIN competition c ON z.id_competition = c.id_competition WHERE c.id_competition = " + id;
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(req);
+            while (rs.next()) {
+                
+                Question result = new Question(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6));
+                lq.add(result);
+
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ServiceCompetition.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         return lq;
+        
     }
 
 }
