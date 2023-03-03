@@ -41,6 +41,10 @@ public class Fidelite {
     public void setType(Type type) {
         this.type = type;
     }
+    public int getId_client(){
+        return id_client;
+    }
+    
 
     public int getId_fidelite() {
         return id_fidelite;
@@ -60,7 +64,9 @@ public class Fidelite {
 
     @Override
     public String toString() {
-        return "Fidelite{" + "id_client=" + id_client + ", total_achat=" + total_achat + ", type=" + type + '}';
+        return "Fidelite{ total_achat=" + total_achat + ", type=" + type + '}';
     }
+
+    
 
   }
