@@ -50,6 +50,7 @@ public class AuthentificationController implements Initializable {
     @FXML
     private Button Logiiin;
 
+    private final String path = "src\\LoginData.ini";
     
 
     /**
@@ -84,6 +85,7 @@ public class AuthentificationController implements Initializable {
         System.out.println(Log_in.getUsername());
             Alert a = new Alert(Alert.AlertType.INFORMATION, "Authentified Succefully!", ButtonType.OK);
             a.showAndWait(); 
+        su.createiniFile(path, username.getText(), password.getText());
         Parent root = FXMLLoader.load(getClass().getResource("Utilisateur.fxml"));
         Scene homaepageScene = new Scene(root);
         Stage appStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
