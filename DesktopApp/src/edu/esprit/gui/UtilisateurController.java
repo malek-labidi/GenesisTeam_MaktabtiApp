@@ -335,7 +335,6 @@ public class UtilisateurController implements Initializable {
         ServiceUtilisateur su = new ServiceUtilisateur();
         this.e1 = su.getAll();
         
-        
         if (!s.isEmpty()) {
         this.e1 = ServiceUtilisateur.filterByName(this.e1, s);
 
