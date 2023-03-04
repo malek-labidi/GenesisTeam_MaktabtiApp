@@ -42,7 +42,11 @@ public abstract class Utilisateur {
         this.role = role;
     }
 
-  
+    public Utilisateur(int num_telephone) {
+        this.num_telephone = num_telephone;
+    }
+
+ 
 
     public int getId() {
         return id;
