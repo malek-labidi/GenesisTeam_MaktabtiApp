@@ -14,6 +14,7 @@ import edu.esprit.services.ServiceEvenement;
 import edu.esprit.services.ServiceLivre;
 import edu.esprit.services.ServiceUtilisateur;
 import edu.esprit.util.DataSource;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -52,6 +53,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 
 /**
  * FXML Controller class
@@ -61,28 +65,6 @@ import javafx.stage.Stage;
 public class UtilisateurController implements Initializable {
         Connection cnx = DataSource.getInstance().getCnx();
 
-    @FXML
-    private Button btnOverview;
-    @FXML
-    private Button btnCustomers;
-    @FXML
-    private Button btnMenus;
-    @FXML
-    private Button btnPackages;
-    @FXML
-    private Button btnPackages1;
-    @FXML
-    private Button btnOrders;
-    @FXML
-    private Button btnSettings;
-    @FXML
-    private Button btnSignout;
-    @FXML
-    private Pane pnlCustomer;
-    @FXML
-    private Pane pnlOrders;
-    @FXML
-    private Pane pnlMenus;
     @FXML
     private TextField cat_name;
     @FXML
@@ -112,6 +94,8 @@ public class UtilisateurController implements Initializable {
     private TextField searchh;
     @FXML
     private Button reset;
+    @FXML
+    private Button excel;
 
     /**
      * Initializes the controller class.
@@ -127,7 +111,6 @@ public class UtilisateurController implements Initializable {
         
     }    
 
-  @FXML
     private void handleClicks(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("FXMLMaktabti.fxml"));
         Scene scene = new Scene(root);
@@ -357,6 +340,62 @@ public class UtilisateurController implements Initializable {
         cat_password.setText(null);
         cat_tel.setText(null);
         cat_role.setText(null);
+    }
+
+    @FXML
+    private void excelfile(ActionEvent event) {
+        ArrayList<Utilisateur> data = new ArrayList<Utilisateur>();
+     
+       
+       try{  
+
+
+
+    //creating an instance of HSSFWorkbook class  
+//declare file name to be create   
+    String filename = "C:\\Users\\wassi\\Desktop\\DonnéeUtilisateurs.XLS";  
+//creating an instance of HSSFWorkbook class  
+    HSSFWorkbook workbook = new HSSFWorkbook();  
+//invoking creatSheet() method and passing the name of the sheet to be created   
+    HSSFSheet sheet = workbook.createSheet("January");   
+//creating the 0th row using the createRow() method  
+    HSSFRow rowhead = sheet.createRow((short)0);  
+//creating cell by using the createCell() method and setting the values to the cell by using the setCellValue() method  
+    rowhead.createCell(0).setCellValue("Nom");  
+    rowhead.createCell(1).setCellValue("Prenom");  
+    rowhead.createCell(2).setCellValue("Email");  
+    rowhead.createCell(3).setCellValue("Mot de passe");  
+    rowhead.createCell(4).setCellValue("Numéro de téléphone");  
+
+    ObservableList<Utilisateur> userlist = FXCollections.observableArrayList(useview.getItems());
+             
+                int rownum = 1;
+                for (Utilisateur USER : userlist) {
+                HSSFRow row = sheet.createRow(rownum++);  
+                HSSFRow headerRow = sheet.createRow(0);
+                row.createCell(0).setCellValue(USER.getNom());
+                row.createCell(1).setCellValue(USER.getPrenom());
+                row.createCell(2).setCellValue(USER.getEmail());
+                row.createCell(3).setCellValue(USER.getMot_de_passe());
+                row.createCell(4).setCellValue(USER.getnum_telephone());
+                }
+            
+                FileOutputStream fileOut = new FileOutputStream(filename);  
+                workbook.write(fileOut);  
+            
+                //closing the Stream  
+                fileOut.close();  
+                //closing the workbook  
+                workbook.close();  
+                //prints the message on the console  
+                Alert a = new Alert(Alert.AlertType.INFORMATION, "Excel File Has Been Generated Successfully", ButtonType.OK);
+                a.showAndWait();
+                }   
+                catch (Exception e)   
+                {  
+                e.printStackTrace();  
+                }                                 
+        
     }
     
     //Afficher  la ListView Bien Ordonnée
