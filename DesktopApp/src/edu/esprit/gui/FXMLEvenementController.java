@@ -5,11 +5,14 @@
  */
 package edu.esprit.gui;
 
+import edu.esprit.api.MailEvenement;
 import edu.esprit.entities.EtatReservation;
 import edu.esprit.entities.Evenement;
 import edu.esprit.entities.Reservation;
 import edu.esprit.services.ServiceEvenement;
+import edu.esprit.services.ServiceLivre;
 import edu.esprit.services.ServiceReservation;
+import edu.esprit.services.ServiceUtilisateur;
 import java.io.IOException;
 import java.net.URL;
 import java.security.Provider;
@@ -22,6 +25,7 @@ import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -38,6 +42,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 /**
@@ -124,6 +129,7 @@ public class FXMLEvenementController implements Initializable {
 
         // Update the list view by removing the deleted event from the list
         event_view.getItems().remove(selectedEvent);
+        MailEvenement.sendEmail();
     }
 
     private void reserveBtnClicked(ActionEvent event) {
@@ -171,6 +177,84 @@ public class FXMLEvenementController implements Initializable {
 
         ServiceEvenement se = new ServiceEvenement();
         event_view.setItems(FXCollections.observableArrayList(this.e1));
+        event_view.setCellFactory(list -> new EvenementListCell());
+    }
+    
+    
+        private class EvenementListCell extends javafx.scene.control.ListCell<Evenement> {
+
+        @Override
+        public void updateItem(Evenement evenement, boolean empty) {
+            super.updateItem(evenement, empty);
+
+            if (empty || evenement == null) {
+                setText(null);
+                setGraphic(null);
+            } else {
+                Label nameLabel = new Label(evenement.getNom());
+                nameLabel.setStyle("-fx-font-weight: bold;");
+                ServiceLivre sl = new ServiceLivre();
+                ServiceUtilisateur su = new ServiceUtilisateur();
+
+                Label idLabel = new Label("Livre: " + sl.getOneById(evenement.getId_livre()).getTitre());
+                Label rewardLabel = new Label("lieu: " + evenement.getLieu());
+                Label participantsLabel = new Label("nb ticket: " + evenement.getNb_ticket());
+                Label linkLabel = new Label("date: " + evenement.getDate().toString());
+                Label startDateLabel = new Label("Description: " + evenement.getDescription());
+                Label endDateLabel = new Label("Auteur: " + su.getOneById(evenement.getId_auteur()).getNom()+" "+su.getOneById(evenement.getId_auteur()).getPrenom());
+                Button reserver = new Button("Reserver");
+
+                reserver.setStyle(" -fx-background-color: #f8a375;-fx-text-fill: white;-fx-font-size: 16px; -fx-background-radius: 8px; -fx-font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;");
+
+                if (evenement.getNb_ticket() == 0) {
+                    reserver.setDisable(true);
+                    reserver.setStyle("-fx-background-color: #C0C0C0;-fx-text-fill: white;-fx-font-size: 16px; -fx-background-radius: 8px; -fx-font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;");
+
+                } else {
+                    reserver.setDisable(false);
+                }
+                reserver.setOnAction(new EventHandler<ActionEvent>(){
+                    @Override
+                    public void handle(ActionEvent event) {
+                        int id = evenement.getId_evenement();
+                        Dialog<ButtonType> dialog = new Dialog<>();
+                        dialog.setTitle("confirmer Reservation");
+                        dialog.setHeaderText("Voulez-vous vraiment Reserver une/des ticket pour l'evenement " + evenement.getNom() + " ?");
+                        
+
+                        ButtonType buttonTypeYes = new ButtonType("Oui", ButtonBar.ButtonData.YES);
+                        ButtonType buttonTypeNo = new ButtonType("Non", ButtonBar.ButtonData.NO);
+
+                        dialog.getDialogPane().getButtonTypes().addAll(buttonTypeYes, buttonTypeNo);
+
+                        Optional<ButtonType> result = dialog.showAndWait();
+
+                        if (result.isPresent() && result.get() == buttonTypeYes) {
+                            try {
+                                FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLReservation.fxml"));
+                                Parent root = loader.load();
+                                FXMLReservationController controller = loader.getController();
+                                controller.getEvenement(id);
+                                Scene scene = new Scene(root);
+                                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                                stage.setScene(scene);
+                                stage.show();
+                            } catch (IOException ex) {
+                                System.out.println(ex.getMessage());
+                            }
+                        } else {
+                            dialog.close();
+                        }
+                    }
+                    
+                });
+
+                VBox vbox = new VBox(nameLabel, idLabel, rewardLabel, participantsLabel, linkLabel, startDateLabel, endDateLabel,reserver);
+                vbox.setSpacing(5);
+
+                setGraphic(vbox);
+            }
+        }
     }
 
 }

@@ -7,6 +7,7 @@ package edu.esprit.gui;
 
 import edu.esprit.entities.Utilisateur;
 import edu.esprit.services.ServiceUtilisateur;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -16,12 +17,19 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -43,9 +51,14 @@ public class RegisterController implements Initializable {
     @FXML
     private TextField nom;
     @FXML
-    private TextField role;
-    @FXML
     private PasswordField password;
+    @FXML
+    private MenuButton menurole;
+    @FXML
+    private MenuItem client;
+    @FXML
+    private MenuItem auteur;
+
 
     /**
      * Initializes the controller class.
@@ -57,8 +70,8 @@ public class RegisterController implements Initializable {
     
     
     @FXML
-     private void Registration(ActionEvent event) {
-         if (nom.getText().isEmpty() || prenom.getText().isEmpty() || email.getText().isEmpty() || numtel.getText().isEmpty() || password.getText().isEmpty() || role.getText().isEmpty()  ) {
+     private void Registration(ActionEvent event) throws IOException{
+         if (nom.getText().isEmpty() || prenom.getText().isEmpty() || email.getText().isEmpty() || numtel.getText().isEmpty() || password.getText().isEmpty() || menurole.getText().isEmpty()  ) {
             Alert a = new Alert(Alert.AlertType.ERROR, "Aucun champ vide n'est accepté", ButtonType.OK);
             a.showAndWait();
         } else if (!Validateemail()) {
@@ -72,23 +85,24 @@ public class RegisterController implements Initializable {
             Alert a = new Alert(Alert.AlertType.ERROR, "Mot de passe  invalide!", ButtonType.OK);
             a.showAndWait();   
         }
-        else if (role.getText()=="Administrateur") {
-            Alert a = new Alert(Alert.AlertType.ERROR, "You can't register as Administrator!", ButtonType.OK);
-            a.showAndWait();   
-         }
         else {
              ServiceUtilisateur su = new ServiceUtilisateur();
-            Utilisateur u = new Utilisateur(nom.getText(),prenom.getText(),email.getText(),password.getText(),Integer.parseInt(numtel.getText()), role.getText() ) {} ;
+            Utilisateur u = new Utilisateur(nom.getText(),prenom.getText(),email.getText(),password.getText(),Integer.parseInt(numtel.getText()), menurole.getText() ) {} ;
             su.ajouter(u);
             nom.clear();
             prenom.clear();
             email.clear();
             password.clear();
             numtel.clear();
-            role.clear();
 
             Alert a = new Alert(Alert.AlertType.INFORMATION, "You have been registred succesfully !", ButtonType.OK);
             a.showAndWait();
+            
+                Parent root = FXMLLoader.load(getClass().getResource("Authentification.fxml"));
+                Scene LoginpageScene = new Scene(root);
+                Stage appStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                 appStage.setScene(LoginpageScene);
+                appStage.show();
         }
         
     } 
@@ -140,6 +154,16 @@ public class RegisterController implements Initializable {
             return false;
         }
         
+    }
+
+    @FXML
+    private void auteurrole(ActionEvent event) {
+        menurole.setText(auteur.getText());
+    }
+
+    @FXML
+    private void clientrole(ActionEvent event) {
+        menurole.setText(client.getText());
     }
 
 

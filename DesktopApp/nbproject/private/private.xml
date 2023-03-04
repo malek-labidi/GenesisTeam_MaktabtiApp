@@ -3,33 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Gaaloul/Desktop/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/entities/Role.java</file>
-            <file>file:/C:/Users/Gaaloul/Desktop/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/api/SendOffreByMail.java</file>
-            <file>file:/C:/Users/Gaaloul/Desktop/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/entities/Offre.java</file>
-            <file>file:/C:/Users/Gaaloul/Desktop/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/main/Main.java</file>
-            <file>file:/C:/Users/Gaaloul/Desktop/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/entities/Etat.java</file>
-            <file>file:/C:/Users/Gaaloul/Desktop/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/gui/AffichageController.java</file>
-            <file>file:/C:/Users/Gaaloul/Desktop/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/services/ServiceLivre.java</file>
-            <file>file:/C:/Users/Gaaloul/Desktop/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/services/ServiceOffre.java</file>
-            <file>file:/C:/Users/Gaaloul/Desktop/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/entities/Fidelite.java</file>
-            <file>file:/C:/Users/Gaaloul/Desktop/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/gui/images/icon-app-logo.png</file>
-            <file>file:/C:/Users/Gaaloul/Desktop/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/gui/OffreAjoutController.java</file>
-            <file>file:/C:/Users/Gaaloul/Desktop/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/services/ServiceUtilisateur.java</file>
-            <file>file:/C:/Users/Gaaloul/Desktop/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/entities/Status.java</file>
-            <file>file:/C:/Users/Gaaloul/Desktop/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/gui/FXMLCompetitionController.java</file>
-            <file>file:/C:/Users/Gaaloul/Desktop/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/util/DataSource.java</file>
-            <file>file:/C:/Users/Gaaloul/Desktop/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/gui/Affichage.fxml</file>
-            <file>file:/C:/Users/Gaaloul/Desktop/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/entities/Type.java</file>
-            <file>file:/C:/Users/Gaaloul/Desktop/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/services/ServiceFidelite.java</file>
-            <file>file:/C:/Users/Gaaloul/Desktop/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/services/ServiceCommande.java</file>
-            <file>file:/C:/Users/Gaaloul/Desktop/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/entities/Commande.java</file>
-            <file>file:/C:/Users/Gaaloul/Desktop/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/services/ServiceCommentaire.java</file>
-            <file>file:/C:/Users/Gaaloul/Desktop/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/gui/ConsulterFidelite.fxml</file>
-            <file>file:/C:/Users/Gaaloul/Desktop/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/gui/ConsulterFideliteController.java</file>
-            <file>file:/C:/Users/Gaaloul/Desktop/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/entities/Livre.java</file>
-            <file>file:/C:/Users/Gaaloul/Desktop/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/main/OffreMAin.java</file>
-            <file>file:/C:/Users/Gaaloul/Desktop/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/main/livreMainClass.java</file>
-            <file>file:/C:/Users/Gaaloul/Desktop/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/gui/OffreAjout.fxml</file>
+
+
+
+            <file>file:/D:/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/gui/FXMLAjouterCompetitionController.java</file>
+            <file>file:/D:/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/services/ServiceCompetition.java</file>
+            <file>file:/D:/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/api/MailLivreAjouterACompetition.java</file>
+            <file>file:/D:/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/main/NewFXMain.java</file>
+            <file>file:/D:/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/services/ServiceQuiz.java</file>
+            <file>file:/D:/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/gui/FXMLCompetitionController.java</file>
+            <file>file:/D:/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/gui/FXMLQuestionController.java</file>
+
         </group>
     </open-files>
 </project-private>

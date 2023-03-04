@@ -279,40 +279,40 @@ public class FXMLCompetitionController implements Initializable {
                 }
 
                 participer.setOnAction(new EventHandler<ActionEvent>() {
-    @Override
-    public void handle(ActionEvent event) {
-         System.out.println("hello");
-                    int id = competition.getId_competition();
-                    Dialog<ButtonType> dialog = new Dialog<>();
-                    dialog.setTitle("confirmer participation");
-                    dialog.setHeaderText("Voulez-vous vraiment participer à la competition " + competition.getNom()+ " ?");
-                    dialog.setContentText("dans cette competition vous allez repondre a quelques questions concernant le livre "+sl.getOneById(competition.getId_livre()).getTitre());
+                    @Override
+                    public void handle(ActionEvent event) {
+                        System.out.println("hello");
+                        int id = competition.getId_competition();
+                        Dialog<ButtonType> dialog = new Dialog<>();
+                        dialog.setTitle("confirmer participation");
+                        dialog.setHeaderText("Voulez-vous vraiment participer à la competition " + competition.getNom() + " ?");
+                        dialog.setContentText("dans cette competition vous allez repondre a quelques questions concernant le livre " + sl.getOneById(competition.getId_livre()).getTitre());
 
-                    ButtonType buttonTypeYes = new ButtonType("Oui", ButtonBar.ButtonData.YES);
-                    ButtonType buttonTypeNo = new ButtonType("Non", ButtonBar.ButtonData.NO);
+                        ButtonType buttonTypeYes = new ButtonType("Oui", ButtonBar.ButtonData.YES);
+                        ButtonType buttonTypeNo = new ButtonType("Non", ButtonBar.ButtonData.NO);
 
-                    dialog.getDialogPane().getButtonTypes().addAll(buttonTypeYes, buttonTypeNo);
+                        dialog.getDialogPane().getButtonTypes().addAll(buttonTypeYes, buttonTypeNo);
 
-                    Optional<ButtonType> result = dialog.showAndWait();
+                        Optional<ButtonType> result = dialog.showAndWait();
 
-                    if (result.isPresent() && result.get() == buttonTypeYes) {
-                       try {
-                            FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLQuestion.fxml"));
-                            Parent root = loader.load();
-                            FXMLQuestionController controller = loader.getController();
-                            controller.getQuestion(id);
-                            Scene scene = new Scene(root);
-                            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                            stage.setScene(scene);
-                            stage.show();
-                        } catch (IOException ex) {
-                            System.out.println(ex.getMessage());
+                        if (result.isPresent() && result.get() == buttonTypeYes) {
+                            try {
+                                FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLQuestion.fxml"));
+                                Parent root = loader.load();
+                                FXMLQuestionController controller = loader.getController();
+                                controller.getQuestion(id);
+                                Scene scene = new Scene(root);
+                                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                                stage.setScene(scene);
+                                stage.show();
+                            } catch (IOException ex) {
+                                System.out.println(ex.getMessage());
+                            }
+                        } else {
+                            dialog.close();
                         }
-                    } else {
-                        dialog.close();
                     }
-    }
-});
+                });
 
                 VBox vbox = new VBox(nameLabel, idLabel, rewardLabel, participantsLabel, linkLabel, startDateLabel, endDateLabel, participer);
                 vbox.setSpacing(5);

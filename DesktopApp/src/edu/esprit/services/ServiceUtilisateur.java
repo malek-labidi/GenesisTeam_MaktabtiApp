@@ -4,6 +4,7 @@
  */
 package edu.esprit.services;
 
+import com.jfoenix.controls.JFXRadioButton;
 import edu.esprit.entities.Administrateur;
 import edu.esprit.entities.Auteur;
 import edu.esprit.entities.Client;
@@ -13,6 +14,8 @@ import edu.esprit.entities.Utilisateur;
 import edu.esprit.gui.AuthentificationController;
 import edu.esprit.main.Main;
 import edu.esprit.util.DataSource;
+import java.io.File;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -25,8 +28,11 @@ import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.scene.effect.InnerShadow;
 import javafx.scene.paint.Color;
+import org.ini4j.Wini;
 import org.mindrot.jbcrypt.BCrypt;
 
 /**
@@ -36,7 +42,8 @@ import org.mindrot.jbcrypt.BCrypt;
 public class ServiceUtilisateur implements IService<Utilisateur> {
 
         Connection cnx = DataSource.getInstance().getCnx();
-
+        public String n, m;
+        public String passwordF;
         
         //Fonction d'ajout d'un utilisateur
          @Override
@@ -66,10 +73,19 @@ public class ServiceUtilisateur implements IService<Utilisateur> {
  }
     
     //Registration code
-     public boolean register(Utilisateur u) {
-        Connection cnx = DataSource.getInstance().getCnx();
-        if (!Utilisateur.verifString(u.getNom()) && !Utilisateur.verifString(u.getPrenom())&& !Utilisateur.verifString(u.getEmail() ) && !Utilisateur.verifString(u.getMot_de_passe()) && !Utilisateur.verifemail(u.getEmail()) && !Utilisateur.verifpassword(u.getMot_de_passe())&& getOneByemailutilisateur(u.getEmail()) == null ) {
+    public void resiter(Utilisateur u) {
         try {
+            String role="Client";
+            if (u instanceof Client){
+                role="client";
+            }else if (u instanceof Administrateur){
+            role="Administrateur";
+            }else if (role=="Administrateur") {
+                System.out.println("Utilisateur created !");
+            }
+            else{
+            role="Auteur";        
+            }
             String req = "INSERT INTO `utilisateur`( `nom`, `prenom`, `email`, `mot_de_passe`, `num_telephone` , `role`)  VALUES (?,?,?,?,?,?)";
             PreparedStatement ps = cnx.prepareStatement(req);
             ps.setString(1, u.getNom());
@@ -78,25 +94,13 @@ public class ServiceUtilisateur implements IService<Utilisateur> {
             ps.setString(4, BCrypt.hashpw(u.getMot_de_passe(), BCrypt.gensalt() ));
             ps.setInt(5, u.getnum_telephone());
             ps.setString(6, u.getRole().toString());
-
-
-
-            if (ps.executeUpdate() > 0) {
-                System.out.println("You have registered successfully!");
-                return true;
-            } else {
-                System.out.println("Something went wrong!");
-                return false;
-            }
-
+            ps.executeUpdate();
+            System.out.println("Utilisateur created !");
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
-            return false;
         }
-    }else{ 
-            System.out.println("Columns should not be empty!");
-     }      return false;
-}
+ }
+    
 
   
         //Fonction de supression d'un utilisateur
@@ -155,7 +159,7 @@ public class ServiceUtilisateur implements IService<Utilisateur> {
             ste.setString(1, u.getNom());
             ste.setString(2, u.getPrenom());
             ste.setString(3, u.getEmail());
-            ste.setString(4, u.getMot_de_passe());
+            ste.setString(4, BCrypt.hashpw(u.getMot_de_passe(), BCrypt.gensalt() ));
             ste.setInt(5, u.getnum_telephone());
             ste.setString(6, u.getRole());
 
@@ -325,6 +329,60 @@ public class ServiceUtilisateur implements IService<Utilisateur> {
         return u;
     }
         
+        
+        //Afficher la liste des clients
+ public List<Utilisateur> getclients() {
+        List<Utilisateur> list = new ArrayList<>();
+        try {
+            String req = "Select * from utilisateur WHERE role='Client' ";
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(req);
+            while (rs.next()) {
+                Utilisateur u = new Utilisateur(rs.getInt(1), rs.getString("nom"), rs.getString(3), rs.getString(4), rs.getString("Mot_de_passe"), rs.getInt("num_telephone") ,rs.getString("role") ) {};
+                list.add(u);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+        return list;
+    }
+    //Afficher la liste des administrateurs
+        public List<Utilisateur> getAdmins() {
+        List<Utilisateur> list = new ArrayList<>();
+        try {
+            String req = "Select * from `utilisateur` WHERE role='Administrateur' ";
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(req);
+            while (rs.next()) {
+                Utilisateur u = new Utilisateur(rs.getInt(1), rs.getString("nom"), rs.getString(3), rs.getString(4), rs.getString("Mot_de_passe"), rs.getInt("num_telephone") ,rs.getString("role") ) {};
+                list.add(u);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+        return list;
+    }
+    //Afficher la liste des auteurs
+            public List<Utilisateur> getAuteurs() {
+        List<Utilisateur> list = new ArrayList<>();
+        try {
+            String req = "Select * from `utilisateur` WHERE role='Auteur' ";
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(req);
+            while (rs.next()) {
+                Utilisateur u = new Utilisateur(rs.getInt(1), rs.getString("nom"), rs.getString(3), rs.getString(4), rs.getString("Mot_de_passe"), rs.getInt("num_telephone") ,rs.getString("role") ) {};
+                list.add(u);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+        return list;
+    }
+        
+    //Suppression d'un utilisateurs
     public void supprimerUtilisateur(Utilisateur u) {
             String req = "DELETE FROM `utilisateur` WHERE id_utilisateur  = ?"  ;
         try {
@@ -362,6 +420,8 @@ public class ServiceUtilisateur implements IService<Utilisateur> {
     return user;
 }*/
 
+    /***********************************************Login Void**********************************************************************/
+    
     public Utilisateur getuserbyemailandpass(String email, String password) {
     Utilisateur user = null;
     try {
@@ -386,23 +446,100 @@ public class ServiceUtilisateur implements IService<Utilisateur> {
     }
     return user;
 }
-         
- public List<Utilisateur> getclients() {
-        List<Utilisateur> list = new ArrayList<>();
+    
+    /***********************************Create login files****************************************/
+        public void createiniFile(String path, String user, String pass) {
         try {
-            String req = "Select * from utilisateur WHERE role='Client' ";
-            Statement st = cnx.createStatement();
-            ResultSet rs = st.executeQuery(req);
-            while (rs.next()) {
-                Utilisateur u = new Utilisateur(rs.getInt(1), rs.getString("nom"), rs.getString(3), rs.getString(4), rs.getString("Mot_de_passe"), rs.getInt("num_telephone") ,rs.getString("role") ) {};
-                list.add(u);
+            File file = new File(path);
+            if (!file.exists()) {
+                file.createNewFile();
             }
-        } catch (SQLException ex) {
+            Wini wini = new Wini(new File(path));
+            wini.put("Login data", "Email", user);
+            wini.put("Login data", "Password", pass);
+            wini.store();
+        } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
-
-        return list;
     }
+        
+            public void readinifile(String path, TextField userid, PasswordField passid, JFXRadioButton remember_me) {
+        File file = new File(path);
+        if (file.exists()) {
+            try {
+                Wini wini = new Wini(new File(path));
+                String username = wini.get("Login data", "Email");
+                String password = wini.get("Login data", "Password");
+                if ((username != null && !username.equals("")) && (password != null && !password.equals(""))) {
+                    userid.setText(username);
+                    passid.setText(password);
+                    remember_me.setSelected(true);
+                }
+            } catch (IOException ex) {
+                Logger.getLogger(ServiceUtilisateur.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+        
+        /****************************************************************************************************************/
+    
+    public String sendMail(String mail) throws SQLException {
+
+        String req = "SELECT email FROM utilisateur WHERE email = ?";
+        PreparedStatement pst = cnx.prepareStatement(req);
+        pst.setString(1, mail);
+        ResultSet rs;
+        rs = pst.executeQuery();
+        while (rs.next()) {
+            mail = rs.getString("email");
+            //password = rs.getString("password");
+        }
+        return mail;
+
+    }
+         
+    //
+        public Integer GetuserBytel(String email) {
+        Utilisateur user = null;
+        int number = 0;
+        try {
+            String req = "SELECT num_telephone FROM utilisateur WHERE email = ?";
+        PreparedStatement pst = cnx.prepareStatement(req);
+            pst.setString(1, email);
+            ResultSet rs;
+            rs = pst.executeQuery();
+            if (rs.next()) {
+                number = rs.getInt("num_telephone");
+                        user = new Utilisateur(
+                        rs.getInt("num_telephone")){};
+            } 
+        } catch (SQLException ex) {
+            Logger.getLogger(ServiceUtilisateur.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return number;
+    }
+        
+        
+            public String sendInfo(String mail) throws SQLException {
+        String requete = "SELECT email,mot_de_passe FROM utilisateur WHERE email=? ";
+        PreparedStatement pst = cnx.prepareStatement(requete);
+        pst.setString(1, sendMail(mail));
+        ResultSet rs;
+        rs = pst.executeQuery();
+        System.out.println(m + "" + n + "hehhe");
+        while (rs.next()) {
+            mail = rs.getString("email");
+            passwordF = rs.getString("mot_de_passe");
+
+        }
+        BCrypt.checkpw(mail, passwordF);
+        System.out.println(passwordF);
+        System.out.println("qqqq");
+        return passwordF;
+
+    }
+
+ 
        
 
 

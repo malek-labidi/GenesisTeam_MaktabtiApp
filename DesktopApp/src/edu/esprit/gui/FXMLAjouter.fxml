@@ -8,10 +8,12 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.image.ImageView?>
 
-<AnchorPane id="AnchorPane" prefHeight="660.0" prefWidth="1105.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.gui.FXMLAjouterController">
+
+<AnchorPane id="AnchorPane" prefHeight="660.0" prefWidth="1105.0" styleClass="mainFxmlClass" stylesheets="@styles/fxmlmaktabti.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.gui.FXMLAjouterController">
    <children>
-      <VBox layoutX="105.0" layoutY="68.0" prefHeight="654.0" prefWidth="400.0" spacing="30.0">
+      <VBox layoutX="105.0" layoutY="68.0" prefHeight="505.0" prefWidth="400.0" spacing="30.0">
          <children>
             <Label fx:id="lbl_nom" styleClass="label1" stylesheets="@styles/crud.css" text="Nom:" />
             <Label fx:id="lbl_date" styleClass="label1" stylesheets="@styles/crud.css" text="Date:" />
@@ -26,22 +28,24 @@
       <TextField fx:id="heureField" layoutX="238.0" layoutY="234.0" promptText="HH/mm" stylesheets="@styles/crud.css" />
       <TextField fx:id="lieuField" layoutX="238.0" layoutY="313.0" promptText="Entrer lieu" stylesheets="@styles/crud.css" />
       <TextField fx:id="descriptionField" layoutX="238.0" layoutY="395.0" promptText="Entrer descrip de l'event" stylesheets="@styles/crud.css" />
-      <ListView fx:id="auteurView" layoutX="774.0" layoutY="92.0" prefHeight="230.0" prefWidth="278.0" />
+      <ListView fx:id="auteurView" layoutX="773.0" layoutY="83.0" prefHeight="230.0" prefWidth="278.0" />
       <Label layoutX="858.0" layoutY="21.0" prefHeight="56.0" prefWidth="125.0" stylesheets="@styles/crud.css" text="Auteur">
          <styleClass>
             <String fx:value="label2" />
             <String fx:value="label2" />
          </styleClass>
       </Label>
-      <Button fx:id="ajoutevent" layoutX="640.0" layoutY="636.0" mnemonicParsing="false" onAction="#ajoutevent" prefHeight="72.0" prefWidth="125.0" stylesheets="@styles/crud.css" text="Ajouter Event" />
-      <ListView fx:id="livreView" layoutX="773.0" layoutY="414.0" prefHeight="230.0" prefWidth="278.0" />
-      <Label layoutX="870.0" layoutY="341.0" prefHeight="56.0" prefWidth="125.0" stylesheets="@styles/crud.css" text="Livre">
+      <Button fx:id="ajoutevent" layoutX="585.0" layoutY="573.0" mnemonicParsing="false" onAction="#ajoutevent" prefHeight="72.0" prefWidth="125.0" styleClass="addbtn" stylesheets="@styles/fxmlmaktabti.css" text="Ajouter Event" />
+      <ListView fx:id="livreView" layoutX="773.0" layoutY="408.0" prefHeight="230.0" prefWidth="278.0" />
+      <Label layoutX="869.0" layoutY="339.0" prefHeight="56.0" prefWidth="125.0" stylesheets="@styles/crud.css" text="Livre">
          <styleClass>
             <String fx:value="label2" />
             <String fx:value="label2" />
          </styleClass>
       </Label>
-      <Button fx:id="reset" layoutX="505.0" layoutY="636.0" mnemonicParsing="false" onAction="#reset" prefHeight="72.0" prefWidth="111.0" stylesheets="@styles/crud.css" text="Annuler" />
+      <Button fx:id="reset" layoutX="414.0" layoutY="573.0" mnemonicParsing="false" onAction="#reset" prefHeight="72.0" prefWidth="111.0" styleClass="deletebtn" stylesheets="@styles/fxmlmaktabti.css" text="Reset" />
       <TextField fx:id="ticketField" layoutX="238.0" layoutY="472.0" promptText="Entrer nb de ticket" stylesheets="@styles/crud.css" />
+      
+
    </children>
 </AnchorPane>
