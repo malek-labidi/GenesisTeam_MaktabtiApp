@@ -16,15 +16,14 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import javax.mail.Authenticator;
 
 /**
  *
  * @author admin
  */
-public class MailLivreAjouterACompetition {
+public class MailEnregistrerReponsesQuestion {
     
-     public static void sendEmail(Utilisateur u, Competition c , String titreLivre) {
+    public static void sendEmail(Utilisateur u,Competition c) {
 
       final String username = "maktabti10@gmail.com";
       final String password = "dae rta agl jjg igf w";
@@ -49,21 +48,20 @@ public class MailLivreAjouterACompetition {
          Message message = new MimeMessage(session);
          message.setFrom(new InternetAddress(username,"Maktabti Application"));
          message.setRecipients(Message.RecipientType.TO,InternetAddress.parse(u.getEmail()));
-         message.setSubject("Votre livre "+titreLivre+" a été sélectionné pour participer au concours de quiz!");
-         message.setText("Cher/chère "+u.getNom() +" "+u.getPrenom()+",\n" +
+         message.setSubject("Confirmation de participation a la compétition : "+c.getNom());
+         message.setText("Cher/Chère "+u.getNom()+" "+u.getPrenom()+",\n" +
 "\n" +
-"Nous sommes ravis de vous annoncer que votre livre "+titreLivre+" a été sélectionné pour participer à notre concours de quiz "+c.getNom()+"."
-                 + " Nous sommes très impressionnés par la qualité de votre livre et nous sommes convaincus qu'il aura beaucoup de succès lors de la compétition.\n" +
+"Nous tenons à vous remercier d'avoir participé à notre compétition. "
+                 + "Nous sommes ravis que vous ayez décidé de participer et nous espérons que vous avez trouvé l'expérience enrichissante.\n" +
 "\n" +
-"Le concours commencera le "+c.getDate_debut()+" et se terminera le "+c.getDate_fin()+". Les participants devront répondre à des questions concernant "
-                 + "votre livre pour avoir une chance de gagner de superbes prix.\n" +
+"Nous sommes heureux de vous informer que vos réponses ont été enregistrées avec succès. "
+                 + "Nous avons reçu votre formulaire de réponse et nous sommes impatients de vous donner les résultats dès que possible."
+                 + " Nous vous contacterons dès que nous aurons terminé d'évaluer toutes les réponses.\n" +
 "\n" +
-"Nous tenons à vous remercier pour votre travail acharné et votre engagement envers l'excellence littéraire."
-                 + " Nous sommes convaincus que votre livre inspirera de nombreux lecteurs à participer au concours.\n" +
+"Encore une fois, merci d'avoir participé et d'avoir montré votre intérêt pour notre entreprise. "
+                 + "Nous espérons que vous avez apprécié l'expérience et nous sommes impatients de vous proposer d'autres activités intéressantes à l'avenir.\n" +
 "\n" +
-"Nous vous souhaitons bonne chance et sommes impatients de voir votre livre briller lors de la compétition.\n" +
-"\n" +
-"Sincèrement, \n"+"\n"+signature);
+"Sincèrement,\n"+"\n"+signature);
 
          Transport.send(message);
 
@@ -75,6 +73,4 @@ public class MailLivreAjouterACompetition {
          throw new RuntimeException(e);
       }
    }
-    
-    
 }
