@@ -9,6 +9,7 @@ import edu.esprit.entities.Commande;
 import edu.esprit.entities.Competition;
 import edu.esprit.entities.Etat;
 import edu.esprit.entities.Evenement;
+import edu.esprit.entities.Fidelite;
 import edu.esprit.entities.Livre;
 import edu.esprit.entities.Mode;
 import edu.esprit.entities.Offre;
@@ -18,6 +19,9 @@ import edu.esprit.entities.Quiz;
 import edu.esprit.entities.Reclamation;
 import edu.esprit.entities.Role;
 import edu.esprit.entities.Status;
+import static edu.esprit.entities.Type.bronze;
+import static edu.esprit.entities.Type.gold;
+import static edu.esprit.entities.Type.silver;
 import edu.esprit.entities.Utilisateur;
 import edu.esprit.services.ServiceCommande;
 import edu.esprit.services.ServiceCompetition;
@@ -99,8 +103,8 @@ public class Main {
         Reclamation r6 = new Reclamation(2, "aaaaa", "aaaaa");
         ServiceReclamation sr = new ServiceReclamation();
         //sr.ajouter(r6);
-        System.out.println(sr.getAll());
-        System.out.println(sr.getOneById(2));
+        // System.out.println(sr.getAll());
+       // System.out.println(sr.getOneById(2));
 
         ServiceQuiz sq = new ServiceQuiz();
         Quiz q = new Quiz(3, 1);
@@ -109,13 +113,13 @@ public class Main {
         //sq.modifier(q2);
         //sq.delete(1);
 
-        System.out.println(sq.getAll());
-        System.out.println(sq.getOneById(2));
+       // System.out.println(sq.getAll());
+       // System.out.println(sq.getOneById(2));
        // Question qu = new Question(2, "bgrhr", "hello", "bdb", "vvfev");
         ServiceQuestion squ = new ServiceQuestion();
         // squ.ajouter(qu);
 
-        System.out.println(squ.getAll());
+        //System.out.println(squ.getAll());
         //System.out.println(sq.getOneById(2));
         Map<Integer, List<Question>> quizQuestionsMap = new HashMap<>();
         quizQuestionsMap = sq.getQuizQuestion();
@@ -123,6 +127,12 @@ public class Main {
             System.out.println(entry.getKey() + " " + entry.getValue());
 
         }
+            ServiceFidelite sf=new ServiceFidelite();
+        System.out.println(sf.getOneByIdClient(2));
+       Fidelite t =new Fidelite(8,4,5,silver);
+       sf.modifier(t);
        
+       // System.out.println(sf.totalacha(4));
     }
+
 }

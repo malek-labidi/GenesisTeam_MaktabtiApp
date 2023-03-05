@@ -90,23 +90,43 @@ public List<Fidelite> getAll() {
 
     @Override
     public void ajouter(Fidelite t) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
-    @Override
-    public void modifier(Fidelite t) {
-         
-             try {
-                 String req = "UPDATE `Fidelite` SET `type`=? WHERE id_fidelite= ?";
-                  PreparedStatement ps = cnx.prepareStatement(req);
-                  ps.setString(1, t.getType().toString());
-                 
-                 ps.executeUpdate();
-                     System.out.println("offre Updated !");
-             } catch (SQLException ex) {
+          try {
+            String req = "INSERT INTO `fidelite`(`id_fidelite`, `id_client`, `total_achat`, `type` ) VALUES (?,?,?,?)";
+            PreparedStatement ps = cnx.prepareStatement(req);
+            ps.setInt(1, t.getId_fidelite());
+            ps.setInt(2,t.getId_client());
+            ps.setInt(3, t.getTotal_achat());
+            ps.setString(4, t.getType().toString());
+           
+                ps.executeUpdate();
+            System.out.println("Fidelite Added !");
+        
+        } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
-    }
+       
+
+        }    
+
+    @Override
+ public void modifier(Fidelite t) {
+try {
+String req = "UPDATE fidelite SET id_client=?, total_achat=?, type=? WHERE id_fidelite=?";
+PreparedStatement ps = cnx.prepareStatement(req);
+ps.setInt(1,t.getId_client());
+ps.setInt(2, t.getTotal_achat());
+ps.setString(3, t.getType().toString());
+ps.setInt(4, t.getId_fidelite());
+int rowsUpdated = ps.executeUpdate();
+if (rowsUpdated > 0) {
+System.out.println("Fidelite Updated !");
+}
+} catch (SQLException ex) {
+System.out.println(ex.getMessage());
+}
+}
+
 
     public int totalacha(int id) {
     int total = 0;
@@ -136,4 +156,22 @@ public void supprimerFidelite(Fidelite f) {
             System.out.println(ex.getMessage());
         }
     }
+  public Fidelite getOneByIdClient(int id) {
+        Fidelite result = null;
+        try {
+            String req = "SELECT * FROM `fidelite` WHERE id_client = " + id;
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(req);
+            while (rs.next()) {
+
+                result = new Fidelite(rs.getInt(1), rs.getInt(2), rs.getInt(3), Type.valueOf(rs.getObject("type").toString()));
+
+            }
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return result;
+    }
+
 }
