@@ -96,7 +96,7 @@ public class FXMLModifierCompetitionController implements Initializable {
 
             System.out.println(id1 + " " + id);
 
-            Competition p = new Competition(id, id1, recompense.getText(), " ", lien.getText(), nom.getText(), Date.valueOf(date_debut.getValue()), Date.valueOf(date_fin.getValue()));
+            Competition p = new Competition(id, id1, recompense.getText(),lien.getText(), nom.getText(), Date.valueOf(date_debut.getValue()), Date.valueOf(date_fin.getValue()));
             sp.modifier(p);
             System.out.println(p);
             Alert alert = new Alert(Alert.AlertType.INFORMATION, "competition updated", ButtonType.OK);

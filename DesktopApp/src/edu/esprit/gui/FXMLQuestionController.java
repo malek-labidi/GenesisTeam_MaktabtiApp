@@ -153,7 +153,10 @@ public class FXMLQuestionController implements Initializable {
             MailEnregistrerReponsesQuestion.sendEmail(su.getOneById(3),comp);
             ServiceResultatQuiz sr = new ServiceResultatQuiz();
             ResultatQuiz rq = new ResultatQuiz(3, idquiz, score, rep);
+            sc.ajouterParticipant(3, comp.getId_competition());
+            System.out.println(rq);
             sr.ajouter(rq);
+            System.out.println(sr.getAll());
             
             Image image = new Image("/edu/esprit/gui/images/check.png");
 
