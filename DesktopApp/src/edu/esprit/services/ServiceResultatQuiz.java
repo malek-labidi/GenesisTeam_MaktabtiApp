@@ -96,9 +96,10 @@ public class ServiceResultatQuiz implements IService<ResultatQuiz> {
                 int id = rs.getInt(1);
                 int id_client = rs.getInt(2);
                 int id_quiz = rs.getInt(3);
-                String[] reponses = rs.getString(3).split(",");
+                int score = rs.getInt(4);
+                String[] reponses = rs.getString(5).split(",");
                 List<String> reponseClient = Arrays.asList(reponses);
-                ResultatQuiz r = new ResultatQuiz(id_quiz, id_client, id_quiz, id, reponseClient);
+                ResultatQuiz r = new ResultatQuiz(id, id_client, id_quiz, score, reponseClient);
                 resultat.add(r);
 
             }
@@ -152,4 +153,29 @@ public class ServiceResultatQuiz implements IService<ResultatQuiz> {
         return score;
 
     }
+        public List<ResultatQuiz> getOneByCompetitionName(String nom) {
+        List<ResultatQuiz> resultat  = new ArrayList<>();
+        try {
+            String req = "SELECT rq.id_resulat, rq.id_client,rq.id_quiz,rq.score,rq.reponse_client FROM resulat_quiz rq INNER JOIN quiz q"
+                    + " ON rq.id_quiz = q.id_quiz INNER JOIN competition c ON q.id_competition = c.id_competition WHERE c.nom = '" +nom+"'";
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(req);
+            while (rs.next()) {
+               int id = rs.getInt(1);
+                int id_client = rs.getInt(2);
+                int id_quiz = rs.getInt(3);
+                int score = rs.getInt(4);
+                String[] reponses = rs.getString(5).split(",");
+                List<String> reponseClient = Arrays.asList(reponses);
+                ResultatQuiz r = new ResultatQuiz(id_quiz, id_client, id_quiz, score, reponseClient);
+               // System.out.println(r);
+                resultat.add(r);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return resultat;
+
+    }
+    
 }
