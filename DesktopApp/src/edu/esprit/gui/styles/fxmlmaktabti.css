@@ -49,3 +49,26 @@
     -fx-font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 
 }
+.default-color0.chart-bar {
+    -fx-bar-fill:  #447ce3; 
+}
+.combo-box {
+    -fx-background-color: white;
+    -fx-font-size: 14px;
+    -fx-padding: 5px;
+}
+
+.combo-box .list-cell {
+    -fx-background-color: white;
+    -fx-text-fill: black;
+    -fx-font-size: 14px;
+}
+
+.combo-box .list-cell:hover {
+    -fx-background-color: lightgray;
+}
+
+.combo-box .list-view {
+    -fx-background-color: white;
+    -fx-font-size: 14px;
+}
