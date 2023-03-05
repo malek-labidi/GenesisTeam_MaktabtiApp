@@ -3,10 +3,20 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/3A%20Esprit/2eme%20sem/PI-DEV/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/main/UserMainClass.java</file>
-            <file>file:/D:/3A%20Esprit/2eme%20sem/PI-DEV/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/gui/RegisterController.java</file>
-            <file>file:/D:/3A%20Esprit/2eme%20sem/PI-DEV/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/gui/Utilisateur.fxml</file>
-            <file>file:/D:/3A%20Esprit/2eme%20sem/PI-DEV/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/gui/UtilisateurController.java</file>
+
+            <file>file:/D:/PIDEV/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/gui/FXMLEvenementController.java</file>
+            <file>file:/D:/PIDEV/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/gui/FXMLAjouterController.java</file>
+            <file>file:/D:/PIDEV/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/api/MailEvenement.java</file>
+            <file>file:/D:/PIDEV/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/gui/FXMLEvenement.fxml</file>
+            <file>file:/D:/PIDEV/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/gui/FXMLCompetitionController.java</file>
+            <file>file:/D:/PIDEV/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/gui/FXMLAjouterCompetitionController.java</file>
+            <file>file:/D:/PIDEV/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/gui/FXMLReservationController.java</file>
+            <file>file:/D:/PIDEV/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/services/ServiceUtilisateur.java</file>
+            <file>file:/D:/PIDEV/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/gui/FXMLModifierEvenementController.java</file>
+            <file>file:/D:/PIDEV/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/gui/FXMLQuestionController.java</file>
+            <file>file:/D:/PIDEV/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/gui/FXMLTicketController.java</file>
+            <file>file:/D:/PIDEV/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/gui/UtilisateurrController.java</file>
+
         </group>
     </open-files>
 </project-private>

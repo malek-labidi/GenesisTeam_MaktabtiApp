@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
@@ -24,5 +25,7 @@
       <Button layoutX="959.0" layoutY="312.0" mnemonicParsing="false" onAction="#modif_btn" prefHeight="51.0" prefWidth="96.0" styleClass="modifybtn" stylesheets="@styles/fxmlmaktabti.css" text="Modifier" />
       <Button layoutX="955.0" layoutY="435.0" mnemonicParsing="false" onAction="#supp_btn" prefHeight="51.0" prefWidth="107.0" styleClass="deletebtn" stylesheets="@styles/fxmlmaktabti.css" text="Supprimer" />
       <TextField fx:id="search" layoutX="670.0" layoutY="33.0" onKeyTyped="#search" prefHeight="58.0" prefWidth="230.0" promptText="Rechercher" stylesheets="@styles/crud.css" />
+      <FontAwesomeIconView glyphName="SEARCH" layoutX="868.0" layoutY="68.0" size="20" />
+      <FontAwesomeIconView glyphName="USER" layoutX="943.0" layoutY="40.0" size="30" />
    </children>
 </AnchorPane>

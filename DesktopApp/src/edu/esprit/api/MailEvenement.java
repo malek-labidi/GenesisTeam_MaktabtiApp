@@ -5,6 +5,8 @@
  */
 package edu.esprit.api;
 
+import edu.esprit.entities.Evenement;
+import edu.esprit.services.ServiceEvenement;
 import java.util.Properties;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -20,7 +22,8 @@ import javax.mail.Authenticator;
  * @author SADOK
  */
 public class MailEvenement {
-    public static void sendEmail() {
+    public static void sendEmail(Evenement evenement) {
+        
 
       final String username = "maktabti10@gmail.com";
       final String password = "dae rta agl jjg igf w";
@@ -39,13 +42,15 @@ public class MailEvenement {
          });
 
       try {
+          
+          
 
          Message message = new MimeMessage(session);
          message.setFrom(new InternetAddress(username));
          message.setRecipients(Message.RecipientType.TO,InternetAddress.parse("sadoksassi2@gmail.com"));
          message.setSubject("Canceling the event");
          message.setText("cher Mr/Mme,"
-            + "\n\n nous somme vraiment désolé de vous informer que notre evenement est annulée merci pour votre compréhension ");
+            + "\n\n nous somme vraiment désolé de vous informer que notre evenement"+evenement.getNom()+ "est annulée merci pour votre compréhension ");
 
          Transport.send(message);
 

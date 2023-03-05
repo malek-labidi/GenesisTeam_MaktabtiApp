@@ -42,6 +42,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -129,7 +130,8 @@ public class FXMLEvenementController implements Initializable {
 
         // Update the list view by removing the deleted event from the list
         event_view.getItems().remove(selectedEvent);
-        MailEvenement.sendEmail();
+        MailEvenement.sendEmail(selectedEvent);
+        
     }
 
     private void reserveBtnClicked(ActionEvent event) {
@@ -197,14 +199,17 @@ public class FXMLEvenementController implements Initializable {
                 ServiceUtilisateur su = new ServiceUtilisateur();
 
                 Label idLabel = new Label("Livre: " + sl.getOneById(evenement.getId_livre()).getTitre());
-                Label rewardLabel = new Label("lieu: " + evenement.getLieu());
-                Label participantsLabel = new Label("nb ticket: " + evenement.getNb_ticket());
-                Label linkLabel = new Label("date: " + evenement.getDate().toString());
-                Label startDateLabel = new Label("Description: " + evenement.getDescription());
-                Label endDateLabel = new Label("Auteur: " + su.getOneById(evenement.getId_auteur()).getNom()+" "+su.getOneById(evenement.getId_auteur()).getPrenom());
+                Label lieu = new Label("lieu: " + evenement.getLieu());
+                Label ticket = new Label("nb ticket: " + evenement.getNb_ticket());
+                Label date = new Label("date: " + evenement.getDate().toString());
+                Label Description = new Label("Description: " + evenement.getDescription());
+                Label auteur = new Label("Auteur: " + su.getOneById(evenement.getId_auteur()).getNom()+" "+su.getOneById(evenement.getId_auteur()).getPrenom());
                 Button reserver = new Button("Reserver");
 
                 reserver.setStyle(" -fx-background-color: #f8a375;-fx-text-fill: white;-fx-font-size: 16px; -fx-background-radius: 8px; -fx-font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;");
+                Button location = new Button("Location");
+
+                location.setStyle(" -fx-background-color: #034396;-fx-text-fill: white;-fx-font-size: 16px; -fx-background-radius: 8px; -fx-font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;");
 
                 if (evenement.getNb_ticket() == 0) {
                     reserver.setDisable(true);
@@ -248,8 +253,10 @@ public class FXMLEvenementController implements Initializable {
                     }
                     
                 });
+                HBox hbox=new HBox(reserver,location);
+                hbox.setSpacing(15);
 
-                VBox vbox = new VBox(nameLabel, idLabel, rewardLabel, participantsLabel, linkLabel, startDateLabel, endDateLabel,reserver);
+                VBox vbox = new VBox(nameLabel, idLabel, lieu, ticket, date, Description, auteur,hbox);
                 vbox.setSpacing(5);
 
                 setGraphic(vbox);
