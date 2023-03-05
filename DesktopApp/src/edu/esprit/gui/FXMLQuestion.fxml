@@ -8,7 +8,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="660.0" prefWidth="1105.0" stylesheets="@styles/fxmlmaktabti.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.gui.FXMLQuestionController">
    <children>
-      <Button fx:id="valider" layoutX="954.0" layoutY="555.0" mnemonicParsing="false" onAction="#enregisterResponses" styleClass="addbtn" stylesheets="@styles/fxmlmaktabti.css" text="Button" />
+      <Button fx:id="valider" layoutX="954.0" layoutY="555.0" mnemonicParsing="false" onAction="#enregisterResponses" styleClass="addbtn" stylesheets="@styles/fxmlmaktabti.css" text="Valider" />
       <VBox fx:id="container" layoutX="85.0" layoutY="94.0" prefHeight="133.0" prefWidth="206.0" />
       <Label layoutX="459.0" layoutY="45.0" text="Quiz">
          <font>
