@@ -86,11 +86,27 @@ public class AuthentificationController implements Initializable {
             Alert a = new Alert(Alert.AlertType.INFORMATION, "Authentified Succefully!", ButtonType.OK);
             a.showAndWait(); 
         su.createiniFile(path, username.getText(), password.getText());
-        Parent root = FXMLLoader.load(getClass().getResource("Utilisateur.fxml"));
-        Scene homaepageScene = new Scene(root);
-        Stage appStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        appStage.setScene(homaepageScene);
-        appStage.show();
+        
+            if (u.getRole().equals("Administrateur")) {
+            Parent root = FXMLLoader.load(getClass().getResource("Utilisateur.fxml"));
+            Scene homaepageScene = new Scene(root);
+            Stage appStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            appStage.setScene(homaepageScene);
+            appStage.show(); 
+            } else if (u.getRole().equals("Auteur")) {
+            Parent root = FXMLLoader.load(getClass().getResource("FXMLMaktabti.fxml"));
+            Scene homaepageScene = new Scene(root);
+            Stage appStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            appStage.setScene(homaepageScene);
+            appStage.show(); 
+            }else if (u.getRole().equals("Client")) {
+            Parent root = FXMLLoader.load(getClass().getResource("Livre.fxml"));
+            Scene homaepageScene = new Scene(root);
+            Stage appStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            appStage.setScene(homaepageScene);
+            appStage.show(); 
+            }
+
         } 
     }
 
