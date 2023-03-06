@@ -88,9 +88,9 @@ public class Main {
         
        
        
-        ServiceCommande cu = new ServiceCommande();
+        //ServiceCommande cu = new ServiceCommande();
         //Commande c4= new Commande (2,1,Status.paye,Mode.carte_bancaire,Etat.livre,400);
-        Commande c5= new Commande (1,3,1,Status.non_paye,Mode.carte_bancaire,Etat.annuler,200);
+        //Commande c5= new Commande (1,3,1,Status.non_paye,Mode.carte_bancaire,Etat.annuler,200);
         
         
         
@@ -100,7 +100,7 @@ public class Main {
         //cu.getOneById(1);
           //c4.toString();
           //cu.delete(2);
-        cu.modifier(c5);
+        //cu.modifier(c5);
         //System.out.println(cu.getAll());
         //System.out.println(cu.getOneById(1));
         //Livre l=new Livre(1, 1, "solo", Date.valueOf("1998-10-02"), "fr", 123, 222, "sssss", 20);
