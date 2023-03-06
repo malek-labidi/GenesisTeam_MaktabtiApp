@@ -210,6 +210,9 @@ public class FXMLEvenementController implements Initializable {
                 Button location = new Button("Location");
 
                 location.setStyle(" -fx-background-color: #034396;-fx-text-fill: white;-fx-font-size: 16px; -fx-background-radius: 8px; -fx-font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;");
+                Button commenter = new Button("Commenter");
+
+                commenter.setStyle(" -fx-background-color: #f8a375;-fx-text-fill: white;-fx-font-size: 16px; -fx-background-radius: 8px; -fx-font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;");
 
                 if (evenement.getNb_ticket() == 0) {
                     reserver.setDisable(true);
@@ -218,6 +221,26 @@ public class FXMLEvenementController implements Initializable {
                 } else {
                     reserver.setDisable(false);
                 }
+                commenter.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent event) {
+                        int id = evenement.getId_evenement();
+                        try {
+                                FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLCommentaire.fxml"));
+                                Parent root = loader.load();
+                                FXMLCommentaireController controller = loader.getController();
+                                controller.setEvenementId(id);
+                                Scene scene = new Scene(root);
+                                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                                stage.setScene(scene);
+                                stage.show();
+                            } catch (IOException ex) {
+                                System.out.println(ex.getMessage());
+                            }
+                        } 
+                        
+                    
+                });
                 reserver.setOnAction(new EventHandler<ActionEvent>(){
                     @Override
                     public void handle(ActionEvent event) {
@@ -253,7 +276,7 @@ public class FXMLEvenementController implements Initializable {
                     }
                     
                 });
-                HBox hbox=new HBox(reserver,location);
+                HBox hbox=new HBox(reserver,location,commenter);
                 hbox.setSpacing(15);
 
                 VBox vbox = new VBox(nameLabel, idLabel, lieu, ticket, date, Description, auteur,hbox);
