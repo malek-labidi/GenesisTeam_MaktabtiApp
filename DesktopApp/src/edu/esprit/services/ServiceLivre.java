@@ -134,7 +134,21 @@ public class ServiceLivre implements IService<Livre> {
 
         return result;
     }
+    public float getPrix(int id){
+        float result = 0;
+        try {
+            String req = "SELECT prix FROM `livre` WHERE id_livre = " + id;
+            Statement s = cnx.createStatement();
+            ResultSet rs = s.executeQuery(req);
+            while (rs.next()) {
+                result = rs.getFloat(1);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
 
+        return result;
+    }
 }
 
 

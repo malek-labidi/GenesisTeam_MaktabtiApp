@@ -54,6 +54,7 @@ public class ServiceCommande implements IService<Commande> {
             System.out.println(ex.getMessage());
         }
 
+        
     }else if (u == null) {
         System.out.println("User dosen't exist");
     }else if(l ==null) {

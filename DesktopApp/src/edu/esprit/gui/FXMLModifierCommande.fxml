@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="291.0" prefWidth="537.0" stylesheets="@styles/fxmlmaktabti.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="edu.esprit.gui.FXMLModifierCommandeController">
+   <children>
+      <ComboBox fx:id="comboEtat" layoutX="208.0" layoutY="123.0" prefWidth="150.0" />
+      <Label layoutX="146.0" layoutY="128.0" text="Etat" />
+      <Label layoutX="157.0" layoutY="50.0" text="Modifier l'Etat de la commande ">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Button fx:id="valider" layoutX="366.0" layoutY="200.0" mnemonicParsing="false" onAction="#modifierEtat" stylesheets="@styles/fxmlmaktabti.css" text="Valider" />
+   </children>
+</AnchorPane>

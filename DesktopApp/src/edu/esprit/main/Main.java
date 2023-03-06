@@ -25,6 +25,7 @@ import edu.esprit.services.ServiceLivre;
 
 
 import edu.esprit.services.ServiceFidelite;
+import edu.esprit.services.ServiceLivrePanier;
 import edu.esprit.services.ServiceOffre;
 
 import edu.esprit.services.ServicePanier;
@@ -52,10 +53,26 @@ public class Main {
         //System.out.println(sc.getAll());
         
         
-       // ServicePanier sp=new ServicePanier();
-       // Panier p1=new Panier(1, 3, 25,250);
+       // ServiceLivrePanier pn = new ServiceLivrePanier();
+        //ServicePanier sp=new ServicePanier();
+       // Panier p1=new Panier(2, 3, 25,250);
+       // sp.ajouterLivreAuPanier(3, 3, 2);
+       //pn.ajouterProduitAuPanier(3,3,1);
+       //pn.ajouterProduitAuPanier(3,3,1);
+         //pn.ajouterProduitAuPanier(3, 1, 1);
+         //pn.ajouterLivrePanier(2, 3);
+         //pn.ajouterLivrePanier(3, 3);
+         //pn.supprimerLivrePanier(2);
+        //pn.getAll();
+        //System.out.println(pn.afficherLivresDansPanier(3));
+       // pn.delete(3);
+        
+       
+       //pn.ajouterProduitAuPanier(3,2);
         //Panier p2=new Panier(1, 1, 2, 50);
-
+        
+        
+        
         //sp.ajouter(p1);
         //sp.modifier(p2);
         //sp.delete(2);
@@ -72,17 +89,19 @@ public class Main {
        
        
         ServiceCommande cu = new ServiceCommande();
-        Commande c4= new Commande (2,1,Status.paye,Mode.carte_bancaire,Etat.encours,400);
-        //Commande c5= new Commande (2,2,1,Status.non_paye,Etat.encours,Mode.carte_bancaire);
+        //Commande c4= new Commande (2,1,Status.paye,Mode.carte_bancaire,Etat.livre,400);
+        Commande c5= new Commande (1,3,1,Status.non_paye,Mode.carte_bancaire,Etat.annuler,200);
+        
+        
         
         
         //cu.ajouter(c5);
-        cu.ajouter(c4);
+        //cu.ajouter(c4);
         //cu.getOneById(1);
           //c4.toString();
           //cu.delete(2);
-        
-        System.out.println(cu.getAll());
+        cu.modifier(c5);
+        //System.out.println(cu.getAll());
         //System.out.println(cu.getOneById(1));
         //Livre l=new Livre(1, 1, "solo", Date.valueOf("1998-10-02"), "fr", 123, 222, "sssss", 20);
         //Livre l1=new Livre(1,1, 1, "virus", Date.valueOf("2005-10-02"), "fr", 123, 222, "sssss", 20);

@@ -5,6 +5,10 @@
  */
 package edu.esprit.entities;
 
+import java.util.ArrayList;
+import java.util.List;
+import edu.esprit.entities.Livre;
+
 /**
  *
  * @author abdelazizlahmar
@@ -15,18 +19,23 @@ public class Panier {
      private int id_client ;
      private int quantite;
      private float totalPrix;
+     private List<PanierLivre> panierLivres;    
      
      //attributs de type énumérés 
     private Mode mode ;   
+    private Iterable<Livre> livres;
 
-    public Panier() {
+    public Panier(int id_panier, int id_client) {
+        this.id_panier = id_panier;
+        this.panierLivres = new ArrayList<PanierLivre>();
+        this.id_client = id_client;
     }
 
     public Panier(int id_livre,int id_client, int quantite, float totalPrix) {
         this.id_livre = id_livre;
         this.id_client=id_client;
         this.quantite = quantite;
-        this.totalPrix = totalPrix;
+        this.totalPrix = 0;
         
     }
 
@@ -35,9 +44,11 @@ public class Panier {
         this.id_livre = id_livre;
         this.id_client=id_client;
         this.quantite = quantite;
-        this.totalPrix = totalPrix;
+        this.totalPrix = 0;
         
     }
+    
+    
 
 
     public int getId_panier() {
@@ -102,7 +113,7 @@ public class Panier {
             return false;
         }
         if (getClass() != obj.getClass()) {
-            return false;
+            return false; 
         }
         final Panier other = (Panier) obj;
         if (this.id_panier != other.id_panier) {
@@ -110,8 +121,37 @@ public class Panier {
         }
         return true;
     }
-     
     
+     private Livre trouverLivreDansPanier(PanierLivre panierLivre) {
+        for (Livre livre : livres ) {
+            if (livre.getId_livre() == panierLivre.getId_livre()) {
+                return livre;
+            }
+        }
+        return null;
+    }
+      
+     /* public void ajouterLivre(int id ) {
+        boolean livreDejaPresent = false;
+        
+        for (PanierLivre panierLivre : panierLivres) {
+            if (panierLivre.getId_livre() == livre.getId_livre()) {
+                Livre l = trouverLivreDansPanier(panierLivre);
+                this.setQuantite(this.getQuantite() + quantite);
+                this.setTotalPrix(this.getTotalPrix() + (livre.getPrix() * quantite));
+                livreDejaPresent = true;
+                break;
+            }
+        }
+        if (!livreDejaPresent) {
+           
+            this.setId_livre(livre.getId_livre());
+            this.setQuantite(quantite);
+            this.setTotalPrix(livre.getPrix() * quantite);
+            panierLivres.add(new PanierLivre(this.id_panier, this.getId_livre(), this.id_client));
+        }
+    }
+*/
 }
      
     

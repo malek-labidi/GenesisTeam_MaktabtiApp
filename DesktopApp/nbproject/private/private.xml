@@ -1,20 +1,15 @@
-
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/gui/FXMLMaktabtiController.java</file>
-            <file>file:/D:/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/gui/FXMLAjouterCompetitionController.java</file>
-            <file>file:/D:/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/services/ServiceCompetition.java</file>
-            <file>file:/D:/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/main/NewFXMain.java</file>
-            <file>file:/D:/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/gui/FXMLMaktabti.fxml</file>
-            <file>file:/D:/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/gui/FXMLCompetitionController.java</file>
-            <file>file:/D:/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/gui/FXMLModifierCompetitionController.java</file>
-            <file>file:/D:/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/util/DataSource.java</file>
-            <file>file:/D:/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/main/Main.java</file>
-            <file>file:/D:/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/services/ServiceQuestion.java</file>
+            <file>file:/Users/abdelazizlahmar/Desktop/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/gui/FXMLCommandeController.java</file>
+            <file>file:/Users/abdelazizlahmar/Desktop/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/entities/Commande.java</file>
+            <file>file:/Users/abdelazizlahmar/Desktop/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/main/CommandeMainClass.java</file>
+            <file>file:/Users/abdelazizlahmar/Desktop/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/gui/FXMLCommande.fxml</file>
+            <file>file:/Users/abdelazizlahmar/Desktop/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/main/Main.java</file>
+            <file>file:/Users/abdelazizlahmar/Desktop/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/services/ServiceCommande.java</file>
+            <file>file:/Users/abdelazizlahmar/Desktop/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/util/DataSource.java</file>
         </group>
     </open-files>
 </project-private>
-

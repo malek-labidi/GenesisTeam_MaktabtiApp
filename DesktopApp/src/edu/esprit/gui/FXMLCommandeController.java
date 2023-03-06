@@ -6,24 +6,32 @@
 package edu.esprit.gui;
 
 import edu.esprit.entities.Commande;
+import edu.esprit.entities.Etat;
 import edu.esprit.services.ServiceCommande;
+import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
+import javafx.scene.control.DialogPane;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -33,11 +41,25 @@ import javafx.scene.layout.GridPane;
 public class FXMLCommandeController implements Initializable {
 
     @FXML
-    private Label labelCommande;
-    @FXML
     private ListView<Commande> commandeView;
     @FXML
-    private Button button_modifierCommande;
+    private DialogPane dialogPane;
+    @FXML
+    private ListView<?> listViewEtat;
+    @FXML
+    private Button rechercheButton;
+    @FXML
+    private Button rafraichirButton;
+    @FXML
+    private Label idCommandeLabel;
+    @FXML
+    private Label idProduitLabel;
+    @FXML
+    private Label quantiteLabel;
+    @FXML
+    private Label etatLabel;
+    @FXML
+    private TextField rechercheField;
 
     /**
      * Initializes the controller class.
@@ -46,9 +68,8 @@ public class FXMLCommandeController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         ServiceCommande c = new ServiceCommande();
         commandeView.setItems(FXCollections.observableArrayList(c.getAll()));
-       
-        
-    }    
+
+    }
 
     @FXML
     private void modfier(ActionEvent event) {
@@ -66,42 +87,22 @@ public class FXMLCommandeController implements Initializable {
         Optional<ButtonType> result = dialog.showAndWait();
 
         if (result.isPresent() && result.get() == buttonTypeYes) {
-            Dialog<String> dialog2 = new Dialog<>();
-            dialog2.setTitle("Dialogue avec champ de texte");
-            dialog2.setHeaderText("Entrez l'état que vous souhaitez modifier :");
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLModifierCommande.fxml"));
+                Parent root = loader.load();
+                FXMLModifierCommandeController controller = loader.getController();
+                controller.getEtat(id);
+                Scene scene = new Scene(root);
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException ex) {
+                System.out.println(ex.getMessage());
+            }
 
-            // Ajouter un champ de texte et les boutons OK/Annuler au dialogue
-           
-           ListView<String> listView = new ListView<String>(FXCollections.observableArrayList("encours", "livre", "annuler"));
-
-            dialog2.getDialogPane().setContent(new GridPane());
-            ((GridPane) dialog2.getDialogPane().getContent()).add(new Label("Texte :"), 0, 0);
-            ((GridPane) dialog2.getDialogPane().getContent()).add(listView, 1, 0);
-            dialog2.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
-
-            // Récupérer le texte saisi lorsque le bouton OK est cliqué
-            dialog2.setResultConverter(dialogButton -> {
-                if (dialogButton == ButtonType.OK) {
-                    ServiceCommande s = new ServiceCommande();
-                    Object selectedItem = listView.getSelectionModel().getSelectedItem();
-                    Commande commande = (Commande) selectedItem;
-                  
-                    s.modifier(commande);
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION, "Commande updated", ButtonType.OK);
-                    alert.show();
-                }
-                return null;
-            });
-
-            // Afficher le dialogue
-            dialog2.showAndWait().ifPresent(text -> {
-                System.out.println("Le texte saisi est : " + text);
-            });
-       
-            
         } else {
             dialog.close();
+
         }
     }
-    
 }

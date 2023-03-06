@@ -5,6 +5,7 @@
  */
 package edu.esprit.services;
 
+import edu.esprit.entities.Livre;
 import edu.esprit.entities.Panier;
 import edu.esprit.util.DataSource;
 import java.math.BigDecimal;
@@ -26,8 +27,7 @@ public class ServicePanier implements IService<Panier> {
 
     @Override
     public void ajouter(Panier t) {
-        
-        
+
         try {
             String req = "INSERT INTO `panier`(`id_livre`,`id_client`,`quantite`,`totalPrix`) VALUES (?,?,?,?)";
             PreparedStatement ps = cnx.prepareStatement(req);
@@ -55,7 +55,7 @@ public class ServicePanier implements IService<Panier> {
             ps.setFloat(4, t.getTotalPrix());
             ps.setInt(5, t.getId_panier());
             ps.executeUpdate();
-            
+
             System.out.println("panier Updated !");
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
@@ -69,7 +69,7 @@ public class ServicePanier implements IService<Panier> {
             PreparedStatement ps = cnx.prepareStatement(req);
             ps.setInt(1, id);
             ps.executeUpdate();
-            
+
             System.out.println("Panier deleted!");
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
@@ -117,10 +117,8 @@ public class ServicePanier implements IService<Panier> {
         }
         return result;
     }
-    
-    
+
     //Fonction calcul Prix total des livres dans le panier 
-    
     /*public int CalculTotalPrixLivres(int id){
         
         
@@ -134,6 +132,7 @@ public class ServicePanier implements IService<Panier> {
 }
     }*/
     
+    
+     
 
 }
-
