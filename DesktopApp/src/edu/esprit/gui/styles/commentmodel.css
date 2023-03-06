@@ -1,0 +1,23 @@
+#commentaireBox {
+    -fx-background-color: #40444B;
+    -fx-padding: 10px;
+}
+
+#commentaireBox .userLabel {
+    -fx-text-fill: #7289DA;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+.commentaireLabel {
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-padding: 10px 0px;
+    -fx-font-weight: bold;
+}
+
+.userLabel {
+    -fx-border-color: #7289DA;
+    -fx-border-width: 2px;
+    -fx-padding: 5px;
+}
