@@ -52,6 +52,10 @@ public class Livre {
         this.prix = prix;
     }
 
+    public Livre(String titre, float prix) {
+        this.titre = titre;
+        this.prix = prix;
+    }
   
 
     public int getId_livre() {
