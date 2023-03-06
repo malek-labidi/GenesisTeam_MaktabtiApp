@@ -44,6 +44,16 @@ public class Competition {
         this.date_debut = date_debut;
         this.date_fin = date_fin;
     }
+
+    public Competition(int id_competition, int id_livre, String recompense, String lien_competition, String nom, Date date_debut, Date date_fin) {
+        this.id_competition = id_competition;
+        this.id_livre = id_livre;
+        this.recompense = recompense;
+        this.lien_competition = lien_competition;
+        this.nom = nom;
+        this.date_debut = date_debut;
+        this.date_fin = date_fin;
+    }
     
     
 

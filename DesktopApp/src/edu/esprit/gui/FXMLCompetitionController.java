@@ -281,6 +281,9 @@ public class FXMLCompetitionController implements Initializable {
                 participer.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent event) {
+                      //  int id_u = 3;
+                        
+                                          
                         System.out.println("hello");
                         int id = competition.getId_competition();
                         Dialog<ButtonType> dialog = new Dialog<>();
