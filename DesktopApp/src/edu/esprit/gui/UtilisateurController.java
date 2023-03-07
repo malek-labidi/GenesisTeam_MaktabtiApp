@@ -102,7 +102,6 @@ public class UtilisateurController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-                    affiche();
         useview.setOnMouseClicked(this::getUtilisateur);
         ServiceUtilisateur se=new ServiceUtilisateur();
         this.e1=se.getAll();
@@ -306,6 +305,12 @@ public class UtilisateurController implements Initializable {
             u= useview.getSelectionModel().getSelectedItem();
             su.supprimerUtilisateur(u);
             affiche();
+            cat_name.clear();
+            cat_prenom.clear();
+            cat_email.clear();
+            cat_password.clear();
+            cat_tel.clear();
+            cat_role.clear();
             Alert a = new Alert(Alert.AlertType.CONFIRMATION, "User Deleted Successfully !", ButtonType.OK);
             a.showAndWait();
     } }
@@ -353,7 +358,7 @@ public class UtilisateurController implements Initializable {
 
     //creating an instance of HSSFWorkbook class  
 //declare file name to be create   
-    String filename = "C:\\Users\\wassi\\Desktop\\DonnéeUtilisateurs.XLS";  
+    String filename = "src\\DonnéeUtilisateurs.XLS";  
 //creating an instance of HSSFWorkbook class  
     HSSFWorkbook workbook = new HSSFWorkbook();  
 //invoking creatSheet() method and passing the name of the sheet to be created   
