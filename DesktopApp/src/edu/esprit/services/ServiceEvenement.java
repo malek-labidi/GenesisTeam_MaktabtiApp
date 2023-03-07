@@ -22,7 +22,6 @@ import java.util.stream.Collectors;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 
-
 /**
  *
  * @author SADOK
@@ -33,50 +32,48 @@ public class ServiceEvenement implements IService<Evenement> {
 
     @Override
     public void ajouter(Evenement t) {
-        
-            try {
-                String req="INSERT INTO `evenement`(`nom`, `date`, `heure`, `id_auteur`, `id_livre`, `lieu`, `description`, `nb_ticket`) VALUES (?,?,?,?,?,?,?,?)";
-                PreparedStatement ps = cnx.prepareStatement(req);
-                ps.setString(1, t.getNom());
-                ps.setDate(2, t.getDate());
-                ps.setTime(3, t.getHeure());
-                ps.setInt(4, t.getId_auteur());
-                ps.setInt(5, t.getId_livre());
-                ps.setString(6, t.getLieu());
-                ps.setString(7, t.getDescription());
-                ps.setInt(8, t.getNb_ticket());
-                ps.executeUpdate();
-                System.out.println("Evenement added!");
-            } catch (SQLException ex) {
-                System.out.println(ex.getMessage());
-            }
+
+        try {
+            String req = "INSERT INTO `evenement`(`nom`, `date`, `heure`, `id_auteur`, `id_livre`, `lieu`, `description`, `nb_ticket`) VALUES (?,?,?,?,?,?,?,?)";
+            PreparedStatement ps = cnx.prepareStatement(req);
+            ps.setString(1, t.getNom());
+            ps.setDate(2, t.getDate());
+            ps.setTime(3, t.getHeure());
+            ps.setInt(4, t.getId_auteur());
+            ps.setInt(5, t.getId_livre());
+            ps.setString(6, t.getLieu());
+            ps.setString(7, t.getDescription());
+            ps.setInt(8, t.getNb_ticket());
+            ps.executeUpdate();
+            System.out.println("Evenement added!");
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
         }
-    
+    }
 
     @Override
     public void modifier(Evenement t) {
-        
-            try {
-                String req = "UPDATE `evenement` SET `nom`=?,`date`=?,`heure`=?,`id_auteur`=?,`id_livre`=?,`lieu`=?,`description`=?, `nb_ticket`=? WHERE id_evenement=?";
-                PreparedStatement ps = cnx.prepareStatement(req);
-                ps.setInt(9, t.getId_evenement());
-                
-                ps.setString(1, t.getNom());
-                ps.setDate(2, t.getDate());
-                ps.setTime(3, t.getHeure());
-                ps.setInt(4, t.getId_auteur());
-                ps.setInt(5, t.getId_livre());
-                ps.setString(6, t.getLieu());
-                ps.setString(7, t.getDescription());
-                ps.setInt(8, t.getNb_ticket());
-                ps.executeUpdate();
-                System.out.println("Evenement modified!");
-            } catch (SQLException ex) {
-                System.out.println(ex.getMessage());
-            }
 
+        try {
+            String req = "UPDATE `evenement` SET `nom`=?,`date`=?,`heure`=?,`id_auteur`=?,`id_livre`=?,`lieu`=?,`description`=?, `nb_ticket`=? WHERE id_evenement=?";
+            PreparedStatement ps = cnx.prepareStatement(req);
+            ps.setInt(9, t.getId_evenement());
+
+            ps.setString(1, t.getNom());
+            ps.setDate(2, t.getDate());
+            ps.setTime(3, t.getHeure());
+            ps.setInt(4, t.getId_auteur());
+            ps.setInt(5, t.getId_livre());
+            ps.setString(6, t.getLieu());
+            ps.setString(7, t.getDescription());
+            ps.setInt(8, t.getNb_ticket());
+            ps.executeUpdate();
+            System.out.println("Evenement modified!");
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
         }
-    
+
+    }
 
     @Override
     public void delete(int id) {
@@ -138,7 +135,7 @@ public class ServiceEvenement implements IService<Evenement> {
         List<Evenement> filteredList = new ArrayList<>();
         try {
             filteredList = evenements.stream()
-                    .filter(e -> e.getLieu().equalsIgnoreCase(lieu))
+                    .filter(e -> e.getLieu().toLowerCase().startsWith(lieu.toLowerCase()))
                     .collect(Collectors.toList());
         } catch (Exception e) {
             // handle the exception
@@ -158,6 +155,22 @@ public class ServiceEvenement implements IService<Evenement> {
             System.out.println("An error occurred while filtering events by date: " + e.getMessage());
         }
         return filteredList;
+    }
+
+    public void decrementNbTickets(int eventId, int nbTickets) {
+
+        try {
+
+            String query = "UPDATE evenement SET nb_tickets = nb_tickets - ? WHERE id_evenement = ?";
+
+            PreparedStatement ps = cnx.prepareStatement(query);
+            ps.setInt(1, nbTickets);
+            ps.setInt(2, eventId);
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
     }
 
 }

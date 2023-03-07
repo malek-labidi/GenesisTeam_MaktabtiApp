@@ -5,6 +5,8 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
@@ -28,5 +30,10 @@
       <TextField fx:id="recompense" layoutX="754.0" layoutY="181.0" prefHeight="31.0" prefWidth="218.0" promptText="Récompense" />
       <Label layoutX="631.0" layoutY="272.0" text="Livre" />
       <ListView fx:id="livre" layoutX="754.0" layoutY="252.0" prefHeight="200.0" prefWidth="218.0" />
+      <ImageView fx:id="retour" fitHeight="37.0" fitWidth="33.0" layoutX="58.0" layoutY="59.0" onMouseClicked="#retour">
+         <image>
+            <Image url="@images/back.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

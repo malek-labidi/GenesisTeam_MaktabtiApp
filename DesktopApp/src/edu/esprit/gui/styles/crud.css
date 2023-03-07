@@ -6,12 +6,17 @@ and open the template in the editor.
 /* 
     Created on : 22-Feb-2023, 13:43:39
     Author     : SADOK
-*/
-.label{
-    -fx-text-fill: linear-gradient(to bottom, #FFFFFF, deepskyblue);
-    -fx-font-size:40px;
 
+*/
+
+
+.label {
+    color: black;
+    font-weight: bold;
+    font-size: 24px;
+    font-family: 'Helvetica Neue', sans-serif;
 }
+
 .button1{
     -fx-background-color: #FF0000;
     -fx-text-fill: white;
@@ -67,8 +72,8 @@ and open the template in the editor.
     -fx-padding: 10px;
     -fx-background-color: transparent;
     -fx-fill: linear-gradient(to bottom, #4169E1, #8B4513);
-    
-    
+
+
 }
 
 

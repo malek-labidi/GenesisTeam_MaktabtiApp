@@ -30,7 +30,13 @@
 
     -fx-background-radius: 8px;
     -fx-font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    -fx-cursor:hand;
 
+}
+.addbtn::hover{
+    -fx-background-color: #ffffff;
+    -fx-text-fill: #034396;
+    -fx-font-size: 16px;
 }
 .modifybtn{
     -fx-background-color: #002657;
@@ -39,6 +45,10 @@
 
     -fx-background-radius: 8px;
     -fx-font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    -fx-cursor:hand;
+}
+.modifybtn::hover{
+    -fx-background-color:linear-gradient (to bottom right, #3862c2, #4284d0);
 }
 .deletebtn{
     -fx-background-color: #f8a375;
@@ -47,5 +57,33 @@
 
     -fx-background-radius: 8px;
     -fx-font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    -fx-cursor:hand;
 
+}
+.deletebtn::hover{
+    -fx-background-color:linear-gradient (to bottom right, #3862c2, #4284d0);
+
+}
+.default-color0.chart-bar {
+    -fx-bar-fill:  #447ce3; 
+}
+.combo-box {
+    -fx-background-color: white;
+    -fx-font-size: 14px;
+    -fx-padding: 5px;
+}
+
+.combo-box .list-cell {
+    -fx-background-color: white;
+    -fx-text-fill: black;
+    -fx-font-size: 14px;
+}
+
+.combo-box .list-cell:hover {
+    -fx-background-color: lightgray;
+}
+
+.combo-box .list-view {
+    -fx-background-color: white;
+    -fx-font-size: 14px;
 }

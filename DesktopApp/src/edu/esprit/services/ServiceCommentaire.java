@@ -111,6 +111,36 @@ public class ServiceCommentaire implements IService<Commentaire> {
             return result;
         
     }
+    public List<Commentaire> getCommentairesByEvenement(int idEvenement) {
+    List<Commentaire> result = new ArrayList<>();
+    String req = "SELECT * FROM commentaire WHERE id_evenement = ?";
+    try (PreparedStatement ps = cnx.prepareStatement(req)) {
+        ps.setInt(1, idEvenement);
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            int idCommentaire = rs.getInt(1);
+            int idClient = rs.getInt(2);
+            String commentaire = rs.getString(4);
+            Commentaire c = new Commentaire(idCommentaire, idClient, idEvenement, commentaire);
+            result.add(c);
+        }
+    } catch (SQLException ex) {
+        System.out.println(ex.getMessage());
+    }
+    return result;
+}
+    private static final String[] BAD_WORDS = {"go to hell", "stupid", "you're a dog"};
+    public static boolean containsBadWords(String commentaire) {
+        String lowercaseCommentaire = commentaire.toLowerCase();
+        for (String badWord : BAD_WORDS) {
+            if (lowercaseCommentaire.contains(badWord)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    
     
     
 }

@@ -13,6 +13,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
@@ -29,7 +30,8 @@ public class EventMainFXML extends Application {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/FXMLEvenement.fxml"));
             Parent root = loader.load();
             Scene scene = new Scene(root);
-            scene.getStylesheets().add("/edu/esprit/gui/styles/crud.css");
+          
+            primaryStage.getIcons().add(new Image("/edu/esprit/gui/images/icon-app-logo.png"));
             primaryStage.setTitle("Evenement");
             primaryStage.setScene(scene);
             primaryStage.show();

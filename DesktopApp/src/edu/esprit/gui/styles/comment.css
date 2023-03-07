@@ -1,0 +1,25 @@
+#grid {
+    -fx-background-color: #36393F;
+    -fx-padding: 10px;
+}
+#submit {
+    -fx-background-color: #7289DA;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-padding: 5px 10px;
+    -fx-cursor:hand;
+}
+#submit:hover {
+    -fx-background-color: #677BC4;
+}
+#comment {
+    -fx-background-color: #40444B;
+    -fx-border-color: transparent;
+    -fx-text-fill: white;
+    -fx-padding: 10px;
+    -fx-font-size: 14px;
+}
+#comment:focus {
+    -fx-border-color: #7289DA;
+}

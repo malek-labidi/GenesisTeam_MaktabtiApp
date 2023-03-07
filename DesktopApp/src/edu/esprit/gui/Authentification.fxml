@@ -10,49 +10,39 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: grey;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.gui.AuthentificationController">
-   <left>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: grey;" BorderPane.alignment="CENTER">
-         <children>
-            <ImageView fitHeight="388.0" fitWidth="267.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/login.png" />
-               </image>
-            </ImageView>
-         </children>
-      </AnchorPane>
-   </left>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: grey;" styleClass="root" stylesheets="@styles/fxmlmaktabti.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.gui.AuthentificationController">
    <center>
-      <AnchorPane blendMode="HARD_LIGHT" cache="true" prefHeight="400.0" prefWidth="335.0" BorderPane.alignment="CENTER">
+      <AnchorPane blendMode="HARD_LIGHT" cache="true" prefHeight="400.0" prefWidth="335.0" style="-fx-background-color: #E6EFFB;" BorderPane.alignment="CENTER">
          <children>
-            <ImageView blendMode="COLOR_DODGE" fitHeight="60.0" fitWidth="92.0" layoutX="142.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                     <Image url="@images/users.png" />    
-               </image>
-            </ImageView>
-            <Button fx:id="reset" layoutX="172.0" layoutY="298.0" mnemonicParsing="false" onAction="#reset" prefHeight="33.0" prefWidth="97.0" style="-fx-background-color: #ffc900;" text="Reset" />
-            <VBox layoutX="167.0" layoutY="171.0" prefHeight="136.0" prefWidth="100.0">
+            <Button fx:id="reset" layoutX="332.0" layoutY="273.0" mnemonicParsing="false" onAction="#reset" prefHeight="45.0" prefWidth="97.0" styleClass="deletebtn" stylesheets="@styles/fxmlmaktabti.css" text="Reset" />
+            <VBox layoutX="290.0" layoutY="164.0" prefHeight="73.0" prefWidth="147.0">
                <children>
                   <TextField fx:id="username" prefHeight="3.0" prefWidth="100.0" />
                   <TextField fx:id="password" prefHeight="1.0" prefWidth="100.0" />
                </children>
             </VBox>
-            <VBox layoutX="22.0" layoutY="171.0" prefHeight="200.0" prefWidth="100.0">
+            <VBox layoutX="170.0" layoutY="168.0" prefHeight="79.0" prefWidth="100.0">
                <children>
-                  <Label text="Email" textFill="#ffc900">
+                  <Label text="Email">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
                   </Label>
-                  <Label text="Password" textFill="#ffc900">
+                  <Label layoutX="10.0" layoutY="10.0" text="Password">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
                   </Label>
                </children>
             </VBox>
-            <Button fx:id="Logiiin" layoutX="85.0" layoutY="298.0" mnemonicParsing="false" onAction="#login" prefHeight="33.0" prefWidth="74.0" style="-fx-background-color: #ffc900;" text="Log In" />
-            <Button ellipsisString="12" layoutX="102.0" layoutY="339.0" minHeight="17.0" mnemonicParsing="false" onAction="#registrationpage" prefHeight="39.0" prefWidth="140.0" style="-fx-background-color: grey;" text="Register Now" />
+            <Button ellipsisString="12" layoutX="241.0" layoutY="332.0" minHeight="17.0" mnemonicParsing="false" onAction="#registrationpage" prefHeight="39.0" prefWidth="140.0" style="-fx-background-color: grey;" styleClass="modifybtn" stylesheets="@styles/fxmlmaktabti.css" text="Register Now" />
+            <Button fx:id="Logiiin" layoutX="203.0" layoutY="273.0" mnemonicParsing="false" onAction="#login" prefHeight="46.0" prefWidth="95.0" styleClass="addbtn" stylesheets="@styles/fxmlmaktabti.css" text="Log In" />
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="198.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="271.0" layoutY="49.0">
+               <image>
+                  <Image url="@images/user.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
    </center>

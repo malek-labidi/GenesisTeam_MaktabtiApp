@@ -1,30 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.URL?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="660.0" prefWidth="1105.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.gui.FXMLEvenementController">
-    <stylesheets>
-        <URL value="@/edu/esprit/gui/styles/crud.css" />
-    </stylesheets>
+<AnchorPane id="AnchorPane" prefHeight="660.0" prefWidth="1105.0" styleClass="mainFxmlClass" stylesheets="@styles/fxmlmaktabti.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.gui.FXMLEvenementController">
    <children>
       <ListView fx:id="event_view" layoutY="167.0" prefHeight="378.0" prefWidth="900.0">
          <effect>
             <DropShadow />
          </effect>
       </ListView>
-      <Label fx:id="event_label" layoutX="126.0" layoutY="36.0" stylesheets="@styles/crud.css" text="Liste des Evenement">
+      <Label fx:id="event_label" layoutX="126.0" layoutY="36.0" text="Liste des Evenement">
          <font>
             <Font size="35.0" />
          </font>
       </Label>
-      <Button layoutX="977.0" layoutY="197.0" mnemonicParsing="false" onAction="#ajout_btn" stylesheets="@styles/crud.css" text="Ajouter" />
-      <Button layoutX="973.0" layoutY="312.0" mnemonicParsing="false" onAction="#modif_btn" stylesheets="@styles/crud.css" text="Modifier" />
-      <Button layoutX="966.0" layoutY="435.0" mnemonicParsing="false" onAction="#supp_btn" stylesheets="@styles/crud.css" text="Supprimer" />
+      <Button layoutX="955.0" layoutY="197.0" mnemonicParsing="false" onAction="#ajout_btn" prefHeight="51.0" prefWidth="96.0" styleClass="addbtn" stylesheets="@styles/fxmlmaktabti.css" text="Ajouter" />
+      <Button layoutX="959.0" layoutY="312.0" mnemonicParsing="false" onAction="#modif_btn" prefHeight="51.0" prefWidth="96.0" styleClass="modifybtn" stylesheets="@styles/fxmlmaktabti.css" text="Modifier" />
+      <Button layoutX="955.0" layoutY="435.0" mnemonicParsing="false" onAction="#supp_btn" prefHeight="51.0" prefWidth="107.0" styleClass="deletebtn" stylesheets="@styles/fxmlmaktabti.css" text="Supprimer" />
+      <TextField fx:id="search" layoutX="670.0" layoutY="33.0" onKeyTyped="#search" prefHeight="58.0" prefWidth="230.0" promptText="Rechercher" stylesheets="@styles/crud.css" />
+      <FontAwesomeIconView glyphName="SEARCH" layoutX="868.0" layoutY="68.0" size="20" />
+      <FontAwesomeIconView glyphName="USER" layoutX="943.0" layoutY="40.0" size="30" />
    </children>
 </AnchorPane>

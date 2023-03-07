@@ -50,6 +50,7 @@ public class AuthentificationController implements Initializable {
     @FXML
     private Button Logiiin;
 
+    private final String path = "src\\LoginData.ini";
     
 
     /**
@@ -84,11 +85,28 @@ public class AuthentificationController implements Initializable {
         System.out.println(Log_in.getUsername());
             Alert a = new Alert(Alert.AlertType.INFORMATION, "Authentified Succefully!", ButtonType.OK);
             a.showAndWait(); 
-        Parent root = FXMLLoader.load(getClass().getResource("Utilisateur.fxml"));
-        Scene homaepageScene = new Scene(root);
-        Stage appStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        appStage.setScene(homaepageScene);
-        appStage.show();
+        su.createiniFile(path, username.getText(), password.getText());
+        
+            if (u.getRole().equals("Administrateur")) {
+            Parent root = FXMLLoader.load(getClass().getResource("Utilisateur.fxml"));
+            Scene homaepageScene = new Scene(root);
+            Stage appStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            appStage.setScene(homaepageScene);
+            appStage.show(); 
+            } else if (u.getRole().equals("Auteur")) {
+            Parent root = FXMLLoader.load(getClass().getResource("FXMLMaktabti.fxml"));
+            Scene homaepageScene = new Scene(root);
+            Stage appStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            appStage.setScene(homaepageScene);
+            appStage.show(); 
+            }else if (u.getRole().equals("Client")) {
+            Parent root = FXMLLoader.load(getClass().getResource("Livre.fxml"));
+            Scene homaepageScene = new Scene(root);
+            Stage appStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            appStage.setScene(homaepageScene);
+            appStage.show(); 
+            }
+
         } 
     }
 

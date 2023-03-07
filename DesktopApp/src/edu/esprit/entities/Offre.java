@@ -13,18 +13,18 @@ public class Offre {
      private int id_offre;
     private int id_livre;
     private String pourcentage_solde;
-    private int prix_soldé;
+    private float prix_soldé;
     public Offre(){
         
     }
 
-    public Offre(int id_livre, String pourcentage_solde, int prix_soldé) {
+    public Offre(int id_livre, String pourcentage_solde, float prix_soldé) {
         this.id_livre = id_livre;
         this.pourcentage_solde = pourcentage_solde;
         this.prix_soldé = prix_soldé;
     }
 
-    public Offre(int id_offre, int id_livre, String pourcentage_solde, int prix_soldé) {
+    public Offre(int id_offre, int id_livre, String pourcentage_solde, float prix_soldé) {
         this.id_offre = id_offre;
         this.id_livre = id_livre;
         this.pourcentage_solde = pourcentage_solde;
@@ -43,7 +43,7 @@ public class Offre {
         return pourcentage_solde;
     }
 
-    public int getPrix_soldé() {
+    public float getPrix_soldé() {
         return prix_soldé;
     }
 
@@ -59,7 +59,7 @@ public class Offre {
         this.pourcentage_solde = pourcentage_solde;
     }
 
-    public void setPrix_soldé(int prix_soldé) {
+    public void setPrix_soldé(float prix_soldé) {
         this.prix_soldé = prix_soldé;
     }
 

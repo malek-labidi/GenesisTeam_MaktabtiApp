@@ -9,18 +9,24 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="1105.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.gui.FXMLMaktabtiController">
+<BorderPane fx:id="bp" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="1105.0" stylesheets="@styles/fxmlmaktabti.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.gui.FXMLMaktabtiController">
    <left>
-      <VBox prefHeight="584.0" prefWidth="172.0" styleClass="rect1" stylesheets="@styles/fxmlmaktabti.css" BorderPane.alignment="CENTER">
+      <VBox prefHeight="666.0" prefWidth="172.0" styleClass="rect1" stylesheets="@styles/fxmlmaktabti.css" BorderPane.alignment="CENTER">
          <children>
+            <ImageView fitHeight="75.0" fitWidth="172.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/2.png" />
+               </image>
+            </ImageView>
             <Label prefHeight="21.0" prefWidth="74.0" styleClass="txt" stylesheets="@styles/fxmlmaktabti.css" text="MAKTABTI" />
+            <Hyperlink text="Home" />
             <Hyperlink text="Library" />
             <Hyperlink text="My Favorites" />
             <Hyperlink text="Bookmarks" />
             <Label prefHeight="21.0" prefWidth="74.0" styleClass="txt" stylesheets="@styles/fxmlmaktabti.css" text="GET MORE" />
             <Hyperlink text="On Sale" />
-            <Hyperlink text="Competition" />
-            <Hyperlink text="Events" />
+            <Hyperlink onMouseClicked="#competitions" text="Competition" />
+            <Hyperlink text="Evenements" />
             <Label prefHeight="21.0" prefWidth="74.0" text="ACCOUNT" />
             <Hyperlink text="My Account" />
             <Hyperlink text="Logout" />
@@ -45,17 +51,4 @@
          </children>
       </VBox>
    </right>
-   <top>
-      <AnchorPane prefHeight="76.0" prefWidth="1105.0" BorderPane.alignment="CENTER">
-         <children>
-            <ImageView fitHeight="72.0" fitWidth="120.0" layoutX="20.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@images/2.png" />
-               </image>
-            </ImageView>
-            <Hyperlink fx:id="home" layoutX="216.0" layoutY="24.0" text="Home" textFill="#003a61" />
-            <Hyperlink fx:id="library" layoutX="286.0" layoutY="24.0" text="Library" textFill="#003a61" />
-         </children>
-      </AnchorPane>
-   </top>
 </BorderPane>
