@@ -18,6 +18,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  *
@@ -147,6 +148,18 @@ public class ServiceLivre implements IService<Livre> {
             System.out.println(ex.getMessage());
         }
     }
+ public static List<Livre> filterByName(List<Livre> livres, String lieu) {
+    List<Livre> filteredList = new ArrayList<>();
+    try {
+        filteredList = livres.stream()
+                .filter(e -> e.getTitre().toLowerCase().startsWith(lieu.toLowerCase()))
+                .collect(Collectors.toList());
+    } catch (Exception e) {
+        // handle the exception
+        System.out.println("Une erreur s'est produite lors du filtrage de Livre par Titre : " + e.getMessage());
+    }
+    return filteredList;
+}
         
         public Livre getOneByTitre(String titre) {
     Livre result = null;

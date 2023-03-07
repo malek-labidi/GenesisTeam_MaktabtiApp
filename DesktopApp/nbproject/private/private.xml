@@ -3,25 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/Saleh/Desktop/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/gui/LivreController.java</file>
+            <file>file:/C:/Users/Saleh/Desktop/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/gui/FXMLModifierCompetitionController.java</file>
+            <file>file:/C:/Users/Saleh/Desktop/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/gui/styles/fxmlmaktabti.css</file>
+            <file>file:/C:/Users/Saleh/Desktop/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/gui/FXMLCompetitionController.java</file>
+            <file>file:/C:/Users/Saleh/Desktop/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/entities/Livre.java</file>
 
-            <file>file:/D:/PIDEV/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/gui/FXMLEvenementController.java</file>
-            <file>file:/D:/PIDEV/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/gui/styles/comment.css</file>
-            <file>file:/D:/PIDEV/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/gui/styles/commentmodel.css</file>
-            <file>file:/D:/PIDEV/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/gui/FXMLModifierEvenementController.java</file>
-            <file>file:/D:/PIDEV/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/main/EventMainFXML.java</file>
-            <file>file:/D:/PIDEV/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/gui/FXMLTicketController.java</file>
-            <file>file:/D:/PIDEV/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/main/NewFXMainCommentaire.java</file>
-            <file>file:/D:/PIDEV/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/gui/FXMLAjouterController.java</file>
-            <file>file:/D:/PIDEV/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/gui/FXMLCommentairemodelController.java</file>
-            <file>file:/D:/PIDEV/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/gui/FXMLCommentaireController.java</file>
-            <file>file:/D:/PIDEV/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/gui/FXMLReservationController.java</file>
-            <file>file:/D:/PIDEV/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/gui/UtilisateurrController.java</file>
-            <file>file:/D:/PIDEV/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/services/ServiceCommentaire.java</file>
 
-            <file>file:/Users/abdelazizlahmar/Desktop/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/entities/Panier.java</file>
-            <file>file:/Users/abdelazizlahmar/Desktop/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/services/ServicePanier.java</file>
-            <file>file:/Users/abdelazizlahmar/Desktop/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/entities/Utilisateur.java</file>
-            <file>file:/Users/abdelazizlahmar/Desktop/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/entities/Role.java</file>
+
+
+
 
         </group>
     </open-files>
