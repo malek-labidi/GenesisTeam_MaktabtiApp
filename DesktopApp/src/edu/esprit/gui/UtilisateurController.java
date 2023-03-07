@@ -358,11 +358,11 @@ public class UtilisateurController implements Initializable {
 
     //creating an instance of HSSFWorkbook class  
 //declare file name to be create   
-    String filename = "src\\DonnéeUtilisateurs.XLS";  
+    String filename = "src\\edu\\esprit\\excel\\DonnéeUtilisateurs.XLS";  
 //creating an instance of HSSFWorkbook class  
     HSSFWorkbook workbook = new HSSFWorkbook();  
 //invoking creatSheet() method and passing the name of the sheet to be created   
-    HSSFSheet sheet = workbook.createSheet("January");   
+    HSSFSheet sheet = workbook.createSheet("User Details");   
 //creating the 0th row using the createRow() method  
     HSSFRow rowhead = sheet.createRow((short)0);  
 //creating cell by using the createCell() method and setting the values to the cell by using the setCellValue() method  
