@@ -5,7 +5,9 @@
  */
 package edu.esprit.entities;
 
+import java.io.InputStream;
 import java.sql.Date;
+
 
 /**
  *
@@ -23,11 +25,13 @@ public class Livre {
     private int nb_pages;
     private String resume;
     private float prix;
+    private InputStream image;
+            
 
     public Livre() {
     }
 
-    public Livre(int id_auteur, int id_categorie, String titre, Date date_pub, String langue, int isbn, int nb_pages, String resume, float prix) {
+    public Livre(int id_auteur, int id_categorie, String titre, Date date_pub, String langue, int isbn, int nb_pages, String resume, float prix, InputStream image) {
         this.id_auteur = id_auteur;
         this.id_categorie = id_categorie;
         this.titre = titre;
@@ -37,9 +41,10 @@ public class Livre {
         this.nb_pages = nb_pages;
         this.resume = resume;
         this.prix = prix;
+        this.image=image;
     }
 
-    public Livre(int id_livre, int id_auteur, int id_categorie, String titre, Date date_pub, String langue, int isbn, int nb_pages, String resume, float prix) {
+    public Livre(int id_livre, int id_auteur, int id_categorie, String titre, Date date_pub, String langue, int isbn, int nb_pages, String resume, float prix,InputStream image) {
         this.id_livre = id_livre;
         this.id_auteur = id_auteur;
         this.id_categorie = id_categorie;
@@ -50,6 +55,7 @@ public class Livre {
         this.nb_pages = nb_pages;
         this.resume = resume;
         this.prix = prix;
+        this.image=image;
     }
 
     public Livre(String titre, float prix) {
@@ -133,6 +139,15 @@ public class Livre {
     public void setPrix(int prix) {
         this.prix = prix;
     }
+
+    public InputStream getImage() {
+        return image;
+    }
+
+    public void setImage(InputStream image) {
+        this.image = image;
+    }
+    
 
     @Override
     public String toString() {

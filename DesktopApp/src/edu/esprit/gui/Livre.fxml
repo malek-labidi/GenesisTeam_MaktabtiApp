@@ -102,7 +102,7 @@
                         </Label>
                      </children>
                   </VBox>
-                  <VBox layoutX="135.0" layoutY="164.0" prefHeight="166.0" prefWidth="153.0" spacing="21.0">
+                  <VBox layoutX="123.0" layoutY="119.0" prefHeight="166.0" prefWidth="153.0" spacing="21.0">
                      <children>
                         <TextField fx:id="titre" layoutX="10.0" layoutY="10.0">
                            <cursor>
@@ -132,6 +132,11 @@
                            <cursor>
                               <Cursor fx:constant="TEXT" />
                            </cursor></TextField>
+                        <TextField fx:id="fileImage" layoutX="10.0" layoutY="286.0">
+                           <cursor>
+                              <Cursor fx:constant="TEXT" />
+                           </cursor>
+                        </TextField>
                      </children>
                   </VBox>
                   <Button fx:id="cat_add" layoutX="10.0" layoutY="507.0" mnemonicParsing="false" onAction="#addlivre" prefHeight="37.0" prefWidth="109.0" styleClass="addbtn" stylesheets="@styles/fxmlmaktabti.css" text="Ajouter">
@@ -184,7 +189,7 @@
                         <Image url="@images/loupe%20(1).png" />
                      </image>
                   </ImageView>
-                  <Label layoutX="290.0" layoutY="444.0" prefHeight="21.0" prefWidth="22.0" text="DT">
+                  <Label layoutX="283.0" layoutY="396.0" prefHeight="21.0" prefWidth="22.0" text="DT">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -199,6 +204,11 @@
                         <Image url="@images/icons8-classer-par-catégories-48.png" />
                      </image>
                   </ImageView>
+                  <Button fx:id="image" layoutX="294.0" layoutY="436.0" mnemonicParsing="false" onAction="#Buttonimage" prefHeight="37.0" prefWidth="68.0" styleClass="addbtn" stylesheets="@styles/fxmlmaktabti.css" text="Image">
+                     <cursor>
+                        <Cursor fx:constant="WAIT" />
+                     </cursor>
+                  </Button>
                </children>
                <effect>
                   <Lighting>
