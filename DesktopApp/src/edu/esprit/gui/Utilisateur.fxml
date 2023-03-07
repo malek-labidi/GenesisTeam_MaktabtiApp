@@ -3,6 +3,8 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
@@ -69,7 +71,6 @@
                   <TextField fx:id="cat_email" layoutX="10.0" layoutY="10.0" />
                   <PasswordField fx:id="cat_password" />
                   <TextField fx:id="cat_tel" layoutX="10.0" layoutY="10.0" />
-                  <TextField fx:id="cat_role" layoutX="10.0" layoutY="10.0" />
                </children>
             </VBox>
             <Button fx:id="cat_add" layoutX="218.0" layoutY="444.0" mnemonicParsing="false" onAction="#adduser" prefHeight="37.0" prefWidth="82.0" styleClass="addbtn" stylesheets="@styles/fxmlmaktabti.css" text="Ajouter" />
@@ -83,6 +84,13 @@
                   <Image url="@images/excell.png" />
                </image>
             </ImageView>
+            <MenuButton fx:id="menurole" layoutX="300.0" layoutY="384.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="153.0" style="-fx-background-color: white;">
+              <items>
+                <MenuItem fx:id="Admin" mnemonicParsing="false" onAction="#Adminrole" text="Administrateur" />
+                <MenuItem fx:id="Client" mnemonicParsing="false" onAction="#clientrole" text="Client" />
+                  <MenuItem fx:id="Auteur" mnemonicParsing="false" onAction="#Auteurrole" text="Auteur" />
+              </items>
+            </MenuButton>
          </children>
       </Pane>
    </children>
