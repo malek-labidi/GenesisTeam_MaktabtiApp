@@ -5,6 +5,7 @@
  */
 package edu.esprit.gui;
 
+import edu.esprit.api.emailwhenregistration;
 import edu.esprit.entities.Utilisateur;
 import edu.esprit.services.ServiceUtilisateur;
 import java.io.IOException;
@@ -12,6 +13,7 @@ import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Properties;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -30,6 +32,13 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 /**
  * FXML Controller class
@@ -89,6 +98,7 @@ public class RegisterController implements Initializable {
              ServiceUtilisateur su = new ServiceUtilisateur();
             Utilisateur u = new Utilisateur(nom.getText(),prenom.getText(),email.getText(),password.getText(),Integer.parseInt(numtel.getText()), menurole.getText() ) {} ;
             su.ajouter(u);
+            //emailwhenregistration.sendEmail();
             nom.clear();
             prenom.clear();
             email.clear();
@@ -106,9 +116,10 @@ public class RegisterController implements Initializable {
         }
         
     } 
+    /*********************************************email API***************************************************************************/    
 
 
-    
+   
     /*********************************************CONTROLE DE SAISIE***************************************************************************/    
      private boolean Validateemail() {
         Pattern p = Pattern.compile("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$");
