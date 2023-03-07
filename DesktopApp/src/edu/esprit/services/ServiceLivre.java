@@ -10,12 +10,14 @@ import edu.esprit.entities.Competition;
 import edu.esprit.entities.Livre;
 import edu.esprit.entities.Utilisateur;
 import edu.esprit.util.DataSource;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -32,7 +34,7 @@ public class ServiceLivre implements IService<Livre> {
     public void ajouter(Livre t) {
         if (!Categorie.verifString(t.getTitre()) & !Categorie.verifString(t.getLangue()) & !Categorie.verifString(t.getResume())) {
             try {
-                String req = "INSERT INTO `livre`(`id_auteur`, `id_categorie`, `titre`, `date_pub`, `langue`, `isbn`, `nb_pages`, `resume`, `prix`) VALUES (?,?,?,?,?,?,?,?,?)";
+                String req = "INSERT INTO `livre`(`id_auteur`, `id_categorie`, `titre`, `date_pub`, `langue`, `isbn`, `nb_pages`, `resume`, `prix`, `image`) VALUES (?,?,?,?,?,?,?,?,?,?)";
                 PreparedStatement ps = cnx.prepareStatement(req);
                 ps.setInt(1, t.getId_auteur());
                 ps.setInt(2, t.getId_categorie());
@@ -43,6 +45,12 @@ public class ServiceLivre implements IService<Livre> {
                 ps.setInt(7, t.getNb_pages());
                 ps.setString(8, t.getResume());
                 ps.setFloat(9, t.getPrix());
+                if (t.getImage() != null) {
+                    ps.setBlob(10, t.getImage());
+                } else {
+                    ps.setNull(10, Types.BLOB);
+                }
+
                 ps.executeUpdate();
                 System.out.println("Livre added");
             } catch (SQLException ex) {
@@ -110,8 +118,9 @@ public class ServiceLivre implements IService<Livre> {
                 int nb_pages = rs.getInt(8);
                 String resume = rs.getString(9);
                 int prix = rs.getInt(10);
+                InputStream image= rs.getBinaryStream(11);
 
-                Livre l = new Livre(id,id_auteur, id_categorie, titre, date_pub, langue, isbn, nb_pages, resume, prix);
+                Livre l = new Livre(id, id_auteur, id_categorie, titre, date_pub, langue, isbn, nb_pages, resume, prix,image);
 
                 result.add(l);
 
@@ -130,7 +139,7 @@ public class ServiceLivre implements IService<Livre> {
             Statement s = cnx.createStatement();
             ResultSet rs = s.executeQuery(req);
             while (rs.next()) {
-                result = new Livre(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getString(4), rs.getDate(5), rs.getString(6), rs.getInt(7), rs.getInt(8), rs.getString(9), rs.getInt(10));
+                result = new Livre(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getString(4), rs.getDate(5), rs.getString(6), rs.getInt(7), rs.getInt(8), rs.getString(9), rs.getInt(10), rs.getBinaryStream(11));
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
@@ -138,8 +147,9 @@ public class ServiceLivre implements IService<Livre> {
 
         return result;
     }
- public void supprimerLivre(Livre l) {
-            String req = "DELETE FROM `livre` WHERE Id_livre  = ?"  ;
+
+    public void supprimerLivre(Livre l) {
+        String req = "DELETE FROM `livre` WHERE Id_livre  = ?";
         try {
             PreparedStatement ste = cnx.prepareStatement(req);
             ste.setInt(1, l.getId_livre());
@@ -148,44 +158,49 @@ public class ServiceLivre implements IService<Livre> {
             System.out.println(ex.getMessage());
         }
     }
- public static List<Livre> filterByName(List<Livre> livres, String lieu) {
-    List<Livre> filteredList = new ArrayList<>();
-    try {
-        filteredList = livres.stream()
-                .filter(e -> e.getTitre().toLowerCase().startsWith(lieu.toLowerCase()))
-                .collect(Collectors.toList());
-    } catch (Exception e) {
-        // handle the exception
-        System.out.println("Une erreur s'est produite lors du filtrage de Livre par Titre : " + e.getMessage());
-    }
-    return filteredList;
-}
-        
-        public Livre getOneByTitre(String titre) {
-    Livre result = null;
-    try {
-        String req = "SELECT * FROM livre WHERE titre = ?";
-        PreparedStatement ps = cnx.prepareStatement(req);
-        ps.setString(1, titre);
-        ResultSet rs = ps.executeQuery();
-        if (rs.next()) {
-            int id = rs.getInt("id_livre");
-            int id_auteur = rs.getInt("id_auteur");
-            int id_categorie = rs.getInt("id_categorie");
-            Date date_pub = rs.getDate("date_pub");
-            String langue = rs.getString("langue");
-            int isbn = rs.getInt("isbn");
-            int nb_pages = rs.getInt("nb_pages");
-            String resume = rs.getString("resume");
-            int prix = rs.getInt("prix");
-            result = new Livre(id, id_auteur, id_categorie, titre, date_pub, langue, isbn, nb_pages, resume, prix);
+
+    public static List<Livre> filterByName(List<Livre> livres, String lieu) {
+        List<Livre> filteredList = new ArrayList<>();
+        try {
+            filteredList = livres.stream()
+                    .filter(e -> e.getTitre().toLowerCase().startsWith(lieu.toLowerCase()))
+                    .collect(Collectors.toList());
+        } catch (Exception e) {
+            // handle the exception
+            System.out.println("Une erreur s'est produite lors du filtrage de Livre par Titre : " + e.getMessage());
         }
-    } catch (SQLException ex) {
-        System.out.println(ex.getMessage());
+        return filteredList;
     }
-    return result;
-}
-        public float getPrix(int id){
+
+    public Livre getOneByTitre(String titre) {
+        Livre result = null;
+        try {
+            String req = "SELECT * FROM livre WHERE titre = ?";
+            PreparedStatement ps = cnx.prepareStatement(req);
+            ps.setString(1, titre);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                int id = rs.getInt("id_livre");
+                int id_auteur = rs.getInt("id_auteur");
+                int id_categorie = rs.getInt("id_categorie");
+                Date date_pub = rs.getDate("date_pub");
+                String langue = rs.getString("langue");
+                int isbn = rs.getInt("isbn");
+                int nb_pages = rs.getInt("nb_pages");
+                String resume = rs.getString("resume");
+                int prix = rs.getInt("prix");
+                InputStream image =rs.getBinaryStream("image");
+                
+                
+                result = new Livre(id, id_auteur, id_categorie, titre, date_pub, langue, isbn, nb_pages, resume, prix,image);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return result;
+    }
+
+    public float getPrix(int id) {
         float result = 0;
         try {
             String req = "SELECT prix FROM `livre` WHERE id_livre = " + id;
@@ -201,5 +216,3 @@ public class ServiceLivre implements IService<Livre> {
         return result;
     }
 }
-
-

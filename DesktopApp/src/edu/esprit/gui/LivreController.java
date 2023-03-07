@@ -9,6 +9,7 @@ import com.itextpdf.text.Document;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.text.pdf.languages.ArabicLigaturizer;
+import edu.esprit.api.MailLivre;
 import edu.esprit.entities.Categorie;
 import edu.esprit.entities.Livre;
 import edu.esprit.entities.Utilisateur;
@@ -17,6 +18,8 @@ import edu.esprit.services.ServiceLivre;
 import edu.esprit.services.ServiceUtilisateur;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.net.URL;
 import java.sql.Date;
@@ -48,7 +51,7 @@ import javafx.stage.FileChooser;
  * @author Saleh
  */
 public class LivreController implements Initializable {
-
+    
     @FXML
     private Pane pnlCustomer;
     @FXML
@@ -89,7 +92,13 @@ public class LivreController implements Initializable {
     private ImageView PDF;
     @FXML
     private TextField search;
-    private List<Livre> e1=new ArrayList();
+    private List<Livre> e1 = new ArrayList();
+    @FXML
+    private TextField fileImage;
+    @FXML
+    private Button image;
+    @FXML
+    private File imageFile;
 
     /**
      * Initializes the controller class.
@@ -97,19 +106,33 @@ public class LivreController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        ServiceLivre se=new ServiceLivre();
-        this.e1=se.getAll();
+        ServiceLivre se = new ServiceLivre();
+        this.e1 = se.getAll();
         affiche1();
+        ServiceCategorie sc = new ServiceCategorie();
+        List<String> categories = new ArrayList<>();
+        for (Categorie cat : sc.getAll()) {
+            categories.add(cat.getType_c());
+        }
+        listcategorie.setItems(FXCollections.observableArrayList(categories));
+        ServiceUtilisateur su = new ServiceUtilisateur();
+        List<String> auteurs = new ArrayList<>();
+        su.getAll().stream().filter((u) -> ("Auteur".equals(u.getRole()))).forEachOrdered((u) -> {
+            auteurs.add(u.getNom() + " " + u.getPrenom());
+        });
+       
+        listauteur.setItems(FXCollections.observableArrayList(auteurs));
+        
     }
-
+    
     @FXML
-    private void addlivre(ActionEvent event) {
-
+    private void addlivre(ActionEvent event) throws FileNotFoundException {
+        
         if (titre.getText().isEmpty() || langue.getText().isEmpty() || resume.getText().isEmpty() || isbn.getText().isEmpty() || nb_pages.getText().isEmpty() || prix.getText().isEmpty()) {
             Alert a = new Alert(Alert.AlertType.ERROR, "Aucun champ vide n'est accepté!", ButtonType.OK);
             a.showAndWait();
         } else {
-
+            
             ServiceCategorie sc = new ServiceCategorie();
             List<Categorie> categories = sc.getAll();
             int id = -1;
@@ -120,7 +143,7 @@ public class LivreController implements Initializable {
                 }
             }
             ServiceLivre sl = new ServiceLivre();
-
+            
             ServiceUtilisateur su = new ServiceUtilisateur();
             List<Utilisateur> users = su.getAll();
             int id1 = -1;
@@ -130,9 +153,18 @@ public class LivreController implements Initializable {
                     id1 = u.getId();
                     break;
                 }
-
+                
             }
-            Livre l = new Livre(id1, id, titre.getText(), Date.valueOf(date_pub.getValue()), langue.getText(), Integer.parseInt(isbn.getText()), Integer.parseInt(nb_pages.getText()), resume.getText(), Integer.parseInt(prix.getText()));
+            Livre l = new Livre(id1, id, titre.getText(), Date.valueOf(date_pub.getValue()), langue.getText(), Integer.parseInt(isbn.getText()), Integer.parseInt(nb_pages.getText()), resume.getText(), (int) Double.parseDouble(prix.getText()), null);
+            
+            try {
+                FileInputStream f = new FileInputStream(imageFile);
+                l.setImage(f);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+            MailLivre.sendEmail(su.getOneById(id1), l);
+            //Livre l = new Livre(id1, id, titre.getText(), Date.valueOf(date_pub.getValue()), langue.getText(), Integer.parseInt(isbn.getText()), Integer.parseInt(nb_pages.getText()), resume.getText(), Integer.parseInt(prix.getText()),null);
             sl.ajouter(l);
             affiche();
             titre.clear();
@@ -140,16 +172,16 @@ public class LivreController implements Initializable {
             langue.clear();
             isbn.clear();
             nb_pages.clear();
-
+            
             resume.clear();
             prix.clear();
-
+            
             Alert a = new Alert(Alert.AlertType.INFORMATION, "Livre ajouté !", ButtonType.OK);
             a.showAndWait();
-
+            
         }
     }
-
+    
     @FXML
     private void updatelivre(ActionEvent event) {
         id = livreview.getSelectionModel().getSelectedItem().getId_livre();
@@ -157,21 +189,21 @@ public class LivreController implements Initializable {
         Dialog<ButtonType> dialog = new Dialog<>();
         dialog.setTitle("Confirmation Modification");
         dialog.setHeaderText("Voulez-vous vraiment modifier le livre N°" + id + "?");
-
+        
         ButtonType buttonTypeYes = new ButtonType("Oui", ButtonBar.ButtonData.YES);
         ButtonType buttonTypeNo = new ButtonType("Non", ButtonBar.ButtonData.NO);
-
+        
         dialog.getDialogPane().getButtonTypes().addAll(buttonTypeYes, buttonTypeNo);
-
+        
         Optional<ButtonType> result = dialog.showAndWait();
-
+        
         if (result.isPresent() && result.get() == buttonTypeYes) {
-
+            
             if (titre.getText().isEmpty() || langue.getText().isEmpty() || resume.getText().isEmpty() || isbn.getText().isEmpty() || nb_pages.getText().isEmpty() || prix.getText().isEmpty()) {
                 Alert a = new Alert(Alert.AlertType.ERROR, "Aucun champ vide n'est accepté!", ButtonType.OK);
                 a.showAndWait();
             } else {
-
+                
                 ServiceCategorie sc = new ServiceCategorie();
                 List<Categorie> categories = sc.getAll();
                 int id2 = -1;
@@ -182,7 +214,7 @@ public class LivreController implements Initializable {
                     }
                 }
                 ServiceLivre sl = new ServiceLivre();
-
+                
                 ServiceUtilisateur su = new ServiceUtilisateur();
                 List<Utilisateur> users = su.getAll();
                 int id1 = -1;
@@ -192,9 +224,9 @@ public class LivreController implements Initializable {
                         id1 = u.getId();
                         break;
                     }
-
+                    
                 }
-                Livre l = new Livre(id, id1, id2, titre.getText(), Date.valueOf(date_pub.getValue()), langue.getText(), Integer.parseInt(isbn.getText()), Integer.parseInt(nb_pages.getText()), resume.getText(), Float.parseFloat(prix.getText()));
+                Livre l = new Livre(id, id1, id2, titre.getText(), Date.valueOf(date_pub.getValue()), langue.getText(), Integer.parseInt(isbn.getText()), Integer.parseInt(nb_pages.getText()), resume.getText(), Float.parseFloat(prix.getText()), null);
                 sl.modifier(l);
                 affiche();
                 titre.clear();
@@ -202,21 +234,21 @@ public class LivreController implements Initializable {
                 langue.clear();
                 isbn.clear();
                 nb_pages.clear();
-
+                
                 resume.clear();
                 prix.clear();
-
+                
                 Alert a = new Alert(Alert.AlertType.INFORMATION, "Livre modifié !", ButtonType.OK);
                 a.showAndWait();
-
+                
             }
-
+            
         } else {
             dialog.close();
         }
-
+        
     }
-
+    
     @FXML
     private void deletelivre(ActionEvent event) {
         ServiceLivre sl = new ServiceLivre();
@@ -227,7 +259,7 @@ public class LivreController implements Initializable {
         Alert a = new Alert(Alert.AlertType.INFORMATION, "Livre supprimé !", ButtonType.OK);
         a.showAndWait();
     }
-
+    
     public void affiche() {
         ServiceLivre su = new ServiceLivre();
         livreview.setItems(FXCollections.observableArrayList(su.getAll()));
@@ -245,27 +277,27 @@ public class LivreController implements Initializable {
         List<Categorie> cats = sc.getAll();
         List<String> namesC = new ArrayList<>();
         for (Categorie c : cats) {
-
+            
             String cat = c.getType_c();
             namesC.add(cat);
         }
         listcategorie.setItems(FXCollections.observableArrayList(namesC));
-
+        
     }
-
+    
     @FXML
     private void afficheForm(MouseEvent event) {
         id = livreview.getSelectionModel().getSelectedItem().getId_livre();
-
+        
         ServiceCategorie sc = new ServiceCategorie();
         List<Categorie> cats = sc.getAll();
         List<String> names = new ArrayList<>();
-
+        
         cats.forEach((l) -> {
             names.add(l.getType_c());
         });
         listcategorie.setItems(FXCollections.observableArrayList(names));
-
+        
         ServiceUtilisateur ss = new ServiceUtilisateur();
         List<Utilisateur> users = ss.getAll();
         List<String> namesU = new ArrayList<>();
@@ -276,7 +308,7 @@ public class LivreController implements Initializable {
             }
         }
         listauteur.setItems(FXCollections.observableArrayList(namesU));
-
+        
         ServiceLivre sl = new ServiceLivre();
         Livre l = sl.getOneById(id);
         titre.setText(l.getTitre());
@@ -289,12 +321,12 @@ public class LivreController implements Initializable {
         listcategorie.getSelectionModel().select(sc.getOneById(l.getId_categorie()).getType_c());
         String s = ss.getOneById(l.getId_auteur()).getNom() + " " + ss.getOneById(l.getId_auteur()).getPrenom();
         listauteur.getSelectionModel().select(s);
-
+        
     }
-
+    
     @FXML
     private void genererPDF(MouseEvent event) {
-
+        
         ServiceLivre sc = new ServiceLivre();
         List<String[]> a = new ArrayList<>();
         ServiceCategorie sl = new ServiceCategorie();
@@ -310,9 +342,9 @@ public class LivreController implements Initializable {
             row[5] = String.valueOf(livre.getIsbn());
             row[6] = String.valueOf(livre.getPrix());
             row[7] = su.getOneById(livre.getId_auteur()).getNom() + " " + su.getOneById(livre.getId_auteur()).getPrenom();
-             data.add(row);
+            data.add(row);
         }
-      
+        
         System.out.println(sc.getAll());
         try {
             // generate the PDF file
@@ -320,7 +352,7 @@ public class LivreController implements Initializable {
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             PdfWriter.getInstance(document, baos);
             document.open();
-
+            
             PdfPTable table = new PdfPTable(8);
             table.addCell("Tire");
             table.addCell("Categorie");
@@ -330,7 +362,7 @@ public class LivreController implements Initializable {
             table.addCell("Isbn");
             table.addCell("Prix");
             table.addCell("Auteur");
-
+            
             for (String[] row : data) {
                 for (String cell : row) {
                     table.addCell(cell);
@@ -358,29 +390,39 @@ public class LivreController implements Initializable {
             e.printStackTrace();
         }
     }
-
+    
     @FXML
     private void search_livre(KeyEvent event) {
         filter();
         affiche1();
     }
+
     public void filter() {
         
         String s = search.getCharacters().toString();
         ServiceLivre e = new ServiceLivre();
         this.e1 = e.getAll();
         
-        
         if (!s.isEmpty()) {
             this.e1 = ServiceLivre.filterByName(this.e1, s);
-
+            
         }
     }
-
+    
     public void affiche1() {
-
+        
         ServiceLivre se = new ServiceLivre();
         livreview.setItems(FXCollections.observableArrayList(this.e1));
     }
-
+    
+    @FXML
+    private void Buttonimage(ActionEvent event) {
+        
+        FileChooser filech = new FileChooser();
+        imageFile = filech.showOpenDialog(null);
+        if (imageFile != null) {
+            fileImage.setText(imageFile.getAbsolutePath());
+        }
+        
+    }
 }
