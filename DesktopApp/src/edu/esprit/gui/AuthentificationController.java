@@ -42,8 +42,6 @@ public class AuthentificationController implements Initializable {
     private Parent root;
     Connection cnx = DataSource.getInstance().getCnx();
     @FXML
-    private TextField password;
-    @FXML
     private TextField username;
     @FXML
     private Button reset;
@@ -51,6 +49,8 @@ public class AuthentificationController implements Initializable {
     private Button Logiiin;
 
     private final String path = "src\\LoginData.ini";
+    @FXML
+    private PasswordField password;
     
 
     /**
@@ -85,7 +85,7 @@ public class AuthentificationController implements Initializable {
         System.out.println(Log_in.getUsername());
             Alert a = new Alert(Alert.AlertType.INFORMATION, "Authentified Succefully!", ButtonType.OK);
             a.showAndWait(); 
-        su.createiniFile(path, username.getText(), password.getText());
+        su.createiniFile(path,u.getId(),u.getNom(),u.getPrenom(),username.getText(), password.getText(),u.getRole(),u.getnum_telephone());
         
             if (u.getRole().equals("Administrateur")) {
             Parent root = FXMLLoader.load(getClass().getResource("Utilisateur.fxml"));

@@ -448,15 +448,20 @@ public class ServiceUtilisateur implements IService<Utilisateur> {
 }
     
     /***********************************Create login files****************************************/
-        public void createiniFile(String path, String user, String pass) {
+        public void createiniFile(String path,int id , String nom,String prenom , String user, String pass , String role ,  int numtel) {
         try {
             File file = new File(path);
             if (!file.exists()) {
                 file.createNewFile();
             }
             Wini wini = new Wini(new File(path));
+            wini.put("Login data", "id", id);
+            wini.put("Login data", "Nom", nom);
+            wini.put("Login data", "Prénom", prenom);
             wini.put("Login data", "Email", user);
             wini.put("Login data", "Password", pass);
+            wini.put("Login data", "Numéro Téléphone", numtel);
+            wini.put("Login data", "Role", role);
             wini.store();
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
