@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="edu.esprit.gui.ModifierutilisateurconnecteController">
+   <children>
+      <VBox layoutX="312.0" layoutY="96.0" prefHeight="166.0" prefWidth="153.0" spacing="21.0">
+         <children>
+            <TextField fx:id="cat_name" layoutX="10.0" layoutY="10.0" />
+            <TextField fx:id="cat_prenom" layoutX="10.0" layoutY="35.0" prefHeight="71.0" prefWidth="153.0" />
+            <TextField fx:id="cat_email" layoutX="10.0" layoutY="10.0" />
+            <PasswordField fx:id="cat_password" />
+            <TextField fx:id="cat_tel" layoutX="10.0" layoutY="10.0" prefHeight="116.0" prefWidth="153.0" />
+         </children>
+      </VBox>
+      <VBox layoutX="181.0" layoutY="96.0" prefHeight="144.0" prefWidth="91.0" spacing="25.0">
+         <children>
+            <Label text="Nom">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="10.0" layoutY="10.0" text="Prenom">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="10.0" layoutY="27.0" text="Email" textFill="#191818">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="10.0" layoutY="100.0" text="Mot de passe" textFill="#1b1a1a">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="10.0" layoutY="145.0" text="Telephone" textFill="#0b0b0b">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+      <Button fx:id="update_user" layoutX="237.0" layoutY="333.0" mnemonicParsing="false" onAction="#updateuser" styleClass="addbtn" stylesheets="@styles/fxmlmaktabti.css" text="Modifier" />
+      <Button layoutX="354.0" layoutY="333.0" mnemonicParsing="false" styleClass="deletebtn" stylesheets="@styles/fxmlmaktabti.css" text="Reset" />
+   </children>
+</AnchorPane>

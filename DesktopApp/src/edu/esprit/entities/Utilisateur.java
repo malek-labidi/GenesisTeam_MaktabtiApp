@@ -41,6 +41,16 @@ public abstract class Utilisateur {
         this.num_telephone = num_telephone;
         this.role = role;
     }
+    
+        public Utilisateur(int id, String nom, String prenom, String email, String mot_de_passe, int num_telephone) {
+        this.id = id;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.email = email;
+        this.mot_de_passe = mot_de_passe;
+        this.num_telephone = num_telephone;
+    }
+        
 
     public Utilisateur(int num_telephone) {
         this.num_telephone = num_telephone;
@@ -99,7 +109,7 @@ public abstract class Utilisateur {
 
     @Override
     public String toString() {
-        return "Utilisateur{" + "nom=" + nom + ", prenom=" + prenom + ", email=" + email + ", mot_de_passe=" + mot_de_passe + ", num_telephone=" + num_telephone + ", role=" + role + '}';
+        return "Utilisateur{" + "id=" + id  + "nom=" + nom + ", prenom=" + prenom + ", email=" + email + ", mot_de_passe=" + mot_de_passe + ", num_telephone=" + num_telephone + ", role=" + role + '}';
     }
 
     public String getRole() {
