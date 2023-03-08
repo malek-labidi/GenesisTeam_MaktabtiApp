@@ -44,6 +44,8 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -76,8 +78,6 @@ public class UtilisateurController implements Initializable {
     @FXML
     private TextField cat_tel;
     @FXML
-    private TextField cat_role;
-    @FXML
     private Button cat_add;
     @FXML
     private Button cat_update;
@@ -96,6 +96,14 @@ public class UtilisateurController implements Initializable {
     private Button reset;
     @FXML
     private Button excel;
+    @FXML
+    private MenuButton menurole;
+    @FXML
+    private MenuItem Admin;
+    @FXML
+    private MenuItem Client;
+    @FXML
+    private MenuItem Auteur;
 
     /**
      * Initializes the controller class.
@@ -123,7 +131,7 @@ public class UtilisateurController implements Initializable {
     //ajouter un utilisateur
     @FXML
      private void adduser(ActionEvent event) {
-         if (cat_name.getText().isEmpty() || cat_prenom.getText().isEmpty() || cat_email.getText().isEmpty() || cat_tel.getText().isEmpty() || cat_password.getText().isEmpty() || cat_role.getText().isEmpty()  ) {
+         if (cat_name.getText().isEmpty() || cat_prenom.getText().isEmpty() || cat_email.getText().isEmpty() || cat_tel.getText().isEmpty() || cat_password.getText().isEmpty() || menurole.getText().isEmpty()  ) {
             Alert a = new Alert(Alert.AlertType.ERROR, "Aucun champ vide n'est accepté", ButtonType.OK);
             a.showAndWait();
         } else if (!Validateemail()) {
@@ -139,7 +147,7 @@ public class UtilisateurController implements Initializable {
         }
         else {
              ServiceUtilisateur su = new ServiceUtilisateur();
-            Utilisateur u = new Utilisateur(cat_name.getText(),cat_prenom.getText(),cat_email.getText(),cat_password.getText(),Integer.parseInt(cat_tel.getText()), cat_role.getText() ) {} ;
+            Utilisateur u = new Utilisateur(cat_name.getText(),cat_prenom.getText(),cat_email.getText(),cat_password.getText(),Integer.parseInt(cat_tel.getText()), menurole.getText() ) {} ;
             su.ajouter(u);
             affiche();
             cat_name.clear();
@@ -147,7 +155,7 @@ public class UtilisateurController implements Initializable {
             cat_email.clear();
             cat_password.clear();
             cat_tel.clear();
-            cat_role.clear();
+        menurole.setText(null);
 
             Alert a = new Alert(Alert.AlertType.INFORMATION, "User added !", ButtonType.OK);
             a.showAndWait();
@@ -197,7 +205,7 @@ public class UtilisateurController implements Initializable {
         Dialog<ButtonType> dialog = new Dialog<>();
         
         
-            if (cat_name.getText().isEmpty() || cat_prenom.getText().isEmpty() || cat_email.getText().isEmpty() || cat_tel.getText().isEmpty() || cat_password.getText().isEmpty() || cat_role.getText().isEmpty()  ) {
+            if (cat_name.getText().isEmpty() || cat_prenom.getText().isEmpty() || cat_email.getText().isEmpty() || cat_tel.getText().isEmpty() || cat_password.getText().isEmpty() || menurole.getText().isEmpty()  ) {
             Alert a = new Alert(Alert.AlertType.ERROR, "Aucun champ vide n'est accepté", ButtonType.OK);
             a.showAndWait();
         } else if (!Validateemail()) {
@@ -224,7 +232,7 @@ public class UtilisateurController implements Initializable {
         Optional<ButtonType> result = dialog.showAndWait();
         if (result.isPresent() && result.get() == buttonTypeYes) {
             ServiceUtilisateur su = new ServiceUtilisateur();
-            Utilisateur u = new Utilisateur(id,cat_name.getText(),cat_prenom.getText(),cat_email.getText(),cat_password.getText(),Integer.parseInt(cat_tel.getText()), cat_role.getText() ) {} ;
+            Utilisateur u = new Utilisateur(id,cat_name.getText(),cat_prenom.getText(),cat_email.getText(),cat_password.getText(),Integer.parseInt(cat_tel.getText()), menurole.getText() ) {} ;
             su.modifier3(u);
             System.out.println(u);
             affiche();
@@ -233,7 +241,7 @@ public class UtilisateurController implements Initializable {
             cat_email.clear();
             cat_password.clear();
             cat_tel.clear();
-            cat_role.clear();
+        menurole.setText(null);
 
             
             Alert a = new Alert(Alert.AlertType.CONFIRMATION, "User Updated Successfully !", ButtonType.OK);
@@ -287,7 +295,7 @@ public class UtilisateurController implements Initializable {
         cat_email.setText(u.getEmail());
         cat_password.setText(u.getMot_de_passe());
         cat_tel.setText(Integer.toString(u.getnum_telephone()));
-        cat_role.setText(u.getRole());
+        menurole.setText(u.getRole());
     }
 
         //Supprimer un utilisateur
@@ -310,7 +318,7 @@ public class UtilisateurController implements Initializable {
             cat_email.clear();
             cat_password.clear();
             cat_tel.clear();
-            cat_role.clear();
+        menurole.setText(null);
             Alert a = new Alert(Alert.AlertType.CONFIRMATION, "User Deleted Successfully !", ButtonType.OK);
             a.showAndWait();
     } }
@@ -344,7 +352,7 @@ public class UtilisateurController implements Initializable {
         cat_email.setText(null);
         cat_password.setText(null);
         cat_tel.setText(null);
-        cat_role.setText(null);
+        menurole.setText(null);
     }
 
     @FXML
@@ -358,11 +366,11 @@ public class UtilisateurController implements Initializable {
 
     //creating an instance of HSSFWorkbook class  
 //declare file name to be create   
-    String filename = "src\\DonnéeUtilisateurs.XLS";  
+    String filename = "src\\edu\\esprit\\excel\\DonnéeUtilisateurs.XLS";  
 //creating an instance of HSSFWorkbook class  
     HSSFWorkbook workbook = new HSSFWorkbook();  
 //invoking creatSheet() method and passing the name of the sheet to be created   
-    HSSFSheet sheet = workbook.createSheet("January");   
+    HSSFSheet sheet = workbook.createSheet("User Details");   
 //creating the 0th row using the createRow() method  
     HSSFRow rowhead = sheet.createRow((short)0);  
 //creating cell by using the createCell() method and setting the values to the cell by using the setCellValue() method  
@@ -401,6 +409,24 @@ public class UtilisateurController implements Initializable {
                 e.printStackTrace();  
                 }                                 
         
+    }
+
+    @FXML
+    private void Adminrole(ActionEvent event) {
+        menurole.setText(Admin.getText());
+
+    }
+
+    @FXML
+    private void clientrole(ActionEvent event) {
+        menurole.setText(Client.getText());
+
+    }
+
+    @FXML
+    private void Auteurrole(ActionEvent event) {
+        menurole.setText(Auteur.getText());
+
     }
     
     //Afficher  la ListView Bien Ordonnée
