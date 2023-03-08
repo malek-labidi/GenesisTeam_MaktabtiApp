@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
@@ -78,12 +79,14 @@
             <Button fx:id="cat_del" layoutX="218.0" layoutY="506.0" mnemonicParsing="false" onAction="#deleteuser" prefHeight="37.0" prefWidth="131.0" styleClass="deletebtn" stylesheets="@styles/fxmlmaktabti.css" text="Supprimer" />
             <ListView fx:id="useview" layoutX="525.0" layoutY="108.0" prefHeight="381.0" prefWidth="379.0" />
             <Button fx:id="reset" layoutX="377.0" layoutY="506.0" mnemonicParsing="false" onAction="#onreset" prefHeight="25.0" prefWidth="91.0" style="-fx-background-color: #FFD700;" styleClass="deletebtn" stylesheets="@styles/fxmlmaktabti.css" text="Reset" />
-            <Button fx:id="excel" layoutX="600.0" layoutY="506.0" mnemonicParsing="false" onAction="#excelfile" prefHeight="37.0" prefWidth="153.0" styleClass="modifybtn" stylesheets="@styles/fxmlmaktabti.css" text="Generate" />
-            <ImageView fitHeight="36.0" fitWidth="30.0" layoutX="608.0" layoutY="510.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@images/excell.png" />
-               </image>
-            </ImageView>
+            <Button fx:id="excel" layoutX="773.0" layoutY="504.0" mnemonicParsing="false" onAction="#excelfile" prefHeight="37.0" prefWidth="131.0" styleClass="modifybtn" stylesheets="@styles/fxmlmaktabti.css" text="Générer">
+               <graphic>
+                  <ImageView fitHeight="36.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/excell.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
             <MenuButton fx:id="menurole" layoutX="300.0" layoutY="384.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="153.0" style="-fx-background-color: white;">
               <items>
                 <MenuItem fx:id="Admin" mnemonicParsing="false" onAction="#Adminrole" text="Administrateur" />
@@ -91,6 +94,17 @@
                   <MenuItem fx:id="Auteur" mnemonicParsing="false" onAction="#Auteurrole" text="Auteur" />
               </items>
             </MenuButton>
+            <Label fx:id="user" layoutX="14.0" layoutY="19.0" prefHeight="35.0" prefWidth="112.0" text="Username">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="prenom" layoutX="14.0" layoutY="52.0" prefHeight="35.0" prefWidth="112.0" text="Username">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <FontAwesomeIconView glyphName="USERS" layoutX="143.0" layoutY="69.0" size="25" wrappingWidth="30.000002473592758" />
          </children>
       </Pane>
    </children>
