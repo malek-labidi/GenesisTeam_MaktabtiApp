@@ -104,7 +104,7 @@ public class UtilisateurController implements Initializable {
     private MenuItem Client;
     @FXML
     private MenuItem Auteur;
-
+ServiceUtilisateur su = new ServiceUtilisateur();
     /**
      * Initializes the controller class.
      */
@@ -113,7 +113,7 @@ public class UtilisateurController implements Initializable {
         useview.setOnMouseClicked(this::getUtilisateur);
         ServiceUtilisateur se=new ServiceUtilisateur();
         this.e1=se.getAll();
-        affiche();
+            affiche(su.getAll());
 
         
     }    
@@ -149,7 +149,7 @@ public class UtilisateurController implements Initializable {
              ServiceUtilisateur su = new ServiceUtilisateur();
             Utilisateur u = new Utilisateur(cat_name.getText(),cat_prenom.getText(),cat_email.getText(),cat_password.getText(),Integer.parseInt(cat_tel.getText()), menurole.getText() ) {} ;
             su.ajouter(u);
-            affiche();
+            affiche(su.getAll());
             cat_name.clear();
             cat_prenom.clear();
             cat_email.clear();
@@ -162,12 +162,12 @@ public class UtilisateurController implements Initializable {
         }
         
     } 
-     public void affiche() {
-        ServiceUtilisateur su = new ServiceUtilisateur();
-        useview.setItems(FXCollections.observableArrayList(su.getAll()));
+     public void affiche(List<Utilisateur> l) {
+        
+        useview.setItems(FXCollections.observableArrayList(l));
         // Définir des cellules personnalisée pour afficher les informations sur l'utilisateur
         useview.setCellFactory(list -> new UtilisateurListCell());
-                useview.setItems(FXCollections.observableArrayList(this.e1));
+        
 
      }
     
@@ -235,7 +235,7 @@ public class UtilisateurController implements Initializable {
             Utilisateur u = new Utilisateur(id,cat_name.getText(),cat_prenom.getText(),cat_email.getText(),cat_password.getText(),Integer.parseInt(cat_tel.getText()), menurole.getText() ) {} ;
             su.modifier3(u);
             System.out.println(u);
-            affiche();
+            affiche(su.getAll());
             cat_name.clear();
             cat_prenom.clear();
             cat_email.clear();
@@ -312,16 +312,18 @@ public class UtilisateurController implements Initializable {
             Utilisateur u= new Utilisateur() {} ;   
             u= useview.getSelectionModel().getSelectedItem();
             su.supprimerUtilisateur(u);
-            affiche();
             cat_name.clear();
             cat_prenom.clear();
             cat_email.clear();
             cat_password.clear();
             cat_tel.clear();
-        menurole.setText(null);
+            menurole.setText(null);
             Alert a = new Alert(Alert.AlertType.CONFIRMATION, "User Deleted Successfully !", ButtonType.OK);
             a.showAndWait();
-    } }
+    }
+            affiche(su.getAll());
+
+    }
 
 
     //Filtres
@@ -342,7 +344,7 @@ public class UtilisateurController implements Initializable {
     private void search(KeyEvent event) {
         
         filter();
-        affiche();
+            affiche(this.e1);
     }
 
     @FXML
