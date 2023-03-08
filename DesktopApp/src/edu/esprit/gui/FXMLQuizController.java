@@ -44,6 +44,7 @@ public class FXMLQuizController implements Initializable {
         affiche();
     }
 
+    //recupérer les donneés et mettre dans la list view quiz
     public void affiche() {
         ServiceQuiz sq = new ServiceQuiz();
         listQuiz.setItems(FXCollections.observableArrayList(sq.getAll()));
@@ -51,6 +52,7 @@ public class FXMLQuizController implements Initializable {
         listQuiz.setCellFactory(list -> new QuizListCell());
     }
 
+    //recuperer et afficher les questions de la quiz
     @FXML
     private void afficheList(MouseEvent event) {
         List<Question> l = new ArrayList<>();
@@ -59,8 +61,8 @@ public class FXMLQuizController implements Initializable {
         listQuestions.setItems(FXCollections.observableArrayList(l));
         listQuestions.setCellFactory(list -> new QuestionListCell());
     }
-    // Définir un ListCell personnalisé pour afficher les informations sur la compétition
-
+    
+    // Définir un ListCell personnalisé pour afficher les informations sur la quiz
     private class QuizListCell extends javafx.scene.control.ListCell<Quiz> {
 
         @Override
@@ -85,7 +87,8 @@ public class FXMLQuizController implements Initializable {
             }
         }
     }
-
+    
+    // Définir un ListCell personnalisé pour afficher les informations sur la question
     private class QuestionListCell extends javafx.scene.control.ListCell<Question> {
 
         @Override

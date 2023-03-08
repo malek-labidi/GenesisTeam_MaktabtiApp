@@ -10,6 +10,7 @@ import edu.esprit.entities.Competition;
 import edu.esprit.entities.Question;
 import edu.esprit.entities.ResultatQuiz;
 import edu.esprit.entities.Utilisateur;
+import edu.esprit.entities.login;
 import edu.esprit.services.ServiceCompetition;
 import edu.esprit.services.ServiceLivre;
 import edu.esprit.services.ServiceResultatQuiz;
@@ -57,6 +58,8 @@ public class FXMLQuestionController implements Initializable {
     @FXML
     private VBox container;
     private List<ToggleGroup> toggleGroups = new ArrayList<>();
+    private login Log_in = login.getInstance();
+
 
     /**
      * Initializes the controller class.
@@ -67,6 +70,7 @@ public class FXMLQuestionController implements Initializable {
 
     }
 
+    //afficher le formulaire de la quiz
     public void getQuestion(int id) {
         this.id = id;
         ServiceCompetition sc = new ServiceCompetition();
@@ -93,6 +97,7 @@ public class FXMLQuestionController implements Initializable {
         this.container.getChildren().addAll(container);
     }
 
+    //enregister les reponses de clients + verification
     @FXML
     private void enregisterResponses(ActionEvent event) {
         ServiceCompetition sc = new ServiceCompetition();
@@ -150,10 +155,10 @@ public class FXMLQuestionController implements Initializable {
              Competition comp = sc.getOneById(id);
              ServiceUtilisateur su = new ServiceUtilisateur();
              
-            MailEnregistrerReponsesQuestion.sendEmail(su.getOneById(3),comp);
+            MailEnregistrerReponsesQuestion.sendEmail(su.getOneById(Log_in.getId()),comp);
             ServiceResultatQuiz sr = new ServiceResultatQuiz();
-            ResultatQuiz rq = new ResultatQuiz(3, idquiz, score, rep);
-            sc.ajouterParticipant(3, comp.getId_competition());
+            ResultatQuiz rq = new ResultatQuiz(Log_in.getId(), idquiz, score, rep);
+            sc.ajouterParticipant(Log_in.getId(), comp.getId_competition());
             System.out.println(rq);
             sr.ajouter(rq);
             System.out.println(sr.getAll());
