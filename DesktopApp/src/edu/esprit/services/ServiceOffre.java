@@ -157,7 +157,7 @@ public class ServiceOffre implements IService<Offre>{
             Statement s = cnx.createStatement();
             ResultSet rs = s.executeQuery(req);
             while (rs.next()) {
-                result = new Livre(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getString(4), rs.getDate(5), rs.getString(6), rs.getInt(7), rs.getInt(8), rs.getString(9), rs.getInt(10));
+                result = new Livre(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getString(4), rs.getDate(5), rs.getString(6), rs.getInt(7), rs.getInt(8), rs.getString(9), rs.getInt(10),null);
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());

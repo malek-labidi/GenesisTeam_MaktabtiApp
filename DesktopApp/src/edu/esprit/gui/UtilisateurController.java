@@ -9,6 +9,7 @@ import edu.esprit.entities.Competition;
 import edu.esprit.entities.Evenement;
 import edu.esprit.entities.Livre;
 import edu.esprit.entities.Utilisateur;
+import edu.esprit.entities.login;
 import edu.esprit.services.ServiceCompetition;
 import edu.esprit.services.ServiceEvenement;
 import edu.esprit.services.ServiceLivre;
@@ -44,6 +45,8 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -76,8 +79,6 @@ public class UtilisateurController implements Initializable {
     @FXML
     private TextField cat_tel;
     @FXML
-    private TextField cat_role;
-    @FXML
     private Button cat_add;
     @FXML
     private Button cat_update;
@@ -96,17 +97,39 @@ public class UtilisateurController implements Initializable {
     private Button reset;
     @FXML
     private Button excel;
+    @FXML
+    private MenuButton menurole;
+    @FXML
+    private MenuItem Admin;
+    @FXML
+    private MenuItem Client;
+    @FXML
+    private MenuItem Auteur;
+
+    ServiceUtilisateur su = new ServiceUtilisateur();
+    @FXML
+    private Label user;
+    @FXML
+    private Label prenom;
 
     /**
      * Initializes the controller class.
      */
+    public void afficheruser(){
+            login Log_in = login.getInstance();
+
+            user.setText(Log_in.getNom());
+            prenom.setText(Log_in.getPrenom());
+
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-                    affiche();
         useview.setOnMouseClicked(this::getUtilisateur);
         ServiceUtilisateur se=new ServiceUtilisateur();
         this.e1=se.getAll();
-        affiche();
+            affiche(su.getAll());
+            afficheruser();
 
         
     }    
@@ -124,7 +147,7 @@ public class UtilisateurController implements Initializable {
     //ajouter un utilisateur
     @FXML
      private void adduser(ActionEvent event) {
-         if (cat_name.getText().isEmpty() || cat_prenom.getText().isEmpty() || cat_email.getText().isEmpty() || cat_tel.getText().isEmpty() || cat_password.getText().isEmpty() || cat_role.getText().isEmpty()  ) {
+         if (cat_name.getText().isEmpty() || cat_prenom.getText().isEmpty() || cat_email.getText().isEmpty() || cat_tel.getText().isEmpty() || cat_password.getText().isEmpty() || menurole.getText().isEmpty()  ) {
             Alert a = new Alert(Alert.AlertType.ERROR, "Aucun champ vide n'est accepté", ButtonType.OK);
             a.showAndWait();
         } else if (!Validateemail()) {
@@ -140,27 +163,27 @@ public class UtilisateurController implements Initializable {
         }
         else {
              ServiceUtilisateur su = new ServiceUtilisateur();
-            Utilisateur u = new Utilisateur(cat_name.getText(),cat_prenom.getText(),cat_email.getText(),cat_password.getText(),Integer.parseInt(cat_tel.getText()), cat_role.getText() ) {} ;
+            Utilisateur u = new Utilisateur(cat_name.getText(),cat_prenom.getText(),cat_email.getText(),cat_password.getText(),Integer.parseInt(cat_tel.getText()), menurole.getText() ) {} ;
             su.ajouter(u);
-            affiche();
+            affiche(su.getAll());
             cat_name.clear();
             cat_prenom.clear();
             cat_email.clear();
             cat_password.clear();
             cat_tel.clear();
-            cat_role.clear();
+        menurole.setText(null);
 
             Alert a = new Alert(Alert.AlertType.INFORMATION, "User added !", ButtonType.OK);
             a.showAndWait();
         }
         
     } 
-     public void affiche() {
-        ServiceUtilisateur su = new ServiceUtilisateur();
-        useview.setItems(FXCollections.observableArrayList(su.getAll()));
+     public void affiche(List<Utilisateur> l) {
+        
+        useview.setItems(FXCollections.observableArrayList(l));
         // Définir des cellules personnalisée pour afficher les informations sur l'utilisateur
         useview.setCellFactory(list -> new UtilisateurListCell());
-                useview.setItems(FXCollections.observableArrayList(this.e1));
+        
 
      }
     
@@ -198,7 +221,7 @@ public class UtilisateurController implements Initializable {
         Dialog<ButtonType> dialog = new Dialog<>();
         
         
-            if (cat_name.getText().isEmpty() || cat_prenom.getText().isEmpty() || cat_email.getText().isEmpty() || cat_tel.getText().isEmpty() || cat_password.getText().isEmpty() || cat_role.getText().isEmpty()  ) {
+            if (cat_name.getText().isEmpty() || cat_prenom.getText().isEmpty() || cat_email.getText().isEmpty() || cat_tel.getText().isEmpty() || cat_password.getText().isEmpty() || menurole.getText().isEmpty()  ) {
             Alert a = new Alert(Alert.AlertType.ERROR, "Aucun champ vide n'est accepté", ButtonType.OK);
             a.showAndWait();
         } else if (!Validateemail()) {
@@ -225,16 +248,16 @@ public class UtilisateurController implements Initializable {
         Optional<ButtonType> result = dialog.showAndWait();
         if (result.isPresent() && result.get() == buttonTypeYes) {
             ServiceUtilisateur su = new ServiceUtilisateur();
-            Utilisateur u = new Utilisateur(id,cat_name.getText(),cat_prenom.getText(),cat_email.getText(),cat_password.getText(),Integer.parseInt(cat_tel.getText()), cat_role.getText() ) {} ;
+            Utilisateur u = new Utilisateur(id,cat_name.getText(),cat_prenom.getText(),cat_email.getText(),cat_password.getText(),Integer.parseInt(cat_tel.getText()), menurole.getText() ) {} ;
             su.modifier3(u);
             System.out.println(u);
-            affiche();
+            affiche(su.getAll());
             cat_name.clear();
             cat_prenom.clear();
             cat_email.clear();
             cat_password.clear();
             cat_tel.clear();
-            cat_role.clear();
+        menurole.setText(null);
 
             
             Alert a = new Alert(Alert.AlertType.CONFIRMATION, "User Updated Successfully !", ButtonType.OK);
@@ -288,7 +311,7 @@ public class UtilisateurController implements Initializable {
         cat_email.setText(u.getEmail());
         cat_password.setText(u.getMot_de_passe());
         cat_tel.setText(Integer.toString(u.getnum_telephone()));
-        cat_role.setText(u.getRole());
+        menurole.setText(u.getRole());
     }
 
         //Supprimer un utilisateur
@@ -305,10 +328,18 @@ public class UtilisateurController implements Initializable {
             Utilisateur u= new Utilisateur() {} ;   
             u= useview.getSelectionModel().getSelectedItem();
             su.supprimerUtilisateur(u);
-            affiche();
+            cat_name.clear();
+            cat_prenom.clear();
+            cat_email.clear();
+            cat_password.clear();
+            cat_tel.clear();
+            menurole.setText(null);
             Alert a = new Alert(Alert.AlertType.CONFIRMATION, "User Deleted Successfully !", ButtonType.OK);
             a.showAndWait();
-    } }
+    }
+            affiche(su.getAll());
+
+    }
 
 
     //Filtres
@@ -329,7 +360,7 @@ public class UtilisateurController implements Initializable {
     private void search(KeyEvent event) {
         
         filter();
-        affiche();
+            affiche(this.e1);
     }
 
     @FXML
@@ -339,7 +370,7 @@ public class UtilisateurController implements Initializable {
         cat_email.setText(null);
         cat_password.setText(null);
         cat_tel.setText(null);
-        cat_role.setText(null);
+        menurole.setText(null);
     }
 
     @FXML
@@ -353,11 +384,11 @@ public class UtilisateurController implements Initializable {
 
     //creating an instance of HSSFWorkbook class  
 //declare file name to be create   
-    String filename = "C:\\Users\\wassi\\Desktop\\DonnéeUtilisateurs.XLS";  
+    String filename = "src\\edu\\esprit\\excel\\DonnéeUtilisateurs.XLS";  
 //creating an instance of HSSFWorkbook class  
     HSSFWorkbook workbook = new HSSFWorkbook();  
 //invoking creatSheet() method and passing the name of the sheet to be created   
-    HSSFSheet sheet = workbook.createSheet("January");   
+    HSSFSheet sheet = workbook.createSheet("User Details");   
 //creating the 0th row using the createRow() method  
     HSSFRow rowhead = sheet.createRow((short)0);  
 //creating cell by using the createCell() method and setting the values to the cell by using the setCellValue() method  
@@ -396,6 +427,24 @@ public class UtilisateurController implements Initializable {
                 e.printStackTrace();  
                 }                                 
         
+    }
+
+    @FXML
+    private void Adminrole(ActionEvent event) {
+        menurole.setText(Admin.getText());
+
+    }
+
+    @FXML
+    private void clientrole(ActionEvent event) {
+        menurole.setText(Client.getText());
+
+    }
+
+    @FXML
+    private void Auteurrole(ActionEvent event) {
+        menurole.setText(Auteur.getText());
+
     }
     
     //Afficher  la ListView Bien Ordonnée
@@ -484,7 +533,7 @@ public class UtilisateurController implements Initializable {
 
                 result = new Utilisateur(rs.getInt(1), rs.getString("nom"), rs.getString(3), rs.getString(4), rs.getString("Mot_de_passe"), rs.getInt("num_telephone"),rs.getString("role")) {};
 
-            }
+            } 
 
         } catch (SQLException ex) {
             System.out.println("Les adresses emails ne doivent etre en doublons");

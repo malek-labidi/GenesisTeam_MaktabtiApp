@@ -42,15 +42,15 @@ public class AuthentificationController implements Initializable {
     private Parent root;
     Connection cnx = DataSource.getInstance().getCnx();
     @FXML
-    private TextField password;
-    @FXML
     private TextField username;
     @FXML
     private Button reset;
     @FXML
     private Button Logiiin;
 
-    private final String path = "src\\LoginData.ini";
+    private final String path = "src\\edu\\esprit\\data\\LoginData.ini";
+    @FXML
+    private PasswordField password;
     
 
     /**
@@ -79,13 +79,18 @@ public class AuthentificationController implements Initializable {
         }else{
         if (u.getMot_de_passe().equals(password.getText()) || u.getEmail().equals(username.getText()) ) {
         System.out.println(u.getRole());
+        Log_in.setId(u.getId());
+        Log_in.setNom(u.getNom());
+        Log_in.setPrenom(u.getPrenom());
         Log_in.setUsername(u.getEmail());
         Log_in.setPassword(u.getMot_de_passe());
+        Log_in.setNumtel(u.getnum_telephone());
+        Log_in.setRole(u.getRole());
         System.out.println(Log_in.getPassword());
         System.out.println(Log_in.getUsername());
             Alert a = new Alert(Alert.AlertType.INFORMATION, "Authentified Succefully!", ButtonType.OK);
             a.showAndWait(); 
-        su.createiniFile(path, username.getText(), password.getText());
+            su.createiniFile(path,username.getText(), password.getText());
         
             if (u.getRole().equals("Administrateur")) {
             Parent root = FXMLLoader.load(getClass().getResource("Utilisateur.fxml"));
@@ -100,7 +105,7 @@ public class AuthentificationController implements Initializable {
             appStage.setScene(homaepageScene);
             appStage.show(); 
             }else if (u.getRole().equals("Client")) {
-            Parent root = FXMLLoader.load(getClass().getResource("Livre.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("FXMLPanier.fxml"));
             Scene homaepageScene = new Scene(root);
             Stage appStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             appStage.setScene(homaepageScene);

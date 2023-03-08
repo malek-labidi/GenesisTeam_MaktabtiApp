@@ -91,7 +91,10 @@ public class ServiceQuiz implements IService<Quiz> {
     @Override
     public void delete(int id) {
         try {
-            String req = "DELETE FROM `quiz` WHERE id_quiz=?";
+            String req = "DELETE q, quiz \n"
+                    + "FROM `quiz` \n"
+                    + "JOIN `question` q ON quiz.id_quiz = q.id_quiz \n"
+                    + "WHERE quiz.id_quiz = ?";
             PreparedStatement ps = cnx.prepareStatement(req);
             ps.setInt(1, id);
             ps.executeUpdate();
@@ -115,7 +118,7 @@ public class ServiceQuiz implements IService<Quiz> {
                 int id_competition = rs.getInt(3);
                 Quiz quiz = new Quiz(id_livre, id_livre, id_competition);
                 result.add(quiz);
-                
+
             }
 
         } catch (SQLException ex) {
@@ -136,7 +139,7 @@ public class ServiceQuiz implements IService<Quiz> {
                 int quizId = rs.getInt(1);
                 int id_livre = rs.getInt(2);
                 int id_competition = rs.getInt(3);
-                
+
                 result = new Quiz(id_livre, id_livre, id_competition);
 
             }
@@ -188,7 +191,7 @@ public class ServiceQuiz implements IService<Quiz> {
                 String reponse_correct = rs.getString(7);
 
                 // Créer une instance de la question
-                Question que = new Question(questionId, quizId,question, choix1, choix2, choix3, reponse_correct);
+                Question que = new Question(questionId, quizId, question, choix1, choix2, choix3, reponse_correct);
 
                 // Ajouter la question à la liste des questions pour le quiz correspondant
                 if (quizQuestionsMap.containsKey(quizId)) {

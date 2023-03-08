@@ -457,6 +457,7 @@ public class ServiceUtilisateur implements IService<Utilisateur> {
             Wini wini = new Wini(new File(path));
             wini.put("Login data", "Email", user);
             wini.put("Login data", "Password", pass);
+
             wini.store();
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
