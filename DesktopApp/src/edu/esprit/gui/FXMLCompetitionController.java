@@ -9,6 +9,7 @@ import com.itextpdf.text.Document;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import edu.esprit.entities.Competition;
+import edu.esprit.entities.login;
 import edu.esprit.services.ServiceCompetition;
 import edu.esprit.services.ServiceLivre;
 import java.io.ByteArrayOutputStream;
@@ -72,6 +73,7 @@ public class FXMLCompetitionController implements Initializable {
     @FXML
     private TextField search;
     private List<Competition> e1 = new ArrayList<>();
+    private login Log_in = login.getInstance();
 
     /**
      * Initializes the controller class.
@@ -80,8 +82,17 @@ public class FXMLCompetitionController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         ServiceCompetition sc = new ServiceCompetition();
+
         this.e1 = sc.getAll();
         affiche();
+
+        if (Log_in.getRole().equals("Client") || Log_in.getRole().equals("Auteur")) {
+            btn_ajouter.setVisible(false);
+            btn_modifier.setVisible(false);
+            btn_supprimer.setVisible(false);
+            pdf.setVisible(false);
+        }
+
     }
 
     @FXML
@@ -277,13 +288,15 @@ public class FXMLCompetitionController implements Initializable {
                 } else {
                     participer.setDisable(false);
                 }
+                if (Log_in.getRole().equals("Administrateur")) {
+                    participer.setVisible(false);
+                }
 
                 participer.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent event) {
-                      //  int id_u = 3;
-                        
-                                          
+                        //  int id_u = 3;
+
                         System.out.println("hello");
                         int id = competition.getId_competition();
                         Dialog<ButtonType> dialog = new Dialog<>();
