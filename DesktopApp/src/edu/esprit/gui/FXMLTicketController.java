@@ -47,6 +47,8 @@ public class FXMLTicketController implements Initializable {
     private ImageView qrCodeImageView;
     @FXML
     private Pane ticketPane;
+    @FXML
+    private Label event;
    
 
     
@@ -72,6 +74,7 @@ public class FXMLTicketController implements Initializable {
         this.auteur.setText(auteur.getNom()+" "+auteur.getPrenom());
         date.setText(evenement.getDate().toString());
         heure.setText(evenement.getHeure().toString());
+        event.setText(evenement.getNom());
         
         
     }

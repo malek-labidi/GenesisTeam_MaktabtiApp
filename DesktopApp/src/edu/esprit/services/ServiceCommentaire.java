@@ -7,6 +7,7 @@ package edu.esprit.services;
 
 import edu.esprit.entities.Commentaire;
 import edu.esprit.util.DataSource;
+import java.awt.print.PrinterJob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,9 +15,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.xml.stream.events.Comment;
 
 /**
  *
@@ -66,7 +64,7 @@ public class ServiceCommentaire implements IService<Commentaire> {
                 String req="DELETE FROM `commentaire` WHERE id_commentaire=?";
                 PreparedStatement ps = cnx.prepareStatement(req);
                 ps.setInt(1, id);
-                ps.executeQuery();
+                ps.executeUpdate();
                 System.out.println("Commentaire deleted!");
             } catch (SQLException ex) {
                 System.out.println(ex.getMessage());
@@ -129,6 +127,17 @@ public class ServiceCommentaire implements IService<Commentaire> {
     }
     return result;
 }
+    private void deleteEventCommentsFromDatabase(int id) {
+        try {
+                String req="DELETE FROM `commentaire` WHERE id_evenement=?";
+                PreparedStatement ps = cnx.prepareStatement(req);
+                ps.setInt(1, id);
+                ps.executeQuery();
+                System.out.println("Commentaire deleted!");
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
+    }
     private static final String[] BAD_WORDS = {"go to hell", "stupid", "you're a dog"};
     public static boolean containsBadWords(String commentaire) {
         String lowercaseCommentaire = commentaire.toLowerCase();
@@ -139,7 +148,8 @@ public class ServiceCommentaire implements IService<Commentaire> {
         }
         return false;
     }
-
+    
+    
     
     
     
