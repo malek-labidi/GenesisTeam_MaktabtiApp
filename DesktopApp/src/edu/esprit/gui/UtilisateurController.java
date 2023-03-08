@@ -9,6 +9,7 @@ import edu.esprit.entities.Competition;
 import edu.esprit.entities.Evenement;
 import edu.esprit.entities.Livre;
 import edu.esprit.entities.Utilisateur;
+import edu.esprit.entities.login;
 import edu.esprit.services.ServiceCompetition;
 import edu.esprit.services.ServiceEvenement;
 import edu.esprit.services.ServiceLivre;
@@ -104,16 +105,31 @@ public class UtilisateurController implements Initializable {
     private MenuItem Client;
     @FXML
     private MenuItem Auteur;
-ServiceUtilisateur su = new ServiceUtilisateur();
+
+    ServiceUtilisateur su = new ServiceUtilisateur();
+    @FXML
+    private Label user;
+    @FXML
+    private Label prenom;
+
     /**
      * Initializes the controller class.
      */
+    public void afficheruser(){
+            login Log_in = login.getInstance();
+
+            user.setText(Log_in.getNom());
+            prenom.setText(Log_in.getPrenom());
+
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         useview.setOnMouseClicked(this::getUtilisateur);
         ServiceUtilisateur se=new ServiceUtilisateur();
         this.e1=se.getAll();
             affiche(su.getAll());
+            afficheruser();
 
         
     }    
@@ -517,7 +533,7 @@ ServiceUtilisateur su = new ServiceUtilisateur();
 
                 result = new Utilisateur(rs.getInt(1), rs.getString("nom"), rs.getString(3), rs.getString(4), rs.getString("Mot_de_passe"), rs.getInt("num_telephone"),rs.getString("role")) {};
 
-            }
+            } 
 
         } catch (SQLException ex) {
             System.out.println("Les adresses emails ne doivent etre en doublons");
