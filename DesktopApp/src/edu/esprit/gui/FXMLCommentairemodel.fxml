@@ -2,9 +2,8 @@
 
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -22,23 +21,20 @@
                   <Insets left="10.0" />
                </HBox.margin>
             </Label>
-            <ImageView fitHeight="34.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
-               <HBox.margin>
-                  <Insets top="13.0" />
-               </HBox.margin>
-            </ImageView>
             <Label fx:id="commentaire" prefHeight="51.0" prefWidth="569.0" styleClass="commentaireLabel" stylesheets="@styles/commentmodel.css" text="Label">
                <HBox.margin>
                   <Insets top="10.0" />
                </HBox.margin>
-               <graphic>
-                  <ImageView fx:id="trash" fitHeight="31.0" fitWidth="26.0" onMouseClicked="#deletecomment">
-                     <image>
-                        <Image url="@images/trash-bin.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
             </Label>
+            <VBox alignment="CENTER_RIGHT">
+               <children>
+                  <Button fx:id="del_btn" mnemonicParsing="false" onAction="#deletecomment" prefHeight="31.0" prefWidth="0.0" style="-fx-background-radius: 50;">
+                     <graphic>
+                        <FontAwesomeIconView fill="#d00b0b" glyphName="TRASH" size="20" />
+                     </graphic>
+                  </Button>
+               </children>
+            </VBox>
          </children>
       </HBox>
    </children>

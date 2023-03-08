@@ -76,9 +76,10 @@ public class FXMLCommentaireController implements Initializable {
     private void submit(ActionEvent event) {
         String c = comment.getText();
         ServiceCommentaire sc = new ServiceCommentaire();
-         boolean containsBadWords = sc.containsBadWords(c);
-          if (containsBadWords) {
-            Alert alert = new Alert(Alert.AlertType.WARNING, "The comment contains bad words you'll be banned and no longued can comment");
+        boolean containsBadWords = sc.containsBadWords(c);
+
+        if (containsBadWords) {
+            Alert alert = new Alert(Alert.AlertType.WARNING, "The comment contains bad words you'll be banned and no longer can comment");
             alert.showAndWait();
             comment.clear();
             submit.setDisable(true);
@@ -86,7 +87,6 @@ public class FXMLCommentaireController implements Initializable {
             sc.ajouter(new Commentaire(1, evenementId, c));
             comment.clear();
             submit.setDisable(false);
-            setCommentList();
             Image image = new Image("/edu/esprit/gui/images/check.png");
 
             ImageView imageView = new ImageView(image);
@@ -94,13 +94,12 @@ public class FXMLCommentaireController implements Initializable {
             imageView.setFitHeight(50);
             Notifications notif = Notifications.create();
             notif.graphic(imageView);
-            notif.text("Votre commentaire a été effectée avec succés");
+            notif.text("Votre commentaire a été effectué avec succès");
             notif.title("Message succès");
             notif.hideAfter(Duration.seconds(5));
             notif.show();
         }
-        sc.ajouter(new Commentaire(1, evenementId, c));
-        
+
         setCommentList();
     }
 
@@ -113,15 +112,15 @@ public class FXMLCommentaireController implements Initializable {
 
     @FXML
     private void back(MouseEvent event) {
-         try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLEvenement.fxml"));
-                Parent root = loader.load();
-                Scene scene = new Scene(root);
-                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                stage.setScene(scene);
-                stage.show();
-            } catch (IOException ex) {
-                System.out.println(ex.getMessage());
-            }
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLEvenement.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 }

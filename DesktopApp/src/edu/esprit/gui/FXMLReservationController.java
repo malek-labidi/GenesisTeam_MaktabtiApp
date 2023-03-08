@@ -38,6 +38,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.print.PrinterJob;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -49,6 +50,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
@@ -67,6 +69,10 @@ public class FXMLReservationController implements Initializable {
     @FXML
     private Spinner<Integer> num_ticket;
     private int id;
+    private ImageView pdf;
+    private Scene billetScene;
+    @FXML
+    private Button but_pdf;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -79,6 +85,8 @@ public class FXMLReservationController implements Initializable {
         SpinnerValueFactory<Integer> value = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 200);
         value.setValue(0);
         num_ticket.setValueFactory(value);
+        but_pdf.setDisable(true);
+        
     }
 
     @FXML
@@ -108,8 +116,8 @@ public class FXMLReservationController implements Initializable {
             String message = "Reservation completed successfully!";
             Alert alert = new Alert(AlertType.INFORMATION, message, ButtonType.OK);
             alert.showAndWait();
-            generateTickets(numTickets, e);
-            
+            but_pdf.setDisable(false);
+
         } else {
             // No tickets available, display a message to the user
             String message = "No tickets available. Please check again later.";
@@ -137,77 +145,40 @@ public class FXMLReservationController implements Initializable {
         }
 
     }
-    private void generateTicketsPDF(int numTickets, Evenement evenement) throws WriterException, DocumentException, IOException {
-    // Prompt user to choose file location to save PDF
-    FileChooser fileChooser = new FileChooser();
-    fileChooser.setTitle("Save PDF");
-    fileChooser.setInitialFileName("tickets.pdf");
-    fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PDF Files", "*.pdf"));
-    File file = fileChooser.showSaveDialog(reserver_btn.getScene().getWindow());
-    if (file == null) {
-        return;
-    }
-
-    Document document = new Document(PageSize.A4);
-    PdfWriter.getInstance(document, new FileOutputStream(file));
-    document.open();
-
-    // Add title
-    Paragraph title = new Paragraph("Tickets for Event " + evenement.getNom());
-    title.setAlignment(Element.ALIGN_CENTER);
-    document.add(title);
-
-    // Add tickets
-    for (int i = 0; i < numTickets; i++) {
-        // Add ticket number
-        Paragraph ticketNumber = new Paragraph("Ticket #" + (i + 1));
-        ticketNumber.setAlignment(Element.ALIGN_CENTER);
-        document.add(ticketNumber);
-
-        // Add QR code
-       
-        
-        //document.add();
-        
-        
-
-        // Add separator
-        //LineSeparator separator = new LineSeparator();
-        //separator.setMarginTop(10);
-        //separator.setMarginBottom(10);
-        //document.add(separator);
-    }
-
-    document.close();
-
-    // Open generated PDF file using default PDF viewer
-    if (Desktop.isDesktopSupported()) {
-        Desktop.getDesktop().open(file);
-    }
-}
-
-
-    private void generateTickets(int numTickets, Evenement evenement) throws WriterException, DocumentException, IOException {
-    ServiceUtilisateur su = new ServiceUtilisateur();
-    
-    generateTicketsPDF(numTickets, evenement);
-
-    // Show success message
-    String message = "Tickets downloaded successfully!";
-    Alert alert = new Alert(AlertType.INFORMATION, message, ButtonType.OK);
-    alert.showAndWait();
-}
 
     @FXML
-    private void downloadTickets(MouseEvent event) throws WriterException, DocumentException, IOException {
-        Evenement evenement=new Evenement();
-        generateTickets(id, evenement);
-        
-        
-        
-        
+    private void downloadpdf(ActionEvent event) {
+        ServiceUtilisateur su = new ServiceUtilisateur();
+        ServiceEvenement se = new ServiceEvenement();
+        Evenement e = se.getOneById(id);
+
+        try {
+
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("FXMLTicket.fxml"));
+            Parent root = fxmlLoader.load();
+            billetScene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setScene(billetScene);
+            stage.show();
+            FXMLTicketController controller = fxmlLoader.getController();
+            controller.QR(su.getOneById(e.getId_auteur()), e);
+
+        } catch (IOException ex) {
+
+            ex.printStackTrace();
+        }
+
+        PrinterJob job = PrinterJob.createPrinterJob();
+        if (job != null) {
+            boolean success = job.showPrintDialog(null);
+            if (success) {
+                job.printPage(billetScene.getRoot());
+                job.endJob();
+            }
+            if (billetScene != null) {
+                billetScene.getWindow().hide();
+            }
+        }
     }
-    
-    
 
 }
