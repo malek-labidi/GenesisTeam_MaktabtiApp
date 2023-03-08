@@ -198,5 +198,17 @@ public class ServiceCompetition implements IService<Competition> {
         }
         return participantsList;
     }
+    
+        public void deletebyLivre(int id) {
+        try {
+            String req = "DELETE FROM `competition` WHERE id_livre=?";
+            PreparedStatement ps = cnx.prepareStatement(req);
+            ps.setInt(1, id);
+            ps.executeUpdate();
+            System.out.println("competition Deleted !");
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
 
 }
