@@ -9,30 +9,24 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1105.0" styleClass="mainFxmlClass" stylesheets="@styles/fxmlmaktabti.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.gui.FXMLEvenementController">
+<AnchorPane id="AnchorPane" prefHeight="626.0" prefWidth="1088.0" styleClass="mainFxmlClass" stylesheets="@styles/fxmlmaktabti.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.gui.FXMLEvenementController">
    <children>
-      <ListView fx:id="event_view" layoutY="167.0" prefHeight="378.0" prefWidth="940.0">
+      <ListView fx:id="event_view" layoutX="135.0" layoutY="167.0" prefHeight="378.0" prefWidth="729.0">
          <effect>
             <DropShadow />
          </effect>
       </ListView>
-      <Label fx:id="event_label" layoutX="126.0" layoutY="36.0" text="Liste des Evenement">
+      <Label fx:id="event_label" layoutX="200.0" layoutY="61.0" text="Liste des Evenement">
          <font>
             <Font size="35.0" />
          </font>
       </Label>
-      <Button layoutX="955.0" layoutY="167.0" mnemonicParsing="false" onAction="#ajout_btn" prefHeight="60.0" prefWidth="110.0" styleClass="addbtn" stylesheets="@styles/fxmlmaktabti.css" text="Ajouter" />
-      <Button layoutX="955.0" layoutY="326.0" mnemonicParsing="false" onAction="#modif_btn" prefHeight="60.0" prefWidth="110.0" styleClass="modifybtn" stylesheets="@styles/fxmlmaktabti.css" text="Modifier" />
-      <Button layoutX="955.0" layoutY="485.0" mnemonicParsing="false" onAction="#supp_btn" prefHeight="60.0" prefWidth="110.0" styleClass="deletebtn" stylesheets="@styles/fxmlmaktabti.css" text="Supprimer" />
-      <TextField fx:id="search" layoutX="670.0" layoutY="33.0" onKeyTyped="#search" prefHeight="58.0" prefWidth="230.0" promptText="Rechercher" stylesheets="@styles/crud.css" />
-      <FontAwesomeIconView glyphName="SEARCH" layoutX="868.0" layoutY="68.0" size="20" />
-      <FontAwesomeIconView glyphName="USER" layoutX="955.0" layoutY="40.0" size="30" />
-      <Label layoutX="993.0" layoutY="17.0" text="user">
-         <font>
-            <Font name="System Bold" size="17.0" />
-         </font>
-      </Label>
-      <FontAwesomeIconView glyphName="LIST" layoutX="86.0" layoutY="75.0" size="40" />
+      <Button fx:id="ajouter" layoutX="955.0" layoutY="167.0" mnemonicParsing="false" onAction="#ajout_btn" prefHeight="60.0" prefWidth="110.0" styleClass="addbtn" stylesheets="@styles/fxmlmaktabti.css" text="Ajouter" />
+      <Button fx:id="modifier" layoutX="955.0" layoutY="326.0" mnemonicParsing="false" onAction="#modif_btn" prefHeight="60.0" prefWidth="110.0" styleClass="modifybtn" stylesheets="@styles/fxmlmaktabti.css" text="Modifier" />
+      <Button fx:id="supprimer" layoutX="955.0" layoutY="485.0" mnemonicParsing="false" onAction="#supp_btn" prefHeight="60.0" prefWidth="110.0" styleClass="deletebtn" stylesheets="@styles/fxmlmaktabti.css" text="Supprimer" />
+      <TextField fx:id="search" layoutX="684.0" layoutY="57.0" onKeyTyped="#search" prefHeight="58.0" prefWidth="230.0" promptText="Rechercher" stylesheets="@styles/crud.css" />
+      <FontAwesomeIconView glyphName="SEARCH" layoutX="877.0" layoutY="93.0" size="20" />
+      <FontAwesomeIconView glyphName="LIST" layoutX="160.0" layoutY="100.0" size="40" />
       <FontAwesomeIconView fill="#c6b8b8" glyphName="PLUS" layoutX="963.0" layoutY="206.0" size="20" />
       <FontAwesomeIconView fill="#c6b8b8" glyphName="EDIT" layoutX="962.0" layoutY="364.0" size="20" />
       <FontAwesomeIconView fill="#726c6c" glyphName="TRASH" layoutX="957.0" layoutY="522.0" size="20" />

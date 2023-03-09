@@ -8,8 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="edu.esprit.gui.ModifierutilisateurconnecteController">
+<AnchorPane id="AnchorPane" prefHeight="423.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.gui.ModifierutilisateurconnecteController">
    <children>
       <VBox layoutX="312.0" layoutY="96.0" prefHeight="166.0" prefWidth="153.0" spacing="21.0">
          <children>
@@ -20,36 +19,32 @@
             <TextField fx:id="cat_tel" layoutX="10.0" layoutY="10.0" prefHeight="116.0" prefWidth="153.0" />
          </children>
       </VBox>
-      <VBox layoutX="181.0" layoutY="96.0" prefHeight="144.0" prefWidth="91.0" spacing="25.0">
-         <children>
-            <Label text="Nom">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-            </Label>
-            <Label layoutX="10.0" layoutY="10.0" text="Prenom">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-            </Label>
-            <Label layoutX="10.0" layoutY="27.0" text="Email" textFill="#191818">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-            </Label>
-            <Label layoutX="10.0" layoutY="100.0" text="Mot de passe" textFill="#1b1a1a">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-            </Label>
-            <Label layoutX="10.0" layoutY="145.0" text="Telephone" textFill="#0b0b0b">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-            </Label>
-         </children>
-      </VBox>
-      <Button fx:id="update_user" layoutX="237.0" layoutY="333.0" mnemonicParsing="false" onAction="#updateuser" styleClass="addbtn" stylesheets="@styles/fxmlmaktabti.css" text="Modifier" />
-      <Button layoutX="354.0" layoutY="333.0" mnemonicParsing="false" styleClass="deletebtn" stylesheets="@styles/fxmlmaktabti.css" text="Reset" />
+      <Button fx:id="update_user" layoutX="236.0" layoutY="349.0" mnemonicParsing="false" onAction="#updateuser" styleClass="addbtn" stylesheets="@styles/fxmlmaktabti.css" text="Modifier" />
+      <Button layoutX="353.0" layoutY="349.0" mnemonicParsing="false" styleClass="deletebtn" stylesheets="@styles/fxmlmaktabti.css" text="Reset" />
+      <Label layoutX="211.0" layoutY="134.0" prefHeight="54.0" prefWidth="52.0" text="Prenom">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="220.0" layoutY="96.0" text="Nom">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="203.0" layoutY="255.0" prefHeight="30.0" prefWidth="88.0" text="Mot de passe" textFill="#1b1a1a">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="228.0" layoutY="309.0" text="Telephone" textFill="#0b0b0b">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="219.0" layoutY="206.0" text="Email" textFill="#191818">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

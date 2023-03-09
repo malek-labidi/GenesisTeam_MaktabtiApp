@@ -109,7 +109,7 @@ public class AuthentificationController implements Initializable {
                 su.createiniFile(path,username.getText(), password.getText());
             }
             if (u.getRole().equals("Administrateur")) {
-            Parent root = FXMLLoader.load(getClass().getResource("Modifierutilisateurconnecte.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("FXMLMaktabti.fxml"));
             Scene homaepageScene = new Scene(root);
             Stage appStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             appStage.setScene(homaepageScene);
@@ -121,7 +121,7 @@ public class AuthentificationController implements Initializable {
             appStage.setScene(homaepageScene);
             appStage.show(); 
             }else if (u.getRole().equals("Client")) {
-            Parent root = FXMLLoader.load(getClass().getResource("FXMLPanier.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("FXMLMaktabti.fxml"));
             Scene homaepageScene = new Scene(root);
             Stage appStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             appStage.setScene(homaepageScene);

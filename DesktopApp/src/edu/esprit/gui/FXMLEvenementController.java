@@ -10,6 +10,7 @@ import edu.esprit.entities.Commentaire;
 import edu.esprit.entities.EtatReservation;
 import edu.esprit.entities.Evenement;
 import edu.esprit.entities.Reservation;
+import edu.esprit.entities.login;
 import edu.esprit.services.ServiceCommentaire;
 import edu.esprit.services.ServiceEvenement;
 import edu.esprit.services.ServiceLivre;
@@ -64,9 +65,13 @@ public class FXMLEvenementController implements Initializable {
     private TextField search;
     
     private List<Evenement> e1 = new ArrayList<>();
+private login Log_in = login.getInstance();
     @FXML
-    private WebView webview;
-
+    private Button ajouter;
+    @FXML
+    private Button modifier;
+    @FXML
+    private Button supprimer;
     /**
      * the controller class.
      */
@@ -77,6 +82,12 @@ public class FXMLEvenementController implements Initializable {
         
         this.e1=se.getAll();
         affiche();
+           if (Log_in.getRole().equals("Client") || Log_in.getRole().equals("Auteur")) {
+            ajouter.setVisible(false);
+            modifier.setVisible(false);
+            supprimer.setVisible(false);
+           
+        }
         
         
     }
@@ -225,9 +236,7 @@ private void supp_btn(ActionEvent event) {
                 Button reserver = new Button("Reserver");
 
                 reserver.setStyle(" -fx-background-color: #f8a375;-fx-text-fill: white;-fx-font-size: 16px; -fx-background-radius: 8px; -fx-font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;");
-                Button location = new Button("Location");
-
-                location.setStyle(" -fx-background-color: #034396;-fx-text-fill: white;-fx-font-size: 16px; -fx-background-radius: 8px; -fx-font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;");
+               
                 Button commenter = new Button("Commenter");
 
                 commenter.setStyle(" -fx-background-color: #f8a375;-fx-text-fill: white;-fx-font-size: 16px; -fx-background-radius: 8px; -fx-font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;");
@@ -294,7 +303,7 @@ private void supp_btn(ActionEvent event) {
                     }
                     
                 });
-                HBox hbox=new HBox(reserver,location,commenter);
+                HBox hbox=new HBox(reserver,commenter);
                 hbox.setSpacing(15);
 
                 VBox vbox = new VBox(nameLabel, idLabel, lieu, ticket, date, Description, auteur,hbox);

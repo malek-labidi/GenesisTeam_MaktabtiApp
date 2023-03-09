@@ -99,7 +99,7 @@ public class ConsulterFideliteController implements Initializable {
                 alert.show();
         }*/
        
-        Fidelite f =sf.getOneByIdClient(2);
+        Fidelite f =sf.getOneByIdClient(8);
         int totalacha=f.getTotal_achat();
          if (totalacha <1000 && totalacha > 0){
             a.setText("bronze");
@@ -108,7 +108,7 @@ public class ConsulterFideliteController implements Initializable {
         }else if (totalacha > 2000){
             a.setText("gold");     
         }
-        int total=sf.totalacha(2);
+        int total=sf.totalacha(8);
         if(a.getText().equals("bronze")){
             b.setText("Pour passer au fidélité de type silver vous devez effectuer des achats de total >=1000 /n sachant que votre total achat=" + total);
         }else if(a.getText().equals("silver")){

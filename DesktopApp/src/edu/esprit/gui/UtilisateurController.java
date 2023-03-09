@@ -107,21 +107,13 @@ public class UtilisateurController implements Initializable {
     private MenuItem Auteur;
 
     ServiceUtilisateur su = new ServiceUtilisateur();
-    @FXML
     private Label user;
-    @FXML
     private Label prenom;
 
     /**
      * Initializes the controller class.
      */
-    public void afficheruser(){
-            login Log_in = login.getInstance();
-
-            user.setText(Log_in.getNom());
-            prenom.setText(Log_in.getPrenom());
-
-    }
+  
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -129,7 +121,7 @@ public class UtilisateurController implements Initializable {
         ServiceUtilisateur se=new ServiceUtilisateur();
         this.e1=se.getAll();
             affiche(su.getAll());
-            afficheruser();
+           
 
         
     }    

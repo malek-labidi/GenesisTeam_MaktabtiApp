@@ -175,7 +175,7 @@
                         <FontAwesomeIconView glyphName="GEAR" size="30" styleClass="button3" />
                      </graphic>
                   </Button>
-                  <ImageView fitHeight="40.0" fitWidth="34.0">
+                  <ImageView fx:id="panier" fitHeight="40.0" fitWidth="34.0" onMouseClicked="#panier">
                      <image>
                         <Image url="@images/paniers.png" />
                      </image>

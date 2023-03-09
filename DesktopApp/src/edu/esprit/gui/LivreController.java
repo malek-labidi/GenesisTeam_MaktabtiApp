@@ -12,6 +12,7 @@ import edu.esprit.api.MailLivre;
 import edu.esprit.entities.Categorie;
 import edu.esprit.entities.Livre;
 import edu.esprit.entities.Utilisateur;
+import edu.esprit.entities.login;
 import edu.esprit.services.ServiceCategorie;
 import edu.esprit.services.ServiceCompetition;
 import edu.esprit.services.ServiceLivre;
@@ -119,7 +120,7 @@ public class LivreController implements Initializable {
     private Button pausebutton;
     @FXML
     private Button musicButton;
-
+private login Log_in = login.getInstance();
     /**
      * Initializes the controller class.
      */
@@ -142,12 +143,18 @@ public class LivreController implements Initializable {
         });
 
         listauteur.setItems(FXCollections.observableArrayList(auteurs));
+           if (Log_in.getRole().equals("Client")) {
+            cat_add.setVisible(false);
+            cat_del.setVisible(false);
+            cat_update.setVisible(false);
+            PDF.setVisible(false);
+        }
 
     }
 
     
     
-    String path = "C:\\xampp\\htdocs\\music\\Alok & Alan Walker.mp3";
+    String path = "C:\\xampp1\\htdocs\\music\\Alok & Alan Walker.mp3";
     Media media = new Media(new File(path).toURI().toString());
     MediaPlayer mediaPlayer = new MediaPlayer(media);
     @FXML
@@ -303,6 +310,10 @@ public class LivreController implements Initializable {
             Alert a = new Alert(Alert.AlertType.INFORMATION, "Livre supprimé !", ButtonType.OK);
             a.showAndWait();
         }
+        
+        
+        
+        
     }
 
     public void affiche() {

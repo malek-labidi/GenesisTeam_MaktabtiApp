@@ -6,8 +6,10 @@
 package edu.esprit.gui;
 
 import edu.esprit.entities.Commentaire;
+import edu.esprit.entities.Utilisateur;
 import edu.esprit.services.ServiceCommentaire;
 import edu.esprit.services.ServiceTicket;
+import edu.esprit.services.ServiceUtilisateur;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -52,8 +54,10 @@ public class FXMLCommentairemodelController implements Initializable {
     }
 
     public void setCommentaire(Commentaire c) {
+        ServiceUtilisateur u = new ServiceUtilisateur();
+        Utilisateur ut = u.getOneById(c.getId_client());
         commentaireData = c;
-        user.setText(String.valueOf(c.getId_client()));
+        user.setText(ut.getPrenom()+" "+ut.getNom());
         commentaire.setText(c.getCommentaire());
      
         

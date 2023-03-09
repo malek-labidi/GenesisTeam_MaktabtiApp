@@ -37,8 +37,8 @@
                   </Label>
                </children>
             </VBox>
-            <Button ellipsisString="12" layoutX="241.0" layoutY="332.0" minHeight="17.0" mnemonicParsing="false" onAction="#registrationpage" prefHeight="39.0" prefWidth="140.0" style="-fx-background-color: grey;" styleClass="modifybtn" stylesheets="@styles/fxmlmaktabti.css" text="Créer un compte" />
-            <Button fx:id="Logiiin" layoutX="188.0" layoutY="273.0" mnemonicParsing="false" onAction="#login" prefHeight="46.0" prefWidth="110.0" styleClass="addbtn" stylesheets="@styles/fxmlmaktabti.css" text="S'authentifier" />
+            <Button ellipsisString="12" layoutX="231.0" layoutY="334.0" minHeight="17.0" mnemonicParsing="false" onAction="#registrationpage" prefHeight="39.0" prefWidth="161.0" style="-fx-background-color: grey;" styleClass="modifybtn" stylesheets="@styles/fxmlmaktabti.css" text="Créer un compte" />
+            <Button fx:id="Logiiin" layoutX="172.0" layoutY="273.0" mnemonicParsing="false" onAction="#login" prefHeight="46.0" prefWidth="126.0" styleClass="addbtn" stylesheets="@styles/fxmlmaktabti.css" text="S'authentifier" />
             <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="198.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="271.0" layoutY="49.0">
                <image>

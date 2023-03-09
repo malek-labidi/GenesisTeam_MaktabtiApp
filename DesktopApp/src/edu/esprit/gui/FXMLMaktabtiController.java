@@ -21,6 +21,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -74,6 +75,8 @@ public class FXMLMaktabtiController implements Initializable {
     @FXML
     private Label username;
     private HBox centrepage;
+    @FXML
+    private ImageView panier;
 
     /**
      * Initializes the controller class.
@@ -198,6 +201,11 @@ public class FXMLMaktabtiController implements Initializable {
     @FXML
     private void afficherquiz(ActionEvent event) {
         loadPage("FXMLQuiz");
+    }
+
+    @FXML
+    private void panier(MouseEvent event) {
+        loadPage("FXMLPanierLivre");
     }
 
 }
