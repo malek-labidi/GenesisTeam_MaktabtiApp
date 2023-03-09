@@ -215,4 +215,20 @@ public class ServiceLivre implements IService<Livre> {
 
         return result;
     }
+    public InputStream getImageForLivre(int id) {
+    InputStream result = null;
+    try {
+        String req = "SELECT image FROM livre WHERE id_livre = ?";
+        PreparedStatement ps = cnx.prepareStatement(req);
+        ps.setInt(1, id);
+        ResultSet rs = ps.executeQuery();
+        if (rs.next()) {
+            result = rs.getBinaryStream(1);
+        }
+    } catch (SQLException ex) {
+        System.out.println(ex.getMessage());
+    }
+    return result;
+}
+
 }
