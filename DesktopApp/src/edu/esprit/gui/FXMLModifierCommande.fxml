@@ -6,15 +6,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" stylesheets="@styles/fxmlmaktabti.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="edu.esprit.gui.FXMLModifierCommandeController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" stylesheets="@styles/fxmlmaktabti.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.gui.FXMLModifierCommandeController">
    <children>
-      <Button fx:id="valider" layoutX="421.0" layoutY="212.0" mnemonicParsing="false" onAction="#modifierEtat" prefHeight="38.0" prefWidth="88.0" styleClass="addbtn" stylesheets="@styles/fxmlmaktabti.css" text="Valider" />
+      <Button fx:id="valider" layoutX="246.0" layoutY="301.0" mnemonicParsing="false" onAction="#modifierEtat" prefHeight="38.0" prefWidth="88.0" styleClass="addbtn" stylesheets="@styles/fxmlmaktabti.css" text="Valider" />
       <ComboBox fx:id="comboEtat" layoutX="215.0" layoutY="135.0" prefWidth="150.0" />
       <Label layoutX="145.0" layoutY="146.0" text="Etat" />
-      <Label layoutX="156.0" layoutY="54.0" text="Modifier l'Etat de la Commande">
+      <Label layoutX="134.0" layoutY="65.0" text="Modifier l'Etat de la Commande" underline="true">
          <font>
-            <Font name="System Bold" size="18.0" />
+            <Font name="Apple Braille Outline 6 Dot" size="22.0" />
          </font>
       </Label>
    </children>
