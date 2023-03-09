@@ -540,6 +540,35 @@ public class ServiceUtilisateur implements IService<Utilisateur> {
         return passwordF;
 
     }
+            
+        public void readinifile(String path, TextField userid, PasswordField passid) throws IOException {
+        File file = new File(path);
+        if (file.exists()) {
+                Wini wini = new Wini(new File(path));
+                String username = wini.get("Login data", "Email");
+                String password = wini.get("Login data", "Password");
+                if ((username != null && !username.equals("")) && (password != null && !password.equals(""))) {
+                    userid.setText(username);
+                    passid.setText(password);
+                }
+        }
+    }
+
+        
+            public void Deleteinfo(String path, String user, String pass) {
+        try {
+            File file = new File(path);
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+            Wini wini = new Wini(new File(path));
+            wini.remove("Login data", "Email");
+            wini.remove("Login data", "Password");
+            wini.store();
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
 
  
        
