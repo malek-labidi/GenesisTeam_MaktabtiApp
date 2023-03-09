@@ -86,6 +86,8 @@ public class AuthentificationController implements Initializable {
         Log_in.setPassword(u.getMot_de_passe());
         Log_in.setNumtel(u.getnum_telephone());
         Log_in.setRole(u.getRole());
+            System.out.println(u.getId());
+        System.out.println(Log_in.getId());
         System.out.println(Log_in.getPassword());
         System.out.println(Log_in.getUsername());
             Alert a = new Alert(Alert.AlertType.INFORMATION, "Authentified Succefully!", ButtonType.OK);
@@ -93,7 +95,7 @@ public class AuthentificationController implements Initializable {
             su.createiniFile(path,username.getText(), password.getText());
         
             if (u.getRole().equals("Administrateur")) {
-            Parent root = FXMLLoader.load(getClass().getResource("Utilisateur.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("Modifierutilisateurconnecte.fxml"));
             Scene homaepageScene = new Scene(root);
             Stage appStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             appStage.setScene(homaepageScene);
