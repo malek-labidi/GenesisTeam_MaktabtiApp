@@ -12,14 +12,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane stylesheets="@styles/fxmlmaktabti.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.gui.FXMLMaktabtiController">
    <children>
-      <BorderPane fx:id="bp" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="806.0" prefWidth="1300.0" stylesheets="@styles/fxmlmaktabti.css">
+      <BorderPane fx:id="bp" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="863.0" prefWidth="1300.0" stylesheets="@styles/fxmlmaktabti.css">
          <left>
             <VBox prefHeight="660.0" prefWidth="228.0" style="-fx-background-color: #fff;" styleClass="rect1" stylesheets="@styles/fxmlmaktabti.css" BorderPane.alignment="CENTER">
                <children>
-                  <Button fx:id="home" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="85.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="228.0" text="Home">
+                  <Button fx:id="home" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="85.0" mnemonicParsing="false" onAction="#home" prefHeight="50.0" prefWidth="228.0" styleClass="button3" stylesheets="@styles/fxmlmaktabti.css" text="Home">
                      <graphic>
                         <FontAwesomeIconView glyphName="HOME" size="30" />
                      </graphic>
@@ -27,7 +26,7 @@
                         <Insets left="50.0" />
                      </padding>
                   </Button>
-                  <Button fx:id="livres" alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="228.0" stylesheets="@styles/fxmlmaktabti.css" text="Livres">
+                  <Button fx:id="livres" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#Livres" prefHeight="50.0" prefWidth="228.0" styleClass="button3" stylesheets="@styles/fxmlmaktabti.css" text="Livres">
                      <graphic>
                         <FontAwesomeIconView glyphName="BOOK" size="30" />
                      </graphic>
@@ -35,23 +34,7 @@
                         <Insets left="50.0" />
                      </padding>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="610.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="228.0" text="Categorie">
-                     <graphic>
-                        <FontAwesomeIconView glyphName="LIST" size="30" />
-                     </graphic>
-                     <padding>
-                        <Insets left="50.0" />
-                     </padding>
-                  </Button>
-                  <Button fx:id="commande" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="435.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="228.0" text="Commande">
-                     <graphic>
-                        <FontAwesomeIconView glyphName="TRUCK" size="30" />
-                     </graphic>
-                     <padding>
-                        <Insets left="50.0" />
-                     </padding>
-                  </Button>
-                  <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="135.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="228.0" text="Reclamation">
+                  <Button fx:id="reclamation" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="135.0" mnemonicParsing="false" onAction="#Reclamation" prefHeight="50.0" prefWidth="228.0" styleClass="button3" stylesheets="@styles/fxmlmaktabti.css" text="Reclamation">
                      <graphic>
                         <FontAwesomeIconView glyphName="EDIT" size="30" />
                      </graphic>
@@ -59,15 +42,7 @@
                         <Insets left="50.0" />
                      </padding>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="185.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="228.0" text="Messagerie">
-                     <graphic>
-                        <FontAwesomeIconView glyphName="SEND" size="30" />
-                     </graphic>
-                     <padding>
-                        <Insets left="50.0" />
-                     </padding>
-                  </Button>
-                  <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="235.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="228.0" text="Competition">
+                  <Button fx:id="competition" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="235.0" mnemonicParsing="false" onAction="#competitions" prefHeight="50.0" prefWidth="228.0" styleClass="button3" stylesheets="@styles/fxmlmaktabti.css" text="Competition">
                      <graphic>
                         <FontAwesomeIconView glyphName="GLASS" size="30" />
                      </graphic>
@@ -75,15 +50,7 @@
                         <Insets left="50.0" />
                      </padding>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="285.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="228.0" text="Resultat Competition">
-                     <graphic>
-                        <FontAwesomeIconView glyphName="BAR_CHART" size="30" />
-                     </graphic>
-                     <padding>
-                        <Insets left="50.0" />
-                     </padding>
-                  </Button>
-                  <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="335.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="228.0" text="Evenements">
+                  <Button fx:id="evenements" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="335.0" mnemonicParsing="false" onAction="#events" prefHeight="50.0" prefWidth="228.0" styleClass="button3" stylesheets="@styles/fxmlmaktabti.css" text="Evenements">
                      <graphic>
                         <FontAwesomeIconView glyphName="TICKET" size="30" />
                      </graphic>
@@ -91,23 +58,7 @@
                         <Insets left="50.0" />
                      </padding>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="385.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="228.0" text="Ajout offre">
-                     <graphic>
-                        <FontAwesomeIconView glyphName="PLUS" size="30" />
-                     </graphic>
-                     <padding>
-                        <Insets left="50.0" />
-                     </padding>
-                  </Button>
-                  <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="535.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="228.0" text="Supprimer fidélité">
-                     <graphic>
-                        <FontAwesomeIconView glyphName="TRASH" size="30" />
-                     </graphic>
-                     <padding>
-                        <Insets left="50.0" />
-                     </padding>
-                  </Button>
-                  <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="485.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="228.0" text="Consulter fidelité">
+                  <Button fx:id="fidelite1" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="560.0" mnemonicParsing="false" onAction="#afficherfidelite" prefHeight="50.0" prefWidth="228.0" styleClass="button3" stylesheets="@styles/fxmlmaktabti.css" text="Consulter fidelité">
                      <graphic>
                         <FontAwesomeIconView glyphName="HEART" size="30" />
                      </graphic>
@@ -115,7 +66,63 @@
                         <Insets left="50.0" />
                      </padding>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="585.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="228.0" text="Liste utilisateur">
+                  <Button fx:id="offre" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="385.0" mnemonicParsing="false" onAction="#addOffre" prefHeight="50.0" prefWidth="228.0" styleClass="button3" stylesheets="@styles/fxmlmaktabti.css" text="Ajout offre">
+                     <graphic>
+                        <FontAwesomeIconView glyphName="PLUS" size="30" />
+                     </graphic>
+                     <padding>
+                        <Insets left="50.0" />
+                     </padding>
+                  </Button>
+                  <Button fx:id="categories" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="610.0" mnemonicParsing="false" onAction="#Categories" prefHeight="50.0" prefWidth="228.0" styleClass="button3" stylesheets="@styles/fxmlmaktabti.css" text="Categorie">
+                     <graphic>
+                        <FontAwesomeIconView glyphName="LIST" size="30" />
+                     </graphic>
+                     <padding>
+                        <Insets left="50.0" />
+                     </padding>
+                  </Button>
+                  <Button fx:id="commande" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="435.0" mnemonicParsing="false" onAction="#Commande" prefHeight="50.0" prefWidth="228.0" styleClass="button3" stylesheets="@styles/fxmlmaktabti.css" text="Commande">
+                     <graphic>
+                        <FontAwesomeIconView glyphName="TRUCK" size="30" />
+                     </graphic>
+                     <padding>
+                        <Insets left="50.0" />
+                     </padding>
+                  </Button>
+                  <Button fx:id="messagerie" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="185.0" mnemonicParsing="false" onAction="#Messagerie" prefHeight="50.0" prefWidth="228.0" styleClass="button3" stylesheets="@styles/fxmlmaktabti.css" text="Messagerie">
+                     <graphic>
+                        <FontAwesomeIconView glyphName="SEND" size="30" />
+                     </graphic>
+                     <padding>
+                        <Insets left="50.0" />
+                     </padding>
+                  </Button>
+                  <Button fx:id="resultat" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="285.0" mnemonicParsing="false" onAction="#Resultat" prefHeight="50.0" prefWidth="228.0" styleClass="button3" stylesheets="@styles/fxmlmaktabti.css" text="Resultat Competition">
+                     <graphic>
+                        <FontAwesomeIconView glyphName="BAR_CHART" size="30" />
+                     </graphic>
+                     <padding>
+                        <Insets left="50.0" />
+                     </padding>
+                  </Button>
+                  <Button fx:id="deletefidelite" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="535.0" mnemonicParsing="false" onAction="#deleteFidelite" prefHeight="50.0" prefWidth="228.0" styleClass="button3" stylesheets="@styles/fxmlmaktabti.css" text="Supprimer fidélité">
+                     <graphic>
+                        <FontAwesomeIconView glyphName="TRASH" size="30" />
+                     </graphic>
+                     <padding>
+                        <Insets left="50.0" />
+                     </padding>
+                  </Button>
+                  <Button fx:id="quiz" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="485.0" mnemonicParsing="false" onAction="#afficherquiz" prefHeight="50.0" prefWidth="228.0" styleClass="button3" stylesheets="@styles/fxmlmaktabti.css" text="Consulter quiz">
+                     <graphic>
+                        <FontAwesomeIconView glyphName="QUESTION" size="30" />
+                     </graphic>
+                     <padding>
+                        <Insets left="50.0" />
+                     </padding>
+                  </Button>
+                  <Button fx:id="utilisateur" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="585.0" mnemonicParsing="false" onAction="#utilisateurList" prefHeight="50.0" prefWidth="228.0" styleClass="button3" stylesheets="@styles/fxmlmaktabti.css" text="Liste utilisateur">
                      <graphic>
                         <FontAwesomeIconView glyphName="USERS" size="30" />
                      </graphic>
@@ -123,7 +130,7 @@
                         <Insets left="50.0" />
                      </padding>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="635.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="228.0" text="Logout">
+                  <Button fx:id="logout" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="635.0" mnemonicParsing="false" onAction="#Logout" prefHeight="50.0" prefWidth="228.0" styleClass="button3" stylesheets="@styles/fxmlmaktabti.css" text="Logout">
                      <padding>
                         <Insets left="50.0" />
                      </padding>
@@ -160,12 +167,12 @@
                         <Image url="@images/2.png" />
                      </image>
                   </ImageView>
-                  <Button alignment="CENTER_RIGHT" mnemonicParsing="false">
+                  <Button fx:id="account" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#myAccount" styleClass="button3" stylesheets="@styles/fxmlmaktabti.css">
                      <HBox.margin>
                         <Insets left="710.0" top="20.0" />
                      </HBox.margin>
                      <graphic>
-                        <FontAwesomeIconView glyphName="GEAR" size="30" />
+                        <FontAwesomeIconView glyphName="GEAR" size="30" styleClass="button3" />
                      </graphic>
                   </Button>
                   <ImageView fitHeight="40.0" fitWidth="34.0">
@@ -181,7 +188,7 @@
                         <Insets left="180.0" top="20.0" />
                      </HBox.margin>
                   </FontAwesomeIconView>
-                  <Label text="Label">
+                  <Label fx:id="username" text="Label">
                      <HBox.margin>
                         <Insets top="26.0" />
                      </HBox.margin>

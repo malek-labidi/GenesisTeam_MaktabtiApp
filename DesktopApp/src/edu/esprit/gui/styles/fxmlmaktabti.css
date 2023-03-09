@@ -87,12 +87,12 @@
     -fx-background-color: white;
     -fx-font-size: 14px;
 }
-.button{
+.button3{
     -fx-background-color:#fff;
 }
-.button:hover{
+.button3:hover{
     -fx-background-color:#D3D3D3;
 }
-.button:pressed{
+.button3:pressed{
     -fx-background-color:#fff;
 }
