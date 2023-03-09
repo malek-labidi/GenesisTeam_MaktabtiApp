@@ -11,18 +11,18 @@ package edu.esprit.entities;
  */
 public class Categorie {
     private int id_categorie;
-    private String type_c ;
+    private String nom ;
 
     public Categorie() {
     }
 
-    public Categorie(int id_categorie, String type_c) {
+    public Categorie(int id_categorie, String nom) {
         this.id_categorie = id_categorie;
-        this.type_c = type_c;
+        this.nom = nom;
     }
 
-    public Categorie(String type_c) {
-        this.type_c = type_c;
+    public Categorie(String nom) {
+        this.nom = nom;
     }
 
   
@@ -32,19 +32,19 @@ public class Categorie {
         return id_categorie;
     }
 
-    public String getType_c() {
-        return type_c;
+    public String getNom() {
+        return nom;
     }
 
     
 
-    public void setType_c(String type_c) {
-        this.type_c = type_c;
+    public void setNom(String nom) {
+        this.nom = nom;
     }
 
     @Override
     public String toString() {
-        return "Categorie{" + "type_c=" + type_c + '}';
+        return "Categorie{" + "nom=" + nom + '}';
     }
 
     @Override

@@ -8,7 +8,6 @@ package edu.esprit.gui;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
-import com.itextpdf.text.pdf.languages.ArabicLigaturizer;
 import edu.esprit.api.MailLivre;
 import edu.esprit.entities.Categorie;
 import edu.esprit.entities.Livre;
@@ -23,6 +22,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.util.ArrayList;
@@ -32,7 +32,11 @@ import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
@@ -46,6 +50,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -99,8 +104,9 @@ public class LivreController implements Initializable {
     private TextField fileImage;
     @FXML
     private Button image;
-    @FXML
     private File imageFile;
+    @FXML
+    private Button btn_stat;
 
     /**
      * Initializes the controller class.
@@ -114,7 +120,7 @@ public class LivreController implements Initializable {
         ServiceCategorie sc = new ServiceCategorie();
         List<String> categories = new ArrayList<>();
         for (Categorie cat : sc.getAll()) {
-            categories.add(cat.getType_c());
+            categories.add(cat.getNom());
         }
         listcategorie.setItems(FXCollections.observableArrayList(categories));
         ServiceUtilisateur su = new ServiceUtilisateur();
@@ -139,7 +145,7 @@ public class LivreController implements Initializable {
             List<Categorie> categories = sc.getAll();
             int id = -1;
             for (Categorie l : categories) {
-                if (l.getType_c().equals(listcategorie.getSelectionModel().getSelectedItem())) {
+                if (l.getNom().equals(listcategorie.getSelectionModel().getSelectedItem())) {
                     id = l.getId_categorie();
                     break;
                 }
@@ -210,7 +216,7 @@ public class LivreController implements Initializable {
                 List<Categorie> categories = sc.getAll();
                 int id2 = -1;
                 for (Categorie l : categories) {
-                    if (l.getType_c().equals(listcategorie.getSelectionModel().getSelectedItem())) {
+                    if (l.getNom().equals(listcategorie.getSelectionModel().getSelectedItem())) {
                         id2 = l.getId_categorie();
                         break;
                     }
@@ -300,7 +306,7 @@ public class LivreController implements Initializable {
         List<String> namesC = new ArrayList<>();
         for (Categorie c : cats) {
 
-            String cat = c.getType_c();
+            String cat = c.getNom();
             namesC.add(cat);
         }
         listcategorie.setItems(FXCollections.observableArrayList(namesC));
@@ -316,7 +322,7 @@ public class LivreController implements Initializable {
         List<String> names = new ArrayList<>();
 
         cats.forEach((l) -> {
-            names.add(l.getType_c());
+            names.add(l.getNom());
         });
         listcategorie.setItems(FXCollections.observableArrayList(names));
 
@@ -340,7 +346,7 @@ public class LivreController implements Initializable {
         nb_pages.setText(String.valueOf(l.getNb_pages()));
         date_pub.setValue(l.getDate_pub().toLocalDate());
         isbn.setText(String.valueOf(l.getIsbn()));
-        listcategorie.getSelectionModel().select(sc.getOneById(l.getId_categorie()).getType_c());
+        listcategorie.getSelectionModel().select(sc.getOneById(l.getId_categorie()).getNom());
         String s = ss.getOneById(l.getId_auteur()).getNom() + " " + ss.getOneById(l.getId_auteur()).getPrenom();
         listauteur.getSelectionModel().select(s);
 
@@ -357,7 +363,7 @@ public class LivreController implements Initializable {
         for (Livre livre : sc.getAll()) {
             String[] row = new String[8];
             row[0] = livre.getTitre();
-            row[1] = sl.getOneById(livre.getId_categorie()).getType_c();
+            row[1] = sl.getOneById(livre.getId_categorie()).getNom();
             row[2] = livre.getDate_pub().toString();
             row[3] = livre.getLangue();
             row[4] = livre.getResume();
@@ -446,5 +452,18 @@ public class LivreController implements Initializable {
             fileImage.setText(imageFile.getAbsolutePath());
         }
 
+    }
+
+    @FXML
+    private void stat(ActionEvent event) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("PieChart.fxml"));
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 }

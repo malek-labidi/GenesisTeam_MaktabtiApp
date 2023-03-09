@@ -22,6 +22,15 @@ public class login {
     private int id;
     private int numtel;
     private String prenom;
+    
+    
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public int getNumtel() {
         return numtel;
@@ -55,13 +64,7 @@ public class login {
         this.nom = nom;
     }
 
-    public int getId() {
-        return id;
-    }
 
-    public void setId(int id) {
-        this.id = id;
-    }
 
     // Create a private constructor to prevent external instantiation
     private login() {

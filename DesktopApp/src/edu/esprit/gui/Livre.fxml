@@ -52,7 +52,7 @@
                      </effect>
                   </TextField>
                   <ImageView fitHeight="17.0" fitWidth="16.0" layoutX="765.0" layoutY="74.0" pickOnBounds="true" preserveRatio="true" />
-                  <Label layoutX="10.0" layoutY="82.0" prefHeight="35.0" prefWidth="121.0" text="Livre:" underline="true">
+                  <Label layoutX="4.0" layoutY="60.0" prefHeight="35.0" prefWidth="121.0" text="Livre:" underline="true">
                      <font>
                         <Font name="System Bold Italic" size="32.0" />
                      </font>
@@ -63,7 +63,7 @@
                         <Bloom />
                      </effect>
                   </Label>
-                  <VBox layoutX="19.0" layoutY="164.0" prefHeight="144.0" prefWidth="91.0" spacing="25.0">
+                  <VBox layoutX="45.0" layoutY="118.0" prefHeight="353.0" prefWidth="74.0" spacing="25.0">
                      <children>
                         <Label text="Titre:">
                            <font>
@@ -209,6 +209,15 @@
                         <Cursor fx:constant="WAIT" />
                      </cursor>
                   </Button>
+                  <Button fx:id="btn_stat" layoutX="397.0" layoutY="513.0" mnemonicParsing="false" onAction="#stat" text="Categorie_stat" />
+                  <ImageView fx:id="PDF" fitHeight="37.0" fitWidth="30.0" layoutX="500.0" layoutY="512.0" onMouseClicked="#genererPDF">
+                     <image>
+                        <Image url="@images/pdf.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
                </children>
                <effect>
                   <Lighting>
@@ -236,14 +245,6 @@
       </ImageView>
       <AmbientLight color="CHARTREUSE" lightOn="true" />
       <PointLight color="CHARTREUSE" lightOn="true" />
-      <ImageView fx:id="PDF" fitHeight="37.0" fitWidth="30.0" layoutX="207.0" layoutY="504.0" onMouseClicked="#genererPDF">
-         <image>
-            <Image url="@images/pdf.png" />
-         </image>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </ImageView>
       <Label layoutX="14.0" layoutY="144.0" prefHeight="25.0" prefWidth="109.0" text="Liste des Livre" textFill="#464646c7">
          <font>
             <Font name="System Bold Italic" size="15.0" />
