@@ -4,6 +4,8 @@
  */
 package edu.esprit.gui;
 
+import edu.esprit.api.SendOffreByMail;
+import edu.esprit.api.SendSMS;
 import edu.esprit.entities.Livre;
 import edu.esprit.entities.Offre;
 import static edu.esprit.entities.Offre.verif_pourcentage_solde;
@@ -40,7 +42,7 @@ public class OffreAjoutController implements Initializable {
      * Initializes the controller class.
      */
     @Override
-     public void initialize(URL url, ResourceBundle rb) {
+    public void initialize(URL url, ResourceBundle rb) {
         // TODO
         ServiceLivre sl = new ServiceLivre();
         List<Livre> livres = sl.getAll();
@@ -50,92 +52,101 @@ public class OffreAjoutController implements Initializable {
             names.add(l.getTitre());
         });
         list_livre.setItems(FXCollections.observableArrayList(names));
-    }    
+    }
 
     @FXML
     private void ajouteroffre(ActionEvent event) {
-        int id=-1;
-        float prix=0;
+        int id = -1;
+        float prix = 0;
         ServiceLivre sl = new ServiceLivre();
-                List<Livre> livres = sl.getAll();
-                
-                for (Livre l : livres) {
-                    if (l.getTitre().equals(list_livre.getSelectionModel().getSelectedItem())) {
-                        id=l.getId_livre();
-                        prix=l.getPrix();
-                        break;
-                    }
-                }
-                System.out.println(prix);
-        String ppp=a.getText();
-        ServiceOffre so =new ServiceOffre();
-        if (verif_pourcentage_solde(ppp)==false){
-            
-            Alert alert = new Alert(Alert.AlertType.ERROR, "veuillez saisir une pourcentage sous forme de nn% ", ButtonType.CLOSE);
-                alert.show();
-        }else if(so.getOneByIdlivre(id)!=null){
-             Alert alert = new Alert(Alert.AlertType.ERROR, "ce livre est déja en solde .veuiller modifier l'offre", ButtonType.CLOSE);
-                alert.show();
-            
+        List<Livre> livres = sl.getAll();
+
+        for (Livre l : livres) {
+            if (l.getTitre().equals(list_livre.getSelectionModel().getSelectedItem())) {
+                id = l.getId_livre();
+                prix = l.getPrix();
+                break;
+            }
         }
-        else{
-       
-        float prixsolde=so.calculprixsoldé(prix, ppp);
-        //System.out.println(prixsolde);
-        String priiiix=String.valueOf(prixsolde);
-        //System.out.println(priiiix);
-        
-        //Integer.parseInt(b.getText())
-        //int tt=Integer.parseInt(priiiix);
-        //System.out.println(tt);
-        Offre o =new Offre(id,ppp,prixsolde);
-        
-        
-        so.ajouter(o);
-        b.setText(priiiix);
-        
-        a.clear();
+        System.out.println(prix);
+        String ppp = a.getText();
+        ServiceOffre so = new ServiceOffre();
+        if (verif_pourcentage_solde(ppp) == false) {
+
+            Alert alert = new Alert(Alert.AlertType.ERROR, "veuillez saisir une pourcentage sous forme de nn% ", ButtonType.CLOSE);
+            alert.show();
+        } else if (so.getOneByIdlivre(id) != null) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "ce livre est déja en solde .veuiller modifier l'offre", ButtonType.CLOSE);
+            alert.show();
+
+        } else {
+
+            float prixsolde = so.calculprixsoldé(prix, ppp);
+            //System.out.println(prixsolde);
+            String priiiix = String.valueOf(prixsolde);
+            //System.out.println(priiiix);
+
+            //Integer.parseInt(b.getText())
+            //int tt=Integer.parseInt(priiiix);
+            //System.out.println(tt);
+            Offre o = new Offre(id, ppp, prixsolde);
+
+            // String titre=list_livre.getSelectionModel().getSelectedItem();
+            //  System.out.println(titre);
+            so.ajouter(o);
+
+              SendSMS sm = new SendSMS();
+            sm.sendSMS(o);
+            b.setText(priiiix);
+
+            a.clear();
         }
     }
 
     @FXML
     private void modifierOffre(ActionEvent event) {
-          int id=-1;
-        float prix=0;
+        int id = -1;
+        float prix = 0;
         ServiceLivre sl = new ServiceLivre();
-                List<Livre> livres = sl.getAll();
-                
-                for (Livre l : livres) {
-                    if (l.getTitre().equals(list_livre.getSelectionModel().getSelectedItem())) {
-                        id=l.getId_livre();
-                        prix=l.getPrix();
-                        break;
-                    }
-                }
-                 String ppp=a.getText();
-        ServiceOffre so =new ServiceOffre();
-        float prixsolde=so.calculprixsoldé(prix, ppp);
-          System.out.println(prixsolde);
-        String priiiix=String.valueOf(prixsolde);
-        System.out.println(priiiix);
-        if (so.getOneByIdlivre(id)==null){
-               Alert alert = new Alert(Alert.AlertType.ERROR, "Ce livre n'a pas encore d'offre.Vous devez ajouter une et vous ne pouvez pas modifier ", ButtonType.CLOSE);
-                alert.show();
-                
-                }else{
-            Offre oooo=new Offre();
-            oooo=so.getOneByIdlivre(id);
-                    Offre o =new Offre(oooo.getId_offre(),id,ppp,prixsolde);
-                    so.modifier(o);
+        List<Livre> livres = sl.getAll();
 
-            
+        for (Livre l : livres) {
+            if (l.getTitre().equals(list_livre.getSelectionModel().getSelectedItem())) {
+                id = l.getId_livre();
+                prix = l.getPrix();
+                break;
+            }
         }
+        String ppp = a.getText();
+        ServiceOffre so = new ServiceOffre();
+        float prixsolde = so.calculprixsoldé(prix, ppp);
+        System.out.println(prixsolde);
+        String priiiix = String.valueOf(prixsolde);
+        System.out.println(priiiix);
+        if (so.getOneByIdlivre(id) == null) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Ce livre n'a pas encore d'offre.Vous devez ajouter une et vous ne pouvez pas modifier ", ButtonType.CLOSE);
+            alert.show();
+
+        } else {
+            Offre oooo = new Offre();
+            oooo = so.getOneByIdlivre(id);
+            Offre o = new Offre(oooo.getId_offre(), id, ppp, prixsolde);
+            so.modifier(o);
+
+        }
+
+    }
+
+    @FXML
+    private void Envoyermail(ActionEvent event) {
+        SendOffreByMail.Envoyer();
+        
 
     }
 
 }
 
-       /* @FXML
+/* @FXML
   private void calcul_prix_soldé(KeyEvent event) {
         
              ServiceOffre O = new ServiceOffre();
@@ -155,5 +166,4 @@ public class OffreAjoutController implements Initializable {
                 float ooo=O.calculprixsoldé(prix,ps);
                 b.setText(String.valueOf(ooo));
     }
-*/
-    
+ */

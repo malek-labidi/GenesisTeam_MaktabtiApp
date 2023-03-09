@@ -32,7 +32,7 @@ import javax.mail.Authenticator;
  */
 public class SendOffreByMail {
      
-    public static void main(String[] args) {
+    public static void Envoyer() {
 
         // Set up your email account credentials
         final String username = "maktabti10@gmail.com";
