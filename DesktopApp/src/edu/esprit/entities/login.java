@@ -17,6 +17,54 @@ public class login {
     // Declare instance variables for username and password
     private String username;
     private String password;
+    private String role;
+    private String nom;
+    private int id;
+    private int numtel;
+    private String prenom;
+    
+    
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getNumtel() {
+        return numtel;
+    }
+
+    public void setNumtel(int numtel) {
+        this.numtel = numtel;
+    }
+
+    public String getPrenom() {
+        return prenom;
+    }
+
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+
 
     // Create a private constructor to prevent external instantiation
     private login() {

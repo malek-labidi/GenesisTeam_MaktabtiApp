@@ -26,13 +26,14 @@ public class ServiceCategorie implements IService<Categorie> {
 
     @Override
     public void ajouter(Categorie t) {
-        if (!Categorie.verifString(t.getType_c())) {
+        if (!Categorie.verifString(t.getNom())) {
             try {
-                String req = "INSERT INTO `categorie`(`type_c`) VALUES (?)";
+                String req = "INSERT INTO `categorie`(`nom`) VALUES (?)";
                 PreparedStatement ps = cnx.prepareStatement(req);
-                ps.setString(1, t.getType_c());
+                ps.setString(1, t.getNom());
                 ps.executeUpdate();
                 System.out.println("Categorie added");
+                
             } catch (SQLException ex) {
                 System.out.println(ex.getMessage());
             }
@@ -41,22 +42,21 @@ public class ServiceCategorie implements IService<Categorie> {
     }
 
     @Override
-    public void modifier(Categorie t) {
-                if (!Categorie.verifString(t.getType_c())) {
-                    try {
-                        String req = "UPDATE `categorie` SET `type_c`='?' WHERE 1";
-                        PreparedStatement ps = cnx.prepareStatement(req);
-
-                        ps.setString(1, t.getType_c());
-                        ps.executeUpdate();
-                        System.out.println("Categorie moodifié!");
-                    } catch (SQLException ex) {
-                        System.out.println(ex.getMessage());
-                    }
-                }
-       
-
+public void modifier(Categorie t) {
+    if (!Categorie.verifString(t.getNom())) {
+        try {
+            String req = "UPDATE `categorie` SET `nom`=? WHERE id_categorie=?";
+            PreparedStatement ps = cnx.prepareStatement(req);
+            ps.setString(1, t.getNom());
+            ps.setInt(2, t.getId_categorie());
+            ps.executeUpdate();
+            System.out.println("Categorie modifiée !");
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
+}
+
 
     @Override
     public void delete(int id) {

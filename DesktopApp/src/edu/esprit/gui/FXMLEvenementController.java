@@ -6,9 +6,11 @@
 package edu.esprit.gui;
 
 import edu.esprit.api.MailEvenement;
+import edu.esprit.entities.Commentaire;
 import edu.esprit.entities.EtatReservation;
 import edu.esprit.entities.Evenement;
 import edu.esprit.entities.Reservation;
+import edu.esprit.services.ServiceCommentaire;
 import edu.esprit.services.ServiceEvenement;
 import edu.esprit.services.ServiceLivre;
 import edu.esprit.services.ServiceReservation;
@@ -44,6 +46,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 
 /**
@@ -61,6 +64,8 @@ public class FXMLEvenementController implements Initializable {
     private TextField search;
     
     private List<Evenement> e1 = new ArrayList<>();
+    @FXML
+    private WebView webview;
 
     /**
      * the controller class.
@@ -73,6 +78,7 @@ public class FXMLEvenementController implements Initializable {
         this.e1=se.getAll();
         affiche();
         
+        
     }
 
     @FXML
@@ -82,6 +88,7 @@ public class FXMLEvenementController implements Initializable {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
         stage.show();
+        
     }
 
     @FXML
@@ -121,18 +128,29 @@ public class FXMLEvenementController implements Initializable {
     }
 
     @FXML
-    private void supp_btn(ActionEvent event) {
-        ServiceEvenement sc = new ServiceEvenement();
-        Evenement selectedEvent = event_view.getSelectionModel().getSelectedItem();
-        sc.delete(selectedEvent.getId_evenement());
-        Alert alert = new Alert(Alert.AlertType.INFORMATION, "Event deleted", ButtonType.OK);
-        alert.show();
-
-        // Update the list view by removing the deleted event from the list
-        event_view.getItems().remove(selectedEvent);
-        MailEvenement.sendEmail(selectedEvent);
-        
+private void supp_btn(ActionEvent event) {
+    ServiceEvenement sc = new ServiceEvenement();
+    ServiceCommentaire scom = new ServiceCommentaire();
+    Evenement selectedEvent = event_view.getSelectionModel().getSelectedItem();
+    
+    // Delete all comments related to the selected event
+    List<Commentaire> comments = scom.getCommentairesByEvenement(selectedEvent.getId_evenement());
+    for (Commentaire c : comments) {
+        scom.delete(c.getId_commentaire());
     }
+    
+    // Delete the selected event
+    sc.delete(selectedEvent.getId_evenement());
+    Alert alert = new Alert(Alert.AlertType.INFORMATION, "Event deleted", ButtonType.OK);
+    alert.show();
+
+    // Update the list view by removing the deleted event from the list
+    event_view.getItems().remove(selectedEvent);
+    
+    // Send an email
+    MailEvenement.sendEmail(selectedEvent);
+}
+
 
     private void reserveBtnClicked(ActionEvent event) {
         Evenement selectedEvent = event_view.getSelectionModel().getSelectedItem();
@@ -210,6 +228,9 @@ public class FXMLEvenementController implements Initializable {
                 Button location = new Button("Location");
 
                 location.setStyle(" -fx-background-color: #034396;-fx-text-fill: white;-fx-font-size: 16px; -fx-background-radius: 8px; -fx-font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;");
+                Button commenter = new Button("Commenter");
+
+                commenter.setStyle(" -fx-background-color: #f8a375;-fx-text-fill: white;-fx-font-size: 16px; -fx-background-radius: 8px; -fx-font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;");
 
                 if (evenement.getNb_ticket() == 0) {
                     reserver.setDisable(true);
@@ -218,6 +239,26 @@ public class FXMLEvenementController implements Initializable {
                 } else {
                     reserver.setDisable(false);
                 }
+                commenter.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent event) {
+                        int id = evenement.getId_evenement();
+                        try {
+                                FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLCommentaire.fxml"));
+                                Parent root = loader.load();
+                                FXMLCommentaireController controller = loader.getController();
+                                controller.setEvenementId(id);
+                                Scene scene = new Scene(root);
+                                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                                stage.setScene(scene);
+                                stage.show();
+                            } catch (IOException ex) {
+                                System.out.println(ex.getMessage());
+                            }
+                        } 
+                        
+                    
+                });
                 reserver.setOnAction(new EventHandler<ActionEvent>(){
                     @Override
                     public void handle(ActionEvent event) {
@@ -253,7 +294,7 @@ public class FXMLEvenementController implements Initializable {
                     }
                     
                 });
-                HBox hbox=new HBox(reserver,location);
+                HBox hbox=new HBox(reserver,location,commenter);
                 hbox.setSpacing(15);
 
                 VBox vbox = new VBox(nameLabel, idLabel, lieu, ticket, date, Description, auteur,hbox);

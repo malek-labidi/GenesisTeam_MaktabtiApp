@@ -50,7 +50,7 @@ public class MailEvenement {
          message.setRecipients(Message.RecipientType.TO,InternetAddress.parse("sadoksassi2@gmail.com"));
          message.setSubject("Canceling the event");
          message.setText("cher Mr/Mme,"
-            + "\n\n nous somme vraiment désolé de vous informer que notre evenement"+evenement.getNom()+ "est annulée merci pour votre compréhension ");
+            + "\n\n nous somme vraiment désolé de vous informer que notre evenement"+" "+evenement.getNom()+ " "+"est annulée merci pour votre compréhension ");
 
          Transport.send(message);
 

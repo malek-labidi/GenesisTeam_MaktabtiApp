@@ -1,11 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.gui.FXMLcategorieController">
-    
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" stylesheets="@styles/fxmlmaktabti.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.gui.FXMLcategorieController">
+   <children>
+      <ListView fx:id="list_categorie" layoutX="14.0" layoutY="110.0" onMouseClicked="#mod" prefHeight="253.0" prefWidth="261.0" />
+      <Label layoutX="82.0" layoutY="28.0" prefHeight="32.0" prefWidth="167.0" text="Categorie Livre">
+         <font>
+            <Font name="System Bold" size="22.0" />
+         </font>
+      </Label>
+      <Button fx:id="ajout_btn" layoutX="327.0" layoutY="124.0" mnemonicParsing="false" onAction="#ajouter" prefHeight="37.0" prefWidth="100.0" styleClass="addbtn" stylesheets="@styles/fxmlmaktabti.css" text="Ajouter" />
+      <Button fx:id="modif_btn" layoutX="326.0" layoutY="200.0" mnemonicParsing="false" onAction="#modifier" prefHeight="37.0" prefWidth="100.0" styleClass="modifybtn" stylesheets="@styles/fxmlmaktabti.css" text="Modifier" />
+      <Button fx:id="supp_btn" layoutX="328.0" layoutY="270.0" mnemonicParsing="false" onAction="#supprimer" prefHeight="37.0" prefWidth="100.0" styleClass="deletebtn" stylesheets="@styles/fxmlmaktabti.css" text="Supprimer" />
+      <FontAwesomeIconView fill="#ddd2d2" glyphName="PLUS" layoutX="338.0" layoutY="148.0" size="15" text="" />
+      <FontAwesomeIconView fill="#ddd7d7" glyphName="EDIT" layoutX="330.0" layoutY="225.0" size="15" />
+      <FontAwesomeIconView fill="#d3c9c9" glyphName="CLOSE" layoutX="329.0" layoutY="294.0" size="15" />
+      <FontAwesomeIconView glyphName="BOOK" layoutX="54.0" layoutY="55.0" size="30" />
+      <TextField fx:id="add_categorie" layoutX="436.0" layoutY="130.0" prefHeight="25.0" prefWidth="139.0" promptText="Categorie à ajouter" />
+      <TextField fx:id="modifier_categorie" layoutX="436.0" layoutY="207.0" prefHeight="25.0" prefWidth="139.0" promptText="Categorie à Modifier" />
+   </children>
 </AnchorPane>

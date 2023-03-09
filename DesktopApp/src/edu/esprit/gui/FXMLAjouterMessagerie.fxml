@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="edu.esprit.gui.FXMLAjouterMessagerieController">
+   <children>
+      <TextField fx:id="text_message" layoutX="140.0" layoutY="127.0" prefHeight="133.0" prefWidth="371.0" />
+      <Label layoutX="62.0" layoutY="30.0" prefHeight="106.0" prefWidth="111.0" text="ID" />
+      <Label layoutX="43.0" layoutY="161.0" prefHeight="65.0" prefWidth="98.0" text="message" />
+      <Button fx:id="btn_ajouter" layoutX="434.0" layoutY="306.0" mnemonicParsing="false" onAction="#Ajoutermessage" text="Envoyer" />
+      <Button fx:id="btn_retour" layoutX="37.0" layoutY="306.0" mnemonicParsing="false" onAction="#returnhome" text="Retour" />
+      <ComboBox fx:id="id_utilis" layoutX="140.0" layoutY="70.0" onAction="#drop_id_utilis" prefWidth="150.0" />
+   </children>
+</AnchorPane>
