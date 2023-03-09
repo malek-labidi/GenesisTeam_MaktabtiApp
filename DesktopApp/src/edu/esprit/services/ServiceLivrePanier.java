@@ -6,6 +6,7 @@
 package edu.esprit.services;
 
 import edu.esprit.entities.Livre;
+import edu.esprit.entities.Panier;
 import edu.esprit.entities.PanierLivre;
 import edu.esprit.util.DataSource;
 import java.sql.Connection;
@@ -45,7 +46,7 @@ public class ServiceLivrePanier implements IService <PanierLivre> {
 
     @Override
     public void modifier(PanierLivre t) {
-
+        
     }
 
     @Override
@@ -248,6 +249,50 @@ public List<Livre> afficherLivresDansPanier(int id_panier) {
         System.out.println("Erreur lors de la récupération des livres dans le panier : " + ex.getMessage());
     }
     return var;
+}
+public float calculTotalPrix(int id_panier) {
+        List<Panier> var = new ArrayList();
+        float totalPrix = 0.0f;
+        try {
+            String sql = "SELECT SUM(l.prix * pl.quantite) AS prixTotal \n"
+                    + "FROM panierlivre pl \n"
+                    + "JOIN livre l ON pl.id_livre = l.id_livre \n"
+                    + "WHERE pl.id_panier = ?";
+            PreparedStatement stmt = cnx.prepareStatement(sql);
+            stmt.setInt(1, id_panier);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                totalPrix += rs.getFloat("prixTotal");
+
+            }
+        } catch (SQLException e) {
+            System.err.println("Erreur lors du calcul du total de prix : " + e.getMessage());
+        }
+
+        return totalPrix;
+
+    }
+
+public void updatePanierLivre(int id_livre, int id_client, int quantite) {
+    try {
+
+        // Préparer la requête SQL pour mettre à jour la quantité du livre dans le panier
+        PreparedStatement pstmt = cnx.prepareStatement("UPDATE livrepanier SET quantite=? WHERE id_livre=? AND id_client=?");
+
+        // Définir les paramètres de la requête
+        pstmt.setInt(1, quantite);
+        pstmt.setInt(2, id_livre);
+        pstmt.setInt(3, id_client);
+
+        // Exécuter la requête SQL
+        pstmt.executeUpdate();
+
+        // Fermer la connexion à la base de données
+        cnx.close();
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
 }
 
 

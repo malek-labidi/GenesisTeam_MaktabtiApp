@@ -5,9 +5,13 @@
  */
 package edu.esprit.gui;
 
+import edu.esprit.api.MailCommandeAnnule;
 import edu.esprit.entities.Commande;
 import edu.esprit.entities.Etat;
+import static edu.esprit.entities.Role.Client;
+import edu.esprit.entities.Utilisateur;
 import edu.esprit.services.ServiceCommande;
+import edu.esprit.services.ServiceUtilisateur;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -56,6 +60,13 @@ public class FXMLModifierCommandeController implements Initializable {
         sc.modifier(com);
         Alert alert = new Alert(Alert.AlertType.INFORMATION, "Commande modifier avec succés ", ButtonType.OK);
         alert.show();
+         // Get the user email
+        ServiceUtilisateur utilisateurService = new ServiceUtilisateur();
+        Utilisateur client = utilisateurService.getOneById(c.getId_client());
+        String userEmail = client.getEmail();
+        //if(e==Etat.annuler){
+            MailCommandeAnnule.sendEmail(com);
+        //}
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLCommande.fxml"));
             Parent root = loader.load();
@@ -66,6 +77,7 @@ public class FXMLModifierCommandeController implements Initializable {
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
+       
     }
     
     public void getEtat(int id) {
@@ -73,7 +85,7 @@ public class FXMLModifierCommandeController implements Initializable {
         ServiceCommande sc = new ServiceCommande();
         Commande c = sc.getOneById(id);
         comboEtat.getSelectionModel().select(c.getEtat().toString());
-
+        
     }
     
 }
