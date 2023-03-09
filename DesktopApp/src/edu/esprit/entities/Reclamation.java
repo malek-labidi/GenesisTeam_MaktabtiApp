@@ -10,7 +10,7 @@ package edu.esprit.entities;
  *
  */
 public class Reclamation {
-    private int id_reclamation;
+    private int id_reclamation,user_id ;
     private String message, feedback;
 
     public Reclamation() {
@@ -25,6 +25,20 @@ public class Reclamation {
         this.id_reclamation= id_reclamation;
         this.message = message;
         this.feedback = feedback;
+    }
+    
+    public Reclamation(int id_reclamation, String message, String feedback,int user_id) {
+        this.id_reclamation= id_reclamation;
+        this.message = message;
+        this.feedback = feedback;
+        this.user_id= user_id;
+    }
+
+    public Reclamation(String message, String feedback,int user_id ) {
+        this.message = message;
+        this.feedback = feedback;
+        this.user_id= user_id;
+
     }
 
     public int getId_reclamation() {
@@ -49,6 +63,14 @@ public class Reclamation {
 
     public void setFeedback(String feedback) {
         this.feedback = feedback;
+    }
+
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
+    }
+
+    public int getUser_id() {
+        return user_id;
     }
 
     @Override

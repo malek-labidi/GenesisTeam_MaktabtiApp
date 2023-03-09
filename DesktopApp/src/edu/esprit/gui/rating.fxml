@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="168.0" prefWidth="426.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="edu.esprit.gui.RatingController">
+   <children>
+      <Label layoutX="165.0" layoutY="24.0" text="Rate this app:" />
+      <Slider fx:id="slider" blockIncrement="1.0" layoutX="26.0" layoutY="59.0" majorTickUnit="1.0" max="5.0" min="1.0" minorTickCount="1" prefHeight="35.0" prefWidth="365.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="1.0" />
+      <Button fx:id="btn_env" layoutX="179.0" layoutY="113.0" mnemonicParsing="false" onAction="#envoyerclick" text="Envoyer" />
+   </children>
+</AnchorPane>
