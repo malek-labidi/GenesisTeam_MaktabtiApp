@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -26,16 +27,33 @@ public class ServiceReclamation implements IService<Reclamation> {
     Connection cnx = DataSource.getInstance().getCnx();
 
     @Override
-    public void ajouter(Reclamation r) {
-        try {
-            String req = "INSERT INTO `reclamation` (`message`, `feedback`) VALUES ('" + r.getMessage() + "', '" + r.getFeedback() + "')";
-            Statement st = cnx.createStatement();
-            st.executeUpdate(req);
-            System.out.println("Reclamation created !");
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+public void ajouter(Reclamation r) {
+    try {
+        // check if user has already made 3 reclamations
+        String checkReq = "SELECT COUNT(*) FROM reclamation WHERE user_id = ?";
+        PreparedStatement checkStmt = cnx.prepareStatement(checkReq);
+        checkStmt.setInt(1, r.getUser_id());
+        ResultSet rs = checkStmt.executeQuery();
+        rs.next();
+        int count = rs.getInt(1);
+        if (count >= 3) {
+    JOptionPane.showMessageDialog(null, "User has already made 3 reclamations", "Alert", JOptionPane.WARNING_MESSAGE);
+            return;
         }
+
+        // insert new reclamation
+        String insertReq = "INSERT INTO reclamation (message, feedback, user_id) VALUES (?, ?, ?)";
+        PreparedStatement insertStmt = cnx.prepareStatement(insertReq);
+        insertStmt.setString(1, r.getMessage());
+        insertStmt.setString(2, r.getFeedback());
+        insertStmt.setInt(3, r.getUser_id());
+        insertStmt.executeUpdate();
+        System.out.println("Reclamation created !");
+    } catch (SQLException ex) {
+        System.out.println(ex.getMessage());
     }
+}
+
 
     @Override
     public void delete(int id_reclamation) {
@@ -74,7 +92,7 @@ public class ServiceReclamation implements IService<Reclamation> {
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(req);
             while (rs.next()) {
-                Reclamation r = new Reclamation(rs.getInt(1), rs.getString("message"), rs.getString(3));
+                Reclamation r = new Reclamation(rs.getInt(1), rs.getString("message"), rs.getString(3),rs.getInt("user_id"));
                 list.add(r);
             }
         } catch (SQLException ex) {
@@ -116,5 +134,8 @@ public class ServiceReclamation implements IService<Reclamation> {
     }
 
    
+   
+    
 
 }
+

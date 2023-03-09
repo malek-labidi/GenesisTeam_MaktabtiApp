@@ -1,15 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="edu.esprit.gui.AffichageController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" stylesheets="@styles/fxmlmaktabti.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.gui.AffichageController">
    <children>
-      <ListView fx:id="idlist" layoutX="12.0" layoutY="24.0" prefHeight="378.0" prefWidth="288.0" />
-      <Button layoutX="368.0" layoutY="326.0" mnemonicParsing="false" onAction="#delete" text="Delete" />
+      <ListView fx:id="idlist" layoutX="12.0" layoutY="24.0" prefHeight="359.0" prefWidth="288.0" />
+      <Button layoutX="379.0" layoutY="309.0" mnemonicParsing="false" onAction="#delete" prefHeight="54.0" prefWidth="107.0" styleClass="deletebtn" stylesheets="@styles/fxmlmaktabti.css" text="Delete" />
+      <Label layoutX="392.0" layoutY="30.0" text="Fidelité">
+         <font>
+            <Font name="System Bold" size="27.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

@@ -1,6 +1,7 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMain.java to edit this template
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
 package edu.esprit.main;
 
@@ -13,27 +14,30 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 /**
  *
- * @author Gaaloul
+ * @author Ilef
  */
-public class OffreMAin extends Application {
-     
+public class FXReclamation extends Application {
+    
     @Override
     public void start(Stage primaryStage) {
-     try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/edu/esprit/gui/OffreAjout.fxml"));
+       try {
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/FXMLReclamation.fxml"));
             Parent root = loader.load();
             Scene scene = new Scene(root);
+          //  scene.getStylesheets().add("/edu/esprit/gui/styles/crud.css");
+            primaryStage.getIcons().add(new Image("/edu/esprit/gui/images/icon-app-logo.png"));
+            primaryStage.setTitle("Reclamation");
             primaryStage.setScene(scene);
-            primaryStage.setTitle("supprimer fidelite");
             primaryStage.show();
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
-                   
         }
     }
 
@@ -43,5 +47,6 @@ public class OffreMAin extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-    
+
 }
+

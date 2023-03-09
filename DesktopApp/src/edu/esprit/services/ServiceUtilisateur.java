@@ -433,6 +433,7 @@ public class ServiceUtilisateur implements IService<Utilisateur> {
             String hashedPassword = rs.getString("mot_de_passe");
             if (BCrypt.checkpw(password, hashedPassword)) {
                 user = new Utilisateur() {} ;
+                user.setId(rs.getInt("id_utilisateur"));
                 user.setNom(rs.getString("nom"));
                 user.setPrenom(rs.getString("prenom"));
                 user.setEmail(rs.getString("email"));
