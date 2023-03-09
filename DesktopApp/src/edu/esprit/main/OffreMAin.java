@@ -25,7 +25,7 @@ public class OffreMAin extends Application {
     @Override
     public void start(Stage primaryStage) {
      try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/edu/esprit/gui/ConsulterFidelite.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/edu/esprit/gui/OffreAjout.fxml"));
             Parent root = loader.load();
             Scene scene = new Scene(root);
             primaryStage.setScene(scene);
