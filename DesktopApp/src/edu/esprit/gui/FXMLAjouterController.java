@@ -15,9 +15,9 @@ import edu.esprit.services.ServiceUtilisateur;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
-import java.sql.SQLException;
+
 import java.sql.Time;
-import java.time.LocalDate;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
