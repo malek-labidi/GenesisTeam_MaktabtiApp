@@ -30,6 +30,9 @@ import edu.esprit.entities.Utilisateur;
 import edu.esprit.util.DataSource;
 import edu.esprit.entities.login;
 import java.sql.Connection;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.scene.control.RadioButton;
 
 /**
  * FXML Controller class
@@ -51,6 +54,8 @@ public class AuthentificationController implements Initializable {
     private final String path = "src\\edu\\esprit\\data\\LoginData.ini";
     @FXML
     private PasswordField password;
+    @FXML
+    private RadioButton remember;
     
 
     /**
@@ -58,7 +63,12 @@ public class AuthentificationController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        ServiceUtilisateur userService = new ServiceUtilisateur();
+        try {
+            userService.readinifile(path, username, password);
+        } catch (IOException ex) {
+            Logger.getLogger(AuthentificationController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }    
 
 
@@ -90,10 +100,14 @@ public class AuthentificationController implements Initializable {
         System.out.println(Log_in.getId());
         System.out.println(Log_in.getPassword());
         System.out.println(Log_in.getUsername());
-            Alert a = new Alert(Alert.AlertType.INFORMATION, "Authentified Succefully!", ButtonType.OK);
+            Alert a = new Alert(Alert.AlertType.INFORMATION, "Authentifié avec Succées!", ButtonType.OK);
             a.showAndWait(); 
-            su.createiniFile(path,username.getText(), password.getText());
-        
+            
+            if (!remember.isSelected()) {
+               su.Deleteinfo(path, path, path);
+            } else if (remember.isSelected()) {
+                su.createiniFile(path,username.getText(), password.getText());
+            }
             if (u.getRole().equals("Administrateur")) {
             Parent root = FXMLLoader.load(getClass().getResource("Modifierutilisateurconnecte.fxml"));
             Scene homaepageScene = new Scene(root);
@@ -114,7 +128,11 @@ public class AuthentificationController implements Initializable {
             appStage.show(); 
             }
 
-        } 
+        } else{
+        
+            Alert a = new Alert(Alert.AlertType.INFORMATION, "Les données sont invalides!", ButtonType.OK);
+            a.showAndWait(); 
+        }
     }
 
     }

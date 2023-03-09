@@ -3,6 +3,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -15,35 +16,36 @@
    <center>
       <AnchorPane blendMode="HARD_LIGHT" cache="true" prefHeight="400.0" prefWidth="335.0" style="-fx-background-color: #E6EFFB;" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="reset" layoutX="332.0" layoutY="273.0" mnemonicParsing="false" onAction="#reset" prefHeight="45.0" prefWidth="97.0" styleClass="deletebtn" stylesheets="@styles/fxmlmaktabti.css" text="Reset" />
+            <Button fx:id="reset" layoutX="332.0" layoutY="273.0" mnemonicParsing="false" onAction="#reset" prefHeight="45.0" prefWidth="108.0" styleClass="deletebtn" stylesheets="@styles/fxmlmaktabti.css" text="Supprimer" />
             <VBox layoutX="290.0" layoutY="164.0" prefHeight="73.0" prefWidth="147.0">
                <children>
                   <TextField fx:id="username" prefHeight="3.0" prefWidth="100.0" />
                   <PasswordField fx:id="password" />
                </children>
             </VBox>
-            <VBox layoutX="170.0" layoutY="168.0" prefHeight="79.0" prefWidth="100.0">
+            <VBox layoutX="142.0" layoutY="164.0" prefHeight="79.0" prefWidth="139.0">
                <children>
                   <Label text="Email">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
                   </Label>
-                  <Label layoutX="10.0" layoutY="10.0" text="Password">
+                  <Label layoutX="10.0" layoutY="10.0" text="Mot de passe">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
                   </Label>
                </children>
             </VBox>
-            <Button ellipsisString="12" layoutX="241.0" layoutY="332.0" minHeight="17.0" mnemonicParsing="false" onAction="#registrationpage" prefHeight="39.0" prefWidth="140.0" style="-fx-background-color: grey;" styleClass="modifybtn" stylesheets="@styles/fxmlmaktabti.css" text="Register Now" />
-            <Button fx:id="Logiiin" layoutX="203.0" layoutY="273.0" mnemonicParsing="false" onAction="#login" prefHeight="46.0" prefWidth="95.0" styleClass="addbtn" stylesheets="@styles/fxmlmaktabti.css" text="Log In" />
+            <Button ellipsisString="12" layoutX="241.0" layoutY="332.0" minHeight="17.0" mnemonicParsing="false" onAction="#registrationpage" prefHeight="39.0" prefWidth="140.0" style="-fx-background-color: grey;" styleClass="modifybtn" stylesheets="@styles/fxmlmaktabti.css" text="Créer un compte" />
+            <Button fx:id="Logiiin" layoutX="188.0" layoutY="273.0" mnemonicParsing="false" onAction="#login" prefHeight="46.0" prefWidth="110.0" styleClass="addbtn" stylesheets="@styles/fxmlmaktabti.css" text="S'authentifier" />
             <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="198.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="271.0" layoutY="49.0">
                <image>
                   <Image url="@images/user.png" />
                </image>
             </ImageView>
+            <RadioButton fx:id="remember" layoutX="290.0" layoutY="237.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="158.0" text="Se souvenir de moi" />
          </children>
       </AnchorPane>
    </center>
