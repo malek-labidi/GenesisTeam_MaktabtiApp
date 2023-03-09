@@ -4,8 +4,14 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
 
         <group>
-            <file>file:/D:/3A%20Esprit/2eme%20sem/PI-DEV/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/gui/ForgotpasswordController.java</file>
-            <file>file:/D:/3A%20Esprit/2eme%20sem/PI-DEV/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/main/UtilisateurrMainClass.java</file>
+            <file>file:/C:/Users/Saleh/Desktop/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/gui/LivreController.java</file>
+            <file>file:/C:/Users/Saleh/Desktop/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/services/ServiceLivre.java</file>
+            <file>file:/C:/Users/Saleh/Desktop/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/services/ServiceEvenement.java</file>
+            <file>file:/C:/Users/Saleh/Desktop/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/main/NewFXMainCategorie.java</file>
+            <file>file:/C:/Users/Saleh/Desktop/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/entities/Categorie.java</file>
+            <file>file:/C:/Users/Saleh/Desktop/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/services/ServiceCategorie.java</file>
+            <file>file:/C:/Users/Saleh/Desktop/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/gui/FXMLcategorieController.java</file>
+
         </group>
     </open-files>
 </project-private>
