@@ -6,13 +6,12 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="477.0" prefWidth="681.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="edu.esprit.gui.FXMLReclamationController">
+<AnchorPane id="AnchorPane" prefHeight="477.0" prefWidth="681.0" stylesheets="@styles/fxmlmaktabti.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.gui.FXMLReclamationController">
    <children>
       <ListView fx:id="listeReclamation" layoutX="7.0" layoutY="70.0" prefHeight="393.0" prefWidth="512.0" />
-      <Button fx:id="buttonAjouter" layoutX="597.0" layoutY="82.0" mnemonicParsing="false" onAction="#AjouterButton" text="Ajouter" />
-      <Button fx:id="buttonModifier" layoutX="599.0" layoutY="181.0" mnemonicParsing="false" onAction="#ModifierButton" text="Modifier" />
-      <Button fx:id="buttonSupprimer" layoutX="599.0" layoutY="285.0" mnemonicParsing="false" onAction="#SupprimerButton" text="Supprimer" />
+      <Button fx:id="buttonAjouter" layoutX="565.0" layoutY="80.0" mnemonicParsing="false" onAction="#AjouterButton" styleClass="addbtn" stylesheets="@styles/fxmlmaktabti.css" text="Ajouter" />
+      <Button fx:id="buttonModifier" layoutX="572.0" layoutY="188.0" mnemonicParsing="false" onAction="#ModifierButton" styleClass="modifybtn" stylesheets="@styles/fxmlmaktabti.css" text="Modifier" />
+      <Button fx:id="buttonSupprimer" layoutX="558.0" layoutY="289.0" mnemonicParsing="false" onAction="#SupprimerButton" styleClass="deletebtn" stylesheets="@styles/fxmlmaktabti.css" text="Supprimer" />
       <Text fill="#7278eb" layoutX="87.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Liste Reclamations">
          <font>
             <Font size="41.0" />
