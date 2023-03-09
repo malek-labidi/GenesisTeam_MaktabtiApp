@@ -87,3 +87,12 @@
     -fx-background-color: white;
     -fx-font-size: 14px;
 }
+.button{
+    -fx-background-color:#fff;
+}
+.button:hover{
+    -fx-background-color:#D3D3D3;
+}
+.button:pressed{
+    -fx-background-color:#fff;
+}

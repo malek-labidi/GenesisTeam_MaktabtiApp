@@ -4,6 +4,21 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
 
         <group>
+            <file>file:/D:/PIDEV/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/gui/FXMLAjouter.fxml</file>
+            <file>file:/D:/PIDEV/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/api/MailEvenement.java</file>
+            <file>file:/D:/PIDEV/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/gui/FXMLEvenementController.java</file>
+            <file>file:/D:/PIDEV/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/gui/styles/ajoutform.css</file>
+            <file>file:/D:/PIDEV/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/gui/FXMLCommentairemodelController.java</file>
+            <file>file:/D:/PIDEV/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/gui/FXMLMaktabtiController.java</file>
+            <file>file:/D:/PIDEV/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/gui/FXMLCommentaireController.java</file>
+            <file>file:/D:/PIDEV/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/gui/FXMLReservationController.java</file>
+            <file>file:/D:/PIDEV/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/gui/styles/fxmlmaktabti.css</file>
+            <file>file:/D:/PIDEV/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/main/EventMainFXML.java</file>
+            <file>file:/D:/PIDEV/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/gui/FXMLTicketController.java</file>
+            <file>file:/D:/PIDEV/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/services/ServiceCommentaire.java</file>
+
+
+        <group>
             <file>file:/C:/Users/Saleh/Desktop/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/gui/LivreController.java</file>
             <file>file:/C:/Users/Saleh/Desktop/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/services/ServiceLivre.java</file>
             <file>file:/C:/Users/Saleh/Desktop/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/services/ServiceEvenement.java</file>
@@ -11,6 +26,7 @@
             <file>file:/C:/Users/Saleh/Desktop/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/entities/Categorie.java</file>
             <file>file:/C:/Users/Saleh/Desktop/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/services/ServiceCategorie.java</file>
             <file>file:/C:/Users/Saleh/Desktop/GenesisTeam_MaktabtiApp/DesktopApp/src/edu/esprit/gui/FXMLcategorieController.java</file>
+
 
         </group>
     </open-files>
