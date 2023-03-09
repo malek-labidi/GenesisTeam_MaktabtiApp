@@ -218,6 +218,16 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </ImageView>
+                  <Button fx:id="pausebutton" layoutX="651.0" layoutY="512.0" mnemonicParsing="false" onAction="#pause" prefHeight="37.0" prefWidth="56.0" styleClass="addbtn" stylesheets="@styles/fxmlmaktabti.css" text="pause">
+                     <cursor>
+                        <Cursor fx:constant="WAIT" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="musicButton" layoutX="554.0" layoutY="512.0" mnemonicParsing="false" onAction="#play" prefHeight="37.0" prefWidth="68.0" styleClass="addbtn" stylesheets="@styles/fxmlmaktabti.css" text="music">
+                     <cursor>
+                        <Cursor fx:constant="WAIT" />
+                     </cursor>
+                  </Button>
                </children>
                <effect>
                   <Lighting>

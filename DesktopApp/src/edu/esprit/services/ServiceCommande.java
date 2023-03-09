@@ -139,6 +139,37 @@ public class ServiceCommande implements IService<Commande> {
         return result;
     }
     
+    public Commande validerCommande(int id) {
+        Commande commande= new Commande(); ;
+    String sql = "SELECT pl.id_panier, pl.id_livre, p.id_client FROM panierlivre pl JOIN panier p ON pl.id_panier = p.id_panier WHERE p.id_client = ?";
+    try {
+        PreparedStatement pstmt = cnx.prepareStatement(sql);
+        pstmt.setInt(1, id);
+        ResultSet rs = pstmt.executeQuery();
+       
+        while (rs.next()) {
+            int idPanier = rs.getInt("id_panier");
+            int idLivre = rs.getInt("id_livre");
+            int idClient = rs.getInt("id_client");
+            // ServiceLivre serviceLivre = new ServiceLivre();
+            ServiceLivrePanier pl = new ServiceLivrePanier();
+             //serviceLivre.getOneById(idLivre); // obtenir l'objet Livre correspondant à l'id_livre
+            commande = new Commande(idLivre,idClient,Status.non_paye,Mode.espece,Etat.encours,pl.calculTotalPrix(idPanier));
+            
+            
+            
+        }
+        
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    
+   
+    
+    
+    return commande;
+}
+    
 
 }
 

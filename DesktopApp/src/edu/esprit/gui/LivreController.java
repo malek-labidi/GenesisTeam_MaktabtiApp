@@ -18,39 +18,47 @@ import edu.esprit.services.ServiceLivre;
 import edu.esprit.services.ServiceQuiz;
 import edu.esprit.services.ServiceUtilisateur;
 import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
-import java.net.URL;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
+
+
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
+import javafx.util.Duration;
+import org.controlsfx.control.Notifications;
 
 /**
  * FXML Controller class
@@ -107,6 +115,10 @@ public class LivreController implements Initializable {
     private File imageFile;
     @FXML
     private Button btn_stat;
+    @FXML
+    private Button pausebutton;
+    @FXML
+    private Button musicButton;
 
     /**
      * Initializes the controller class.
@@ -133,6 +145,11 @@ public class LivreController implements Initializable {
 
     }
 
+    
+    
+    String path = "C:\\xampp\\htdocs\\music\\Alok & Alan Walker.mp3";
+    Media media = new Media(new File(path).toURI().toString());
+    MediaPlayer mediaPlayer = new MediaPlayer(media);
     @FXML
     private void addlivre(ActionEvent event) throws FileNotFoundException {
 
@@ -465,5 +482,31 @@ public class LivreController implements Initializable {
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
+    }
+
+    @FXML
+    private void pause(ActionEvent event) {
+        
+         mediaPlayer.pause();
+       // Image img = new Image("fllogo.png");
+        Notifications notificationBuilder = Notifications.create()
+                .title("Musique")
+                .text("      Musique Arrêtée").hideAfter(Duration.seconds(5))
+                .position(Pos.BOTTOM_RIGHT);
+        notificationBuilder.darkStyle();
+        notificationBuilder.show();
+    }
+
+    @FXML
+    private void play(ActionEvent event) {
+        
+            mediaPlayer.play();
+      //  Image img = new Image("C:\\Users\\Saleh\\Desktop\\GenesisTeam_MaktabtiApp\\DesktopApp\\src\\edu\\esprit\\gui\\images\\ticket.png");
+        Notifications notificationBuilder = Notifications.create()
+                .title("Musique")
+                .text("      Musique Jouée").hideAfter(Duration.seconds(5))
+                .position(Pos.BOTTOM_RIGHT);
+        notificationBuilder.darkStyle();
+        notificationBuilder.show();
     }
 }

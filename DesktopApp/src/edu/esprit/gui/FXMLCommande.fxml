@@ -13,14 +13,14 @@
         <URL value="@fxmlcommande.css" />
     </stylesheets>
    <children>
-      <Label fx:id="labelCommande" layoutX="23.0" layoutY="34.0" prefHeight="19.0" prefWidth="200.0" text="Listes des commandes ">
+      <Label fx:id="labelCommande" layoutX="51.0" layoutY="29.0" prefHeight="19.0" prefWidth="200.0" text="Listes des commandes " underline="true">
          <font>
-            <Font name="Al Nile" size="19.0" />
+            <Font name="Al Nile" size="18.0" />
          </font>
          <effect>
             <Bloom />
          </effect></Label>
-      <ListView fx:id="commandeView" layoutX="23.0" layoutY="75.0" prefHeight="200.0" prefWidth="200.0" styleClass="textArea" stylesheets="@styles/fxmlcommande.css" />
-      <Button fx:id="button_modifierCommande" layoutX="315.0" layoutY="90.0" mnemonicParsing="false" onAction="#modfier" prefHeight="27.0" prefWidth="92.0" styleClass="button_modif" stylesheets="@styles/fxmlcommande.css" text="Modifier" />
+      <ListView fx:id="commandeView" layoutX="23.0" layoutY="75.0" prefHeight="200.0" prefWidth="269.0" styleClass="textArea" stylesheets="@styles/fxmlcommande.css" />
+      <Button fx:id="button_modifierCommande" layoutX="337.0" layoutY="151.0" mnemonicParsing="false" onAction="#modfier" prefHeight="27.0" prefWidth="92.0" styleClass="button_modif" stylesheets="@styles/fxmlcommande.css" text="Modifier" />
    </children>
 </AnchorPane>
