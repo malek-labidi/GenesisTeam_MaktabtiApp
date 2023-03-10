@@ -116,7 +116,7 @@ public class ServiceQuiz implements IService<Quiz> {
                 int quizId = rs.getInt(1);
                 int id_livre = rs.getInt(2);
                 int id_competition = rs.getInt(3);
-                Quiz quiz = new Quiz(id_livre, id_livre, id_competition);
+                Quiz quiz = new Quiz(quizId, id_livre, id_competition);
                 result.add(quiz);
 
             }

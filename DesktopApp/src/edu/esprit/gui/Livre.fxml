@@ -1,229 +1,139 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.AmbientLight?>
-<?import javafx.scene.PointLight?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.effect.Bloom?>
-<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.effect.Glow?>
-<?import javafx.scene.effect.Lighting?>
-<?import javafx.scene.effect.Shadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="993.0" stylesheets="@styles/fxmlmaktabti.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.gui.LivreController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="624.0" prefWidth="1088.0" stylesheets="@styles/fxmlmaktabti.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.gui.LivreController">
    <children>
-      <ListView fx:id="livreview" layoutY="174.0" onMouseClicked="#afficheForm" prefHeight="320.0" prefWidth="256.0">
+      <Button fx:id="musicButton" layoutX="792.0" layoutY="544.0" mnemonicParsing="false" onAction="#play" prefHeight="50.0" prefWidth="110.0" styleClass="addbtn" stylesheets="@styles/fxmlmaktabti.css" text="music">
+                     
+                  </Button>
+      <Button fx:id="pausebutton" layoutX="938.0" layoutY="544.0" mnemonicParsing="false" onAction="#pause" prefHeight="50.0" prefWidth="110.0" styleClass="addbtn" stylesheets="@styles/fxmlmaktabti.css" text="pause">
+                    
+                  </Button>
+      <Button fx:id="btn_stat" layoutX="602.0" layoutY="544.0" mnemonicParsing="false" onAction="#stat" prefHeight="50.0" prefWidth="171.0" style="-fx-background-color: #80AAFF;" text="Categorie_stat">
+         <graphic>
+            <ImageView fx:id="PDF" fitHeight="37.0" fitWidth="30.0" onMouseClicked="#genererPDF">
+               <image>
+                  <Image url="@images/pdf.png" />
+               </image>
+              
+                        </ImageView>
+         </graphic>
+      </Button>
+      <Label layoutX="737.0" layoutY="298.0" text="Categorie">
+         <font>
+            <Font name="System Bold Italic" size="28.0" />
+         </font>
+      </Label>
+      <Button fx:id="cat_update" layoutX="320.0" layoutY="539.0" mnemonicParsing="false" onAction="#updatelivre" prefHeight="60.0" prefWidth="135.0" styleClass="modifybtn" stylesheets="@styles/fxmlmaktabti.css" text="Mettre à jour">
+                     </Button>
+      <ListView fx:id="listauteur" layoutX="725.0" layoutY="87.0" prefHeight="169.0" prefWidth="355.0">
+                    </ListView>
+      <Label layoutX="750.0" layoutY="31.0" prefHeight="27.0" prefWidth="153.0" text="Auteur " textFill="#3c3a3a">
+         <font>
+            <Font name="System Bold Italic" size="31.0" />
+         </font>
+      </Label>
+      <ListView fx:id="listcategorie" layoutX="725.0" layoutY="350.0" prefHeight="169.0" prefWidth="355.0">
+                     </ListView>
+      <Label layoutX="374.0" layoutY="24.0" prefHeight="30.0" prefWidth="146.0" text="Liste des Livres" textFill="#000000c7">
+         <font>
+            <Font name="System Bold Italic" size="20.0" />
+         </font>
+      </Label>
+      <VBox layoutX="404.0" layoutY="72.0" prefHeight="417.0" prefWidth="74.0" spacing="25.0">
+         <children>
+            <Label prefHeight="37.0" prefWidth="35.0" text="Titre:">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="10.0" layoutY="10.0" prefHeight="28.0" prefWidth="65.0" text="Date pub:">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="10.0" layoutY="27.0" prefHeight="28.0" prefWidth="52.0" text="Langue:" textFill="#070707">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="10.0" layoutY="100.0" prefHeight="29.0" prefWidth="32.0" text="Isbn:" textFill="#141414">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="10.0" layoutY="145.0" text="Nb_pages:" textFill="#0d0d0d">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="10.0" layoutY="190.0" prefHeight="27.0" prefWidth="56.0" text="Resume:">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="10.0" layoutY="235.0" text="Prix:">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label text="Image:">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+      <ListView fx:id="livreview" layoutX="133.0" layoutY="120.0" onMouseClicked="#afficheForm" prefHeight="320.0" prefWidth="256.0">
          <effect>
             <Glow level="0.43" />
          </effect>
          
-      </ListView>
-      <StackPane layoutX="258.0" prefHeight="576.0" prefWidth="793.0" styleClass="root" stylesheets="@styles/fxmlmaktabti.css">
+            </ListView>
+      <Button fx:id="cat_add" layoutX="193.0" layoutY="544.0" mnemonicParsing="false" onAction="#addlivre" prefHeight="50.0" prefWidth="115.0" styleClass="addbtn" stylesheets="@styles/fxmlmaktabti.css" text="Ajouter">
+                     </Button>
+      <VBox layoutX="491.0" layoutY="72.0" prefHeight="166.0" prefWidth="153.0" spacing="21.0">
          <children>
-            <Pane fx:id="pnlMenus" prefHeight="200.0" prefWidth="200.0" stylesheets="@styles/fxmlmaktabti.css" />
-            <Pane fx:id="pnlCustomer" prefHeight="200.0" prefWidth="200.0" />
-            <Pane fx:id="pnlOrders" prefHeight="200.0" prefWidth="200.0" />
-            <Pane fx:id="pnlOverview" blendMode="SRC_ATOP" prefHeight="576.0" prefWidth="509.0" stylesheets="@styles/fxmlmaktabti.css">
-               <children>
-                  <TextField fx:id="search" layoutX="651.0" layoutY="70.0" onKeyTyped="#search_livre" opacity="0.66" prefHeight="25.0" prefWidth="128.0" promptText="search" style="-fx-border-radius: 2em;" styleClass="root" stylesheets="@styles/fxmlmaktabti.css" text="search">
-                     <font>
-                        <Font size="11.0" />
-                     </font>
-                     <effect>
-                        <Lighting bumpInput="$null" diffuseConstant="1.33">
-                           
-                        </Lighting>
-                     </effect>
-                  </TextField>
-                  <ImageView fitHeight="17.0" fitWidth="16.0" layoutX="765.0" layoutY="74.0" pickOnBounds="true" preserveRatio="true" />
-                  <Label layoutX="4.0" layoutY="60.0" prefHeight="35.0" prefWidth="121.0" text="Livre:" underline="true">
-                     <font>
-                        <Font name="System Bold Italic" size="32.0" />
-                     </font>
-                     
-                     <effect>
-                        <Bloom />
-                     </effect>
-                  </Label>
-                  <VBox layoutX="45.0" layoutY="118.0" prefHeight="353.0" prefWidth="74.0" spacing="25.0">
-                     <children>
-                        <Label text="Titre:">
-                           <font>
-                              <Font name="System Bold" size="14.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="10.0" layoutY="10.0" text="Date pub:">
-                           <font>
-                              <Font name="System Bold" size="14.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="10.0" layoutY="27.0" text="Langue:" textFill="#070707">
-                           <font>
-                              <Font name="System Bold" size="14.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="10.0" layoutY="100.0" text="Isbn:" textFill="#141414">
-                           <font>
-                              <Font name="System Bold" size="14.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="10.0" layoutY="145.0" text="Nb_pages:" textFill="#0d0d0d">
-                           <font>
-                              <Font name="System Bold" size="14.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="10.0" layoutY="190.0" text="Resume:">
-                           <font>
-                              <Font name="System Bold" size="14.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="10.0" layoutY="235.0" text="Prix:">
-                           <font>
-                              <Font name="System Bold" size="14.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </VBox>
-                  <VBox layoutX="123.0" layoutY="119.0" prefHeight="166.0" prefWidth="153.0" spacing="21.0">
-                     <children>
-                        <TextField fx:id="titre" layoutX="10.0" layoutY="10.0">
+            <TextField fx:id="titre" layoutX="10.0" layoutY="10.0">
                            </TextField>
-                        <DatePicker fx:id="date_pub">
+            <DatePicker fx:id="date_pub">
                            </DatePicker>
-                        <TextField fx:id="langue" layoutX="10.0" layoutY="10.0">
+            <TextField fx:id="langue" layoutX="10.0" layoutY="10.0">
                            </TextField>
-                        <TextField fx:id="isbn" layoutX="10.0" layoutY="10.0">
+            <TextField fx:id="isbn" layoutX="10.0" layoutY="10.0">
                            </TextField>
-                        <TextField fx:id="nb_pages" layoutX="10.0" layoutY="10.0">
+            <TextField fx:id="nb_pages" layoutX="10.0" layoutY="10.0">
                            </TextField>
-                        <TextField fx:id="resume" layoutX="10.0" layoutY="10.0">
+            <TextField fx:id="resume" layoutX="10.0" layoutY="10.0">
                            </TextField>
-                        <TextField fx:id="prix" layoutX="10.0" layoutY="240.0">
+            <TextField fx:id="prix" layoutX="10.0" layoutY="240.0">
                           </TextField>
-                        <TextField fx:id="fileImage" layoutX="10.0" layoutY="286.0">
+            <TextField fx:id="fileImage" layoutX="10.0" layoutY="286.0">
                            
                         </TextField>
-                     </children>
-                  </VBox>
-                  <Button fx:id="cat_add" layoutX="10.0" layoutY="507.0" mnemonicParsing="false" onAction="#addlivre" prefHeight="37.0" prefWidth="109.0" styleClass="addbtn" stylesheets="@styles/fxmlmaktabti.css" text="Ajouter">
-                     </Button>
-                  <Button fx:id="cat_update" layoutX="128.0" layoutY="507.0" mnemonicParsing="false" onAction="#updatelivre" prefHeight="37.0" prefWidth="109.0" styleClass="modifybtn" stylesheets="@styles/fxmlmaktabti.css" text="Mettre à jours">
-                     </Button>
-                  <Button fx:id="cat_del" layoutX="251.0" layoutY="507.0" mnemonicParsing="false" onAction="#deletelivre" prefHeight="37.0" prefWidth="121.0" styleClass="deletebtn" stylesheets="@styles/fxmlmaktabti.css" text="Supprimer">
-                    </Button>
-                  <ListView fx:id="listauteur" layoutX="376.0" layoutY="123.0" prefHeight="169.0" prefWidth="355.0">
-                    </ListView>
-                  <ListView fx:id="listcategorie" layoutX="376.0" layoutY="357.0" prefHeight="151.0" prefWidth="355.0">
-                     </ListView>
-                  <Label layoutX="372.0" layoutY="73.0" prefHeight="27.0" prefWidth="153.0" text="Auteur :" textFill="#3c3a3a" underline="true">
-                     <font>
-                        <Font name="System Bold Italic" size="31.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="376.0" layoutY="309.0" text="Categorie:" underline="true">
-                     <font>
-                        <Font name="System Bold Italic" size="28.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="34.0" layoutY="14.0" prefHeight="28.0" prefWidth="177.0" text="&quot;Be the change " textFill="#002657">
-                     <font>
-                        <Font name="Eras Bold ITC" size="22.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="208.0" layoutY="29.0" prefHeight="27.0" prefWidth="333.0" text="you wish to see in the world&quot;" textFill="#f8a375">
-                     <font>
-                        <Font name="Eras Bold ITC" size="22.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="511.0" layoutY="57.0" prefHeight="17.0" prefWidth="109.0" text="Mahatma Gandhi">
-                     <font>
-                        <Font name="Century" size="11.0" />
-                     </font>
-                  </Label>
-                  <ImageView fitHeight="25.0" fitWidth="22.0" layoutX="753.0" layoutY="70.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@images/loupe%20(1).png" />
-                     </image>
-                  </ImageView>
-                  <Label layoutX="283.0" layoutY="396.0" prefHeight="21.0" prefWidth="22.0" text="DT">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Label>
-                  <ImageView fitHeight="27.0" fitWidth="27.0" layoutX="498.0" layoutY="83.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@images/icons8-écrivain-48.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="27.0" fitWidth="27.0" layoutX="517.0" layoutY="318.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@images/icons8-classer-par-catégories-48.png" />
-                     </image>
-                  </ImageView>
-                  <Button fx:id="image" layoutX="294.0" layoutY="436.0" mnemonicParsing="false" onAction="#Buttonimage" prefHeight="37.0" prefWidth="68.0" styleClass="addbtn" stylesheets="@styles/fxmlmaktabti.css" text="Image">
-                    
-                  </Button>
-                  <Button fx:id="btn_stat" layoutX="397.0" layoutY="513.0" mnemonicParsing="false" onAction="#stat" text="Categorie_stat" />
-                  <ImageView fx:id="PDF" fitHeight="37.0" fitWidth="30.0" layoutX="500.0" layoutY="512.0" onMouseClicked="#genererPDF">
-                     <image>
-                        <Image url="@images/pdf.png" />
-                     </image>
-                    
-                  </ImageView>
-                  <Button fx:id="pausebutton" layoutX="651.0" layoutY="512.0" mnemonicParsing="false" onAction="#pause" prefHeight="37.0" prefWidth="56.0" styleClass="addbtn" stylesheets="@styles/fxmlmaktabti.css" text="pause">
-                    
-                  </Button>
-                  <Button fx:id="musicButton" layoutX="554.0" layoutY="512.0" mnemonicParsing="false" onAction="#play" prefHeight="37.0" prefWidth="68.0" styleClass="addbtn" stylesheets="@styles/fxmlmaktabti.css" text="music">
-                     
-                  </Button>
-               </children>
-               <effect>
-                  <Lighting>
-                     <bumpInput>
-                        <Shadow />
-                     </bumpInput>
-                     
-                  </Lighting>
-               </effect>
-               
-            </Pane>
          </children>
-      </StackPane>
-      <ImageView cache="true" fitHeight="87.0" fitWidth="209.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@images/2.png" />
-         </image>
-         
-      </ImageView>
-      <AmbientLight color="CHARTREUSE" lightOn="true" />
-      <PointLight color="CHARTREUSE" lightOn="true" />
-      <Label layoutX="14.0" layoutY="144.0" prefHeight="25.0" prefWidth="109.0" text="Liste des Livre" textFill="#464646c7">
-         <font>
-            <Font name="System Bold Italic" size="15.0" />
-         </font>
-        
-         <effect>
-            <Bloom />
-         </effect>
-      </Label>
-      <ImageView fitHeight="28.0" fitWidth="32.0" layoutX="128.0" layoutY="142.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@images/icons8-étagère-à-livres-94.png" />
-         </image>
-      </ImageView>
+      </VBox>
+      <Button fx:id="cat_del" layoutX="477.0" layoutY="544.0" mnemonicParsing="false" onAction="#deletelivre" prefHeight="50.0" prefWidth="110.0" styleClass="deletebtn" stylesheets="@styles/fxmlmaktabti.css" text="Supprimer">
+                    </Button>
+      <TextField fx:id="search" layoutX="144.0" layoutY="78.0" onKeyTyped="#search_livre" />
+      <Button fx:id="image" layoutX="653.0" layoutY="435.0" mnemonicParsing="false" onAction="#Buttonimage" prefHeight="37.0" prefWidth="68.0" styleClass="addbtn" stylesheets="@styles/fxmlmaktabti.css" text="Image">
+                    
+                  </Button>
+      <FontAwesomeIconView glyphName="BOOK" layoutX="320.0" layoutY="50.0" size="40" />
+      <FontAwesomeIconView glyphName="USER" layoutX="713.0" layoutY="64.0" size="30" />
+      <FontAwesomeIconView glyphName="SEARCH" layoutX="302.0" layoutY="97.0" />
    </children>
-   <effect>
-      <DropShadow color="#1b1eeb" />
-   </effect>
    
 </AnchorPane>

@@ -20,6 +20,7 @@ import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.text.pdf.draw.LineSeparator;
 import edu.esprit.api.MailReservation;
 import edu.esprit.entities.Evenement;
+import edu.esprit.entities.login;
 import edu.esprit.services.ServiceEvenement;
 import edu.esprit.services.ServiceLivre;
 import edu.esprit.services.ServiceUtilisateur;
@@ -73,6 +74,8 @@ public class FXMLReservationController implements Initializable {
     private Scene billetScene;
     @FXML
     private Button but_pdf;
+      private login Log_in = login.getInstance();
+
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -112,7 +115,7 @@ public class FXMLReservationController implements Initializable {
             e.setNb_ticket(e.getNb_ticket() - numTickets);
 
             se.modifier(e); // Update the event in the database
-            MailReservation.sendEmail();
+            MailReservation.sendEmail(Log_in);
             String message = "Reservation completed successfully!";
             Alert alert = new Alert(AlertType.INFORMATION, message, ButtonType.OK);
             alert.showAndWait();
@@ -134,7 +137,7 @@ public class FXMLReservationController implements Initializable {
     @FXML
     private void back(MouseEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLEvenement.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLMaktabti.fxml"));
             Parent root = loader.load();
             Scene scene = new Scene(root);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

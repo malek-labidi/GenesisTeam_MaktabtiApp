@@ -159,7 +159,7 @@ private void supp_btn(ActionEvent event) {
     event_view.getItems().remove(selectedEvent);
     
     // Send an email
-    MailEvenement.sendEmail(selectedEvent);
+    MailEvenement.sendEmail(selectedEvent, Log_in);
 }
 
 

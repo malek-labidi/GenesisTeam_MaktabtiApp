@@ -5,9 +5,9 @@
  */
 package edu.esprit.api;
 
+import edu.esprit.entities.Commande;
 import edu.esprit.entities.Evenement;
 import edu.esprit.entities.login;
-import edu.esprit.services.ServiceEvenement;
 import java.io.UnsupportedEncodingException;
 import java.util.Properties;
 import javax.mail.Message;
@@ -17,15 +17,14 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import javax.mail.Authenticator;
 
 /**
  *
- * @author SADOK
+ * @author abdelazizlahmar
  */
-public class MailEvenement {
+public class MailEtatCommandeModifie {
 
-    public static void sendEmail(Evenement evenement, login login) {
+    public static void sendEmail(Commande commande, login Login) {
 
         final String username = "maktabti10@gmail.com";
         final String password = "dae rta agl jjg igf w";
@@ -44,22 +43,26 @@ public class MailEvenement {
         });
 
         try {
-            
-            String signature = "\n\n-- \nMaktabti Application \nNuméro de téléphone : +216 52 329 813 \nAdresse e-mail : maktabti10@gmail.com \nSite web : www.maktabti.com";
 
+            String signature = "\n\n-- \nMaktabti Application \nNuméro de téléphone : +216 52 329 813 \nAdresse e-mail : maktabti10@gmail.com \nSite web : www.maktabti.com";
 
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress(username, "Maktabti Application"));
-            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(login.getUsername()));
-            message.setSubject("Evenement Annulé !");
-            message.setText("cher Mr/Mme" + login.getNom() + " " + login.getPrenom() + ","
-                    + "\n\n nous somme vraiment désolé de vous informer que notre evenement " + evenement.getNom() + " est annulée merci pour votre compréhension ");
+            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(Login.getUsername()));
+            message.setSubject("Annulation de la commande ");
+            message.setText("Bonjour" + Login.getNom() + " " + Login.getPrenom() + "," + "\n"
+                    + "\n"
+                    + "Nous tenons à vous informer que l'état de votre commande a été mis à jour. Veuillez trouver ci-dessous le nouvel état de votre commande :\n"
+                    + "\n" + commande.getEtat().toString() + "\n"
+                    + "Si vous avez des questions ou des préoccupations concernant votre commande, n'hésitez pas à nous contacter. Nous sommes à votre disposition pour vous aider.\n"
+                    + "\n"
+                    + "Cordialement," + signature);
 
             Transport.send(message);
 
             System.out.println("Mail sent successfully");
 
-        } catch (MessagingException | UnsupportedEncodingException  e) {
+        } catch (MessagingException | UnsupportedEncodingException e) {
             throw new RuntimeException(e);
         }
     }

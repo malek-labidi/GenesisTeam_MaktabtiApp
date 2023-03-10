@@ -7,6 +7,7 @@ package edu.esprit.api;
 
 import edu.esprit.entities.Evenement;
 import edu.esprit.entities.Utilisateur;
+import java.io.UnsupportedEncodingException;
 import java.util.Properties;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -45,7 +46,7 @@ public class emailwhenregistration {
           
 
          Message message = new MimeMessage(session);
-         message.setFrom(new InternetAddress(username));
+         message.setFrom(new InternetAddress(username,"Maktabti Application"));
          message.setRecipients(Message.RecipientType.TO,InternetAddress.parse("mohamedwassim.hachani@esprit.tn"));
          message.setText("cher Mr/Mme,"
             + "\n\n nous somme vraiment désolé de vous informer que notre evenement"+u.getEmail()+" est annulée merci pour votre compréhension ");
@@ -54,7 +55,7 @@ public class emailwhenregistration {
 
          System.out.println("Mail sent successfully");
 
-      } catch (MessagingException e) {
+      } catch (MessagingException  | UnsupportedEncodingException e) {
          throw new RuntimeException(e);
       }
    }

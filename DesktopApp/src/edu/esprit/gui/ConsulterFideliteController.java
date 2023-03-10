@@ -10,6 +10,7 @@ import edu.esprit.entities.Type;
 import static edu.esprit.entities.Type.bronze;
 import static edu.esprit.entities.Type.gold;
 import static edu.esprit.entities.Type.silver;
+import edu.esprit.entities.login;
 import edu.esprit.services.ServiceCommande;
 import edu.esprit.services.ServiceFidelite;
 import java.net.URL;
@@ -32,7 +33,7 @@ public class ConsulterFideliteController implements Initializable {
     private TextField a;
     @FXML
     private TextField b;
-
+    private login Log_in = login.getInstance();
     /**
      * Initializes the controller class.
      */
@@ -99,7 +100,7 @@ public class ConsulterFideliteController implements Initializable {
                 alert.show();
         }*/
        
-        Fidelite f =sf.getOneByIdClient(8);
+        Fidelite f =sf.getOneByIdClient(Log_in.getId());
         int totalacha=f.getTotal_achat();
          if (totalacha <1000 && totalacha > 0){
             a.setText("bronze");

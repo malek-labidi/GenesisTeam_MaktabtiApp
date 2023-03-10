@@ -1,21 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.text.*?>
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" stylesheets="@styles/fxmlmaktabti.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.gui.OffreAjoutController">
+<AnchorPane id="AnchorPane" prefHeight="626.0" prefWidth="1039.0" stylesheets="@styles/fxmlmaktabti.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.gui.OffreAjoutController">
    <children>
-      <TextField fx:id="a" layoutX="404.0" layoutY="59.0" />
-      <TextField fx:id="b" layoutX="404.0" layoutY="140.0" />
-      <ListView fx:id="list_livre" layoutX="14.0" layoutY="23.0" prefHeight="278.0" prefWidth="253.0" stylesheets="@styles/fxmlmaktabti.css" />
-      <Button layoutX="468.0" layoutY="232.0" mnemonicParsing="false" onAction="#ajouteroffre" prefHeight="40.0" prefWidth="90.0" styleClass="addbtn" stylesheets="@styles/fxmlmaktabti.css" text="Ajouter" />
-      <Button layoutX="319.0" layoutY="232.0" mnemonicParsing="false" onAction="#modifierOffre" prefHeight="40.0" prefWidth="90.0" styleClass="modifybtn" stylesheets="@styles/fxmlmaktabti.css" text="Modifier" />
-      <Button layoutX="396.0" layoutY="310.0" mnemonicParsing="false" onAction="#Envoyermail" prefHeight="40.0" prefWidth="90.0" styleClass="deletebtn" stylesheets="@styles/fxmlmaktabti.css" text="Email" />
-      <Label layoutX="276.0" layoutY="64.0" text="Pourcentage-offre:" />
-      <Label layoutX="298.0" layoutY="145.0" text="Prix-Postsolde:" />
+      <TextField fx:id="a" layoutX="648.0" layoutY="132.0" prefHeight="48.0" prefWidth="194.0" />
+      <TextField fx:id="b" layoutX="648.0" layoutY="230.0" prefHeight="48.0" prefWidth="194.0" />
+      <ListView fx:id="list_livre" layoutX="89.0" layoutY="145.0" prefHeight="382.0" prefWidth="375.0" stylesheets="@styles/fxmlmaktabti.css" />
+      <Button layoutX="891.0" layoutY="125.0" mnemonicParsing="false" onAction="#ajouteroffre" prefHeight="60.0" prefWidth="110.0" styleClass="addbtn" stylesheets="@styles/fxmlmaktabti.css" text="Ajouter">
+         <graphic>
+            <FontAwesomeIconView fill="#e8dede" glyphName="PLUS" size="15" />
+         </graphic></Button>
+      <Button layoutX="891.0" layoutY="306.0" mnemonicParsing="false" onAction="#modifierOffre" prefHeight="60.0" prefWidth="110.0" styleClass="modifybtn" stylesheets="@styles/fxmlmaktabti.css" text="Modifier">
+         <graphic>
+            <FontAwesomeIconView fill="#d7d7d7" glyphName="EDIT" size="15" />
+         </graphic></Button>
+      <Button layoutX="891.0" layoutY="467.0" mnemonicParsing="false" onAction="#Envoyermail" prefHeight="60.0" prefWidth="110.0" styleClass="deletebtn" stylesheets="@styles/fxmlmaktabti.css" text="Email">
+         <graphic>
+            <FontAwesomeIconView fill="#ddd9d9" glyphName="TRASH" size="17" />
+         </graphic></Button>
+      <Label layoutX="509.0" layoutY="241.0" text="Prix-Postsolde:">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font></Label>
+      <Label layoutX="476.0" layoutY="143.0" text="Pourcentage-offre:">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="351.0" layoutY="24.0" prefHeight="46.0" prefWidth="99.0" text="Offre">
+         <font>
+            <Font name="System Bold" size="31.0" />
+         </font>
+      </Label>
+      <FontAwesomeIconView glyphName="GIFT" layoutX="276.0" layoutY="69.0" size="70" />
    </children>
 </AnchorPane>

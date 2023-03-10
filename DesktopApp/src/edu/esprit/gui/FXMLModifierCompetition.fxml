@@ -5,6 +5,8 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
@@ -28,5 +30,10 @@
       <Label layoutX="672.0" layoutY="288.0" text="Livre" />
       <Button fx:id="btn_modifier" layoutX="637.0" layoutY="503.0" mnemonicParsing="false" onAction="#ModifierCompetition" styleClass="addbtn" stylesheets="@styles/fxmlmaktabti.css" text="Valider" />
       <Button fx:id="btn_annuler" layoutX="441.0" layoutY="503.0" mnemonicParsing="false" onAction="#Annuler" styleClass="deletebtn" stylesheets="@styles/fxmlmaktabti.css" text="Annuler" />
+      <ImageView fx:id="retour" layoutX="33.0" layoutY="34.0" onMouseClicked="#retour">
+         <image>
+            <Image url="@images/arrow.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

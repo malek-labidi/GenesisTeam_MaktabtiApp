@@ -1,21 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" stylesheets="@styles/fxmlmaktabti.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.gui.FXMLMessagerieController">
+<AnchorPane id="AnchorPane" prefHeight="626.0" prefWidth="1088.0" stylesheets="@styles/fxmlmaktabti.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.gui.FXMLMessagerieController">
    <children>
-      <ListView fx:id="list_msg" layoutX="14.0" layoutY="85.0" prefHeight="259.0" prefWidth="337.0" />
-      <Button fx:id="btn_ajouter" layoutX="413.0" layoutY="99.0" mnemonicParsing="false" onAction="#ajouter_message" styleClass="addbtn" stylesheets="@styles/fxmlmaktabti.css" text="Ajouter" />
-      <Button fx:id="btn_supprimer" layoutX="413.0" layoutY="178.0" mnemonicParsing="false" onAction="#supprimermessage" styleClass="modifybtn" stylesheets="@styles/fxmlmaktabti.css" text="Supprimer" />
-      <Text fill="#2b1da8" layoutX="62.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="List Messagerie" wrappingWidth="263.0351257324219">
+      <ListView fx:id="list_msg" layoutX="181.0" layoutY="90.0" prefHeight="441.0" prefWidth="436.0" />
+      <Button fx:id="btn_ajouter" layoutX="871.0" layoutY="90.0" mnemonicParsing="false" onAction="#ajouter_message" prefHeight="60.0" prefWidth="117.0" styleClass="addbtn" stylesheets="@styles/fxmlmaktabti.css" text="Ajouter">
+         <graphic>
+            <FontAwesomeIconView fill="#f5f5f5" glyphName="PLUS" size="20" />
+         </graphic></Button>
+      <Button fx:id="btn_supprimer" layoutX="871.0" layoutY="281.0" mnemonicParsing="false" onAction="#supprimermessage" prefHeight="60.0" prefWidth="117.0" styleClass="modifybtn" stylesheets="@styles/fxmlmaktabti.css" text="Supprimer">
+         <graphic>
+            <FontAwesomeIconView fill="#eeeeee" glyphName="TRASH" size="20" />
+         </graphic></Button>
+      <Text layoutX="474.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="List Messagerie" wrappingWidth="263.0351257324219">
          <font>
-            <Font size="32.0" />
+            <Font name="System Bold" size="33.0" />
          </font>
       </Text>
-      <Button fx:id="btn_stat" layoutX="474.0" layoutY="344.0" mnemonicParsing="false" onAction="#stat" styleClass="deletebtn" stylesheets="@styles/fxmlmaktabti.css" text="Statistique" />
+      <Button fx:id="btn_stat" layoutX="871.0" layoutY="471.0" mnemonicParsing="false" onAction="#stat" prefHeight="60.0" prefWidth="117.0" styleClass="deletebtn" stylesheets="@styles/fxmlmaktabti.css" text="Statistique" />
+      <ImageView fitHeight="20.0" fitWidth="18.0" layoutX="874.0" layoutY="491.0">
+         <image>
+            <Image url="@images/graph.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="60.0" fitWidth="69.0" layoutX="393.0" layoutY="13.0">
+         <image>
+            <Image url="@images/email.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

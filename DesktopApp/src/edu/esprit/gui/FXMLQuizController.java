@@ -57,6 +57,7 @@ public class FXMLQuizController implements Initializable {
     private void afficheList(MouseEvent event) {
         List<Question> l = new ArrayList<>();
         ServiceQuestion q = new ServiceQuestion();
+      
         l = q.getQuestionByIdQuiz(listQuiz.getSelectionModel().getSelectedItem().getId_quiz());
         listQuestions.setItems(FXCollections.observableArrayList(l));
         listQuestions.setCellFactory(list -> new QuestionListCell());

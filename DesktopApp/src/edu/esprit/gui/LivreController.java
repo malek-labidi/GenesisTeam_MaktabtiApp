@@ -8,6 +8,7 @@ package edu.esprit.gui;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
+import edu.esprit.api.MailCommandevalide;
 import edu.esprit.api.MailLivre;
 import edu.esprit.entities.Categorie;
 import edu.esprit.entities.Livre;
@@ -16,6 +17,7 @@ import edu.esprit.entities.login;
 import edu.esprit.services.ServiceCategorie;
 import edu.esprit.services.ServiceCompetition;
 import edu.esprit.services.ServiceLivre;
+import edu.esprit.services.ServiceLivrePanier;
 import edu.esprit.services.ServiceQuiz;
 import edu.esprit.services.ServiceUtilisateur;
 import java.io.ByteArrayOutputStream;
@@ -39,12 +41,12 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
 
-
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -53,8 +55,10 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
@@ -120,7 +124,8 @@ public class LivreController implements Initializable {
     private Button pausebutton;
     @FXML
     private Button musicButton;
-private login Log_in = login.getInstance();
+    private login Log_in = login.getInstance();
+
     /**
      * Initializes the controller class.
      */
@@ -143,7 +148,7 @@ private login Log_in = login.getInstance();
         });
 
         listauteur.setItems(FXCollections.observableArrayList(auteurs));
-           if (Log_in.getRole().equals("Client")) {
+        if (Log_in.getRole().equals("Client")) {
             cat_add.setVisible(false);
             cat_del.setVisible(false);
             cat_update.setVisible(false);
@@ -152,11 +157,10 @@ private login Log_in = login.getInstance();
 
     }
 
-    
-    
     String path = "C:\\xampp1\\htdocs\\music\\Alok & Alan Walker.mp3";
     Media media = new Media(new File(path).toURI().toString());
     MediaPlayer mediaPlayer = new MediaPlayer(media);
+
     @FXML
     private void addlivre(ActionEvent event) throws FileNotFoundException {
 
@@ -283,7 +287,7 @@ private login Log_in = login.getInstance();
 
     @FXML
     private void deletelivre(ActionEvent event) {
-        int id =livreview.getSelectionModel().getSelectedItem().getId_livre();
+        int id = livreview.getSelectionModel().getSelectedItem().getId_livre();
         Dialog<ButtonType> dialog = new Dialog<>();
         dialog.setTitle("Confirmation suppression");
         dialog.setHeaderText("Voulez-vous vraiment supprimer la competition N°" + id + "?");
@@ -310,10 +314,7 @@ private login Log_in = login.getInstance();
             Alert a = new Alert(Alert.AlertType.INFORMATION, "Livre supprimé !", ButtonType.OK);
             a.showAndWait();
         }
-        
-        
-        
-        
+
     }
 
     public void affiche() {
@@ -469,6 +470,7 @@ private login Log_in = login.getInstance();
 
         ServiceLivre se = new ServiceLivre();
         livreview.setItems(FXCollections.observableArrayList(this.e1));
+        livreview.setCellFactory(list -> new LivreListCell());
     }
 
     @FXML
@@ -497,9 +499,9 @@ private login Log_in = login.getInstance();
 
     @FXML
     private void pause(ActionEvent event) {
-        
-         mediaPlayer.pause();
-       // Image img = new Image("fllogo.png");
+
+        mediaPlayer.pause();
+        // Image img = new Image("fllogo.png");
         Notifications notificationBuilder = Notifications.create()
                 .title("Musique")
                 .text("      Musique Arrêtée").hideAfter(Duration.seconds(5))
@@ -510,9 +512,9 @@ private login Log_in = login.getInstance();
 
     @FXML
     private void play(ActionEvent event) {
-        
-            mediaPlayer.play();
-      //  Image img = new Image("C:\\Users\\Saleh\\Desktop\\GenesisTeam_MaktabtiApp\\DesktopApp\\src\\edu\\esprit\\gui\\images\\ticket.png");
+
+        mediaPlayer.play();
+        //  Image img = new Image("C:\\Users\\Saleh\\Desktop\\GenesisTeam_MaktabtiApp\\DesktopApp\\src\\edu\\esprit\\gui\\images\\ticket.png");
         Notifications notificationBuilder = Notifications.create()
                 .title("Musique")
                 .text("      Musique Jouée").hideAfter(Duration.seconds(5))
@@ -520,4 +522,36 @@ private login Log_in = login.getInstance();
         notificationBuilder.darkStyle();
         notificationBuilder.show();
     }
+
+    private class LivreListCell extends javafx.scene.control.ListCell<Livre> {
+
+        @Override
+        public void updateItem(Livre livre, boolean empty) {
+            super.updateItem(livre, empty);
+
+            if (empty || livre == null) {
+                setText(null);
+                setGraphic(null);
+            } else {
+                ServiceLivre sl = new ServiceLivre();
+                ServiceUtilisateur su = new ServiceUtilisateur();
+                ServiceCategorie sc = new ServiceCategorie();
+                Label nameLabel = new Label(livre.getTitre());
+                nameLabel.setStyle("-fx-font-weight: bold;");
+
+                Label auteurLabel = new Label("Auteur: " + su.getOneById(livre.getId_auteur()).getNom() + " " + su.getOneById(livre.getId_auteur()).getPrenom());
+                Label langueLabel = new Label("Langue: " + livre.getLangue());
+                Label prixLabel = new Label("Prix: " + livre.getPrix());
+                Label dateLabel = new Label("Date publication: " + livre.getDate_pub());
+                Label resumeLabel = new Label("Résumé: " + livre.getResume());
+                Label categorieLabel = new Label("catégorie: " + sc.getOneById(livre.getId_categorie()).getNom());
+
+                VBox vbox = new VBox(nameLabel, auteurLabel, langueLabel, dateLabel, resumeLabel, categorieLabel, prixLabel);
+                vbox.setSpacing(5);
+
+                setGraphic(vbox);
+            }
+        }
+    }
+
 }
