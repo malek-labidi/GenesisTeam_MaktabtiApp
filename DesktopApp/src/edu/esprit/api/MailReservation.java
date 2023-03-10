@@ -5,6 +5,8 @@
  */
 package edu.esprit.api;
 
+import edu.esprit.entities.login;
+import java.io.UnsupportedEncodingException;
 import java.util.Properties;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -20,7 +22,7 @@ import javax.mail.Authenticator;
  * @author SADOK
  */
 public class MailReservation {
-    public static void sendEmail() {
+    public static void sendEmail(login login) {
 
       final String username = "maktabti10@gmail.com";
       final String password = "dae rta agl jjg igf w";
@@ -39,19 +41,21 @@ public class MailReservation {
          });
 
       try {
+          String signature = "\n\n-- \nMaktabti Application \nNuméro de téléphone : +216 52 329 813 \nAdresse e-mail : maktabti10@gmail.com \nSite web : www.maktabti.com";
 
+          
          Message message = new MimeMessage(session);
-         message.setFrom(new InternetAddress(username));
-         message.setRecipients(Message.RecipientType.TO,InternetAddress.parse("sadoksassi2@gmail.com"));
+         message.setFrom(new InternetAddress(username,"Maktabti Application"));
+         message.setRecipients(Message.RecipientType.TO,InternetAddress.parse(login.getUsername()));
          message.setSubject("Reservation,");
-         message.setText("Cher mongi,"
+         message.setText("Cher "+login.getNom()+" "+login.getPrenom()+","
             + "\n\n votre reservation a été effectée avec succé ");
 
          Transport.send(message);
 
          System.out.println("Mail sent successfully");
 
-      } catch (MessagingException e) {
+      } catch (MessagingException  | UnsupportedEncodingException e) {
          throw new RuntimeException(e);
       }
    }

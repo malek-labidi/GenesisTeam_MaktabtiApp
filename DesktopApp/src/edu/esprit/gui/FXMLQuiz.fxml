@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="660.0" prefWidth="1105.0" stylesheets="@styles/fxmlmaktabti.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.gui.FXMLQuizController">
+<AnchorPane id="AnchorPane" prefHeight="624.0" prefWidth="1088.0" stylesheets="@styles/fxmlmaktabti.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.gui.FXMLQuizController">
    <children>
-      <Label layoutX="426.0" layoutY="80.0" text="Liste des quiz">
+      <Label layoutX="403.0" layoutY="38.0" prefHeight="50.0" prefWidth="283.0" text="Liste des quiz">
          <font>
-            <Font size="20.0" />
+            <Font name="System Bold" size="34.0" />
          </font>
       </Label>
-      <ListView fx:id="listQuiz" layoutX="50.0" layoutY="149.0" onMouseClicked="#afficheList" prefHeight="435.0" prefWidth="300.0" />
-      <ListView fx:id="listQuestions" layoutX="439.0" layoutY="160.0" prefHeight="418.0" prefWidth="600.0" />
+      <ListView fx:id="listQuiz" layoutX="118.0" layoutY="149.0" onMouseClicked="#afficheList" prefHeight="435.0" prefWidth="300.0" />
+      <ListView fx:id="listQuestions" layoutX="474.0" layoutY="149.0" prefHeight="418.0" prefWidth="600.0" />
+      <FontAwesomeIconView glyphName="LIST" layoutX="353.0" layoutY="80.0" size="50" />
    </children>
 </AnchorPane>

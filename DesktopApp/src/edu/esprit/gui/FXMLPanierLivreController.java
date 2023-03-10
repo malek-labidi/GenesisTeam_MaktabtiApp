@@ -5,9 +5,11 @@
  */
 package edu.esprit.gui;
 
+import edu.esprit.api.MailCommandevalide;
 import edu.esprit.entities.Commande;
 import edu.esprit.entities.Livre;
 import edu.esprit.entities.PanierLivre;
+import edu.esprit.entities.login;
 import edu.esprit.services.ServiceCommande;
 import edu.esprit.services.ServiceLivre;
 import edu.esprit.services.ServiceLivrePanier;
@@ -54,6 +56,7 @@ public class FXMLPanierLivreController implements Initializable {
     private Button buttonC;
     @FXML
     private Label prixTotalLabel;
+  private login Log_in = login.getInstance();
 
     /**
      * Initializes the controller class.
@@ -115,7 +118,7 @@ private void ValiderCommande(ActionEvent event) {
    
         // Ajouter la commande à la base de données
         Commande c = sc.validerCommande(panierLivre.getId_client());
-        
+         MailCommandevalide.sendEmail(c, Log_in);
         //sc.ajouter(c);
         
 System.out.println(c);
@@ -135,6 +138,7 @@ System.out.println(panierLivre.getId_client());
     notif.title("Message de succès");
     notif.hideAfter(Duration.seconds(5));
     notif.show();
+       
 
    
 }

@@ -30,6 +30,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 /**
@@ -43,8 +44,6 @@ public class FXMLAjouterMessagerieController implements Initializable {
     private TextField text_message;
     @FXML
     private Button btn_ajouter;
-    @FXML
-    private Button btn_retour;
     @FXML
     private ComboBox<Integer> id_utilis;
 
@@ -91,10 +90,16 @@ private void Ajoutermessage(ActionEvent event) {
 }
 
 
+
     @FXML
-    private void returnhome(ActionEvent event) {
-               try {
-            Parent root = FXMLLoader.load(getClass().getResource("FXMLMessagerie.fxml"));
+    private void drop_id_utilis(ActionEvent event) {
+    }
+
+    @FXML
+    private void back(MouseEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLMaktabti.fxml"));
+            Parent root = loader.load();
             Scene scene = new Scene(root);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(scene);
@@ -102,11 +107,6 @@ private void Ajoutermessage(ActionEvent event) {
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
-
-    }
-
-    @FXML
-    private void drop_id_utilis(ActionEvent event) {
     }
 
  

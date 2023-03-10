@@ -61,8 +61,6 @@ public class FXMLAjouterCompetitionController implements Initializable {
     private TextField recompense;
     @FXML
     private ListView<String> livre;
-    @FXML
-    private ImageView retour;
 
     /**
      * Initializes the controller class.
@@ -154,9 +152,10 @@ public class FXMLAjouterCompetitionController implements Initializable {
         livre.setItems(FXCollections.observableArrayList(names));
     }
 
-    @FXML
-    private void retour(MouseEvent event) {
+    
 
+    @FXML
+    private void back(MouseEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLMaktabti.fxml"));
             Parent root = loader.load();

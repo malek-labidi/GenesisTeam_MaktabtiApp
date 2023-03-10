@@ -179,7 +179,7 @@ public class FXMLAjouterController implements Initializable {
     @FXML
     private void back(MouseEvent event) {
         try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLEvenement.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLMaktabti.fxml"));
                 Parent root = loader.load();
                 Scene scene = new Scene(root);
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

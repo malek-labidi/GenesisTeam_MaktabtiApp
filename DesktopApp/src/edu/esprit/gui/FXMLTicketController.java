@@ -9,6 +9,7 @@ package edu.esprit.gui;
 import edu.esprit.entities.Auteur;
 import edu.esprit.entities.Evenement;
 import edu.esprit.entities.Utilisateur;
+import edu.esprit.entities.login;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.net.URL;
@@ -50,6 +51,7 @@ public class FXMLTicketController implements Initializable {
     @FXML
     private Label event;
    
+  private login Log_in = login.getInstance();
 
     
     @Override
@@ -61,7 +63,7 @@ public class FXMLTicketController implements Initializable {
       
     }   
     public void QR(Utilisateur auteur,Evenement evenement){
-           String text = "7ot lena l utilisateur connecté";
+           String text = Log_in.getNom()+" "+Log_in.getPrenom()+" "+Log_in.getId();
         ByteArrayOutputStream out = QRCode.from(text).withSize(600, 600).to(ImageType.PNG).stream();
         try {
             Files.write(Paths.get("qrcode.png"), out.toByteArray());

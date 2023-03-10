@@ -16,19 +16,11 @@
    <children>
       <BorderPane fx:id="bp" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="863.0" prefWidth="1300.0" stylesheets="@styles/fxmlmaktabti.css">
          <left>
-            <VBox prefHeight="660.0" prefWidth="228.0" style="-fx-background-color: #fff;" styleClass="rect1" stylesheets="@styles/fxmlmaktabti.css" BorderPane.alignment="CENTER">
+            <VBox prefHeight="763.0" prefWidth="237.0" style="-fx-background-color: #fff;" styleClass="rect1" stylesheets="@styles/fxmlmaktabti.css" BorderPane.alignment="CENTER">
                <children>
                   <Button fx:id="home" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="85.0" mnemonicParsing="false" onAction="#home" prefHeight="50.0" prefWidth="228.0" styleClass="button3" stylesheets="@styles/fxmlmaktabti.css" text="Home">
                      <graphic>
                         <FontAwesomeIconView glyphName="HOME" size="30" />
-                     </graphic>
-                     <padding>
-                        <Insets left="50.0" />
-                     </padding>
-                  </Button>
-                  <Button fx:id="livres" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#Livres" prefHeight="50.0" prefWidth="228.0" styleClass="button3" stylesheets="@styles/fxmlmaktabti.css" text="Livres">
-                     <graphic>
-                        <FontAwesomeIconView glyphName="BOOK" size="30" />
                      </graphic>
                      <padding>
                         <Insets left="50.0" />
@@ -61,6 +53,14 @@
                   <Button fx:id="fidelite1" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="560.0" mnemonicParsing="false" onAction="#afficherfidelite" prefHeight="50.0" prefWidth="228.0" styleClass="button3" stylesheets="@styles/fxmlmaktabti.css" text="Consulter fidelité">
                      <graphic>
                         <FontAwesomeIconView glyphName="HEART" size="30" />
+                     </graphic>
+                     <padding>
+                        <Insets left="50.0" />
+                     </padding>
+                  </Button>
+                  <Button fx:id="livres" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#Livres" prefHeight="50.0" prefWidth="228.0" styleClass="button3" stylesheets="@styles/fxmlmaktabti.css" text="Livres">
+                     <graphic>
+                        <FontAwesomeIconView glyphName="BOOK" size="30" />
                      </graphic>
                      <padding>
                         <Insets left="50.0" />
@@ -188,12 +188,12 @@
                         <Insets left="180.0" top="20.0" />
                      </HBox.margin>
                   </FontAwesomeIconView>
-                  <Label fx:id="username" text="Label">
+                  <Label fx:id="username" prefHeight="27.0" prefWidth="120.0" text="Label">
                      <HBox.margin>
                         <Insets top="26.0" />
                      </HBox.margin>
                      <font>
-                        <Font name="System Bold" size="18.0" />
+                        <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
                </children>
