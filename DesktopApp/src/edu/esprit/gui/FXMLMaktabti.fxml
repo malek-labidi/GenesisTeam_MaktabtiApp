@@ -106,7 +106,7 @@
                         <Insets left="50.0" />
                      </padding>
                   </Button>
-                  <Button fx:id="deletefidelite" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="535.0" mnemonicParsing="false" onAction="#deleteFidelite" prefHeight="50.0" prefWidth="228.0" styleClass="button3" stylesheets="@styles/fxmlmaktabti.css" text="Supprimer fidélité">
+                  <Button fx:id="deletefidelite" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="535.0" mnemonicParsing="false" onAction="#deleteFidelite" prefHeight="50.0" prefWidth="237.0" styleClass="button3" stylesheets="@styles/fxmlmaktabti.css" text="Supprimer Offre">
                      <graphic>
                         <FontAwesomeIconView glyphName="TRASH" size="30" />
                      </graphic>

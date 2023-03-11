@@ -21,16 +21,7 @@
       <Button fx:id="pausebutton" layoutX="938.0" layoutY="544.0" mnemonicParsing="false" onAction="#pause" prefHeight="50.0" prefWidth="110.0" styleClass="addbtn" stylesheets="@styles/fxmlmaktabti.css" text="pause">
                     
                   </Button>
-      <Button fx:id="btn_stat" layoutX="602.0" layoutY="544.0" mnemonicParsing="false" onAction="#stat" prefHeight="50.0" prefWidth="171.0" style="-fx-background-color: #80AAFF;" text="Categorie_stat">
-         <graphic>
-            <ImageView fx:id="PDF" fitHeight="37.0" fitWidth="30.0" onMouseClicked="#genererPDF">
-               <image>
-                  <Image url="@images/pdf.png" />
-               </image>
-              
-                        </ImageView>
-         </graphic>
-      </Button>
+      <Button fx:id="btn_stat" layoutX="663.0" layoutY="544.0" mnemonicParsing="false" onAction="#stat" prefHeight="50.0" prefWidth="110.0" style="-fx-background-color: #80AAFF;" text="Satistiques" />
       <Label layoutX="737.0" layoutY="298.0" text="Categorie">
          <font>
             <Font name="System Bold Italic" size="28.0" />
@@ -134,6 +125,12 @@
       <FontAwesomeIconView glyphName="BOOK" layoutX="320.0" layoutY="50.0" size="40" />
       <FontAwesomeIconView glyphName="USER" layoutX="713.0" layoutY="64.0" size="30" />
       <FontAwesomeIconView glyphName="SEARCH" layoutX="302.0" layoutY="97.0" />
+      <ImageView fx:id="PDF" fitHeight="37.0" fitWidth="30.0" layoutX="607.0" layoutY="551.0" onMouseClicked="#genererPDF">
+         <image>
+            <Image url="@images/pdf.png" />
+         </image>
+        
+                        </ImageView>
    </children>
    
 </AnchorPane>

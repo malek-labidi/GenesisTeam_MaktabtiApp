@@ -162,7 +162,8 @@ public class FXMLCompetitionController implements Initializable {
             System.out.println(id);
             Alert alert = new Alert(Alert.AlertType.INFORMATION, "Competition deleted", ButtonType.OK);
             alert.show();
-            affiche();
+             competition_list.getItems().remove(competition_list.getSelectionModel().getSelectedItem());
+           
         } else {
             dialog.close();
         }

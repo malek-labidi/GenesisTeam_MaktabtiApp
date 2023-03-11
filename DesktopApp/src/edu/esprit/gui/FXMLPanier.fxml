@@ -4,16 +4,26 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" fx:id="bg_theme" prefHeight="400.0" prefWidth="668.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="edu.esprit.gui.FXMLPanierController">
+<AnchorPane id="AnchorPane" fx:id="bg_theme" prefHeight="400.0" prefWidth="668.0" stylesheets="@styles/fxmlmaktabti.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.gui.FXMLPanierController">
    <children>
-      <Label fx:id="labelPanier" layoutX="33.0" layoutY="47.0" prefHeight="17.0" prefWidth="127.0" text="Liste des paniers" />
-      <ListView fx:id="viewPanier" layoutX="20.0" layoutY="75.0" prefHeight="88.0" prefWidth="200.0" />
-      <Button fx:id="ajout_boutton" layoutX="409.0" layoutY="209.0" mnemonicParsing="false" text="Ajouter" />
-      <Button fx:id="supprimer_boutton" layoutX="403.0" layoutY="243.0" mnemonicParsing="false" text="Supprimer" />
-      <TextField fx:id="txt_quantité" layoutX="40.0" layoutY="207.0" />
-      <TextField fx:id="txt_prixTotal" layoutX="40.0" layoutY="243.0" />
+      <Label fx:id="labelPanier" layoutX="191.0" layoutY="28.0" prefHeight="32.0" prefWidth="173.0" text="Liste des paniers">
+         <font>
+            <Font size="22.0" />
+         </font></Label>
+      <ListView fx:id="viewPanier" layoutX="178.0" layoutY="80.0" prefHeight="88.0" prefWidth="200.0" />
+      <Button fx:id="ajout_boutton" layoutX="510.0" layoutY="205.0" mnemonicParsing="false" styleClass="addbtn" stylesheets="@styles/fxmlmaktabti.css" text="Ajouter" />
+      <Button fx:id="supprimer_boutton" layoutX="488.0" layoutY="275.0" mnemonicParsing="false" styleClass="deletebtn" stylesheets="@styles/fxmlmaktabti.css" text="Supprimer" />
+      <TextField fx:id="txt_quantité" layoutX="191.0" layoutY="208.0" />
+      <TextField fx:id="txt_prixTotal" layoutX="191.0" layoutY="244.0" />
+      <ImageView fx:id="retour" layoutX="14.0" layoutY="4.0" onMouseClicked="#retour">
+         <image>
+            <Image url="@images/arrow.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

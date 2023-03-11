@@ -31,7 +31,7 @@
          <graphic>
             <FontAwesomeIconView fill="WHITE" glyphName="EDIT" size="15" />
          </graphic></Button>
-      <Button fx:id="btn_supprimer" layoutX="829.0" layoutY="393.0" mnemonicParsing="false" onAction="#supprimerCompetition" prefHeight="60.0" prefWidth="110.0" styleClass="deletebtn" stylesheets="@styles/fxmlmaktabti.css" text="Supprimer">
+      <Button fx:id="btn_supprimer" layoutX="829.0" layoutY="393.0" mnemonicParsing="false" onAction="#supprimerCompetition" prefHeight="60.0" prefWidth="123.0" styleClass="deletebtn" stylesheets="@styles/fxmlmaktabti.css" text="Supprimer">
          <graphic>
             <FontAwesomeIconView fill="#f2f0f0" glyphName="TRASH" size="15.0" />
          </graphic></Button>

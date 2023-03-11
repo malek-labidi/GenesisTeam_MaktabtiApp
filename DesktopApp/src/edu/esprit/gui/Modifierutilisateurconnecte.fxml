@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="423.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.gui.ModifierutilisateurconnecteController">
+<AnchorPane id="AnchorPane" prefHeight="423.0" prefWidth="600.0" stylesheets="@styles/fxmlmaktabti.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.gui.ModifierutilisateurconnecteController">
    <children>
       <VBox layoutX="312.0" layoutY="96.0" prefHeight="166.0" prefWidth="153.0" spacing="21.0">
          <children>
@@ -20,7 +20,7 @@
          </children>
       </VBox>
       <Button fx:id="update_user" layoutX="236.0" layoutY="349.0" mnemonicParsing="false" onAction="#updateuser" styleClass="addbtn" stylesheets="@styles/fxmlmaktabti.css" text="Modifier" />
-      <Button layoutX="353.0" layoutY="349.0" mnemonicParsing="false" styleClass="deletebtn" stylesheets="@styles/fxmlmaktabti.css" text="Reset" />
+      <Button layoutX="353.0" layoutY="349.0" mnemonicParsing="false" styleClass="deletebtn" stylesheets="@styles/fxmlmaktabti.css" text="Réinitialiser" />
       <Label layoutX="211.0" layoutY="134.0" prefHeight="54.0" prefWidth="52.0" text="Prenom">
          <font>
             <Font name="System Bold" size="14.0" />

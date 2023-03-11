@@ -14,7 +14,7 @@
          <children>
             <Pane fx:id="ticketPane" prefHeight="200.0" prefWidth="527.0">
                <children>
-                  <ImageView fitHeight="200.0" fitWidth="527.0">
+                  <ImageView fitHeight="200.0" fitWidth="529.0">
                      <image>
                         <Image url="@images/ticket.png" />
                      </image>
