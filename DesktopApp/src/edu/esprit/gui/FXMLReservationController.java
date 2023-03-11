@@ -19,10 +19,16 @@ import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.text.pdf.draw.LineSeparator;
 import edu.esprit.api.MailReservation;
+import edu.esprit.entities.EtatReservation;
 import edu.esprit.entities.Evenement;
+import edu.esprit.entities.Reservation;
+import edu.esprit.entities.Ticket;
+import edu.esprit.entities.TypeTicket;
 import edu.esprit.entities.login;
 import edu.esprit.services.ServiceEvenement;
 import edu.esprit.services.ServiceLivre;
+import edu.esprit.services.ServiceReservation;
+import edu.esprit.services.ServiceTicket;
 import edu.esprit.services.ServiceUtilisateur;
 import java.awt.Desktop;
 import java.io.ByteArrayOutputStream;
@@ -101,6 +107,8 @@ public class FXMLReservationController implements Initializable {
         // return;
         //}
         ServiceEvenement se = new ServiceEvenement();
+        ServiceReservation sr = new ServiceReservation();
+        ServiceTicket st= new ServiceTicket();
         Evenement e = se.getOneById(id);
 
         if (e.getNb_ticket() > 0) {
@@ -113,9 +121,13 @@ public class FXMLReservationController implements Initializable {
                 return;
             }
             e.setNb_ticket(e.getNb_ticket() - numTickets);
-
+            
             se.modifier(e); // Update the event in the database
-            MailReservation.sendEmail(Log_in);
+            Ticket t = new Ticket(TypeTicket.VIP, 10);
+            st.ajouter(t);
+           // Reservation r = new Reservation(id_ticket, id, EtatReservation.en_attente)
+            //sr.ajouter(t);
+            MailReservation.sendEmail(Log_in, e);
             String message = "Reservation completed successfully!";
             Alert alert = new Alert(AlertType.INFORMATION, message, ButtonType.OK);
             alert.showAndWait();

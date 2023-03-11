@@ -90,11 +90,9 @@ public class OffreAjoutController implements Initializable {
             //int tt=Integer.parseInt(priiiix);
             //System.out.println(tt);
             Offre o = new Offre(id, ppp, prixsolde);
-
             // String titre=list_livre.getSelectionModel().getSelectedItem();
             //  System.out.println(titre);
             so.ajouter(o);
-
               SendSMS sm = new SendSMS();
             sm.sendSMS(o);
             b.setText(priiiix);

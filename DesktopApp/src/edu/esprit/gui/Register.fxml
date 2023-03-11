@@ -17,8 +17,8 @@
          <children>
             <AnchorPane layoutX="-27.0" layoutY="85.0" prefHeight="390.0" prefWidth="626.0" styleClass="root" stylesheets="@styles/fxmlmaktabti.css">
                <children>
-                  <Button fx:id="login" layoutX="246.0" layoutY="325.0" mnemonicParsing="false" onAction="#Registration" prefHeight="37.0" prefWidth="95.0" styleClass="addbtn" stylesheets="@styles/fxmlmaktabti.css" text="Register" />
-                  <Button fx:id="forgotpasswd" layoutX="362.0" layoutY="325.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="94.0" styleClass="deletebtn" stylesheets="@styles/fxmlmaktabti.css" text="Reset" />
+                  <Button fx:id="login" layoutX="246.0" layoutY="325.0" mnemonicParsing="false" onAction="#Registration" prefHeight="37.0" prefWidth="95.0" styleClass="addbtn" stylesheets="@styles/fxmlmaktabti.css" text="S'inscire" />
+                  <Button fx:id="forgotpasswd" layoutX="362.0" layoutY="325.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="94.0" styleClass="deletebtn" stylesheets="@styles/fxmlmaktabti.css" text="Annuler" />
                   <VBox layoutX="317.0" layoutY="14.0" prefHeight="166.0" prefWidth="153.0" spacing="21.0">
                      <children>
                         <TextField fx:id="nom" layoutX="10.0" layoutY="10.0" />
@@ -36,12 +36,12 @@
                   </VBox>
                   <VBox layoutX="202.0" layoutY="14.0" prefHeight="299.0" prefWidth="91.0" spacing="25.0">
                      <children>
-                        <Label prefHeight="28.0" prefWidth="33.0" styleClass="txt" stylesheets="@styles/fxmlmaktabti.css" text="Nom" textFill="#161616">
+                        <Label prefHeight="28.0" prefWidth="36.0" text="Nom" textFill="#0d0d0d">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
                         </Label>
-                        <Label layoutX="10.0" layoutY="10.0" prefHeight="32.0" prefWidth="48.0" styleClass="txt" stylesheets="@styles/fxmlmaktabti.css" text="Prenom" textFill="#1d1d1d">
+                        <Label prefHeight="28.0" prefWidth="62.0" text="Prénom" textFill="#0d0d0d">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
@@ -70,7 +70,7 @@
                   </VBox>
                </children>
             </AnchorPane>
-            <Label layoutX="215.0" layoutY="49.0" styleClass="txt" stylesheets="@styles/fxmlmaktabti.css" text="Registration Form" textFill="#121211">
+            <Label layoutX="215.0" layoutY="49.0" styleClass="txt" stylesheets="@styles/fxmlmaktabti.css" text="Formulaire d'inscription" textFill="#121211">
                <font>
                   <Font name="Bell MT Italic" size="24.0" />
                </font>

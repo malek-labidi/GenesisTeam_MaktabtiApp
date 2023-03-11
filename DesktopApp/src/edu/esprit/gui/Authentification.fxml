@@ -16,7 +16,7 @@
    <center>
       <AnchorPane blendMode="HARD_LIGHT" cache="true" prefHeight="400.0" prefWidth="335.0" style="-fx-background-color: #E6EFFB;" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="reset" layoutX="332.0" layoutY="273.0" mnemonicParsing="false" onAction="#reset" prefHeight="45.0" prefWidth="108.0" styleClass="deletebtn" stylesheets="@styles/fxmlmaktabti.css" text="Supprimer" />
+            <Button fx:id="reset" layoutX="332.0" layoutY="273.0" mnemonicParsing="false" onAction="#reset" prefHeight="45.0" prefWidth="108.0" styleClass="deletebtn" stylesheets="@styles/fxmlmaktabti.css" text="Annuler" />
             <VBox layoutX="290.0" layoutY="164.0" prefHeight="73.0" prefWidth="147.0">
                <children>
                   <TextField fx:id="username" prefHeight="3.0" prefWidth="100.0" />

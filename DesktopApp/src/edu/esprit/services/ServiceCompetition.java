@@ -150,12 +150,12 @@ public class ServiceCompetition implements IService<Competition> {
         List<Question> lq = new ArrayList<>();
         try {
 
-            String req = "SELECT q.id_question, q.question, q.choix1, q.choix2, q.choix3, q.reponse_correct FROM question q INNER JOIN quiz z ON q.id_quiz = z.id_quiz INNER JOIN competition c ON z.id_competition = c.id_competition WHERE c.id_competition = " + id;
+            String req = "SELECT q.id_quiz, q.id_question, q.question, q.choix1, q.choix2, q.choix3, q.reponse_correct FROM question q INNER JOIN quiz z ON q.id_quiz = z.id_quiz INNER JOIN competition c ON z.id_competition = c.id_competition WHERE c.id_competition = " + id;
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(req);
             while (rs.next()) {
 
-                Question result = new Question(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6));
+                Question result = new Question(rs.getInt(2),rs.getInt(1), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7));
                 lq.add(result);
 
             }

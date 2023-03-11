@@ -123,7 +123,7 @@ private void btn_ajouter(ActionEvent event) {
     if (selectedFile != null) {
         // Copy selected image file to the specified file path
         try {
-            File destFile = new File("C:\\Users\\Ilef\\Desktop\\GenesisTeam_MaktabtiApp-\\DesktopApp\\src\\edu\\esprit\\upload\\" + selectedFile.getName());
+            File destFile = new File("src\\edu\\esprit\\upload\\" + selectedFile.getName());
             FileUtils.copyFile(selectedFile, destFile);
             System.out.println("Image file copied successfully.");
         } catch (IOException ex) {
