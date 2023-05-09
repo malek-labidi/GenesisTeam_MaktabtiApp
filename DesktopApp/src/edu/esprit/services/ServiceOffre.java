@@ -91,7 +91,7 @@ public class ServiceOffre implements IService<Offre>{
     public void ajouter(Offre o) {
         if (verif_pourcentage_solde(o.getPourcentage_solde())==true  && getOneByIdlivre(o.getId_livre())==null){
           try {
-            String req = "INSERT INTO `offre`(`id_offre`, `id_livre`, `pourcentage_solde`, `prix_soldé` ) VALUES (?,?,?,?)";
+            String req = "INSERT INTO `offre`(`id_offre`, `id_livre`, `pourcentage_solde`, `prix_solde` ) VALUES (?,?,?,?)";
             PreparedStatement ps = cnx.prepareStatement(req);
             ps.setInt(1, o.getId_offre());
             ps.setInt(2,o.getId_livre());
@@ -117,7 +117,7 @@ public class ServiceOffre implements IService<Offre>{
     public void modifier(Offre o) {
         if ( verif_pourcentage_solde(o.getPourcentage_solde())==true ){
              try {
-                 String req = "UPDATE `offre` SET `id_livre`=?,`pourcentage_solde`=?,`prix_soldé`=? WHERE id_offre= ?";
+                 String req = "UPDATE `offre` SET `id_livre`=?,`pourcentage_solde`=?,`prix_solde`=? WHERE id_offre= ?";
                   PreparedStatement ps = cnx.prepareStatement(req);
                   ps.setInt(1, o.getId_livre());
                   ps.setString(2,o.getPourcentage_solde());

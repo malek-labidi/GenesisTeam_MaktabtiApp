@@ -94,7 +94,7 @@ public class OffreAjoutController implements Initializable {
             //  System.out.println(titre);
             so.ajouter(o);
               SendSMS sm = new SendSMS();
-            sm.sendSMS(o);
+           // sm.sendSMS(o);
             b.setText(priiiix);
 
             a.clear();

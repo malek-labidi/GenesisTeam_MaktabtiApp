@@ -13,7 +13,7 @@ public class Offre {
      private int id_offre;
     private int id_livre;
     private String pourcentage_solde;
-    private float prix_soldé;
+    private float prix_solde;
     public Offre(){
         
     }
@@ -21,14 +21,14 @@ public class Offre {
     public Offre(int id_livre, String pourcentage_solde, float prix_soldé) {
         this.id_livre = id_livre;
         this.pourcentage_solde = pourcentage_solde;
-        this.prix_soldé = prix_soldé;
+        this.prix_solde = prix_soldé;
     }
 
     public Offre(int id_offre, int id_livre, String pourcentage_solde, float prix_soldé) {
         this.id_offre = id_offre;
         this.id_livre = id_livre;
         this.pourcentage_solde = pourcentage_solde;
-        this.prix_soldé = prix_soldé;
+        this.prix_solde = prix_soldé;
     }
 
     public int getId_offre() {
@@ -44,7 +44,7 @@ public class Offre {
     }
 
     public float getPrix_soldé() {
-        return prix_soldé;
+        return prix_solde;
     }
 
     public void setId_offre(int id_offre) {
@@ -60,12 +60,12 @@ public class Offre {
     }
 
     public void setPrix_soldé(float prix_soldé) {
-        this.prix_soldé = prix_soldé;
+        this.prix_solde = prix_soldé;
     }
 
     @Override
     public String toString() {
-        return "Offre{" + "id_offre=" + id_offre + ", id_livre=" + id_livre + ", pourcentage_solde=" + pourcentage_solde + ", prix_sold\u00e9=" + prix_soldé + '}';
+        return "Offre{" + "id_offre=" + id_offre + ", id_livre=" + id_livre + ", pourcentage_solde=" + pourcentage_solde + ", prix_sold\u00e9=" + prix_solde + '}';
     }
     public static boolean verifString(String s){
         return s.isEmpty();
