@@ -46,7 +46,6 @@ public class ConsulterFideliteController implements Initializable {
     
     public void verif(){
            ServiceFidelite sf=new ServiceFidelite();
-
         ServiceCommande sc=new ServiceCommande();
         List <Commande> lc=sc.getAll();
         for (Commande ll:lc){

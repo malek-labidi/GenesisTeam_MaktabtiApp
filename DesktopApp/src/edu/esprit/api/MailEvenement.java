@@ -50,9 +50,9 @@ public class MailEvenement {
 
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress(username, "Maktabti Application"));
-            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(login.getUsername()));
+            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse("sadoksassi2@gmail.com"));
             message.setSubject("Evenement Annulé !");
-            message.setText("cher Mr/Mme" + login.getNom() + " " + login.getPrenom() + ","
+            message.setText("cher Mr/Mme Sadok sassi,"
                     + "\n\n nous somme vraiment désolé de vous informer que notre evenement " + evenement.getNom() + " est annulée merci pour votre compréhension ");
 
             Transport.send(message);
