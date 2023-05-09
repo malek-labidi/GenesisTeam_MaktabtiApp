@@ -35,6 +35,8 @@ import javafx.scene.paint.Color;
 import org.ini4j.Wini;
 import org.mindrot.jbcrypt.BCrypt;
 
+
+
 /**
  *
  * @author wassi
@@ -431,7 +433,20 @@ public class ServiceUtilisateur implements IService<Utilisateur> {
         ResultSet rs = psmt.executeQuery();
         if (rs.next()) {
             String hashedPassword = rs.getString("mot_de_passe");
-            if (BCrypt.checkpw(password, hashedPassword)) {
+            System.out.println(hashedPassword);
+            System.out.println(password);
+           boolean isMatched = false;
+            
+            // Check if password matches hashed password with algorithm 2y
+            if (hashedPassword.startsWith("$2a$")) {
+                isMatched = BCrypt.checkpw(password, hashedPassword);
+            }
+            
+            // Check if password matches hashed password with algorithm 2a
+            if (!isMatched && hashedPassword.startsWith("$2y$")) {
+                isMatched = BCrypt.checkpw(password, hashedPassword.replace("$2y$", "$2a$"));
+            }
+            if (isMatched) {
                 user = new Utilisateur() {} ;
                 user.setId(rs.getInt("id_utilisateur"));
                 user.setNom(rs.getString("nom"));
