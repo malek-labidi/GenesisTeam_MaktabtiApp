@@ -26,7 +26,7 @@ public class MailLivre {
          public static void sendEmail(Utilisateur u,Livre l) {
 
       final String username = "maktabti10@gmail.com";
-      final String password = "dae rta agl jjg igf w";
+      final String password = "gjq egd dtf lhl jeto";
 
       Properties props = new Properties();
       props.put("mail.smtp.auth", "true");

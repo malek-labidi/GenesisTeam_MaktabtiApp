@@ -26,7 +26,7 @@ public class emailwhenregistration {
         
 
       final String username = "maktabti10@gmail.com";
-      final String password = "dae rta agl jjg igf w";
+      final String password = "gjq egd dtf lhl jeto";
 
       Properties props = new Properties();
       props.put("mail.smtp.auth", "true");
@@ -43,13 +43,17 @@ public class emailwhenregistration {
 
       try {
           
-          
+                      String signature = "\n\n-- \nMaktabti Application \nNuméro de téléphone : +216 52 329 813 \nAdresse e-mail : maktabti10@gmail.com \nSite web : www.maktabti.com";
+
 
          Message message = new MimeMessage(session);
          message.setFrom(new InternetAddress(username,"Maktabti Application"));
-         message.setRecipients(Message.RecipientType.TO,InternetAddress.parse("mohamedwassim.hachani@esprit.tn"));
-         message.setText("cher Mr/Mme,"
-            + "\n\n nous somme vraiment désolé de vous informer que notre evenement"+u.getEmail()+" est annulée merci pour votre compréhension ");
+         message.setRecipients(Message.RecipientType.TO,InternetAddress.parse(u.getEmail()));
+          message.setSubject("Création de compte effecuté avec succés");
+         message.setText("Cher(e) "+u.getNom()+" "+u.getPrenom()+","
++ "\n\nNous sommes ravis de vous informer que votre compte a été créé avec succès sur notre plateforme. Votre adresse email "+u.getEmail()+" a été enregistrée avec succès."
++ "\n\nNous vous remercions de votre confiance et espérons que vous apprécierez l'ensemble des fonctionnalités proposées sur notre site."
++ "\n\nCordialement,\n\n"+signature);
 
          Transport.send(message);
 
