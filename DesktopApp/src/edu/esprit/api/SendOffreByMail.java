@@ -37,7 +37,7 @@ public class SendOffreByMail {
 
         // Set up your email account credentials
         final String username = "maktabti10@gmail.com";
-        final String password = "dae rta agl jjg igfw";
+        final String password = "gjq egd dtf lhl jeto";
 
         // Set up the email properties
         Properties props = new Properties();
