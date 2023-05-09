@@ -96,10 +96,10 @@ public class Main {
         //System.out.println(sf.getAll());
         // System.out.println(sf.getOneById(2));
         /* sf.delete(1);*/
-        //ServiceOffre o=new ServiceOffre();
-        // Offre oo = new Offre(2, "2%", 560);
+        ServiceOffre o=new ServiceOffre();
+         Offre oo = new Offre(6, "2%", 560);
         //Offre oo1 = new Offre(90,3,"80%", 440);
-        // o.ajouter(oo1);
+         o.ajouter(oo);
         //se.modifier(e1);
        // Reclamation r5 = new Reclamation("FSGFSF", "SDFDSF");
        // Reclamation r6 = new Reclamation(2, "aaaaa", "aaaaa");

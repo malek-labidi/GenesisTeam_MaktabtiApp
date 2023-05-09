@@ -40,7 +40,7 @@ public class ConsulterFideliteController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-            this.verif();
+        this.verif();
         this.affiche();
     }    
     
@@ -49,7 +49,7 @@ public class ConsulterFideliteController implements Initializable {
         ServiceCommande sc=new ServiceCommande();
         List <Commande> lc=sc.getAll();
         for (Commande ll:lc){
-            if (sf.getOneByIdClient(ll.getId_client())==null){
+            if (sf.getOneByIdClient(ll.getId_client()).getType()==null){
                 System.out.println(sf.totalacha(ll.getId_client()));
                 if (sf.totalacha(ll.getId_client())<1000 && sf.totalacha(ll.getId_client()) >0 ){
                         Fidelite t =new Fidelite(ll.getId_client(), sf.totalacha(ll.getId_client()),bronze);
