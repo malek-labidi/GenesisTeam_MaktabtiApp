@@ -127,7 +127,7 @@ public class FXMLReservationController implements Initializable {
             st.ajouter(t);
            // Reservation r = new Reservation(id_ticket, id, EtatReservation.en_attente)
             //sr.ajouter(t);
-            MailReservation.sendEmail(Log_in, e);
+            MailReservation.sendEmail(Log_in, e,numTickets);
             String message = "Reservation completed successfully!";
             Alert alert = new Alert(AlertType.INFORMATION, message, ButtonType.OK);
             alert.showAndWait();

@@ -23,7 +23,7 @@ import javax.mail.Authenticator;
  * @author SADOK
  */
 public class MailReservation {
-    public static void sendEmail(login login, Evenement event) {
+    public static void sendEmail(login login, Evenement event,int numTickets) {
 
       final String username = "maktabti10@gmail.com";
       final String password = "dae rta agl jjg igf w";
@@ -54,7 +54,7 @@ public class MailReservation {
 "Nous vous remercions de votre réservation pour l'événement " + event.getNom() +" , qui aura lieu le " +event.getDate()+ " " +event.getHeure() +" à "+event.getLieu()+". Nous sommes ravis de vous accueillir parmi nous et de vous offrir une expérience mémorable.\n" +
 "\n" +
 "Votre réservation a bien été enregistrée, et nous confirmons par la présente que votre place est réservée pour l'événement. Nous vous rappelons que le paiement sera exigé lors de votre arrivée à l'événement.\n" +
-"\n" +
+"\n" +"Vous avez réservé "+ numTickets +" places pour l'événement.\n"+"\n"+
 "Si vous avez des questions ou des préoccupations, n'hésitez pas à nous contacter .\n" +
 "\n" +
 "Nous avons hâte de vous voir à l'événement !\n" +

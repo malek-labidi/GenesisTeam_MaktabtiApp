@@ -18,6 +18,8 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 
@@ -33,6 +35,8 @@ public class PieChartController implements Initializable {
     ObservableList< PieChart.Data> piechartdata;
     ArrayList< String> p = new ArrayList< String>();
     ArrayList< Integer> c = new ArrayList< Integer>();
+    @FXML
+    private ImageView retour;
 
 
     /**
@@ -68,9 +72,11 @@ public class PieChartController implements Initializable {
         }
     }  
 
+    
+
     @FXML
-    private void retun_btn(ActionEvent event) {
-         try {
+    private void retun_btn(MouseEvent event) {
+        try {
         Parent root = FXMLLoader.load(getClass().getResource("FXMLMaktabti.fxml"));
         Scene scene = new Scene(root);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

@@ -28,11 +28,9 @@ import edu.esprit.services.ServiceCompetition;
 import edu.esprit.services.ServiceEvenement;
 
 import edu.esprit.services.ServiceLivre;
-
 import edu.esprit.services.ServiceFidelite;
 import edu.esprit.services.ServiceLivrePanier;
 import edu.esprit.services.ServiceOffre;
-
 import edu.esprit.services.ServicePanier;
 import edu.esprit.services.ServiceQuestion;
 import edu.esprit.services.ServiceQuiz;
