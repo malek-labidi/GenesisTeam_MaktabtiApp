@@ -159,7 +159,7 @@ private void supp_btn(ActionEvent event) {
     event_view.getItems().remove(selectedEvent);
     
     // Send an email
-    MailEvenement.sendEmail(selectedEvent);
+    MailEvenement.sendEmail(selectedEvent, Log_in);
 }
 
 
@@ -241,6 +241,11 @@ private void supp_btn(ActionEvent event) {
 
                 commenter.setStyle(" -fx-background-color: #f8a375;-fx-text-fill: white;-fx-font-size: 16px; -fx-background-radius: 8px; -fx-font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;");
 
+              if (Log_in.getRole().equals("Administrateur") ) {
+            commenter.setVisible(false);
+            reserver.setVisible(false);
+           
+        }
                 if (evenement.getNb_ticket() == 0) {
                     reserver.setDisable(true);
                     reserver.setStyle("-fx-background-color: #C0C0C0;-fx-text-fill: white;-fx-font-size: 16px; -fx-background-radius: 8px; -fx-font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;");

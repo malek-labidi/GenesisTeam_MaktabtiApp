@@ -100,7 +100,9 @@ public class FXMLMaktabtiController implements Initializable {
             messagerie.setVisible(false);
             quiz.setVisible(false);
             offre.setVisible(false);
+            livres.setVisible(false);
         } 
+        loadPage("FXMLHome");
         
     }
 
@@ -167,6 +169,7 @@ public class FXMLMaktabtiController implements Initializable {
 
     @FXML
     private void home(ActionEvent event) {
+         loadPage("FXMLHome");
     }
 
     @FXML

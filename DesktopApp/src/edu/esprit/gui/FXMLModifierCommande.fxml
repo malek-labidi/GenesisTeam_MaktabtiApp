@@ -3,18 +3,25 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" stylesheets="@styles/fxmlmaktabti.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.gui.FXMLModifierCommandeController">
    <children>
-      <Button fx:id="valider" layoutX="246.0" layoutY="301.0" mnemonicParsing="false" onAction="#modifierEtat" prefHeight="38.0" prefWidth="88.0" styleClass="addbtn" stylesheets="@styles/fxmlmaktabti.css" text="Valider" />
-      <ComboBox fx:id="comboEtat" layoutX="215.0" layoutY="135.0" prefWidth="150.0" />
-      <Label layoutX="145.0" layoutY="146.0" text="Etat" />
+      <Button fx:id="valider" layoutX="244.0" layoutY="276.0" mnemonicParsing="false" onAction="#modifierEtat" prefHeight="38.0" prefWidth="88.0" styleClass="addbtn" stylesheets="@styles/fxmlmaktabti.css" text="Valider" />
+      <ComboBox fx:id="comboEtat" layoutX="215.0" layoutY="167.0" prefWidth="150.0" />
+      <Label layoutX="151.0" layoutY="177.0" text="Etat" />
       <Label layoutX="134.0" layoutY="65.0" text="Modifier l'Etat de la Commande" underline="true">
          <font>
             <Font name="Apple Braille Outline 6 Dot" size="22.0" />
          </font>
       </Label>
+      <ImageView fx:id="retour" layoutX="37.0" layoutY="14.0" onMouseClicked="#retour">
+         <image>
+            <Image url="@images/arrow.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

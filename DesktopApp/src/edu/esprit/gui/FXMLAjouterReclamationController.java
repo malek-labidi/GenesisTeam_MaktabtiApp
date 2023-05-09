@@ -35,6 +35,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -52,7 +53,7 @@ public class FXMLAjouterReclamationController implements Initializable {
     @FXML
     private Button Ajouter;
     @FXML
-    private Button btn_retour;
+    private ImageView btn_retour;
     @FXML
     private Button btn_upload;
     @FXML
@@ -106,19 +107,7 @@ private void btn_ajouter(ActionEvent event) {
 
 
 
-    @FXML
-    private void returnbutton(ActionEvent event) {
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("FXMLReclamation.fxml"));
-            Scene scene = new Scene(root);
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        }
-
-    }
+   
 
     @FXML
     private void handleUploadImage(ActionEvent event) {
@@ -134,7 +123,7 @@ private void btn_ajouter(ActionEvent event) {
     if (selectedFile != null) {
         // Copy selected image file to the specified file path
         try {
-            File destFile = new File("C:\\Users\\Ilef\\Desktop\\GenesisTeam_MaktabtiApp-\\DesktopApp\\src\\edu\\esprit\\upload\\" + selectedFile.getName());
+            File destFile = new File("src\\edu\\esprit\\upload\\" + selectedFile.getName());
             FileUtils.copyFile(selectedFile, destFile);
             System.out.println("Image file copied successfully.");
         } catch (IOException ex) {
@@ -144,4 +133,17 @@ private void btn_ajouter(ActionEvent event) {
         System.out.println("No image file selected.");
     }
 }
+
+    @FXML
+    private void returnbutton(MouseEvent event) {
+          try {
+            Parent root = FXMLLoader.load(getClass().getResource("FXMLMaktabti.fxml"));
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
 }

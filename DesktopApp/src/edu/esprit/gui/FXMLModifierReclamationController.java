@@ -21,6 +21,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 /**
@@ -37,7 +39,7 @@ public class FXMLModifierReclamationController implements Initializable {
     @FXML
     private Button Modifier;
     @FXML
-    private Button btn_retour;
+    private ImageView btn_retour;
    
     private int id;
         
@@ -67,18 +69,7 @@ public class FXMLModifierReclamationController implements Initializable {
         }
     }
 
-    @FXML
-    private void returnbutton(ActionEvent event) {
-              try {
-        Parent root = FXMLLoader.load(getClass().getResource("FXMLReclamation.fxml"));
-        Scene scene = new Scene(root);
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.show();
-    } catch (IOException ex) {
-        System.out.println(ex.getMessage());
-    }
-    }
+   
 
 
     void getReclamation(int id) {
@@ -92,6 +83,20 @@ public class FXMLModifierReclamationController implements Initializable {
           Message.setText(c.getMessage());
         Feedback.setText(c.getFeedback());
         
+    }
+
+    @FXML
+    private void returnbutton(MouseEvent event) {
+           try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLMaktabti.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
     }
     

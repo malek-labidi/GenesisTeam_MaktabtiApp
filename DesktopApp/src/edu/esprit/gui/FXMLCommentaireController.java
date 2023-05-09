@@ -2,6 +2,7 @@ package edu.esprit.gui;
 
 import edu.esprit.entities.Commentaire;
 import edu.esprit.entities.Evenement;
+import edu.esprit.entities.login;
 import edu.esprit.services.ServiceCommentaire;
 import java.io.IOException;
 import java.net.URL;
@@ -43,6 +44,7 @@ public class FXMLCommentaireController implements Initializable {
     private int row = 0;
     @FXML
     private ImageView back;
+    private login Log_in = login.getInstance();
 
     /**
      * Initializes the controller class.
@@ -84,7 +86,7 @@ public class FXMLCommentaireController implements Initializable {
             comment.clear();
             submit.setDisable(true);
         } else {
-            sc.ajouter(new Commentaire(1, evenementId, c));
+            sc.ajouter(new Commentaire(Log_in.getId(), evenementId, c));
             comment.clear();
             submit.setDisable(false);
             Image image = new Image("/edu/esprit/gui/images/check.png");
@@ -113,7 +115,7 @@ public class FXMLCommentaireController implements Initializable {
     @FXML
     private void back(MouseEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLEvenement.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLMaktabti.fxml"));
             Parent root = loader.load();
             Scene scene = new Scene(root);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

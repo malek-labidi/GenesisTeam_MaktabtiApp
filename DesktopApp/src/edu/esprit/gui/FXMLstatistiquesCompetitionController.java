@@ -57,7 +57,7 @@ public class FXMLstatistiquesCompetitionController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        //chart();
+        
 
         WeekFields weekFields = WeekFields.of(Locale.getDefault());
         LocalDate today = LocalDate.now();
@@ -75,7 +75,7 @@ public class FXMLstatistiquesCompetitionController implements Initializable {
         for (Competition c : lc) {
             if (c.getDate_debut().toLocalDate().get(weekFields.weekOfWeekBasedYear()) == currentWeek || c.getDate_fin().toLocalDate().get(weekFields.weekOfWeekBasedYear()) == currentWeek) {
                 competition.getItems().add(c.getNom());
-               boolean sended = sendRecompense(c, c.getNom());
+                boolean sended = sendRecompense(c, c.getNom());
                 if (sended == true) {
                     Platform.runLater(() -> {
                         Image image = new Image("/edu/esprit/gui/images/confetti.png");
@@ -117,7 +117,7 @@ public class FXMLstatistiquesCompetitionController implements Initializable {
         for (ResultatQuiz q : r) {
             Utilisateur u = su.getOneById(q.getId_client());
             if (Date.valueOf(LocalDate.now().plusDays(1)).equals(c.getDate_fin()) && q.getScore() == maxScore) {
-                MailRecompense.sendEmail(u, c);
+                 MailRecompense.sendEmail(u, c);
                 result = true;
             }
         }
@@ -138,10 +138,13 @@ public class FXMLstatistiquesCompetitionController implements Initializable {
             series.getData().add(new XYChart.Data<>(u.getPrenom() + " " + u.getNom(), q.getScore()));
         }
         series.setName("Score");
-
+        chartRsult.setBarGap(0); 
+        chartRsult.setCategoryGap(10);
         chartRsult.setLegendVisible(true);
+        chartRsult.setAnimated(false); 
         chartRsult.getData().addAll(series);
         chartRsult.setTitle("Résultat de la competition ");
+      
     }
 
 }

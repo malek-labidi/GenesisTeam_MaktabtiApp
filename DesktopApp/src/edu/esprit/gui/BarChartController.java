@@ -71,7 +71,7 @@ public class BarChartController implements Initializable {
     @FXML
     private void retun_btn(ActionEvent event) {
          try {
-        Parent root = FXMLLoader.load(getClass().getResource("FXMLMessagerie.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("FXMLMaktabti.fxml"));
         Scene scene = new Scene(root);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);

@@ -12,6 +12,7 @@ import edu.esprit.services.ServiceFidelite;
 import edu.esprit.services.ServiceLivre;
 import edu.esprit.services.ServiceOffre;
 import edu.esprit.services.ServiceUtilisateur;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -90,7 +91,7 @@ public class SendOffreByMail {
         try {
             // Create a new message
             Message message = new MimeMessage(session);
-            message.setFrom(new InternetAddress(username));
+            message.setFrom(new InternetAddress(username,"Maktabti Application"));
            
              InternetAddress[] addresses = new InternetAddress[emails.size()];
             for(int i = 0; i < emails.size(); i++) {
@@ -105,7 +106,7 @@ public class SendOffreByMail {
 
             System.out.println("Message sent successfully.");
 
-        } catch (MessagingException e) {
+        } catch (MessagingException  | UnsupportedEncodingException e) {
             System.out.println("Error sending message: " + e.getMessage());
         }
     }

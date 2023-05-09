@@ -11,9 +11,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="522.0" prefWidth="1011.0" stylesheets="@styles/fxmlmaktabti.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.gui.FXMLCompetitionController">
+<AnchorPane id="AnchorPane" prefHeight="626.0" prefWidth="1057.0" stylesheets="@styles/fxmlmaktabti.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.gui.FXMLCompetitionController">
    <children>
-      <ListView fx:id="competition_list" layoutX="51.0" layoutY="150.0" prefHeight="324.0" prefWidth="737.0">
+      <ListView fx:id="competition_list" layoutX="65.0" layoutY="150.0" prefHeight="378.0" prefWidth="715.0">
          <effect>
             <DropShadow />
          </effect>
@@ -23,19 +23,19 @@
             <Font name="System Bold" size="29.0" />
          </font>
       </Label>
-      <Button fx:id="btn_ajouter" layoutX="829.0" layoutY="152.0" mnemonicParsing="false" onAction="#ajouterCompetition" prefHeight="43.0" prefWidth="117.0" styleClass="addbtn" stylesheets="@styles/fxmlmaktabti.css" text="Ajouter">
+      <Button fx:id="btn_ajouter" layoutX="829.0" layoutY="152.0" mnemonicParsing="false" onAction="#ajouterCompetition" prefHeight="60.0" prefWidth="110.0" styleClass="addbtn" stylesheets="@styles/fxmlmaktabti.css" text="Ajouter">
          <graphic>
             <FontAwesomeIconView fill="WHITE" glyphName="PLUS" />
          </graphic></Button>
-      <Button fx:id="btn_modifier" layoutX="830.0" layoutY="243.0" mnemonicParsing="false" onAction="#modifierCompetition" prefHeight="43.0" prefWidth="117.0" styleClass="modifybtn" stylesheets="@styles/fxmlmaktabti.css" text="Modifier">
+      <Button fx:id="btn_modifier" layoutX="831.0" layoutY="279.0" mnemonicParsing="false" onAction="#modifierCompetition" prefHeight="60.0" prefWidth="110.0" styleClass="modifybtn" stylesheets="@styles/fxmlmaktabti.css" text="Modifier">
          <graphic>
             <FontAwesomeIconView fill="WHITE" glyphName="EDIT" size="15" />
          </graphic></Button>
-      <Button fx:id="btn_supprimer" layoutX="827.0" layoutY="332.0" mnemonicParsing="false" onAction="#supprimerCompetition" prefHeight="43.0" prefWidth="125.0" styleClass="deletebtn" stylesheets="@styles/fxmlmaktabti.css" text="Supprimer">
+      <Button fx:id="btn_supprimer" layoutX="829.0" layoutY="393.0" mnemonicParsing="false" onAction="#supprimerCompetition" prefHeight="60.0" prefWidth="123.0" styleClass="deletebtn" stylesheets="@styles/fxmlmaktabti.css" text="Supprimer">
          <graphic>
             <FontAwesomeIconView fill="#f2f0f0" glyphName="TRASH" size="15.0" />
          </graphic></Button>
-      <ImageView fx:id="pdf" fitHeight="65.0" fitWidth="63.0" layoutX="807.0" layoutY="425.0" onMouseClicked="#TelechargerPDF">
+      <ImageView fx:id="pdf" fitHeight="65.0" fitWidth="63.0" layoutX="854.0" layoutY="463.0" onMouseClicked="#TelechargerPDF">
          <image>
             <Image url="@images/pdf.png" />
          </image>

@@ -157,7 +157,7 @@ public void supprimerFidelite(Fidelite f) {
         }
     }
   public Fidelite getOneByIdClient(int id) {
-        Fidelite result = null;
+        Fidelite result = new Fidelite();
         try {
             String req = "SELECT * FROM `fidelite` WHERE id_client = " + id;
             Statement st = cnx.createStatement();

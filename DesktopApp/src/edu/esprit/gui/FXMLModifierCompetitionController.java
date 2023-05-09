@@ -9,6 +9,7 @@ import edu.esprit.entities.Competition;
 import edu.esprit.entities.Livre;
 import edu.esprit.services.ServiceCompetition;
 import edu.esprit.services.ServiceLivre;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.sql.SQLException;
@@ -19,13 +20,20 @@ import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -51,6 +59,8 @@ public class FXMLModifierCompetitionController implements Initializable {
     @FXML
     private Button btn_annuler;
     private int id;
+    @FXML
+    private ImageView retour;
 
     /**
      * Initializes the controller class.
@@ -140,6 +150,20 @@ public class FXMLModifierCompetitionController implements Initializable {
         lien.setText(c.getLien_competition());
         recompense.setText(c.getRecompense());
         list_livre.getSelectionModel().select(sl.getOneById(c.getId_livre()).getTitre());
+    }
+
+    @FXML
+    private void retour(MouseEvent event) {
+         try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLMaktabti.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
 }

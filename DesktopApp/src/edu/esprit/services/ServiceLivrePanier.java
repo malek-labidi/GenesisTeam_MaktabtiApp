@@ -140,7 +140,7 @@ public class ServiceLivrePanier implements IService <PanierLivre> {
     }
     */
 
-    public void ajouterLivrePanier(int id_livre,int id_client) {
+public void ajouterLivrePanier(int id_livre,int id_client) {
     try {
 
         PreparedStatement ps1 = cnx.prepareStatement("SELECT * FROM panier WHERE id_client = ?");
@@ -278,7 +278,7 @@ public void updatePanierLivre(int id_livre, int id_client, int quantite) {
     try {
 
         // Préparer la requête SQL pour mettre à jour la quantité du livre dans le panier
-        PreparedStatement pstmt = cnx.prepareStatement("UPDATE livrepanier SET quantite=? WHERE id_livre=? AND id_client=?");
+        PreparedStatement pstmt = cnx.prepareStatement("UPDATE panierlivre SET quantite=? WHERE id_livre=? AND id_client=?");
 
         // Définir les paramètres de la requête
         pstmt.setInt(1, quantite);

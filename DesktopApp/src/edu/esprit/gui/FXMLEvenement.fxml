@@ -21,14 +21,20 @@
             <Font size="35.0" />
          </font>
       </Label>
-      <Button fx:id="ajouter" layoutX="955.0" layoutY="167.0" mnemonicParsing="false" onAction="#ajout_btn" prefHeight="60.0" prefWidth="110.0" styleClass="addbtn" stylesheets="@styles/fxmlmaktabti.css" text="Ajouter" />
-      <Button fx:id="modifier" layoutX="955.0" layoutY="326.0" mnemonicParsing="false" onAction="#modif_btn" prefHeight="60.0" prefWidth="110.0" styleClass="modifybtn" stylesheets="@styles/fxmlmaktabti.css" text="Modifier" />
-      <Button fx:id="supprimer" layoutX="955.0" layoutY="485.0" mnemonicParsing="false" onAction="#supp_btn" prefHeight="60.0" prefWidth="110.0" styleClass="deletebtn" stylesheets="@styles/fxmlmaktabti.css" text="Supprimer" />
+      <Button fx:id="ajouter" layoutX="914.0" layoutY="194.0" mnemonicParsing="false" onAction="#ajout_btn" prefHeight="60.0" prefWidth="110.0" styleClass="addbtn" stylesheets="@styles/fxmlmaktabti.css" text="Ajouter">
+         <graphic>
+            <FontAwesomeIconView fill="#c6b8b8" glyphName="PLUS" size="20" />
+         </graphic></Button>
+      <Button fx:id="modifier" layoutX="914.0" layoutY="313.0" mnemonicParsing="false" onAction="#modif_btn" prefHeight="60.0" prefWidth="110.0" styleClass="modifybtn" stylesheets="@styles/fxmlmaktabti.css" text="Modifier">
+         <graphic>
+            <FontAwesomeIconView fill="#c6b8b8" glyphName="EDIT" size="20" />
+         </graphic></Button>
+      <Button fx:id="supprimer" layoutX="901.0" layoutY="437.0" mnemonicParsing="false" onAction="#supp_btn" prefHeight="60.0" prefWidth="137.0" styleClass="deletebtn" stylesheets="@styles/fxmlmaktabti.css" text="Supprimer">
+         <graphic>
+            <FontAwesomeIconView fill="#726c6c" glyphName="TRASH" size="20" />
+         </graphic></Button>
       <TextField fx:id="search" layoutX="684.0" layoutY="57.0" onKeyTyped="#search" prefHeight="58.0" prefWidth="230.0" promptText="Rechercher" stylesheets="@styles/crud.css" />
       <FontAwesomeIconView glyphName="SEARCH" layoutX="877.0" layoutY="93.0" size="20" />
       <FontAwesomeIconView glyphName="LIST" layoutX="160.0" layoutY="100.0" size="40" />
-      <FontAwesomeIconView fill="#c6b8b8" glyphName="PLUS" layoutX="963.0" layoutY="206.0" size="20" />
-      <FontAwesomeIconView fill="#c6b8b8" glyphName="EDIT" layoutX="962.0" layoutY="364.0" size="20" />
-      <FontAwesomeIconView fill="#726c6c" glyphName="TRASH" layoutX="957.0" layoutY="522.0" size="20" />
    </children>
 </AnchorPane>

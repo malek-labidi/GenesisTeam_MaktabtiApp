@@ -8,97 +8,92 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="1050.0" style="-fx-background-color: #02030A;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.gui.UtilisateurController">
+<AnchorPane prefHeight="624.0" prefWidth="1088.0" stylesheets="@styles/fxmlmaktabti.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.gui.UtilisateurController">
    <children>
-      <Pane fx:id="pnlOverview" prefHeight="660.0" prefWidth="1429.0" styleClass="root" stylesheets="@styles/fxmlmaktabti.css">
-         <children>
-            <TextField fx:id="searchh" layoutX="623.0" layoutY="48.0" onKeyTyped="#search" prefHeight="27.0" prefWidth="183.0" promptText="search" style="-fx-border-radius: 14em;" />
-            <Label layoutX="181.0" layoutY="44.0" text="Liste des Utilisateurs">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
-            <ImageView fitHeight="17.0" fitWidth="16.0" layoutX="782.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true">
+      <Label layoutX="207.0" layoutY="370.0" text="Telephone" textFill="#0b0b0b">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="197.0" layoutY="313.0" text="Mot de passe" textFill="#1b1a1a">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="225.0" layoutY="244.0" prefHeight="43.0" prefWidth="36.0" text="Email" textFill="#191818">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="226.0" layoutY="135.0" text="Nom">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="searchh" layoutX="872.0" layoutY="25.0" onKeyTyped="#search" prefHeight="27.0" prefWidth="183.0" promptText="search" style="-fx-border-radius: 14em;" />
+      <Label layoutX="241.0" layoutY="18.0" text="Liste des Utilisateurs">
+         <font>
+            <Font size="34.0" />
+         </font>
+      </Label>
+      <Label layoutX="226.0" layoutY="421.0" text="Role" textFill="#101010">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="cat_name" layoutX="315.0" layoutY="129.0" />
+      <TextField fx:id="cat_prenom" layoutX="315.0" layoutY="186.0" prefHeight="31.0" prefWidth="187.0" />
+      <PasswordField fx:id="cat_password" layoutX="315.0" layoutY="307.0" />
+      <FontAwesomeIconView glyphName="SEARCH" layoutX="1033.0" layoutY="46.0" size="15" />
+      <FontAwesomeIconView glyphName="USERS" layoutX="176.0" layoutY="61.0" size="60" text="" wrappingWidth="30.000002473592758" />
+      <TextField fx:id="cat_tel" layoutX="315.0" layoutY="364.0" />
+      <Button fx:id="excel" layoutX="806.0" layoutY="515.0" mnemonicParsing="false" onAction="#excelfile" prefHeight="60.0" prefWidth="131.0" styleClass="modifybtn" stylesheets="@styles/fxmlmaktabti.css" text="Générer">
+         <graphic>
+            <ImageView fitHeight="36.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/search.png" />
+                  <Image url="@images/excell.png" />
                </image>
             </ImageView>
-            <VBox layoutX="207.0" layoutY="170.0" prefHeight="304.0" prefWidth="91.0" spacing="25.0">
-               <children>
-                  <Label text="Nom">
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="10.0" layoutY="10.0" text="Prenom">
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="10.0" layoutY="27.0" prefHeight="43.0" prefWidth="36.0" text="Email" textFill="#191818">
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font>
-                  </Label>
-                  <Label text="Mot de passe" textFill="#1b1a1a">
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font>
-                  </Label>
-                  <Label text="Telephone" textFill="#0b0b0b">
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font>
-                  </Label>
-                  <Label text="Role" textFill="#101010">
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font>
-                  </Label>
-               </children>
-            </VBox>
-            <VBox layoutX="300.0" layoutY="164.0" prefHeight="166.0" prefWidth="153.0" spacing="21.0">
-               <children>
-                  <TextField fx:id="cat_name" layoutX="10.0" layoutY="10.0" />
-                  <TextField fx:id="cat_prenom" layoutX="10.0" layoutY="35.0" prefHeight="71.0" prefWidth="153.0" />
-                  <TextField fx:id="cat_email" layoutX="10.0" layoutY="10.0" />
-                  <PasswordField fx:id="cat_password" />
-                  <TextField fx:id="cat_tel" layoutX="10.0" layoutY="10.0" />
-               </children>
-            </VBox>
-            <Button fx:id="cat_add" layoutX="211.0" layoutY="504.0" mnemonicParsing="false" onAction="#adduser" prefHeight="37.0" prefWidth="82.0" styleClass="addbtn" stylesheets="@styles/fxmlmaktabti.css" text="Ajouter" />
-            <Button fx:id="cat_update" layoutX="342.0" layoutY="504.0" mnemonicParsing="false" onAction="#updateuser" prefHeight="37.0" prefWidth="131.0" styleClass="modifybtn" stylesheets="@styles/fxmlmaktabti.css" text="Mettre à jour" />
-            <Button fx:id="cat_del" layoutX="211.0" layoutY="566.0" mnemonicParsing="false" onAction="#deleteuser" prefHeight="37.0" prefWidth="131.0" styleClass="deletebtn" stylesheets="@styles/fxmlmaktabti.css" text="Supprimer" />
-            <ListView fx:id="useview" layoutX="525.0" layoutY="108.0" prefHeight="381.0" prefWidth="379.0" />
-            <Button fx:id="reset" layoutX="370.0" layoutY="566.0" mnemonicParsing="false" onAction="#onreset" prefHeight="25.0" prefWidth="91.0" style="-fx-background-color: #FFD700;" styleClass="deletebtn" stylesheets="@styles/fxmlmaktabti.css" text="Reset" />
-            <Button fx:id="excel" layoutX="773.0" layoutY="504.0" mnemonicParsing="false" onAction="#excelfile" prefHeight="37.0" prefWidth="131.0" styleClass="modifybtn" stylesheets="@styles/fxmlmaktabti.css" text="Générer">
-               <graphic>
-                  <ImageView fitHeight="36.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@images/excell.png" />
-                     </image>
-                  </ImageView>
-               </graphic></Button>
-            <MenuButton fx:id="menurole" layoutX="300.0" layoutY="413.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="153.0" style="-fx-background-color: white;">
-              <items>
-                <MenuItem fx:id="Admin" mnemonicParsing="false" onAction="#Adminrole" text="Administrateur" />
-                <MenuItem fx:id="Client" mnemonicParsing="false" onAction="#clientrole" text="Client" />
-                  <MenuItem fx:id="Auteur" mnemonicParsing="false" onAction="#Auteurrole" text="Auteur" />
-              </items>
-            </MenuButton>
-            <FontAwesomeIconView glyphName="USERS" layoutX="143.0" layoutY="69.0" size="25" wrappingWidth="30.000002473592758" />
-         </children>
-      </Pane>
+         </graphic>
+      </Button>
+      <Button fx:id="reset" layoutX="424.0" layoutY="553.0" mnemonicParsing="false" onAction="#onreset" prefHeight="60.0" prefWidth="120.0" style="-fx-background-color: #FFD480;" styleClass="deletebtn" stylesheets="@styles/fxmlmaktabti.css" text="Annuler">
+         <graphic>
+            <FontAwesomeIconView fill="#e1d5d5" glyphName="CLOSE" size="20" />
+         </graphic>
+      </Button>
+      <ListView fx:id="useview" layoutX="682.0" layoutY="112.0" prefHeight="381.0" prefWidth="379.0" />
+      <TextField fx:id="cat_email" layoutX="315.0" layoutY="250.0" />
+      <Button fx:id="cat_del" layoutX="236.0" layoutY="553.0" mnemonicParsing="false" onAction="#deleteuser" prefHeight="60.0" prefWidth="120.0" styleClass="deletebtn" stylesheets="@styles/fxmlmaktabti.css" text="Supprimer">
+         <graphic>
+            <FontAwesomeIconView fill="#e1dcdc" glyphName="TRASH" size="20" />
+         </graphic>
+      </Button>
+      <Label layoutX="216.0" layoutY="192.0" text="Prenom">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Button fx:id="cat_update" layoutX="424.0" layoutY="473.0" mnemonicParsing="false" onAction="#updateuser" prefHeight="60.0" prefWidth="153.0" styleClass="modifybtn" stylesheets="@styles/fxmlmaktabti.css" text="Mettre à jour">
+         <graphic>
+            <FontAwesomeIconView fill="#ebeaea" glyphName="EDIT" size="20" />
+         </graphic>
+      </Button>
+      <Button fx:id="cat_add" layoutX="241.0" layoutY="473.0" mnemonicParsing="false" onAction="#adduser" prefHeight="60.0" prefWidth="120.0" styleClass="addbtn" stylesheets="@styles/fxmlmaktabti.css" text="Ajouter">
+         <graphic>
+            <FontAwesomeIconView fill="#f2f2f2" glyphName="PLUS" size="20" />
+         </graphic>
+      </Button>
+      <MenuButton fx:id="menurole" layoutX="317.0" layoutY="415.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="153.0" style="-fx-background-color: white;">
+        <items>
+          <MenuItem fx:id="Admin" mnemonicParsing="false" onAction="#Adminrole" text="Administrateur" />
+          <MenuItem fx:id="Client" mnemonicParsing="false" onAction="#clientrole" text="Client" />
+            <MenuItem fx:id="Auteur" mnemonicParsing="false" onAction="#Auteurrole" text="Auteur" />
+        </items>
+      </MenuButton>
    </children>
-   <effect>
-      <DropShadow color="#1b1eeb" />
-   </effect>
 </AnchorPane>

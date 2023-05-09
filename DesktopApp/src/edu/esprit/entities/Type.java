@@ -10,9 +10,8 @@ package edu.esprit.entities;
  * @author Gaaloul
  */
 public enum Type {
-       bronze,
-        silver,
-        gold
-        
-    
+    bronze,
+    silver,
+    gold
+
 }
