@@ -157,7 +157,7 @@ public class LivreController implements Initializable {
 
     }
 
-    String path = "C:\\xampp1\\htdocs\\music\\Alok & Alan Walker.mp3";
+    String path = "src\\edu\\esprit\\gui\\media\\Alok & Alan Walker.mp3";
     Media media = new Media(new File(path).toURI().toString());
     MediaPlayer mediaPlayer = new MediaPlayer(media);
 
